@@ -44,7 +44,7 @@ const Projects: React.FC = () => {
         
         // Filter projects with #portfolio topic or significant projects
         const filteredProjects = data.filter((repo: Project) => 
-          repo.topics?.includes('portfolio') || 
+          repo.topics?.includes('jehadurre') || 
           repo.stargazers_count > 0 || 
           repo.forks_count > 0 ||
           repo.description?.toLowerCase().includes('portfolio') ||
