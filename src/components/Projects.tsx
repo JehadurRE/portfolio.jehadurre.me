@@ -1,7 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Github, ExternalLink, Star, GitFork, Calendar, X, Eye, FileText } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  Github,
+  ExternalLink,
+  Star,
+  GitFork,
+  Calendar,
+  X,
+  Eye,
+  FileText,
+} from "lucide-react";
+import MarkdownRenderer from "../utils/MarkdownRenderer";
+
+import decodeBase64UTF8 from "../utils/DecodeUTF";
 
 interface Project {
   id: number;
@@ -33,66 +45,78 @@ const Projects: React.FC = () => {
 
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<string>('all');
-  const [selectedProject, setSelectedProject] = useState<ProjectModal | null>(null);
+  const [filter, setFilter] = useState<string>("all");
+  const [selectedProject, setSelectedProject] = useState<ProjectModal | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/JehadurRE/repos?sort=updated&per_page=50');
+        const response = await fetch(
+          "https://api.github.com/users/JehadurRE/repos?sort=updated&per_page=50"
+        );
         const data = await response.json();
-        
+
         // Filter projects with #portfolio topic or significant projects
-        const filteredProjects = data.filter((repo: Project) => 
-          repo.topics?.includes('jehadurre') || 
-          repo.stargazers_count > 0 || 
-          repo.forks_count > 0 ||
-          repo.description?.toLowerCase().includes('portfolio') ||
-          ['javascript', 'typescript', 'python', 'react'].includes(repo.language?.toLowerCase())
-        ).slice(0, 12);
-        
+        const filteredProjects = data
+          .filter(
+            (repo: Project) =>
+              repo.topics?.includes("jehadurre") ||
+              repo.stargazers_count > 0 ||
+              repo.forks_count > 0 ||
+              repo.description?.toLowerCase().includes("portfolio") ||
+              ["javascript", "typescript", "python", "react"].includes(
+                repo.language?.toLowerCase()
+              )
+          )
+          .slice(0, 12);
+
         setProjects(filteredProjects);
       } catch (error) {
-        console.error('Error fetching projects:', error);
+        console.error("Error fetching projects:", error);
         // Fallback projects
         setProjects([
           {
             id: 1,
-            name: 'Portfolio Website',
-            description: 'Modern portfolio website built with React, TypeScript, and Framer Motion',
-            html_url: 'https://github.com/JehadurRE/portfolio',
-            homepage: 'https://jehadur.dev',
+            name: "Portfolio Website",
+            description:
+              "Modern portfolio website built with React, TypeScript, and Framer Motion",
+            html_url: "https://github.com/JehadurRE/portfolio",
+            homepage: "https://jehadur.dev",
             stargazers_count: 15,
             forks_count: 3,
-            language: 'TypeScript',
-            topics: ['portfolio', 'react', 'typescript'],
-            updated_at: '2024-01-15T00:00:00Z',
-            owner: { login: 'JehadurRE' }
+            language: "TypeScript",
+            topics: ["portfolio", "react", "typescript"],
+            updated_at: "2024-01-15T00:00:00Z",
+            owner: { login: "JehadurRE" },
           },
           {
             id: 2,
-            name: 'Research Management System',
-            description: 'Full-stack application for managing research papers and collaborations',
-            html_url: 'https://github.com/JehadurRE/research-system',
+            name: "Research Management System",
+            description:
+              "Full-stack application for managing research papers and collaborations",
+            html_url: "https://github.com/JehadurRE/research-system",
             stargazers_count: 8,
             forks_count: 2,
-            language: 'JavaScript',
-            topics: ['research', 'nodejs', 'mongodb'],
-            updated_at: '2024-01-10T00:00:00Z',
-            owner: { login: 'JehadurRE' }
+            language: "JavaScript",
+            topics: ["research", "nodejs", "mongodb"],
+            updated_at: "2024-01-10T00:00:00Z",
+            owner: { login: "JehadurRE" },
           },
           {
             id: 3,
-            name: 'Machine Learning Toolkit',
-            description: 'Collection of ML algorithms and data preprocessing utilities',
-            html_url: 'https://github.com/JehadurRE/ml-toolkit',
+            name: "Machine Learning Toolkit",
+            description:
+              "Collection of ML algorithms and data preprocessing utilities",
+            html_url: "https://github.com/JehadurRE/ml-toolkit",
             stargazers_count: 12,
             forks_count: 5,
-            language: 'Python',
-            topics: ['machine-learning', 'python', 'data-science'],
-            updated_at: '2024-01-05T00:00:00Z',
-            owner: { login: 'JehadurRE' }
-          }
+            language: "Python",
+            topics: ["machine-learning", "python", "data-science"],
+            updated_at: "2024-01-05T00:00:00Z",
+            owner: { login: "JehadurRE" },
+          },
         ]);
       } finally {
         setLoading(false);
@@ -103,44 +127,53 @@ const Projects: React.FC = () => {
   }, []);
 
   const fetchReadme = async (project: Project) => {
-    console.log('Fetching README for:', project.name);
-    
+    console.log("Fetching README for:", project.name);
+
     setSelectedProject({
       project,
-      readme: '',
-      loading: true
+      readme: "",
+      loading: true,
     });
 
     try {
       // Try to fetch README from GitHub API
-      const response = await fetch(`https://api.github.com/repos/${project.owner.login}/${project.name}/readme`, {
-        headers: {
-          'Accept': 'application/vnd.github.v3+json'
+      const response = await fetch(
+        `https://api.github.com/repos/${project.owner.login}/${project.name}/readme`,
+        {
+          headers: {
+            Accept: "application/vnd.github.v3+json",
+          },
         }
-      });
-      
+      );
+
       if (response.ok) {
         const data = await response.json();
-        const readmeContent = atob(data.content);
-        console.log('README fetched successfully');
-        setSelectedProject(prev => prev ? {
-          ...prev,
-          readme: readmeContent,
-          loading: false
-        } : null);
+        const readmeContent = decodeBase64UTF8(data.content);
+        console.log("README fetched successfully");
+        setSelectedProject((prev) =>
+          prev
+            ? {
+                ...prev,
+                readme: readmeContent,
+                loading: false,
+              }
+            : null
+        );
       } else {
         throw new Error(`GitHub API responded with status: ${response.status}`);
       }
     } catch (error) {
-      console.error('Error fetching README:', error);
+      console.error("Error fetching README:", error);
       // Fallback README content
       const fallbackReadme = `# ${project.name}
 
-${project.description || 'No description available'}
+${project.description || "No description available"}
 
 ## Overview
 
-This is a ${project.language || 'software'} project that demonstrates various programming concepts and best practices.
+This is a ${
+        project.language || "software"
+      } project that demonstrates various programming concepts and best practices.
 
 ## Features
 
@@ -151,7 +184,11 @@ This is a ${project.language || 'software'} project that demonstrates various pr
 
 ## Technologies Used
 
-${project.topics && project.topics.length > 0 ? project.topics.map(topic => `- ${topic}`).join('\n') : '- Modern development stack'}
+${
+  project.topics && project.topics.length > 0
+    ? project.topics.map((topic) => `- ${topic}`).join("\n")
+    : "- Modern development stack"
+}
 
 ## Getting Started
 
@@ -159,7 +196,11 @@ ${project.topics && project.topics.length > 0 ? project.topics.map(topic => `- $
 
 Make sure you have the following installed:
 - Git
-- ${project.language === 'JavaScript' || project.language === 'TypeScript' ? 'Node.js and npm' : project.language || 'Required runtime'}
+- ${
+        project.language === "JavaScript" || project.language === "TypeScript"
+          ? "Node.js and npm"
+          : project.language || "Required runtime"
+      }
 
 ### Installation
 
@@ -171,12 +212,20 @@ cd ${project.name}
 
 2. Install dependencies:
 \`\`\`bash
-${project.language === 'JavaScript' || project.language === 'TypeScript' ? 'npm install' : '# Install dependencies as per project requirements'}
+${
+  project.language === "JavaScript" || project.language === "TypeScript"
+    ? "npm install"
+    : "# Install dependencies as per project requirements"
+}
 \`\`\`
 
 3. Run the project:
 \`\`\`bash
-${project.language === 'JavaScript' || project.language === 'TypeScript' ? 'npm start' : '# Run the project as per instructions'}
+${
+  project.language === "JavaScript" || project.language === "TypeScript"
+    ? "npm start"
+    : "# Run the project as per instructions"
+}
 \`\`\`
 
 ## Contributing
@@ -197,11 +246,15 @@ For any questions or suggestions, feel free to reach out:
 
 ⭐ If you found this project helpful, please give it a star!`;
 
-      setSelectedProject(prev => prev ? {
-        ...prev,
-        readme: fallbackReadme,
-        loading: false
-      } : null);
+      setSelectedProject((prev) =>
+        prev
+          ? {
+              ...prev,
+              readme: fallbackReadme,
+              loading: false,
+            }
+          : null
+      );
     }
   };
 
@@ -209,57 +262,19 @@ For any questions or suggestions, feel free to reach out:
     return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
   };
 
-  const languages = ['all', ...new Set(projects.map(p => p.language).filter(Boolean))];
-  const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.language === filter);
+  const languages = [
+    "all",
+    ...new Set(projects.map((p) => p.language).filter(Boolean)),
+  ];
+  const filteredProjects =
+    filter === "all" ? projects : projects.filter((p) => p.language === filter);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
-  };
-
-  const renderMarkdown = (markdown: string) => {
-    // Enhanced markdown to HTML conversion
-    let html = markdown
-      // Headers
-      .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold mb-3 mt-6 text-secondary-800 dark:text-secondary-200">$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2 class="text-xl font-bold mb-4 mt-8 text-secondary-800 dark:text-secondary-200">$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold mb-6 mt-4 text-gradient">$1</h1>')
-      
-      // Code blocks
-      .replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre class="bg-secondary-900 dark:bg-black text-green-400 p-4 rounded-lg overflow-x-auto my-6 border border-secondary-700"><code>$2</code></pre>')
-      
-      // Inline code
-      .replace(/`([^`]+)`/gim, '<code class="bg-secondary-100 dark:bg-secondary-800 px-2 py-1 rounded text-sm font-mono text-secondary-800 dark:text-secondary-200">$1</code>')
-      
-      // Bold and italic
-      .replace(/\*\*\*(.*?)\*\*\*/gim, '<strong class="font-bold italic">$1</strong>')
-      .replace(/\*\*(.*?)\*\*/gim, '<strong class="font-semibold">$1</strong>')
-      .replace(/\*(.*?)\*/gim, '<em class="italic">$1</em>')
-      
-      // Links
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">$1</a>')
-      
-      // Lists
-      .replace(/^\- (.*$)/gim, '<li class="ml-4 mb-1">• $1</li>')
-      .replace(/^\d+\. (.*$)/gim, '<li class="ml-4 mb-1 list-decimal">$1</li>')
-      
-      // Horizontal rules
-      .replace(/^---$/gim, '<hr class="border-secondary-300 dark:border-secondary-700 my-6">')
-      
-      // Line breaks
-      .replace(/\n\n/gim, '</p><p class="mb-4">')
-      .replace(/\n/gim, '<br>');
-
-    // Wrap in paragraphs
-    html = '<p class="mb-4">' + html + '</p>';
-    
-    // Clean up empty paragraphs
-    html = html.replace(/<p class="mb-4"><\/p>/gim, '');
-    
-    return html;
   };
 
   return (
@@ -276,7 +291,8 @@ For any questions or suggestions, feel free to reach out:
             Featured Projects
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
-            A collection of my work showcasing various technologies and problem-solving approaches
+            A collection of my work showcasing various technologies and
+            problem-solving approaches
           </p>
         </motion.div>
 
@@ -295,11 +311,11 @@ For any questions or suggestions, feel free to reach out:
               onClick={() => setFilter(lang)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 filter === lang
-                  ? 'bg-primary-500 text-white shadow-lg'
-                  : 'glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md'
+                  ? "bg-primary-500 text-white shadow-lg"
+                  : "glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md"
               }`}
             >
-              {lang === 'all' ? 'All' : lang}
+              {lang === "all" ? "All" : lang}
             </motion.button>
           ))}
         </motion.div>
@@ -332,7 +348,7 @@ For any questions or suggestions, feel free to reach out:
                 className="glass-card p-6 hover:shadow-xl transition-all duration-300 group"
               >
                 {/* GitHub OG Image */}
-                <div 
+                <div
                   className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image"
                   onClick={() => fetchReadme(project)}
                 >
@@ -343,7 +359,9 @@ For any questions or suggestions, feel free to reach out:
                     onError={(e) => {
                       // Fallback image if GitHub OG image fails
                       const target = e.target as HTMLImageElement;
-                      target.src = `https://via.placeholder.com/400x200/6366f1/ffffff?text=${encodeURIComponent(project.name)}`;
+                      target.src = `https://via.placeholder.com/400x200/6366f1/ffffff?text=${encodeURIComponent(
+                        project.name
+                      )}`;
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -367,7 +385,7 @@ For any questions or suggestions, feel free to reach out:
                 </div>
 
                 <p className="text-secondary-600 dark:text-secondary-300 mb-4 leading-relaxed">
-                  {project.description || 'No description available'}
+                  {project.description || "No description available"}
                 </p>
 
                 {/* Topics */}
@@ -506,13 +524,17 @@ For any questions or suggestions, feel free to reach out:
                   {selectedProject.loading ? (
                     <div className="flex flex-col items-center justify-center h-64 space-y-4">
                       <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent"></div>
-                      <p className="text-secondary-600 dark:text-secondary-300">Loading README...</p>
+                      <p className="text-secondary-600 dark:text-secondary-300">
+                        Loading README...
+                      </p>
                     </div>
                   ) : (
-                    <div 
-                      className="prose prose-lg max-w-none dark:prose-invert text-secondary-700 dark:text-secondary-300 leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: renderMarkdown(selectedProject.readme) }}
-                    />
+                    <div className="prose prose-lg max-w-none dark:prose-invert text-secondary-700 dark:text-secondary-300 leading-relaxed">
+                      <MarkdownRenderer
+                        markdown={selectedProject.readme}
+                        githubUrl={`https://github.com/${selectedProject.project.owner.login}/${selectedProject.project.name}`}
+                      />
+                    </div>
                   )}
                 </div>
               </motion.div>

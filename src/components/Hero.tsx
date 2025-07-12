@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Twitter, Mail, ExternalLink } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
+import { GoogleScholar } from '../icons/CustomsByJehadurRE'; // Assuming you have a custom icon for Google Scholar
+
 
 const Hero: React.FC = () => {
   const socialLinks = [
@@ -9,6 +11,7 @@ const Hero: React.FC = () => {
     { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
     { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
+    { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Email' }
   ];
 
   return (

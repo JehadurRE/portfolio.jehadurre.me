@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code, Zap, Users, Award, BookOpen, Lightbulb, Database, Cloud, Smartphone ,CodeXml,Codesandbox} from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
-import { render } from 'react-dom';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({

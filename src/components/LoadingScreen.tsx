@@ -48,7 +48,7 @@ const LoadingScreen: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.5, duration: 2 }}
           className="space-y-4"
         >
           <h2 className="text-2xl font-bold text-gradient">
@@ -58,16 +58,16 @@ const LoadingScreen: React.FC = () => {
             <TypeAnimation
               sequence={[
                 'Initializing portfolio...',
-                1000,
+                400,
                 'Loading projects...',
-                1000,
+                400,
                 'Preparing experience...',
-                1000,
+                400,
                 'Almost ready...',
-                1000,
+                400,
               ]}
               wrapper="span"
-              speed={50}
+              speed={90}
               repeat={Infinity}
             />
           </div>

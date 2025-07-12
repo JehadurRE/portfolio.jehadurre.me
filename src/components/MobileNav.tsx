@@ -22,7 +22,10 @@ const MobileNav: React.FC = () => {
       sections.forEach((section, index) => {
         if (section) {
           const sectionTop = section.offsetTop;
+          console.log(`Section: ${navItems[index].id}, Top: ${sectionTop}, Scroll Position: ${scrollPosition}`);
           const sectionBottom = sectionTop + section.offsetHeight;
+
+          console.log(`Section: ${navItems[index].id}, Bottom: ${sectionBottom}`);
 
           if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             setActiveSection(navItems[index].id);
@@ -68,7 +71,7 @@ const MobileNav: React.FC = () => {
               {activeSection === item.id && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute -top-1 w-1 h-1 bg-white rounded-full"
+                  className="absolute -top-1 w-1 h-1 bg-primary-500 dark:bg-white rounded-full"
                   transition={{ duration: 0.3 }}
                 />
               )}
