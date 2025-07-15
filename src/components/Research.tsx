@@ -22,38 +22,39 @@ const Research: React.FC = () => {
       status: 'Published'
     },
     {
-      id: 2,
-      title: 'Scalable Web Applications: A Performance Analysis',
-      authors: ['Md. Jehadur Rahman Emran', 'Research Collaborator'],
-      venue: 'Journal of Web Engineering',
-      year: 2023,
-      type: 'Journal Article',
-      abstract: 'An extensive analysis of performance optimization techniques for modern web applications, including case studies and benchmarking results.',
-      link: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en',
-      status: 'Published'
-    },
-    {
-      id: 3,
-      title: 'Human-Computer Interaction in Educational Technology',
-      authors: ['Md. Jehadur Rahman Emran', 'Education Researcher'],
-      venue: 'International Journal of Educational Technology',
-      year: 2023,
-      type: 'Journal Article',
-      abstract: 'Exploring the intersection of HCI principles and educational technology to enhance learning experiences in digital environments.',
-      link: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en',
-      status: 'Published'
-    },
-    {
-      id: 4,
-      title: 'Blockchain Applications in Academic Research Management',
-      authors: ['Md. Jehadur Rahman Emran', 'Blockchain Researcher'],
-      venue: 'Future Generation Computer Systems',
-      year: 2024,
-      type: 'Journal Article',
-      abstract: 'Investigating the potential of blockchain technology for managing academic research data, ensuring transparency and immutability.',
-      link: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en',
-      status: 'Under Review'
-    }
+  "id": 2,
+  "title": "Multiclass Emotion and Sentiment Detection from Bengali Speech",
+  "authors": ["Md. Jobairul Hassan", "Md. Jehad", "Yousuf Hossen", "Chondromollika Ahmed", "Shamim Akhter"],
+  "venue": "N/A",
+  "year": 2025,
+  "type": "Research Work",
+  "abstract": "Ongoing research focusing on detecting multiple emotions and sentiments from Bengali speech using advanced machine learning techniques.",
+  "link": "https://www.canva.com/design/DAFiicoL_0c/Ese3UttXW348WFB6QKvuTQ/view?utm_content=DAFiicoL_0c&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h08a6a10a21",
+  "status": "Ongoing"
+},
+{
+  "id": 3,
+  "title": "Fine-Grained Image Generation from Bangla Text Descriptions",
+  "authors": ["Md. Jehad", "Chondromollika Ahmed"],
+  "venue": "N/A",
+  "year": 2025,
+  "type": "Research Work",
+  "abstract": "Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models.",
+  "link": "https://drive.google.com/file/d/1ejdHt_HPyqX2ZqtAp4FrvRZzA_NoJnF8/view?usp=sharing",
+  "status": "Ongoing for Publication"
+},
+{
+  "id": 4,
+  "title": "Automated Brain Tumor Detection and Classification using Machine Learning Techniques on MRI Images",
+  "authors": ["Yousuf Hossen", "Chondromollika Ahmed", "Md. Jehad", "Md. Jobairul Hassan",  "Shamim Akhter"],
+  "venue": "N/A",
+  "year": 2025,
+  "type": "Research Work",
+  "abstract": "Developing machine learning based methods to automatically detect and classify brain tumors from MRI scans.",
+  "link": "https://www.canva.com/design/DAFsDMImDMU/uyss8iRDHZASGnqTI68qBg/view?utm_content=DAFsDMImDMU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc255806031",
+  "status": "Ongoing for Publication"
+}
+
   ];
 
   const researchAreas = [
