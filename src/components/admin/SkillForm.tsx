@@ -104,7 +104,7 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
       }
 
       onSave();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message || 'Failed to save skill');
     } finally {
       setLoading(false);
@@ -175,7 +175,7 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
               </label>
               <select
                 value={formData.category}
-                onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as any }))}
+                onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as unknown as string }))}
                 required
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
               >

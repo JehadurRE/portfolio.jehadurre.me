@@ -40,7 +40,7 @@ const About: React.FC = () => {
   ];
 
   const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
+    const icons: { [key: string]: React.ElementType } = {
       Code,
       Zap,
       BookOpen,
@@ -93,7 +93,7 @@ const About: React.FC = () => {
   //                   <div className="flex items-center mb-4">
   //                     <IconComponent className="w-6 h-6 text-primary-500 mr-3" />
   //                     <div className="flex-1">
-  //                       <h4 className="text-xl font-semibold text-secondary-800 dark:text-secondary-200">
+  //                       <h4 className="text-xl font-semibold text-secondary-900 dark:text-white tracking-tight">
   //                         {skill.name}
   //                       </h4>
   //                       <div className="flex items-center space-x-2 mt-1">
@@ -107,7 +107,7 @@ const About: React.FC = () => {
   //                     </div>
   //                   </div>
                     
-  //                   <p className="text-secondary-600 dark:text-secondary-300 text-sm mb-4">
+  //                   <p className="text-secondary-500 dark:text-secondary-500 text-sm mb-4">
   //                     {skill.description}
   //                   </p>
                     
@@ -115,7 +115,7 @@ const About: React.FC = () => {
   //                     {skill.technologies.map((tech) => (
   //                       <span
   //                         key={tech}
-  //                         className="px-3 py-1 text-sm bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full"
+  //                         className="px-3 py-1.5 text-xs font-medium bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-full border border-secondary-200 dark:border-secondary-700"
   //                       >
   //                         {tech}
   //                       </span>
@@ -141,7 +141,7 @@ const About: React.FC = () => {
             <div className="flex items-center mb-4">
               <IconComponent className="w-6 h-6 text-primary-500 mr-3" />
               <div className="flex-1">
-                <h4 className="text-xl font-semibold text-secondary-800 dark:text-secondary-200">
+                <h4 className="text-xl font-semibold text-secondary-900 dark:text-white tracking-tight">
                   {skill.name}
                 </h4>
                 <div className="flex items-center space-x-2 mt-1">
@@ -155,7 +155,7 @@ const About: React.FC = () => {
               </div>
             </div>
             
-            <p className="text-secondary-600 dark:text-secondary-300 text-sm mb-4">
+            <p className="text-secondary-500 dark:text-secondary-500 text-sm mb-4">
               {skill.description}
             </p>
             
@@ -163,7 +163,7 @@ const About: React.FC = () => {
               {skill.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 text-sm bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full"
+                  className="px-3 py-1.5 text-xs font-medium bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-full border border-secondary-200 dark:border-secondary-700"
                 >
                   {tech}
                 </span>
@@ -195,7 +195,7 @@ const About: React.FC = () => {
                 >
                   <div className="flex items-center mb-4">
                     <skill.icon className="w-6 h-6 text-primary-500 mr-3" />
-                    <h4 className="text-xl font-semibold text-secondary-800 dark:text-secondary-200">
+                    <h4 className="text-xl font-semibold text-secondary-900 dark:text-white tracking-tight">
                       {skill.name}
                     </h4>
                   </div>
@@ -203,7 +203,7 @@ const About: React.FC = () => {
                     {skill.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-sm bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full"
+                        className="px-3 py-1.5 text-xs font-medium bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-full border border-secondary-200 dark:border-secondary-700 hover:border-primary-300 dark:hover:border-primary-700 transition-colors"
                       >
                         {tech}
                       </span>
@@ -227,7 +227,7 @@ const About: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             About Me
           </h2>
-          <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+          <p className="text-lg text-secondary-500 dark:text-secondary-500 max-w-3xl mx-auto">
             I'm a passionate software engineer with a strong foundation in both practical development 
             and academic research. My journey spans from building scalable web applications to 
             contributing to computer science research.
@@ -243,15 +243,15 @@ const About: React.FC = () => {
             className="space-y-6"
           >
             <div className="glass-card p-8">
-              <h3 className="text-2xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
+              <h3 className="text-2xl font-bold mb-4 text-secondary-900 dark:text-white tracking-tight">
                 My Journey
               </h3>
-              <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed mb-4">
+              <p className="text-secondary-500 dark:text-secondary-500 leading-relaxed mb-4">
                 With a deep passion for technology and research, I've dedicated my career to bridging 
                 the gap between theoretical computer science and practical software development. 
                 My work spans across multiple domains, from web development to machine learning research.
               </p>
-              <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
+              <p className="text-secondary-500 dark:text-secondary-500 leading-relaxed">
                 I believe in the power of open-source collaboration and continuous learning. 
                 When I'm not coding, you'll find me exploring new technologies, writing research papers, 
                 or contributing to the developer community.
@@ -266,13 +266,13 @@ const About: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                  className="glass-card p-4 text-center"
+                  className="glass-card p-6 text-center hover:scale-105 hover:shadow-xl hover:shadow-primary-500/10 transition-all duration-300 border-t-2 border-t-transparent hover:border-t-primary-500"
                 >
                   <achievement.icon className="w-8 h-8 mx-auto mb-2 text-primary-500" />
                   <div className="text-2xl font-bold text-gradient mb-1">
                     {achievement.value}
                   </div>
-                  <div className="text-sm text-secondary-600 dark:text-secondary-400">
+                  <div className="text-sm text-secondary-500 dark:text-secondary-500">
                     {achievement.title}
                   </div>
                 </motion.div>
@@ -291,12 +291,12 @@ const About: React.FC = () => {
 
 
             <div className="flex items-center justify-between">
-              <h3 className="text-2xl font-bold mb-6 text-secondary-800 dark:text-secondary-200">
+              <h3 className="text-2xl font-bold mb-6 text-secondary-900 dark:text-white tracking-tight">
                 Skills & Expertise
               </h3>
 
                {/* View Toggle */}
-              <div className="glass-card p-1 rounded-xl">
+              <div className="bg-secondary-100 dark:bg-secondary-800 p-1 rounded-xl inline-flex">
                 <div className="flex space-x-1">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -304,8 +304,8 @@ const About: React.FC = () => {
                     onClick={() => setSkillsView('compact')}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       skillsView === 'compact'
-                        ? 'bg-primary-500 text-white shadow-lg'
-                        : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
+                        ? 'bg-white dark:bg-secondary-700 text-primary-600 dark:text-primary-400 shadow-sm border border-secondary-200 dark:border-secondary-600'
+                        : 'text-secondary-500 dark:text-secondary-500 hover:bg-secondary-100 dark:hover:bg-secondary-800'
                     }`}
                   >
                     <CodeXml className="w-4 h-4" />
@@ -317,8 +317,8 @@ const About: React.FC = () => {
                     onClick={() => setSkillsView('detailed')}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       skillsView === 'detailed'
-                        ? 'bg-primary-500 text-white shadow-lg'
-                        : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
+                        ? 'bg-white dark:bg-secondary-700 text-primary-600 dark:text-primary-400 shadow-sm border border-secondary-200 dark:border-secondary-600'
+                        : 'text-secondary-500 dark:text-secondary-500 hover:bg-secondary-100 dark:hover:bg-secondary-800'
                     }`}
                   >
                     <Codesandbox className="w-4 h-4" />

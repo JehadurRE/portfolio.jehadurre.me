@@ -27,7 +27,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
 
       if (error) throw error;
       onLogin();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message || 'Login failed');
     } finally {
       setLoading(false);

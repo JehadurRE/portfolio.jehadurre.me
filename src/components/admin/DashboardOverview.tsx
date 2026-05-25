@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Award, Trophy, TrendingUp, Calendar, Users, Eye, Code } from 'lucide-react';
+import { FileText, Award, Trophy, TrendingUp, Eye, Code } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 interface Stats {

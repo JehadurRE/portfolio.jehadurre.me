@@ -290,7 +290,7 @@ For any questions or suggestions, feel free to reach out:
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Featured Projects
           </h2>
-          <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+          <p className="text-lg text-secondary-600 dark:text-secondary-400 max-w-3xl mx-auto">
             A collection of my work showcasing various technologies and
             problem-solving approaches
           </p>
@@ -312,7 +312,7 @@ For any questions or suggestions, feel free to reach out:
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 filter === lang
                   ? "bg-primary-500 text-white shadow-lg"
-                  : "glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md"
+                  : "glass-card text-secondary-600 dark:text-secondary-400 hover:shadow-md"
               }`}
             >
               {lang === "all" ? "All" : lang}
@@ -373,7 +373,7 @@ For any questions or suggestions, feel free to reach out:
                 </div>
 
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-bold text-secondary-800 dark:text-secondary-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  <h3 className="text-xl font-bold text-secondary-900 dark:text-white tracking-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                     {project.name}
                   </h3>
                   <div className="flex items-center space-x-2 text-sm text-secondary-500 dark:text-secondary-400">
@@ -384,7 +384,7 @@ For any questions or suggestions, feel free to reach out:
                   </div>
                 </div>
 
-                <p className="text-secondary-600 dark:text-secondary-300 mb-4 leading-relaxed">
+                <p className="text-secondary-600 dark:text-secondary-400 mb-4 leading-relaxed">
                   {project.description || "No description available"}
                 </p>
 
@@ -394,7 +394,7 @@ For any questions or suggestions, feel free to reach out:
                     {project.topics.slice(0, 3).map((topic) => (
                       <span
                         key={topic}
-                        className="px-2 py-1 text-xs bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded-full"
+                        className="px-3 py-1 text-xs font-medium bg-secondary-100 dark:bg-secondary-800 text-secondary-600 dark:text-secondary-300 rounded-full border border-secondary-200 dark:border-secondary-700 hover:border-accent-300 dark:hover:border-accent-700 transition-colors"
                       >
                         {topic}
                       </span>
@@ -488,7 +488,7 @@ For any questions or suggestions, feel free to reach out:
                   <div className="flex items-center space-x-3">
                     <FileText className="w-6 h-6 text-primary-500" />
                     <div>
-                      <h3 className="text-xl font-bold text-secondary-800 dark:text-secondary-200">
+                      <h3 className="text-xl font-bold text-secondary-900 dark:text-white tracking-tight">
                         {selectedProject.project.name}
                       </h3>
                       <p className="text-sm text-secondary-500 dark:text-secondary-400">
@@ -514,7 +514,7 @@ For any questions or suggestions, feel free to reach out:
                       onClick={() => setSelectedProject(null)}
                       className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
                     >
-                      <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
+                      <X className="w-5 h-5 text-secondary-600 dark:text-secondary-400" />
                     </motion.button>
                   </div>
                 </div>
@@ -524,7 +524,7 @@ For any questions or suggestions, feel free to reach out:
                   {selectedProject.loading ? (
                     <div className="flex flex-col items-center justify-center h-64 space-y-4">
                       <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent"></div>
-                      <p className="text-secondary-600 dark:text-secondary-300">
+                      <p className="text-secondary-600 dark:text-secondary-400">
                         Loading README...
                       </p>
                     </div>

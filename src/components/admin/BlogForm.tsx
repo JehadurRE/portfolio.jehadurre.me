@@ -89,7 +89,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
       }
 
       onSave();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(err.message || 'Failed to save post');
     } finally {
       setLoading(false);

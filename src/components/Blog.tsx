@@ -65,7 +65,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
       <section id="blog" className="section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16">
-            <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
+            <h2 className="text-3xl font-bold mb-4 text-secondary-900 dark:text-white tracking-tight">
               Blog & Insights
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
@@ -94,7 +94,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Blog & Insights
           </h2>
-          <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+          <p className="text-lg text-secondary-600 dark:text-secondary-400 max-w-3xl mx-auto">
             Sharing thoughts on technology, software development, and research discoveries
           </p>
         </motion.div>
@@ -115,7 +115,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedTag === tag
                   ? 'bg-primary-500 text-white shadow-lg'
-                  : 'glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md'
+                  : 'glass-card text-secondary-600 dark:text-secondary-400 hover:shadow-md'
               }`}
             >
               {tag === 'all' ? 'All Posts' : tag}
@@ -127,7 +127,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
         {loading ? (
           <div className="text-center py-16">
             <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent mx-auto mb-4"></div>
-            <p className="text-secondary-600 dark:text-secondary-300">Loading blog posts...</p>
+            <p className="text-secondary-600 dark:text-secondary-400">Loading blog posts...</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-8">
@@ -143,10 +143,10 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
                 onClick={() => handlePostClick(post.slug, `blog-post-${index}`)}
               >
                 <div className="mb-4">
-                  <h3 className="text-xl font-bold text-secondary-800 dark:text-secondary-200 mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  <h3 className="text-xl font-bold text-secondary-900 dark:text-white tracking-tight mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
+                  <p className="text-secondary-600 dark:text-secondary-400 leading-relaxed">
                     {post.excerpt}
                   </p>
                 </div>
@@ -156,7 +156,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 text-xs bg-accent-100 dark:bg-accent-900/30 text-accent-700 dark:text-accent-300 rounded-full"
+                      className="px-3 py-1 text-xs font-medium bg-secondary-100 dark:bg-secondary-800 text-secondary-600 dark:text-secondary-300 rounded-full border border-secondary-200 dark:border-secondary-700 hover:border-accent-300 dark:hover:border-accent-700 transition-colors"
                     >
                       {tag}
                     </span>
@@ -218,17 +218,17 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
           className="mt-16 text-center"
         >
           <div className="glass-card p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-secondary-800 dark:text-secondary-200 mb-4">
+            <h3 className="text-2xl font-bold text-secondary-900 dark:text-white tracking-tight mb-4">
               Stay Updated
             </h3>
-            <p className="text-secondary-600 dark:text-secondary-300 mb-6">
+            <p className="text-secondary-600 dark:text-secondary-400 mb-6">
               Subscribe to get notified about new blog posts and research updates
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg glass border border-secondary-200 dark:border-secondary-700 text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="flex-1 px-4 py-3 rounded-lg glass border border-secondary-200 dark:border-secondary-700 text-secondary-900 dark:text-white tracking-tight placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
               <motion.button
                 whileHover={{ scale: 1.05 }}

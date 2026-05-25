@@ -92,7 +92,7 @@ const Certifications: React.FC = () => {
       <section id="certifications" className="section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16">
-            <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
+            <h2 className="text-3xl font-bold mb-4 text-secondary-900 dark:text-white tracking-tight">
               Certifications & Achievements
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
@@ -121,7 +121,7 @@ const Certifications: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Certifications & Achievements
           </h2>
-          <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+          <p className="text-lg text-secondary-600 dark:text-secondary-400 max-w-3xl mx-auto">
             Professional certifications, academic achievements, and recognition that validate my expertise 
             and commitment to continuous learning
           </p>
@@ -143,7 +143,7 @@ const Certifications: React.FC = () => {
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'certifications'
                     ? 'bg-primary-500 text-white shadow-lg'
-                    : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
+                    : 'text-secondary-600 dark:text-secondary-400 hover:bg-secondary-100 dark:hover:bg-secondary-800'
                 }`}
               >
                 <div className="flex items-center space-x-2">
@@ -158,7 +158,7 @@ const Certifications: React.FC = () => {
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'achievements'
                     ? 'bg-primary-500 text-white shadow-lg'
-                    : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
+                    : 'text-secondary-600 dark:text-secondary-400 hover:bg-secondary-100 dark:hover:bg-secondary-800'
                 }`}
               >
                 <div className="flex items-center space-x-2">
@@ -173,7 +173,7 @@ const Certifications: React.FC = () => {
         {loading ? (
           <div className="text-center py-16">
             <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent mx-auto mb-4"></div>
-            <p className="text-secondary-600 dark:text-secondary-300">Loading...</p>
+            <p className="text-secondary-600 dark:text-secondary-400">Loading...</p>
           </div>
         ) : (
           <>
@@ -200,7 +200,7 @@ const Certifications: React.FC = () => {
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         certFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
-                          : 'glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md'
+                          : 'glass-card text-secondary-600 dark:text-secondary-400 hover:shadow-md'
                       }`}
                     >
                       {category.name} ({category.count})
@@ -242,7 +242,7 @@ const Certifications: React.FC = () => {
 
                       {/* Certificate Info */}
                       <div className="space-y-3">
-                        <h3 className="text-lg font-bold text-secondary-800 dark:text-secondary-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        <h3 className="text-lg font-bold text-secondary-900 dark:text-white tracking-tight group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                           {cert.title}
                         </h3>
                         
@@ -306,7 +306,7 @@ const Certifications: React.FC = () => {
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         achievementFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
-                          : 'glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md'
+                          : 'glass-card text-secondary-600 dark:text-secondary-400 hover:shadow-md'
                       }`}
                     >
                       {category.name} ({category.count})
@@ -335,7 +335,7 @@ const Certifications: React.FC = () => {
                         <div className="flex-1">
                           <div className="flex items-start justify-between mb-3">
                             <div>
-                              <h3 className="text-xl font-bold text-secondary-800 dark:text-secondary-200 mb-1">
+                              <h3 className="text-xl font-bold text-secondary-900 dark:text-white tracking-tight mb-1">
                                 {achievement.title}
                               </h3>
                               <p className="text-accent-600 dark:text-accent-400 font-medium">
@@ -348,7 +348,7 @@ const Certifications: React.FC = () => {
                             </div>
                           </div>
                           
-                          <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
+                          <p className="text-secondary-600 dark:text-secondary-400 leading-relaxed">
                             {achievement.details}
                           </p>
                           
@@ -385,7 +385,7 @@ const Certifications: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-start justify-between mb-6">
-                <h3 className="text-2xl font-bold text-secondary-800 dark:text-secondary-200">
+                <h3 className="text-2xl font-bold text-secondary-900 dark:text-white tracking-tight">
                   {selectedCert.title}
                 </h3>
                 <motion.button
@@ -394,7 +394,7 @@ const Certifications: React.FC = () => {
                   onClick={() => setSelectedCert(null)}
                   className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
                 >
-                  <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
+                  <X className="w-5 h-5 text-secondary-600 dark:text-secondary-400" />
                 </motion.button>
               </div>
 
@@ -407,55 +407,55 @@ const Certifications: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold text-secondary-800 dark:text-secondary-200 mb-2">
+                    <h4 className="font-semibold text-secondary-900 dark:text-white tracking-tight mb-2">
                       Issuer
                     </h4>
-                    <p className="text-secondary-600 dark:text-secondary-300">
+                    <p className="text-secondary-600 dark:text-secondary-400">
                       {selectedCert.issuer}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-secondary-800 dark:text-secondary-200 mb-2">
+                    <h4 className="font-semibold text-secondary-900 dark:text-white tracking-tight mb-2">
                       Issue Date
                     </h4>
-                    <p className="text-secondary-600 dark:text-secondary-300">
+                    <p className="text-secondary-600 dark:text-secondary-400">
                       {formatDate(selectedCert.issue_date)}
                     </p>
                   </div>
 
                   {selectedCert.expiry_date && (
                     <div>
-                      <h4 className="font-semibold text-secondary-800 dark:text-secondary-200 mb-2">
+                      <h4 className="font-semibold text-secondary-900 dark:text-white tracking-tight mb-2">
                         Expiry Date
                       </h4>
-                      <p className="text-secondary-600 dark:text-secondary-300">
+                      <p className="text-secondary-600 dark:text-secondary-400">
                         {formatDate(selectedCert.expiry_date)}
                       </p>
                     </div>
                   )}
 
                   <div>
-                    <h4 className="font-semibold text-secondary-800 dark:text-secondary-200 mb-2">
+                    <h4 className="font-semibold text-secondary-900 dark:text-white tracking-tight mb-2">
                       Credential ID
                     </h4>
-                    <p className="text-secondary-600 dark:text-secondary-300 font-mono text-sm">
+                    <p className="text-secondary-600 dark:text-secondary-400 font-mono text-sm">
                       {selectedCert.credential_id}
                     </p>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-secondary-800 dark:text-secondary-200 mb-2">
+                  <h4 className="font-semibold text-secondary-900 dark:text-white tracking-tight mb-2">
                     Description
                   </h4>
-                  <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
+                  <p className="text-secondary-600 dark:text-secondary-400 leading-relaxed">
                     {selectedCert.description}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-secondary-800 dark:text-secondary-200 mb-3">
+                  <h4 className="font-semibold text-secondary-900 dark:text-white tracking-tight mb-3">
                     Skills Validated
                   </h4>
                   <div className="flex flex-wrap gap-2">

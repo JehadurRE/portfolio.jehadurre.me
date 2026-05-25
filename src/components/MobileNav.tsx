@@ -51,7 +51,7 @@ const MobileNav: React.FC = () => {
     >
       <div className="glass-card m-4 rounded-2xl p-2">
         <div className="flex items-center justify-around">
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <motion.a
               key={item.id}
               href={item.href}

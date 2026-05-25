@@ -8,19 +8,18 @@
     scroll-behavior: smooth;
   }
   
-  body {
-    @apply bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-secondary-900 dark:via-secondary-800 dark:to-secondary-900;
-    background-attachment: fixed;
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    body {
+    @apply bg-secondary-50 text-secondary-900 dark:bg-secondary-900 dark:text-secondary-50;
   }
   
+  /* We will handle the gradient more elegantly in the Hero section instead of the whole body */
+
   .glass {
-    @apply bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/20 dark:border-white/10;
+    @apply bg-white/60 dark:bg-secondary-900/60 backdrop-blur-xl border border-white/40 dark:border-white/5;
   }
   
   .glass-card {
-    @apply glass rounded-2xl shadow-lg shadow-primary-500/10 dark:shadow-primary-400/5;
+    @apply glass rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] transition-all duration-300;
   }
   
   .text-gradient {
@@ -47,15 +46,15 @@
 
 @layer components {
   .btn-primary {
-    @apply glass-card px-6 py-3 text-primary-600 dark:text-primary-400 font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/20 active:scale-95;
+    @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:-translate-y-1 active:translate-y-0;
   }
   
   .btn-secondary {
-    @apply glass-card px-6 py-3 text-secondary-600 dark:text-secondary-300 font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-secondary-500/20 active:scale-95;
+    @apply glass-card px-6 py-3 text-secondary-800 dark:text-secondary-200 font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-secondary-500/20 active:translate-y-0;
   }
   
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+    @apply px-4 sm:px-6 lg:px-8 py-20 lg:py-32;
   }
   
   .container-custom {

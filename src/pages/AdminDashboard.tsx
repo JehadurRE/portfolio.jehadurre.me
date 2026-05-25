@@ -5,10 +5,8 @@ import {
   FileText, 
   Award, 
   Trophy, 
-  Plus, 
   LogOut, 
   Users,
-  TrendingUp,
   Calendar,
   Settings,
   Code
@@ -28,7 +26,7 @@ type ActiveTab = 'overview' | 'blog' | 'certifications' | 'achievements' | 'skil
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<unknown>(null);
 
   useEffect(() => {
     const getUser = async () => {

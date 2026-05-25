@@ -97,7 +97,7 @@ const Research: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Research & Publications
           </h2>
-          <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
+          <p className="text-lg text-secondary-600 dark:text-secondary-400 max-w-3xl mx-auto">
             Exploring the intersection of technology and research to advance our understanding 
             of computer science and software engineering
           </p>
@@ -120,7 +120,7 @@ const Research: React.FC = () => {
               className="glass-card p-6 text-center hover:shadow-lg transition-all duration-300"
             >
               <div className="text-4xl mb-4">{area.icon}</div>
-              <h3 className="text-lg font-semibold mb-2 text-secondary-800 dark:text-secondary-200">
+              <h3 className="text-lg font-semibold mb-2 text-secondary-900 dark:text-white tracking-tight">
                 {area.title}
               </h3>
               <p className="text-sm text-secondary-600 dark:text-secondary-400">
@@ -137,7 +137,7 @@ const Research: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="space-y-8"
         >
-          <h3 className="text-2xl font-bold text-center mb-8 text-secondary-800 dark:text-secondary-200">
+          <h3 className="text-2xl font-bold text-center mb-8 text-secondary-900 dark:text-white tracking-tight">
             Recent Publications
           </h3>
           
@@ -153,7 +153,7 @@ const Research: React.FC = () => {
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
-                    <h4 className="text-xl font-bold text-secondary-800 dark:text-secondary-200">
+                    <h4 className="text-xl font-bold text-secondary-900 dark:text-white tracking-tight">
                       {publication.title}
                     </h4>
                     <span className={`px-2 py-1 text-xs rounded-full ${
@@ -184,7 +184,7 @@ const Research: React.FC = () => {
                     {publication.venue}
                   </p>
                   
-                  <p className="text-secondary-600 dark:text-secondary-300 leading-relaxed">
+                  <p className="text-secondary-600 dark:text-secondary-400 leading-relaxed">
                     {publication.abstract}
                   </p>
                 </div>
@@ -212,7 +212,7 @@ const Research: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <h3 className="text-xl font-semibold mb-6 text-secondary-800 dark:text-secondary-200">
+          <h3 className="text-xl font-semibold mb-6 text-secondary-900 dark:text-white tracking-tight">
             Research Profiles
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
