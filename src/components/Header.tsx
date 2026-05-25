@@ -74,6 +74,7 @@ const Header: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
               className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
+              aria-label="Toggle theme"
             >
               {isDark ? (
                 <Sun className="w-5 h-5 text-accent-500" />
@@ -88,6 +89,8 @@ const Header: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
                 <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
