@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoadingScreen from './components/LoadingScreen';
+// ⚡ Bolt Performance Optimization:
+// Lazily load Admin and BlogPost components.
+// These components are not needed on the initial render of the portfolio.
+// Code splitting here significantly reduces the main bundle size,
+// improving initial load time and Time to Interactive (TTI).
+const Admin = React.lazy(() => import('./pages/Admin'));
+const BlogPost = React.lazy(() => import('./components/BlogPost'));
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,11 +15,11 @@ import Projects from './components/Projects';
 import Research from './components/Research';
 import Certifications from './components/Certifications';
 import Blog from './components/Blog';
-import BlogPost from './components/BlogPost';
+
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
-import Admin from './pages/Admin';
+
 import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
@@ -111,7 +118,7 @@ useEffect(() => {
   if (currentPage === 'admin') {
     return (
       <ThemeProvider>
-        <Admin />
+        <React.Suspense fallback={<LoadingScreen />}><Admin /></React.Suspense>
       </ThemeProvider>
     );
   }
@@ -121,7 +128,7 @@ useEffect(() => {
       <ThemeProvider>
         <div className="relative min-h-screen overflow-x-hidden">
           <Header />
-          <BlogPost slug={currentBlogSlug} onNavigateHome={navigateToHome} />
+          <React.Suspense fallback={<LoadingScreen />}><BlogPost slug={currentBlogSlug} onNavigateHome={navigateToHome} /></React.Suspense>
           <MobileNav />
           <Footer />
         </div>
