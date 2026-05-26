@@ -54,6 +54,13 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
   );
 };
 
+// Security enhancement: Sanitize URLs to prevent XSS attacks via javascript: and vbscript: URIs
+const sanitizeUrl = (url: string | undefined): string | undefined => {
+  if (!url) return undefined;
+  const isMalicious = /^(?:javascript|vbscript):/i.test(url.trim());
+  return isMalicious ? '#' : url;
+};
+
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl }) => {
   // Helper function to convert relative GitHub URLs to absolute ones
 
@@ -134,7 +141,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     ),
     a: ({ href, children }) => (
       <a
-        href={href}
+        href={sanitizeUrl(href)}
         target="_blank"
         rel="noopener noreferrer"
         className="text-primary-600 dark:text-primary-400 hover:underline"
