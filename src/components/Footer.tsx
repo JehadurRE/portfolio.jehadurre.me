@@ -48,6 +48,7 @@ const Footer: React.FC = () => {
               <img
                 src="https://github.com/JehadurRE.png"
                 alt="Jehadur Rahman Emran"
+                loading="lazy"
                 className="w-12 h-12 rounded-full ring-2 ring-primary-500/20"
               />
               <div>
