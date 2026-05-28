@@ -220,8 +220,9 @@ const Contact: React.FC = () => {
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <label className="text-green-400 block mb-1">$ enter_name:</label>
+                      <label htmlFor="name" className="text-green-400 block mb-1">$ enter_name:</label>
                       <input
+                        id="name"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -233,8 +234,9 @@ const Contact: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="text-green-400 block mb-1">$ enter_email:</label>
+                      <label htmlFor="email" className="text-green-400 block mb-1">$ enter_email:</label>
                       <input
+                        id="email"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -246,8 +248,9 @@ const Contact: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="text-green-400 block mb-1">$ enter_subject:</label>
+                      <label htmlFor="subject" className="text-green-400 block mb-1">$ enter_subject:</label>
                       <input
+                        id="subject"
                         type="text"
                         name="subject"
                         value={formData.subject}
@@ -259,8 +262,9 @@ const Contact: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="text-green-400 block mb-1">$ enter_message:</label>
+                      <label htmlFor="message" className="text-green-400 block mb-1">$ enter_message:</label>
                       <textarea
+                        id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
