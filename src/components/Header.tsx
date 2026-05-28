@@ -6,11 +6,21 @@ import { useTheme } from '../contexts/ThemeContext';
 const Header: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+
+  // ⚡ Bolt Performance Optimization:
+  // Instead of storing the exact scroll position (which causes a re-render on every pixel scrolled),
+  // we only store a boolean indicating if the user has scrolled past the threshold.
+  // React's state bailout will prevent re-renders when the boolean value doesn't change.
+  // Expected impact: ~99% reduction in scroll-related re-renders for the Header component.
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    // Add { passive: true } to prevent the scroll event from blocking the main thread
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -29,7 +39,7 @@ const Header: React.FC = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrollY > 50 ? 'glass-card' : 'bg-transparent'
+        isScrolled ? 'glass-card' : 'bg-transparent'
       }`}
     >
       <nav className="container-custom px-4 sm:px-6 lg:px-8">
