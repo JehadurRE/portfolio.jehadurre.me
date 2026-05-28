@@ -355,6 +355,7 @@ For any questions or suggestions, feel free to reach out:
                   <img
                     src={getGithubOGImage(project)}
                     alt={`${project.name} preview`}
+                    loading="lazy"
                     className="w-full h-48 object-cover group-hover/image:scale-105 transition-transform duration-300"
                     onError={(e) => {
                       // Fallback image if GitHub OG image fails
