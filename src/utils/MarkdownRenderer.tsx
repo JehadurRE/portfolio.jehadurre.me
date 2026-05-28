@@ -57,7 +57,10 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
 // Security enhancement: Sanitize URLs to prevent XSS attacks via javascript: and vbscript: URIs
 const sanitizeUrl = (url: string | undefined): string | undefined => {
   if (!url) return undefined;
-  const isMalicious = /^(?:javascript|vbscript):/i.test(url.trim());
+  // Strip control characters and whitespaces that can bypass naive filters
+  // eslint-disable-next-line no-control-regex
+  const sanitized = url.replace(/[\x00-\x20]/g, '');
+  const isMalicious = /^(?:javascript|vbscript):/i.test(sanitized);
   return isMalicious ? '#' : url;
 };
 
@@ -170,7 +173,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     ),
     img: ({ src, alt, title }) => (
       <img
-        src={convertImageUrl(src || '')}
+        src={sanitizeUrl(convertImageUrl(src || ''))}
         alt={alt || ''}
         title={title}
         className="max-w-full h-auto rounded-lg shadow-md my-4 mx-auto block"
