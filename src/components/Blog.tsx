@@ -228,6 +228,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
               <input
                 type="email"
                 placeholder="Enter your email"
+                aria-label="Email address for updates"
                 className="flex-1 px-4 py-3 rounded-lg glass border border-secondary-200 dark:border-secondary-700 text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
               <motion.button
