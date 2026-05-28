@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
+import LazyImage from './LazyImage';
 
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
@@ -222,10 +223,10 @@ const Certifications: React.FC = () => {
                     >
                       {/* Certificate Image */}
                       <div className="relative mb-4 overflow-hidden rounded-lg">
-                        <img
+                        <LazyImage
                           src={cert.image_url}
                           alt={cert.title}
-                          loading="lazy"
+                          containerClassName="w-full h-48"
                           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-end p-4">
@@ -401,10 +402,10 @@ const Certifications: React.FC = () => {
               </div>
 
               <div className="space-y-6">
-                <img
+                <LazyImage
                   src={selectedCert.image_url}
                   alt={selectedCert.title}
-                  loading="lazy"
+                  containerClassName="w-full h-64 rounded-lg"
                   className="w-full h-64 object-cover rounded-lg"
                 />
 

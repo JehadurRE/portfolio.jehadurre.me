@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Phone ,HeartOff} from 'lucide-react';
+import LazyImage from './LazyImage';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -45,11 +46,11 @@ const Footer: React.FC = () => {
             className="lg:col-span-1"
           >
             <div className="flex items-center space-x-3 mb-6">
-              <img
+              <LazyImage
                 src="https://github.com/JehadurRE.png"
                 alt="Jehadur Rahman Emran"
-                loading="lazy"
-                className="w-12 h-12 rounded-full ring-2 ring-primary-500/20"
+                containerClassName="w-12 h-12 rounded-full ring-2 ring-primary-500/20"
+                className="w-full h-full object-cover"
               />
               <div>
                 <h3 className="text-xl font-bold text-gradient">JehadurRE</h3>

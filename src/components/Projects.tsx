@@ -12,6 +12,7 @@ import {
   FileText,
 } from "lucide-react";
 import MarkdownRenderer from "../utils/MarkdownRenderer";
+import LazyImage from "./LazyImage";
 
 import decodeBase64UTF8 from "../utils/DecodeUTF";
 
@@ -352,10 +353,10 @@ For any questions or suggestions, feel free to reach out:
                   className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image"
                   onClick={() => fetchReadme(project)}
                 >
-                  <img
+                  <LazyImage
                     src={getGithubOGImage(project)}
                     alt={`${project.name} preview`}
-                    loading="lazy"
+                    containerClassName="w-full h-48 rounded-lg"
                     className="w-full h-48 object-cover group-hover/image:scale-105 transition-transform duration-300"
                     onError={(e) => {
                       // Fallback image if GitHub OG image fails

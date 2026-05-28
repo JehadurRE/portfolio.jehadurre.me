@@ -7,3 +7,6 @@
 ## 2024-05-27 - Lazy loading images
 **Learning:** Avoid adding `loading="lazy"` to images that appear immediately 'above the fold' (such as header avatars), as this is an anti-pattern that delays the Largest Contentful Paint (LCP). Only apply to below-the-fold content.
 **Action:** Check image locations before lazily loading them.
+## 2024-05-27 - Skeleton image loading
+**Learning:** Perceived performance is often just as important as actual performance. Adding blur placeholders/skeletons to lazy-loaded images makes the site feel faster and prevents layout shifts.
+**Action:** Extract repeated logic for image loading states into a reusable component like `LazyImage`.
