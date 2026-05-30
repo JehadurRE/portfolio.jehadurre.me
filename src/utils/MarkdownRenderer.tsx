@@ -55,13 +55,27 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
 };
 
 // Security enhancement: Sanitize URLs to prevent XSS attacks via javascript: and vbscript: URIs
-const sanitizeUrl = (url: string | undefined): string | undefined => {
+// and potentially harmful data: URIs in links
+const sanitizeUrl = (url: string | undefined, isImage: boolean = false): string | undefined => {
   if (!url) return undefined;
   // Strip control characters and whitespaces that can bypass naive filters
   // eslint-disable-next-line no-control-regex
   const sanitized = url.replace(/[\x00-\x20]/g, '');
-  const isMalicious = /^(?:javascript|vbscript):/i.test(sanitized);
-  return isMalicious ? '#' : url;
+
+  if (/^(?:javascript|vbscript):/i.test(sanitized)) {
+    return '#';
+  }
+
+  // Block data: URIs for links (prevents data:text/html XSS)
+  // Allow safe data:image URIs for images
+  if (/^data:/i.test(sanitized)) {
+    if (isImage && /^data:image\//i.test(sanitized)) {
+      return url;
+    }
+    return '#';
+  }
+
+  return url;
 };
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl }) => {
@@ -144,7 +158,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     ),
     a: ({ href, children }) => (
       <a
-        href={sanitizeUrl(href)}
+        href={sanitizeUrl(href, false)}
         target="_blank"
         rel="noopener noreferrer"
         className="text-primary-600 dark:text-primary-400 hover:underline"
@@ -173,7 +187,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     ),
     img: ({ src, alt, title }) => (
       <img
-        src={sanitizeUrl(convertImageUrl(src || ''))}
+        src={sanitizeUrl(convertImageUrl(src || ''), true)}
         alt={alt || ''}
         title={title}
         className="max-w-full h-auto rounded-lg shadow-md my-4 mx-auto block"
