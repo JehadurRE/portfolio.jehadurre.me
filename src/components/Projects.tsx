@@ -350,8 +350,16 @@ For any questions or suggestions, feel free to reach out:
               >
                 {/* GitHub OG Image */}
                 <div
-                  className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image"
+                  className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => fetchReadme(project)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      fetchReadme(project);
+                    }
+                  }}
                 >
                   <LazyImage
                     src={getGithubOGImage(project)}

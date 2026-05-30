@@ -6,7 +6,11 @@ import remarkGfm from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from 'rehype-raw';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+// ⚡ Bolt Performance Optimization:
+// Use PrismAsync instead of Prism to lazily load syntax highlighter languages.
+// The default Prism imports all languages synchronously, bloating the bundle by >1MB.
+// PrismAsync loads languages dynamically only when encountered in markdown.
+import { PrismAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import type { Components } from 'react-markdown';
 

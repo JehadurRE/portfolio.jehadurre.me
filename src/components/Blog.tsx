@@ -135,11 +135,19 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
               <motion.article
                 id={`blog-post-${index}`}
                 key={post.id}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handlePostClick(post.slug, `blog-post-${index}`);
+                  }
+                }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="glass-card p-8 hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                className="glass-card p-8 hover:shadow-xl transition-all duration-300 group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 onClick={() => handlePostClick(post.slug, `blog-post-${index}`)}
               >
                 <div className="mb-4">

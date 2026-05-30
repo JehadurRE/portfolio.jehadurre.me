@@ -13,3 +13,7 @@
 ## 2024-05-29 - MobileNav Scroll Optimization
 **Learning:** The `MobileNav` component previously performed synchronous DOM queries (`querySelector`), read layout properties (`offsetTop`, `offsetHeight`), and logged to the console on every pixel scrolled inside an unthrottled scroll listener. This caused severe layout thrashing.
 **Action:** When working with scroll tracking for navigation, always use `requestAnimationFrame` to throttle layout reads, use `{ passive: true }` on the event listener, and break early out of mapping loops when the active element is found to save computation. Use `getElementById` instead of `querySelector` for faster DOM access.
+
+## 2024-05-24 - [Syntax Highlighter Bundle Bloat]
+**Learning:** `react-syntax-highlighter` includes dictionaries for *all* supported languages by default when importing `Prism` or `Light`, which can add over 1MB to the initial JavaScript bundle if used in a component loaded on the main route.
+**Action:** Always import `PrismAsync` (or `LightAsync`) instead of the synchronous versions when using `react-syntax-highlighter` in components that are part of the initial page load to ensure dynamic, on-demand loading of language dictionaries.
