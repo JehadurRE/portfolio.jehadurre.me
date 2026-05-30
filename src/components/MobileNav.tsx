@@ -14,29 +14,42 @@ const MobileNav: React.FC = () => {
     { id: 'contact', icon: MessageSquare, label: 'Contact', href: '#contact' },
   ];
 
+  // ⚡ Bolt Performance Optimization:
+  // Throttling the scroll event with requestAnimationFrame and removing synchronous DOM querying/layout recalculations.
+  // Using getElementById is faster than querySelector, and passive event listeners avoid blocking the main thread.
+  // We also break early out of the loop once we find the matching section.
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const sections = navItems.map(item => document.querySelector(item.href));
-      const scrollPosition = window.scrollY + 100;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY + 100;
 
-      sections.forEach((section, index) => {
-        if (section) {
-          const sectionTop = section.offsetTop;
-          console.log(`Section: ${navItems[index].id}, Top: ${sectionTop}, Scroll Position: ${scrollPosition}`);
-          const sectionBottom = sectionTop + section.offsetHeight;
+          for (let i = 0; i < navItems.length; i++) {
+            // Remove the '#' to use getElementById
+            const sectionId = navItems[i].href.substring(1);
+            const section = document.getElementById(sectionId);
 
-          console.log(`Section: ${navItems[index].id}, Bottom: ${sectionBottom}`);
+            if (section) {
+              const sectionTop = section.offsetTop;
+              const sectionBottom = sectionTop + section.offsetHeight;
 
-          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-            setActiveSection(navItems[index].id);
+              if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                setActiveSection(navItems[i].id);
+                break; // Break early since we found our section
+              }
+            }
           }
-        }
-      });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleNavClick = (href: string, id: string) => {
     setActiveSection(id);
@@ -51,7 +64,7 @@ const MobileNav: React.FC = () => {
     >
       <div className="glass-card m-4 rounded-2xl p-2">
         <div className="flex items-center justify-around">
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <motion.a
               key={item.id}
               href={item.href}
