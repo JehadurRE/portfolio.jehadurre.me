@@ -27,8 +27,10 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
 
       if (error) throw error;
       onLogin();
-    } catch (err: any) {
-      setError(err.message || 'Login failed');
+    } catch (err: unknown) {
+      // 🛡️ Sentinel: Log actual error but display generic message to prevent info leakage
+      console.error('Login error:', err);
+      setError('Invalid email or password. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -84,6 +86,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  maxLength={255}
                   className="w-full pl-10 pr-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                   placeholder="admin@example.com"
                 />
@@ -102,6 +105,7 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  maxLength={128}
                   className="w-full pl-10 pr-12 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter your password"
                 />

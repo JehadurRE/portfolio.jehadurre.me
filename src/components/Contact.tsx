@@ -228,6 +228,7 @@ const Contact: React.FC = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
+                        maxLength={100}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
                         placeholder="Your name..."
                       />
@@ -242,6 +243,7 @@ const Contact: React.FC = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
+                        maxLength={255}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
                         placeholder="your.email@example.com"
                       />
@@ -256,6 +258,7 @@ const Contact: React.FC = () => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
+                        maxLength={200}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
                         placeholder="What's this about?"
                       />
@@ -269,6 +272,7 @@ const Contact: React.FC = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         required
+                        maxLength={2000}
                         rows={4}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 resize-none"
                         placeholder="Your message here..."
