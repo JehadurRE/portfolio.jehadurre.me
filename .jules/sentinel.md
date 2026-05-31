@@ -14,3 +14,7 @@
 **Vulnerability:** XSS vulnerability in Markdown link rendering via `data:` URIs (e.g., `[click here](data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==)`). The original sanitization only blocked `javascript:` and `vbscript:`.
 **Learning:** Naive URL sanitization filters often overlook `data:` URIs. While `data:image/...` is safe for `<img>` tags, `data:text/html` or `data:image/svg+xml` in `<a>` tags can lead to script execution if the user clicks the link.
 **Prevention:** Implement context-aware URL sanitization. Block all `data:` URIs in links by default, and explicitly allow only `data:image/...` URIs when the context is known to be an image source where scripts cannot execute.
+## 2025-06-25 - Information Leakage in Admin Forms
+**Vulnerability:** Admin forms (`AchievementForm`, `BlogForm`, `CertificationForm`, `SkillForm`) used `catch (err: any)` and directly rendered `err.message` from Supabase database mutation errors to the UI, leaking potentially sensitive backend details to end-users if an error occurred.
+**Learning:** This codebase historically defaults to passing raw error messages upward instead of using generic fallback messages.
+**Prevention:** Always refactor error catching for database calls to use strict `catch (err: unknown)` typing, log the actual error securely using `console.error`, and display a hardcoded generic error message such as "An error occurred while saving." to the user.
