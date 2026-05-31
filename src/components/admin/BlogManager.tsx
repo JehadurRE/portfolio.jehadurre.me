@@ -205,6 +205,7 @@ const BlogManager: React.FC = () => {
                         : 'text-yellow-600 hover:bg-yellow-100 dark:hover:bg-yellow-900/30'
                     }`}
                     title={post.is_published ? 'Unpublish' : 'Publish'}
+                    aria-label={`${post.is_published ? 'Unpublish' : 'Publish'} post: ${post.title}`}
                   >
                     {post.is_published ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
                   </motion.button>
@@ -218,6 +219,7 @@ const BlogManager: React.FC = () => {
                     }}
                     className="p-2 text-blue-600 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
                     title="Edit"
+                    aria-label={`Edit post: ${post.title}`}
                   >
                     <Edit className="w-5 h-5" />
                   </motion.button>
@@ -228,6 +230,7 @@ const BlogManager: React.FC = () => {
                     onClick={() => handleDelete(post.id)}
                     className="p-2 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors"
                     title="Delete"
+                    aria-label={`Delete post: ${post.title}`}
                   >
                     <Trash2 className="w-5 h-5" />
                   </motion.button>
