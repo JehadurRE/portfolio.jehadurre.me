@@ -80,8 +80,9 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
       }
 
       onSave();
-    } catch (err: any) {
-      setError(err.message || 'Failed to save certification');
+    } catch (err: unknown) {
+      console.error('Failed to save certification:', err);
+      setError('Failed to save certification');
     } finally {
       setLoading(false);
     }
