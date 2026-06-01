@@ -50,6 +50,10 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectModal | null>(
     null
   );
+  // ⚡ Bolt Performance Optimization:
+  // Cache fetched README contents by project ID to prevent redundant API calls
+  // when a user repeatedly views the same project modal.
+  const [readmeCache, setReadmeCache] = useState<Record<number, string>>({});
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -128,6 +132,17 @@ const Projects: React.FC = () => {
   }, []);
 
   const fetchReadme = async (project: Project) => {
+    // ⚡ Bolt Performance Optimization: Use cached README if available
+    if (readmeCache[project.id]) {
+      console.log("Using cached README for:", project.name);
+      setSelectedProject({
+        project,
+        readme: readmeCache[project.id],
+        loading: false,
+      });
+      return;
+    }
+
     console.log("Fetching README for:", project.name);
 
     setSelectedProject({
@@ -151,6 +166,7 @@ const Projects: React.FC = () => {
         const data = await response.json();
         const readmeContent = decodeBase64UTF8(data.content);
         console.log("README fetched successfully");
+        setReadmeCache(prev => ({ ...prev, [project.id]: readmeContent }));
         setSelectedProject((prev) =>
           prev
             ? {
@@ -247,6 +263,7 @@ For any questions or suggestions, feel free to reach out:
 
 ⭐ If you found this project helpful, please give it a star!`;
 
+      setReadmeCache(prev => ({ ...prev, [project.id]: fallbackReadme }));
       setSelectedProject((prev) =>
         prev
           ? {
