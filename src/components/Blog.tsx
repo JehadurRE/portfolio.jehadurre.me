@@ -72,6 +72,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
             <button
               onClick={() => window.location.reload()}
               className="btn-primary"
+              aria-label="Try Again: load blog posts"
             >
               Try Again
             </button>
@@ -243,6 +244,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-primary whitespace-nowrap"
+                aria-label="Subscribe to newsletter"
               >
                 Subscribe
               </motion.button>

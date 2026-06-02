@@ -334,6 +334,7 @@ const About: React.FC = () => {
                 <button
                   onClick={() => window.location.reload()}
                   className="btn-primary"
+                  aria-label="Try Again: load skills"
                 >
                   Try Again
                 </button>

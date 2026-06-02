@@ -107,8 +107,11 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
       }
 
       onSave();
-    } catch (err: any) {
-      setError(err.message || 'Failed to save achievement');
+    } catch (err: unknown) {
+      console.error('Failed to save achievement:', err);
+      setError('Failed to save achievement');
+      console.error('Error saving achievement:', err);
+      setError('An error occurred while saving the achievement. Please try again.');
     } finally {
       setLoading(false);
     }

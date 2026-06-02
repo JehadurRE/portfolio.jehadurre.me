@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
@@ -45,7 +45,11 @@ const Certifications: React.FC = () => {
     fetchData();
   }, []);
 
-  const categories = {
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `categories`, `filteredCertifications`, and `filteredAchievements` to avoid running 8 separate `.filter()`
+  // arrays iterations on every single render (such as when intersection observer updates).
+  // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
+  const categories = useMemo(() => ({
     certifications: [
       { id: 'all', name: 'All Certifications', count: certifications.length },
       { id: 'technical', name: 'Technical', count: certifications.filter(c => c.category === 'technical').length },
@@ -58,15 +62,19 @@ const Certifications: React.FC = () => {
       { id: 'recognition', name: 'Recognition', count: achievements.filter(a => a.category === 'recognition').length },
       { id: 'milestone', name: 'Milestones', count: achievements.filter(a => a.category === 'milestone').length }
     ]
-  };
+  }), [certifications, achievements]);
 
-  const filteredCertifications = certFilter === 'all' 
-    ? certifications 
-    : certifications.filter(cert => cert.category === certFilter);
+  const filteredCertifications = useMemo(() => {
+    return certFilter === 'all'
+      ? certifications
+      : certifications.filter(cert => cert.category === certFilter);
+  }, [certifications, certFilter]);
 
-  const filteredAchievements = achievementFilter === 'all'
-    ? achievements
-    : achievements.filter(achievement => achievement.category === achievementFilter);
+  const filteredAchievements = useMemo(() => {
+    return achievementFilter === 'all'
+      ? achievements
+      : achievements.filter(achievement => achievement.category === achievementFilter);
+  }, [achievements, achievementFilter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {

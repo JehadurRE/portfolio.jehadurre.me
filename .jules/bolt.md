@@ -21,3 +21,6 @@
 ## 2024-06-12 - Caching External API Calls in Modals
 **Learning:** Repeatedly opening modals that trigger unauthenticated network requests to rate-limited APIs (like the GitHub API for READMEs) quickly exhausts the rate limit and creates redundant loading states, harming perceived performance.
 **Action:** When a modal fetches remote data that doesn't change frequently (e.g., project READMEs), always introduce a client-side dictionary cache (`Record<id, data>`) and check it before initiating the fetch.
+## 2026-05-31 - Expensive Filter Calculations During Re-Renders
+**Learning:** The `Certifications` component used to execute eight separate `Array.prototype.filter()` operations on every render, which is inefficient, especially when triggered frequently by intersection observers or unrelated state changes.
+**Action:** Use `useMemo` to cache expensive operations that depend on specific data (like `certifications` or `achievements`). By doing so, the calculations only run when the dependencies change, leading to faster re-renders.
