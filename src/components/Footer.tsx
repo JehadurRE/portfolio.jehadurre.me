@@ -201,6 +201,7 @@ const Footer: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm rounded-lg hover:shadow-lg transition-all duration-200"
+                aria-label="Subscribe to newsletter"
               >
                 Subscribe
               </motion.button>
