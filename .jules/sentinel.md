@@ -18,3 +18,7 @@
 **Vulnerability:** Supabase mutation catch blocks in admin forms exposed the raw backend error message `err.message` to the user, potentially leaking database details or schema information.
 **Learning:** The codebase previously used `catch (err: any)` and passed `err.message` directly to the UI's error state in data mutation forms (Blog, Achievement, Skill, Certification).
 **Prevention:** Use `catch (err: unknown)`, log the specific error securely via `console.error()`, and display a generic, safe fallback message (e.g., 'Failed to save post') to the user.
+## 2025-06-25 - Information Leakage in Admin Forms
+**Vulnerability:** Admin forms (`AchievementForm`, `BlogForm`, `CertificationForm`, `SkillForm`) used `catch (err: any)` and directly rendered `err.message` from Supabase database mutation errors to the UI, leaking potentially sensitive backend details to end-users if an error occurred.
+**Learning:** This codebase historically defaults to passing raw error messages upward instead of using generic fallback messages.
+**Prevention:** Always refactor error catching for database calls to use strict `catch (err: unknown)` typing, log the actual error securely using `console.error`, and display a hardcoded generic error message such as "An error occurred while saving." to the user.
