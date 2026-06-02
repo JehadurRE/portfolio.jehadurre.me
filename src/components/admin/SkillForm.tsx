@@ -105,6 +105,8 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
 
       onSave();
     } catch (err: unknown) {
+      console.error('Failed to save skill:', err);
+      setError('Failed to save skill');
       console.error('Error saving skill:', err);
       setError('An error occurred while saving the skill. Please try again.');
     } finally {

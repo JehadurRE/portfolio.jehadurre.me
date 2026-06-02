@@ -81,6 +81,8 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
 
       onSave();
     } catch (err: unknown) {
+      console.error('Failed to save certification:', err);
+      setError('Failed to save certification');
       console.error('Error saving certification:', err);
       setError('An error occurred while saving the certification. Please try again.');
     } finally {
