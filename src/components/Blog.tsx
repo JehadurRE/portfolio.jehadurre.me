@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
@@ -37,10 +37,12 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
     fetchPosts();
   }, []);
 
-  const allTags = ['all', ...new Set(posts.flatMap(post => post.tags))];
-  const filteredPosts = selectedTag === 'all' 
-    ? posts 
-    : posts.filter(post => post.tags.includes(selectedTag));
+  const allTags = useMemo(() => ['all', ...new Set(posts.flatMap(post => post.tags))], [posts]);
+  const filteredPosts = useMemo(() =>
+    selectedTag === 'all'
+      ? posts
+      : posts.filter(post => post.tags.includes(selectedTag))
+  , [posts, selectedTag]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
