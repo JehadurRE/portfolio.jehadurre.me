@@ -8,3 +8,6 @@
 ## 2026-05-27 - [Form Accessibility]
 **Learning:** Proper label association with `htmlFor` and `id` makes fields easier to focus on mobile and provides context for screen readers. Unlabeled inputs need an `aria-label`.
 **Action:** Always verify if a form input has a valid associated label or aria-label for better accessibility.
+## 2024-05-28 - [Error State Retry Pattern]
+**Learning:** Hard reloads (`window.location.reload()`) for recovering from API errors result in poor user experience because they reset the entire application state and force the user to scroll back down.
+**Action:** Always implement a dedicated `retry` function for failed fetch calls. Wrap it in a UI that does not reload the page and provides visual feedback (like a loading spinner).
