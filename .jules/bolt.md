@@ -24,6 +24,9 @@
 ## 2026-05-31 - Expensive Filter Calculations During Re-Renders
 **Learning:** The `Certifications` component used to execute eight separate `Array.prototype.filter()` operations on every render, which is inefficient, especially when triggered frequently by intersection observers or unrelated state changes.
 **Action:** Use `useMemo` to cache expensive operations that depend on specific data (like `certifications` or `achievements`). By doing so, the calculations only run when the dependencies change, leading to faster re-renders.
+## 2024-06-13 - Expensive Array Operations in Scroll-Heavy Components
+**Learning:** Components like `Projects` and `Blog` that use `react-intersection-observer` (`useInView`) trigger re-renders frequently when elements scroll into view. Performing expensive derived state calculations (like array filtering or mapping to sets) on every render is a significant bottleneck.
+**Action:** Always wrap derived datasets like `filteredProjects`, `languages`, `allTags`, or `filteredPosts` in `useMemo` hooks. This ensures the array operations are only computed when their explicit dependencies (like the base data or the active filter) change, rather than on every scroll-induced re-render.
 
 ## 2024-06-15 - Memoizing Derived States and Expensive Array Operations with useInView
 **Learning:** Because this application extensively uses `react-intersection-observer` (`useInView`), components re-render frequently during scroll events. In components like `Projects` and `Blog`, expensive array operations (like creating `Set`s from mapped arrays or running multiple `.filter()` operations) were running on every re-render, creating a performance bottleneck specific to this architecture.
