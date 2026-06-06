@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Zap, Users, Award, BookOpen, Lightbulb, Database, Cloud, Smartphone ,CodeXml,Codesandbox} from 'lucide-react';
+import { Code, Zap, Users, Award, BookOpen, Lightbulb, Database, Cloud, Smartphone ,CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
 
 const About: React.FC = () => {
@@ -15,21 +15,21 @@ const About: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [skillsView, setSkillsView] = useState<'compact' | 'detailed'>('compact');
 
-  useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await skillsApi.getFeatured();
-        setSkills(data);
-      } catch (err) {
-        console.error('Error fetching skills:', err);
-        setError('Failed to load skills. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchSkills = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await skillsApi.getFeatured();
+      setSkills(data);
+    } catch (err) {
+      console.error('Error fetching skills:', err);
+      setError('Failed to load skills. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchSkills();
   }, []);
 
@@ -329,14 +329,16 @@ const About: React.FC = () => {
             </div>
             
             {error ? (
-              <div className="text-center py-8">
+              <div className="text-center py-8 flex flex-col items-center">
                 <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
                 <button
-                  onClick={() => window.location.reload()}
-                  className="btn-primary"
+                  onClick={fetchSkills}
+                  disabled={loading}
+                  className="btn-primary flex items-center space-x-2"
                   aria-label="Try Again: load skills"
                 >
-                  Try Again
+                  <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                  <span>Try Again</span>
                 </button>
               </div>
             ) : loading ? (
