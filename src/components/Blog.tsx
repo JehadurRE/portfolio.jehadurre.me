@@ -19,21 +19,21 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   const [error, setError] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string>('all');
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await blogApi.getPublished();
-        setPosts(data);
-      } catch (err) {
-        console.error('Error fetching blog posts:', err);
-        setError('Failed to load blog posts. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await blogApi.getPublished();
+      setPosts(data);
+    } catch (err) {
+      console.error('Error fetching blog posts:', err);
+      setError('Failed to load blog posts. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -76,7 +76,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
-              onClick={() => window.location.reload()}
+              onClick={() => fetchPosts()}
               className="btn-primary"
               aria-label="Try Again: load blog posts"
             >
