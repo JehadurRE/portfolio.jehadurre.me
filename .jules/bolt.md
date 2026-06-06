@@ -24,3 +24,6 @@
 ## 2026-05-31 - Expensive Filter Calculations During Re-Renders
 **Learning:** The `Certifications` component used to execute eight separate `Array.prototype.filter()` operations on every render, which is inefficient, especially when triggered frequently by intersection observers or unrelated state changes.
 **Action:** Use `useMemo` to cache expensive operations that depend on specific data (like `certifications` or `achievements`). By doing so, the calculations only run when the dependencies change, leading to faster re-renders.
+## 2026-06-06 - Memoizing Expensive Filter Calculations During Re-Renders
+**Learning:** Similar to the `Certifications` component, the `Blog` and `Projects` components were calculating derived states (like creating new Sets, flattening arrays with `flatMap`, and filtering arrays) on every single render cycle. Because these components use `useInView` from `react-intersection-observer`, they re-render frequently during scroll events, creating a CPU bottleneck and layout jank.
+**Action:** Use `useMemo` to cache expensive operations that depend on specific data (like `posts` or `projects`). By doing so, the calculations only run when the dependencies change, leading to faster re-renders.
