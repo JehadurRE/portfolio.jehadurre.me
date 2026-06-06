@@ -151,6 +151,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
               value={formData.title}
               onChange={(e) => handleTitleChange(e.target.value)}
               required
+              maxLength={255}
               className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
               placeholder="Enter post title"
             />
@@ -166,6 +167,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
               value={formData.slug}
               onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
               required
+              maxLength={255}
               className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
               placeholder="post-url-slug"
             />
@@ -180,6 +182,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
               value={formData.excerpt}
               onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
               required
+              maxLength={500}
               rows={3}
               className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"
               placeholder="Brief description of the post"
@@ -195,6 +198,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
               value={formData.content}
               onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
               required
+              maxLength={50000}
               rows={12}
               className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"
               placeholder="Write your post content here..."
@@ -211,6 +215,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
                 type="text"
                 value={formData.tags}
                 onChange={(e) => setFormData(prev => ({ ...prev, tags: e.target.value }))}
+                maxLength={255}
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                 placeholder="React, TypeScript, Web Development"
               />
