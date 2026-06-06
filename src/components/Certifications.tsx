@@ -21,27 +21,27 @@ const Certifications: React.FC = () => {
   const [certFilter, setCertFilter] = useState('all');
   const [achievementFilter, setAchievementFilter] = useState('all');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        const [certsData, achievementsData] = await Promise.all([
-          certificationsApi.getAll(),
-          achievementsApi.getAll()
-        ]);
-        
-        setCertifications(certsData);
-        setAchievements(achievementsData);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Failed to load data. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
+      const [certsData, achievementsData] = await Promise.all([
+        certificationsApi.getAll(),
+        achievementsApi.getAll()
+      ]);
+
+      setCertifications(certsData);
+      setAchievements(achievementsData);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError('Failed to load data. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -106,8 +106,9 @@ const Certifications: React.FC = () => {
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
-              onClick={() => window.location.reload()}
+              onClick={fetchData}
               className="btn-primary"
+              aria-label="Try Again: load certifications"
             >
               Try Again
             </button>
