@@ -37,10 +37,25 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
     fetchPosts();
   }, []);
 
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `allTags` and `filteredPosts` to avoid running costly operations on every render.
+  // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
   const allTags = useMemo(() => ['all', ...new Set(posts.flatMap(post => post.tags))], [posts]);
-  const filteredPosts = useMemo(() => selectedTag === 'all'
-    ? posts 
-    : posts.filter(post => post.tags.includes(selectedTag)), [posts, selectedTag]);
+
+  const filteredPosts = useMemo(() => {
+    return selectedTag === 'all'
+      ? posts
+      : posts.filter(post => post.tags.includes(selectedTag));
+  }, [posts, selectedTag]);
+  // Memoize `allTags` and `filteredPosts` to prevent running `.flatMap()` and `.filter()`
+  // operations on every render, such as when the intersection observer updates state.
+  // Expected impact: Prevents unnecessary array calculations, improving UI responsiveness on scroll.
+  const allTags = useMemo(() => ['all', ...new Set(posts.flatMap(post => post.tags))], [posts]);
+  const filteredPosts = useMemo(() => (
+    selectedTag === 'all'
+      ? posts
+      : posts.filter(post => post.tags.includes(selectedTag))
+  ), [posts, selectedTag]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
