@@ -293,6 +293,17 @@ For any questions or suggestions, feel free to reach out:
   const filteredProjects = useMemo(() => {
     return filter === "all" ? projects : projects.filter((p) => p.language === filter);
   }, [projects, filter]);
+  // Memoize `languages` and `filteredProjects` to prevent redundant `.map()`, `.filter()`,
+  // and Set creation on every render, especially when the intersection observer triggers.
+  // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
+  const languages = useMemo(() => [
+    "all",
+    ...new Set(projects.map((p) => p.language).filter(Boolean)),
+  ], [projects]);
+
+  const filteredProjects = useMemo(() => (
+    filter === "all" ? projects : projects.filter((p) => p.language === filter)
+  ), [projects, filter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
