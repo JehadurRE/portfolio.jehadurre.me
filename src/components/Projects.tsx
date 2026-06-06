@@ -280,13 +280,30 @@ For any questions or suggestions, feel free to reach out:
     return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
   };
 
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `languages` and `filteredProjects` to avoid running costly operations on every render.
+  // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
+  const languages = useMemo(() => {
+    return [
+      "all",
+      ...new Set(projects.map((p) => p.language).filter(Boolean)),
+    ];
+  }, [projects]);
+
+  const filteredProjects = useMemo(() => {
+    return filter === "all" ? projects : projects.filter((p) => p.language === filter);
+  }, [projects, filter]);
+  // Memoize `languages` and `filteredProjects` to prevent redundant `.map()`, `.filter()`,
+  // and Set creation on every render, especially when the intersection observer triggers.
+  // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
   const languages = useMemo(() => [
     "all",
     ...new Set(projects.map((p) => p.language).filter(Boolean)),
   ], [projects]);
-  const filteredProjects = useMemo(() =>
+
+  const filteredProjects = useMemo(() => (
     filter === "all" ? projects : projects.filter((p) => p.language === filter)
-  , [projects, filter]);
+  ), [projects, filter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
