@@ -241,6 +241,7 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
                       : 'glass-card hover:shadow-md'
                   }`}
                   title={option.label}
+                  aria-label={`Select icon: ${option.label}`}
                 >
                   {option.value}
                 </motion.button>
