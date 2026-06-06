@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -280,12 +280,18 @@ For any questions or suggestions, feel free to reach out:
     return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
   };
 
-  const languages = [
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `languages` and `filteredProjects` to prevent redundant `.map()`, `.filter()`,
+  // and Set creation on every render, especially when the intersection observer triggers.
+  // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
+  const languages = useMemo(() => [
     "all",
     ...new Set(projects.map((p) => p.language).filter(Boolean)),
-  ];
-  const filteredProjects =
-    filter === "all" ? projects : projects.filter((p) => p.language === filter);
+  ], [projects]);
+
+  const filteredProjects = useMemo(() => (
+    filter === "all" ? projects : projects.filter((p) => p.language === filter)
+  ), [projects, filter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
