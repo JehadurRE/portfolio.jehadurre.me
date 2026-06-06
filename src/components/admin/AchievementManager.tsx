@@ -184,6 +184,7 @@ const AchievementManager: React.FC = () => {
                           }}
                           className="p-2 text-blue-600 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors"
                           title="Edit"
+                          aria-label={`Edit achievement: ${achievement.title}`}
                         >
                           <Edit className="w-5 h-5" />
                         </motion.button>
@@ -194,6 +195,7 @@ const AchievementManager: React.FC = () => {
                           onClick={() => handleDelete(achievement.id)}
                           className="p-2 text-red-600 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-lg transition-colors"
                           title="Delete"
+                          aria-label={`Delete achievement: ${achievement.title}`}
                         >
                           <Trash2 className="w-5 h-5" />
                         </motion.button>

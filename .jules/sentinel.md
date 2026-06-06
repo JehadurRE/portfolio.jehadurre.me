@@ -22,3 +22,7 @@
 **Vulnerability:** Admin forms (`AchievementForm`, `BlogForm`, `CertificationForm`, `SkillForm`) used `catch (err: any)` and directly rendered `err.message` from Supabase database mutation errors to the UI, leaking potentially sensitive backend details to end-users if an error occurred.
 **Learning:** This codebase historically defaults to passing raw error messages upward instead of using generic fallback messages.
 **Prevention:** Always refactor error catching for database calls to use strict `catch (err: unknown)` typing, log the actual error securely using `console.error`, and display a hardcoded generic error message such as "An error occurred while saving." to the user.
+## 2025-06-25 - Missing Input Constraints in Admin Forms
+**Vulnerability:** Multiple admin-facing forms (`AchievementForm`, `BlogForm`, `CertificationForm`, `SkillForm`) lacked `maxLength` constraints on their text input fields. This omission could allow malicious users to submit excessively large strings, potentially leading to resource exhaustion or minor DoS attacks.
+**Learning:** This codebase historically relies on client-side logic without built-in HTML element length constraints.
+**Prevention:** Always include `maxLength` on form inputs matching expected field constraints.
