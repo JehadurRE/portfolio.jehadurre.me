@@ -24,3 +24,7 @@
 ## 2026-05-31 - Expensive Filter Calculations During Re-Renders
 **Learning:** The `Certifications` component used to execute eight separate `Array.prototype.filter()` operations on every render, which is inefficient, especially when triggered frequently by intersection observers or unrelated state changes.
 **Action:** Use `useMemo` to cache expensive operations that depend on specific data (like `certifications` or `achievements`). By doing so, the calculations only run when the dependencies change, leading to faster re-renders.
+
+## 2024-10-27 - Supabase Object Counts Optimization
+**Learning:** Fetching full datasets to calculate counts client-side results in large O(N) network payloads and unnecessary memory allocation, which is severely inefficient for large tables.
+**Action:** When querying Supabase just for record counts (e.g., total blog posts, featured skills), use `.select('*', { count: 'exact', head: true })`. This performs an O(1) HEAD request, offloading the calculation to the database and vastly reducing both the network payload and the client's memory footprint.

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Award, Trophy, TrendingUp, Calendar, Users, Eye, Code } from 'lucide-react';
+import { FileText, Award, Trophy, TrendingUp, Eye, Code } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 interface Stats {
@@ -26,20 +26,29 @@ const DashboardOverview: React.FC = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [blogPosts, certifications, achievements, skills] = await Promise.all([
-          supabase.from('blog_posts').select('id, is_published'),
-          supabase.from('certifications').select('id'),
-          supabase.from('achievements').select('id'),
-          supabase.from('skills').select('id, is_featured'),
+        const [
+          totalBlogPosts,
+          publishedPosts,
+          totalCertifications,
+          totalAchievements,
+          totalSkills,
+          featuredSkills
+        ] = await Promise.all([
+          supabase.from('blog_posts').select('*', { count: 'exact', head: true }),
+          supabase.from('blog_posts').select('*', { count: 'exact', head: true }).eq('is_published', true),
+          supabase.from('certifications').select('*', { count: 'exact', head: true }),
+          supabase.from('achievements').select('*', { count: 'exact', head: true }),
+          supabase.from('skills').select('*', { count: 'exact', head: true }),
+          supabase.from('skills').select('*', { count: 'exact', head: true }).eq('is_featured', true),
         ]);
 
         setStats({
-          totalBlogPosts: blogPosts.data?.length || 0,
-          publishedPosts: blogPosts.data?.filter(post => post.is_published).length || 0,
-          totalCertifications: certifications.data?.length || 0,
-          totalAchievements: achievements.data?.length || 0,
-          totalSkills: skills.data?.length || 0,
-          featuredSkills: skills.data?.filter(skill => skill.is_featured).length || 0,
+          totalBlogPosts: totalBlogPosts.count || 0,
+          publishedPosts: publishedPosts.count || 0,
+          totalCertifications: totalCertifications.count || 0,
+          totalAchievements: totalAchievements.count || 0,
+          totalSkills: totalSkills.count || 0,
+          featuredSkills: featuredSkills.count || 0,
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
