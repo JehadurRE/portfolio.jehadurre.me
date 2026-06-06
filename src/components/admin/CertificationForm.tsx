@@ -143,7 +143,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
                 value={formData.title}
                 onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                 required
-                maxLength={200}
+                maxLength={255}
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                 placeholder="AWS Certified Solutions Architect"
               />
@@ -158,7 +158,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
                 value={formData.issuer}
                 onChange={(e) => setFormData(prev => ({ ...prev, issuer: e.target.value }))}
                 required
-                maxLength={200}
+                maxLength={255}
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                 placeholder="Amazon Web Services"
               />
@@ -204,7 +204,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
                 value={formData.credential_id}
                 onChange={(e) => setFormData(prev => ({ ...prev, credential_id: e.target.value }))}
                 required
-                maxLength={100}
+                maxLength={255}
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                 placeholder="AWS-ASA-2023-001"
               />
@@ -238,7 +238,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
                 value={formData.verification_url}
                 onChange={(e) => setFormData(prev => ({ ...prev, verification_url: e.target.value }))}
                 required
-                maxLength={1000}
+                maxLength={2048}
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                 placeholder="https://aws.amazon.com/verification"
               />
@@ -253,7 +253,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
                 value={formData.image_url}
                 onChange={(e) => setFormData(prev => ({ ...prev, image_url: e.target.value }))}
                 required
-                maxLength={1000}
+                maxLength={2048}
                 className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
                 placeholder="https://images.pexels.com/..."
               />
@@ -269,7 +269,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
               value={formData.description}
               onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
               required
-              maxLength={2000}
+              maxLength={1000}
               rows={4}
               className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"
               placeholder="Describe what this certification validates..."
@@ -285,7 +285,7 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
               type="text"
               value={formData.skills}
               onChange={(e) => setFormData(prev => ({ ...prev, skills: e.target.value }))}
-              maxLength={500}
+              maxLength={255}
               className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
               placeholder="AWS, Cloud Architecture, System Design, Security"
             />
