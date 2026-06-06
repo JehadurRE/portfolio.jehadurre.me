@@ -40,7 +40,7 @@ const About: React.FC = () => {
   ];
 
   const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
+    const icons: Record<string, React.ElementType> = {
       Code,
       Zap,
       BookOpen,

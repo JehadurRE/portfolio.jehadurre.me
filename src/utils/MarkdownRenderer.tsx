@@ -117,7 +117,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     p: ({ children }) => (
       <p className="mb-4">{children}</p>
     ),
-    code: (props: any) => {
+    code: (props: React.ComponentPropsWithoutRef<'code'> & { inline?: boolean }) => {
       const { inline, className, children } = props;
       const match = /language-(\w+)/.exec(className || '');
       const codeString = String(children).replace(/\n$/, '');
@@ -170,7 +170,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
         {children}
       </a>
     ),
-    li: (props: any) => {
+    li: (props: React.ComponentPropsWithoutRef<'li'> & { ordered?: boolean }) => {
       const { children } = props;
       // Check if parent is an ordered list by examining the node type
       const isOrdered = props.ordered || false;
