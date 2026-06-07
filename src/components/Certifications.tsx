@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
+import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import LazyImage from './LazyImage';
 
@@ -21,27 +21,27 @@ const Certifications: React.FC = () => {
   const [certFilter, setCertFilter] = useState('all');
   const [achievementFilter, setAchievementFilter] = useState('all');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        
-        const [certsData, achievementsData] = await Promise.all([
-          certificationsApi.getAll(),
-          achievementsApi.getAll()
-        ]);
-        
-        setCertifications(certsData);
-        setAchievements(achievementsData);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError('Failed to load data. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
+      const [certsData, achievementsData] = await Promise.all([
+        certificationsApi.getAll(),
+        achievementsApi.getAll()
+      ]);
+
+      setCertifications(certsData);
+      setAchievements(achievementsData);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError('Failed to load data. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -104,13 +104,18 @@ const Certifications: React.FC = () => {
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Certifications & Achievements
             </h2>
-            <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="btn-primary"
-            >
-              Try Again
-            </button>
+            <div className="flex flex-col items-center">
+              <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
+              <button
+                onClick={fetchData}
+                disabled={loading}
+                className="btn-primary flex items-center space-x-2"
+                aria-label="Try Again: load certifications and achievements"
+              >
+                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                <span>Try Again</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>

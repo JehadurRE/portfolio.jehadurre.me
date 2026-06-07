@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, RefreshCw } from 'lucide-react';
 import { blogApi, type BlogPost } from '../lib/supabase';
 
 interface BlogProps {
@@ -19,21 +19,21 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   const [error, setError] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string>('all');
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await blogApi.getPublished();
-        setPosts(data);
-      } catch (err) {
-        console.error('Error fetching blog posts:', err);
-        setError('Failed to load blog posts. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await blogApi.getPublished();
+      setPosts(data);
+    } catch (err) {
+      console.error('Error fetching blog posts:', err);
+      setError('Failed to load blog posts. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -74,14 +74,18 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Blog & Insights
             </h2>
-            <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="btn-primary"
-              aria-label="Try Again: load blog posts"
-            >
-              Try Again
-            </button>
+            <div className="flex flex-col items-center">
+              <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
+              <button
+                onClick={fetchPosts}
+                disabled={loading}
+                className="btn-primary flex items-center space-x-2"
+                aria-label="Try Again: load blog posts"
+              >
+                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                <span>Try Again</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
