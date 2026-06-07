@@ -30,3 +30,7 @@
 **Vulnerability:** XSS bypass in custom URL sanitizer (`sanitizeUrl` in `MarkdownRenderer.tsx`). Attackers could use URL-encoded whitespaces or control characters (e.g., `%09javascript:alert(1)`) to bypass regex filters that only check for unencoded control characters `[\x00-\x20]`.
 **Learning:** Browsers decode URL-encoded payloads before evaluating the scheme (like `javascript:`). If a sanitizer checks the raw, encoded input without decoding it first, malicious schemes can slip through.
 **Prevention:** Always decode URLs (using `decodeURIComponent`, with appropriate `catch` blocks for malformed URIs) before applying string or regex-based security filters.
+## 2026-06-06 - Refactor API Error Handling UI
+**Vulnerability:** API error handling fallback buttons previously used `window.location.reload()` to trigger refetch, which forced a full page reload and lost all local application state. This architectural pattern can be exploited as a denial of service if an attacker intentionally hits failing endpoints to exhaust resources or user state.
+**Learning:** This codebase historically defaults to utilizing `window.location.reload()` for fallback states instead of utilizing local refetch functions, especially when components fetch data on mount within `useEffect`.
+**Prevention:** Avoid `window.location.reload()` for error recovery. Always extract fetch logic into a standalone function (e.g. `fetchData`) and call it directly from the UI retry button to maintain application state while recovering.
