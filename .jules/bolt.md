@@ -35,3 +35,7 @@
 ## 2024-06-15 - Memoizing Derived States and Expensive Array Operations with useInView
 **Learning:** Because this application extensively uses `react-intersection-observer` (`useInView`), components re-render frequently during scroll events. In components like `Projects` and `Blog`, expensive array operations (like creating `Set`s from mapped arrays or running multiple `.filter()` operations) were running on every re-render, creating a performance bottleneck specific to this architecture.
 **Action:** Always memoize derived states and expensive array operations (e.g., filtering lists or generating tag/language collections) using `useMemo` in components that re-render frequently due to scroll or intersection observers. This prevents unnecessary heavy calculations and improves UI responsiveness.
+
+## 2024-06-21 - Moving Static Arrays Outside Components
+**Learning:** In React, defining arrays or objects inside a component function body causes them to be recreated on every single render. When components re-render frequently (e.g., due to scroll events or `useInView`), this leads to unnecessary memory allocation and garbage collection overhead.
+**Action:** When static arrays or objects do not depend on component state or props, always move them outside the component function body so they are instantiated only once when the module loads.
