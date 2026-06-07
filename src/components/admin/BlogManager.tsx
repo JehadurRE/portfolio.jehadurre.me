@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Eye, EyeOff, Calendar, Clock, Tag } from 'lucide-react';
 import { supabase, type BlogPost } from '../../lib/supabase';
@@ -64,11 +64,16 @@ const BlogManager: React.FC = () => {
     }
   };
 
-  const filteredPosts = posts.filter(post => {
-    if (filter === 'published') return post.is_published;
-    if (filter === 'draft') return !post.is_published;
-    return true;
-  });
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredPosts` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredPosts = useMemo(() => {
+    return posts.filter(post => {
+      if (filter === 'published') return post.is_published;
+      if (filter === 'draft') return !post.is_published;
+      return true;
+    });
+  }, [posts, filter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
