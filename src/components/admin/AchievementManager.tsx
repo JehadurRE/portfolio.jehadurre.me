@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Calendar, Trophy, Star, CheckCircle } from 'lucide-react';
 import { supabase, type Achievement } from '../../lib/supabase';
@@ -47,10 +47,15 @@ const AchievementManager: React.FC = () => {
     }
   };
 
-  const filteredAchievements = achievements.filter(achievement => {
-    if (filter === 'all') return true;
-    return achievement.category === filter;
-  });
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredAchievements` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredAchievements = useMemo(() => {
+    return achievements.filter(achievement => {
+      if (filter === 'all') return true;
+      return achievement.category === filter;
+    });
+  }, [achievements, filter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
