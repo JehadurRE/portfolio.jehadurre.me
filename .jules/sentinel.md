@@ -26,3 +26,7 @@
 **Vulnerability:** Multiple admin-facing forms (`AchievementForm`, `BlogForm`, `CertificationForm`, `SkillForm`) lacked `maxLength` constraints on their text input fields. This omission could allow malicious users to submit excessively large strings, potentially leading to resource exhaustion or minor DoS attacks.
 **Learning:** This codebase historically relies on client-side logic without built-in HTML element length constraints.
 **Prevention:** Always include `maxLength` on form inputs matching expected field constraints.
+## 2026-06-06 - Refactor API Error Handling UI
+**Vulnerability:** API error handling fallback buttons previously used `window.location.reload()` to trigger refetch, which forced a full page reload and lost all local application state. This architectural pattern can be exploited as a denial of service if an attacker intentionally hits failing endpoints to exhaust resources or user state.
+**Learning:** This codebase historically defaults to utilizing `window.location.reload()` for fallback states instead of utilizing local refetch functions, especially when components fetch data on mount within `useEffect`.
+**Prevention:** Avoid `window.location.reload()` for error recovery. Always extract fetch logic into a standalone function (e.g. `fetchData`) and call it directly from the UI retry button to maintain application state while recovering.
