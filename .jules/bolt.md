@@ -39,3 +39,6 @@
 ## 2024-06-21 - Moving Static Arrays Outside Components
 **Learning:** In React, defining arrays or objects inside a component function body causes them to be recreated on every single render. When components re-render frequently (e.g., due to scroll events or `useInView`), this leads to unnecessary memory allocation and garbage collection overhead.
 **Action:** When static arrays or objects do not depend on component state or props, always move them outside the component function body so they are instantiated only once when the module loads.
+## 2024-06-25 - Expensive Filter Calculations in Admin Components During Re-Renders
+**Learning:** The admin components (`SkillManager`, `CertificationManager`, `AchievementManager`, `BlogManager`) were executing multiple `Array.prototype.filter()` operations on every render. For example, `SkillManager` alone had 8 separate filter operations for categories, plus one for the displayed skills. This created an O(N) bottleneck on every state change or re-render.
+**Action:** Always wrap derived datasets like `filteredSkills`, `categories`, `filteredCertifications`, `filteredAchievements`, and `filteredPosts` in `useMemo` hooks in admin panels to avoid redundant calculations.
