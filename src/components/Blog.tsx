@@ -76,7 +76,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
-              onClick={fetchPosts}
+              onClick={() => fetchPosts()}
               className="btn-primary"
               aria-label="Try Again: load blog posts"
             >

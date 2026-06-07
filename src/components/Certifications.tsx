@@ -35,7 +35,7 @@ const Certifications: React.FC = () => {
       setAchievements(achievementsData);
     } catch (err) {
       console.error('Error fetching data:', err);
-      setError('Failed to load data. Please try again later.');
+      setError('Failed to load content. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -106,7 +106,7 @@ const Certifications: React.FC = () => {
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
-              onClick={fetchData}
+              onClick={() => fetchData()}
               className="btn-primary"
               aria-label="Try Again: load certifications"
             >
