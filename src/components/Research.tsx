@@ -3,13 +3,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { BookOpen, ExternalLink, Users, Calendar, Award } from 'lucide-react';
 
-const Research: React.FC = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const publications = [
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const publications = [
     {
       id: 1,
       title: 'Edge-Fog-Cloud Based Hierarchical Communication Network for Traffic Management System',
@@ -83,6 +79,12 @@ const Research: React.FC = () => {
       color: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300'
     }
   ];
+
+const Research: React.FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   return (
     <section id="research" className="section-padding bg-transparent">

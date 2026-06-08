@@ -5,8 +5,9 @@ import { TypeAnimation } from 'react-type-animation';
 import { GoogleScholar } from '../icons/CustomsByJehadurRE'; // Assuming you have a custom icon for Google Scholar
 
 
-const Hero: React.FC = () => {
-  const socialLinks = [
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const socialLinks = [
     { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
@@ -14,6 +15,7 @@ const Hero: React.FC = () => {
     { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Email' }
   ];
 
+const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
