@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Calendar, ExternalLink } from 'lucide-react';
 import { supabase, type Certification } from '../../lib/supabase';
@@ -47,10 +47,15 @@ const CertificationManager: React.FC = () => {
     }
   };
 
-  const filteredCertifications = certifications.filter(cert => {
-    if (filter === 'all') return true;
-    return cert.category === filter;
-  });
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredCertifications` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredCertifications = useMemo(() => {
+    return certifications.filter(cert => {
+      if (filter === 'all') return true;
+      return cert.category === filter;
+    });
+  }, [certifications, filter]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {

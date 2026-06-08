@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Star, Code, Zap, BookOpen, Lightbulb, Database, Cloud, Smartphone, Award, Users } from 'lucide-react';
 import { supabase, type Skill } from '../../lib/supabase';
@@ -47,10 +47,15 @@ const SkillManager: React.FC = () => {
     }
   };
 
-  const filteredSkills = skills.filter(skill => {
-    if (filter === 'all') return true;
-    return skill.category === filter;
-  });
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredSkills` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredSkills = useMemo(() => {
+    return skills.filter(skill => {
+      if (filter === 'all') return true;
+      return skill.category === filter;
+    });
+  }, [skills, filter]);
 
   const getIconComponent = (iconName: string) => {
     const icons: { [key: string]: any } = {
@@ -89,7 +94,10 @@ const SkillManager: React.FC = () => {
     }
   };
 
-  const categories = [
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `categories` because it loops over `skills` 7 times to calculate counts.
+  // This avoids massive O(N) recalculations on every render.
+  const categories = useMemo(() => [
     { id: 'all', name: 'All Skills', count: skills.length },
     { id: 'frontend', name: 'Frontend', count: skills.filter(s => s.category === 'frontend').length },
     { id: 'backend', name: 'Backend', count: skills.filter(s => s.category === 'backend').length },
@@ -98,7 +106,7 @@ const SkillManager: React.FC = () => {
     { id: 'database', name: 'Database', count: skills.filter(s => s.category === 'database').length },
     { id: 'cloud', name: 'Cloud', count: skills.filter(s => s.category === 'cloud').length },
     { id: 'mobile', name: 'Mobile', count: skills.filter(s => s.category === 'mobile').length },
-  ];
+  ], [skills]);
 
   if (showForm) {
     return (

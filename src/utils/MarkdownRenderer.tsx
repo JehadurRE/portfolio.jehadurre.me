@@ -62,9 +62,17 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
 // and potentially harmful data: URIs in links
 const sanitizeUrl = (url: string | undefined, isImage: boolean = false): string | undefined => {
   if (!url) return undefined;
+
+  let decodedUrl = url;
+  try {
+    decodedUrl = decodeURIComponent(url);
+  } catch {
+    // Ignore malformed URIs
+  }
+
   // Strip control characters and whitespaces that can bypass naive filters
   // eslint-disable-next-line no-control-regex
-  const sanitized = url.replace(/[\x00-\x20]/g, '');
+  const sanitized = decodedUrl.replace(/[\x00-\x20]/g, '');
 
   if (/^(?:javascript|vbscript):/i.test(sanitized)) {
     return '#';

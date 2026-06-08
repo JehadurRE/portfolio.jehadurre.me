@@ -35,7 +35,7 @@ const Certifications: React.FC = () => {
       setAchievements(achievementsData);
     } catch (err) {
       console.error('Error fetching data:', err);
-      setError('Failed to load data. Please try again later.');
+      setError('Failed to load content. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -104,18 +104,13 @@ const Certifications: React.FC = () => {
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Certifications & Achievements
             </h2>
-            <div className="flex flex-col items-center">
-              <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
-              <button
-                onClick={fetchData}
-                disabled={loading}
-                className="btn-primary flex items-center space-x-2"
-                aria-label="Try Again: load certifications and achievements"
-              >
-                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-                <span>Try Again</span>
-              </button>
-            </div>
+            <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
+            <button
+              onClick={() => fetchData()}
+              className="btn-primary"
+            >
+              Try Again
+            </button>
           </div>
         </div>
       </section>
