@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, RefreshCw } from 'lucide-react';
 import { blogApi, type BlogPost } from '../lib/supabase';
 
 interface BlogProps {
