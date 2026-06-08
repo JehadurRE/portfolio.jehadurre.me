@@ -4,6 +4,35 @@ import { useInView } from 'react-intersection-observer';
 import { Send, MapPin, Phone, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const contactInfo = [
+  {
+    icon: Mail,
+    label: 'Email',
+    value: 'emran.jehadur@gmail.com',
+    href: 'mailto:emran.jehadur@gmail.com'
+  },
+  {
+    icon: MapPin,
+    label: 'Location',
+    value: 'Available for Remote Work',
+    href: null
+  },
+  {
+    icon: Phone,
+    label: 'Availability',
+    value: 'Open to Opportunities',
+    href: null
+  }
+];
+
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
+];
+
 const Contact: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -19,33 +48,6 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'emran.jehadur@gmail.com',
-      href: 'mailto:emran.jehadur@gmail.com'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Available for Remote Work',
-      href: null
-    },
-    {
-      icon: Phone,
-      label: 'Availability',
-      value: 'Open to Opportunities',
-      href: null
-    }
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
-  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

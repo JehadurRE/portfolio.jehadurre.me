@@ -4,6 +4,21 @@ import { useInView } from 'react-intersection-observer';
 import { Code, Zap, Users, Award, BookOpen, Lightbulb, Database, Cloud, Smartphone ,CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
 
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const achievements = [
+    { icon: Award, title: 'Research Publications', value: '5+' },
+    { icon: Code, title: 'Open Source Projects', value: '20+' },
+    { icon: Users, title: 'Collaboration Projects', value: '10+' },
+  ];
+
+  const skillsraw = [
+    { name: 'Frontend', technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'], icon: Code },
+    { name: 'Backend', technologies: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB'], icon: Zap },
+    { name: 'Research', technologies: ['Machine Learning', 'Data Analysis', 'Academic Writing'], icon: BookOpen },
+    { name: 'Tools', technologies: ['Git', 'Docker', 'AWS', 'Supabase'], icon: Lightbulb },
+  ];
+
 const About: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -32,12 +47,6 @@ const About: React.FC = () => {
   useEffect(() => {
     fetchSkills();
   }, []);
-
-  const achievements = [
-    { icon: Award, title: 'Research Publications', value: '5+' },
-    { icon: Code, title: 'Open Source Projects', value: '20+' },
-    { icon: Users, title: 'Collaboration Projects', value: '10+' },
-  ];
 
   const getIconComponent = (iconName: string) => {
     const icons: { [key: string]: any } = {
@@ -175,13 +184,6 @@ const About: React.FC = () => {
     </div>
   );
 
-
-  const skillsraw = [
-    { name: 'Frontend', technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'], icon: Code },
-    { name: 'Backend', technologies: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB'], icon: Zap },
-    { name: 'Research', technologies: ['Machine Learning', 'Data Analysis', 'Academic Writing'], icon: BookOpen },
-    { name: 'Tools', technologies: ['Git', 'Docker', 'AWS', 'Supabase'], icon: Lightbulb },
-  ];
 
   const renderCompactSkills = () => (
      <div className='space-y-6 '>
