@@ -108,6 +108,7 @@ const Certifications: React.FC = () => {
             <button
               onClick={() => fetchData()}
               className="btn-primary"
+              aria-label="Try Again: load certifications"
             >
               Try Again
             </button>

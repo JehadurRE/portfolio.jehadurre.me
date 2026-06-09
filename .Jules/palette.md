@@ -11,3 +11,6 @@
 ## 2024-05-28 - [Error State Retry Pattern]
 **Learning:** Hard reloads (`window.location.reload()`) for recovering from API errors result in poor user experience because they reset the entire application state and force the user to scroll back down.
 **Action:** Always implement a dedicated `retry` function for failed fetch calls. Wrap it in a UI that does not reload the page and provides visual feedback (like a loading spinner).
+## 2024-03-24 - Replace Full-Page Reloads with Async Component Refetching
+**Learning:** Found an anti-pattern where component-level data fetch errors in `Blog.tsx` and `Certifications.tsx` were handled by triggering a jarring full page reload (`window.location.reload()`). This severely disrupted UX and could potentially cause loss of transient state in other areas of the SPA.
+**Action:** Always extract inner fetch logic out of `useEffect` hooks so it can be attached directly to local UI retry buttons, ensuring error recovery is localized and doesn't flush application state.
