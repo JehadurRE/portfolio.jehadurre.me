@@ -34,3 +34,7 @@
 **Vulnerability:** API error handling fallback buttons previously used `window.location.reload()` to trigger refetch, which forced a full page reload and lost all local application state. This architectural pattern can be exploited as a denial of service if an attacker intentionally hits failing endpoints to exhaust resources or user state.
 **Learning:** This codebase historically defaults to utilizing `window.location.reload()` for fallback states instead of utilizing local refetch functions, especially when components fetch data on mount within `useEffect`.
 **Prevention:** Avoid `window.location.reload()` for error recovery. Always extract fetch logic into a standalone function (e.g. `fetchData`) and call it directly from the UI retry button to maintain application state while recovering.
+## 2025-02-27 - Centralized URL Sanitization
+**Vulnerability:** XSS risk via unvalidated `verification_url` rendered in `<a>` tags within `CertificationManager.tsx` and `Certifications.tsx`.
+**Learning:** `MarkdownRenderer.tsx` already had a `sanitizeUrl` utility, but other components directly consumed dynamic inputs for URLs without sanitizing them.
+**Prevention:** Extracted the URL sanitization logic into a shared utility (`src/utils/sanitizeUrl.ts`) and applied it to dynamically rendered `href` attributes across components to ensure consistent XSS protection.
