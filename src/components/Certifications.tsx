@@ -6,6 +6,18 @@ import { certificationsApi, achievementsApi, type Certification, type Achievemen
 import LazyImage from './LazyImage';
 import { sanitizeUrl } from '../utils/sanitizeUrl';
 
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'technical': return <Award className="w-4 h-4" />;
+    case 'professional': return <Trophy className="w-4 h-4" />;
+    case 'academic': return <Medal className="w-4 h-4" />;
+    case 'award': return <Trophy className="w-4 h-4" />;
+    case 'recognition': return <Star className="w-4 h-4" />;
+    case 'milestone': return <CheckCircle className="w-4 h-4" />;
+    default: return <Award className="w-4 h-4" />;
+  }
+};
+
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -83,18 +95,6 @@ const Certifications: React.FC = () => {
       month: 'long',
       day: 'numeric'
     });
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'technical': return <Award className="w-4 h-4" />;
-      case 'professional': return <Trophy className="w-4 h-4" />;
-      case 'academic': return <Medal className="w-4 h-4" />;
-      case 'award': return <Trophy className="w-4 h-4" />;
-      case 'recognition': return <Star className="w-4 h-4" />;
-      case 'milestone': return <CheckCircle className="w-4 h-4" />;
-      default: return <Award className="w-4 h-4" />;
-    }
   };
 
   if (error) {
