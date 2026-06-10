@@ -45,3 +45,6 @@
 ## 2024-07-28 - Moving Static Arrays Outside Components
 **Learning:** In React components that re-render frequently (like those using `useInView` for scroll animations), defining static arrays or objects inside the component function body causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
 **Action:** When static arrays or objects do not depend on component state or props, always hoist them outside the component function body so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy applications.
+## 2024-07-28 - Moving Static Functions Outside Components
+**Learning:** In React components that re-render frequently (like those using `useInView` for scroll animations), defining static functions (such as icon mappers like `getIconComponent`) inside the component function body causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
+**Action:** When static functions do not depend on component state or props, always hoist them outside the component function body so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy applications.

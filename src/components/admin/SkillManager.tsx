@@ -4,6 +4,43 @@ import { Plus, Edit, Trash2, Star, Code, Zap, BookOpen, Lightbulb, Database, Clo
 import { supabase, type Skill } from '../../lib/supabase';
 import SkillForm from './SkillForm';
 
+const getIconComponent = (iconName: string) => {
+  const icons: { [key: string]: any } = {
+    Code,
+    Zap,
+    BookOpen,
+    Lightbulb,
+    Database,
+    Cloud,
+    Smartphone,
+    Award,
+    Users
+  };
+  return icons[iconName] || Code;
+};
+
+const getProficiencyColor = (level: number) => {
+  switch (level) {
+    case 5: return 'from-green-500 to-green-600';
+    case 4: return 'from-blue-500 to-blue-600';
+    case 3: return 'from-yellow-500 to-yellow-600';
+    case 2: return 'from-orange-500 to-orange-600';
+    case 1: return 'from-red-500 to-red-600';
+    default: return 'from-gray-500 to-gray-600';
+  }
+};
+
+const getProficiencyText = (level: number) => {
+  switch (level) {
+    case 5: return 'Expert';
+    case 4: return 'Advanced';
+    case 3: return 'Intermediate';
+    case 2: return 'Beginner';
+    case 1: return 'Novice';
+    default: return 'Unknown';
+  }
+};
+
 const SkillManager: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,43 +93,6 @@ const SkillManager: React.FC = () => {
       return skill.category === filter;
     });
   }, [skills, filter]);
-
-  const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
-      Code,
-      Zap,
-      BookOpen,
-      Lightbulb,
-      Database,
-      Cloud,
-      Smartphone,
-      Award,
-      Users
-    };
-    return icons[iconName] || Code;
-  };
-
-  const getProficiencyColor = (level: number) => {
-    switch (level) {
-      case 5: return 'from-green-500 to-green-600';
-      case 4: return 'from-blue-500 to-blue-600';
-      case 3: return 'from-yellow-500 to-yellow-600';
-      case 2: return 'from-orange-500 to-orange-600';
-      case 1: return 'from-red-500 to-red-600';
-      default: return 'from-gray-500 to-gray-600';
-    }
-  };
-
-  const getProficiencyText = (level: number) => {
-    switch (level) {
-      case 5: return 'Expert';
-      case 4: return 'Advanced';
-      case 3: return 'Intermediate';
-      case 2: return 'Beginner';
-      case 1: return 'Novice';
-      default: return 'Unknown';
-    }
-  };
 
   // ⚡ Bolt Performance Optimization:
   // Memoize `categories` because it loops over `skills` 7 times to calculate counts.
