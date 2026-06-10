@@ -39,7 +39,6 @@ const Contact: React.FC = () => {
     threshold: 0.1,
   });
 
-  const [terminalStep, setTerminalStep] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',

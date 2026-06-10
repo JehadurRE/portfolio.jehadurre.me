@@ -34,3 +34,7 @@
 **Vulnerability:** API error handling fallback buttons previously used `window.location.reload()` to trigger refetch, which forced a full page reload and lost all local application state. This architectural pattern can be exploited as a denial of service if an attacker intentionally hits failing endpoints to exhaust resources or user state.
 **Learning:** This codebase historically defaults to utilizing `window.location.reload()` for fallback states instead of utilizing local refetch functions, especially when components fetch data on mount within `useEffect`.
 **Prevention:** Avoid `window.location.reload()` for error recovery. Always extract fetch logic into a standalone function (e.g. `fetchData`) and call it directly from the UI retry button to maintain application state while recovering.
+## 2024-05-30 - Type Safety as Security Enhancement
+**Vulnerability:** Implicit `any` typing in error handlers and form state.
+**Learning:** This codebase previously had several areas where `any` was used or where errors were implicitly typed as `any`.
+**Prevention:** Ensured error handling correctly uses `catch (error: unknown)` and forms use proper strict typings (e.g. `'frontend' | 'backend'`) instead of `as any`.

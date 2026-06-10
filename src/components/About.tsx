@@ -36,7 +36,7 @@ const About: React.FC = () => {
       setError(null);
       const data = await skillsApi.getFeatured();
       setSkills(data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching skills:', err);
       setError('Failed to load skills. Please try again later.');
     } finally {
@@ -49,7 +49,7 @@ const About: React.FC = () => {
   }, []);
 
   const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
+    const icons: Record<string, React.ElementType> = {
       Code,
       Zap,
       BookOpen,

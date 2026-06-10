@@ -24,7 +24,7 @@ const SkillManager: React.FC = () => {
 
       if (error) throw error;
       setSkills(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching skills:', error);
     } finally {
       setLoading(false);
@@ -42,7 +42,7 @@ const SkillManager: React.FC = () => {
 
       if (error) throw error;
       fetchSkills();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting skill:', error);
     }
   };
@@ -58,7 +58,7 @@ const SkillManager: React.FC = () => {
   }, [skills, filter]);
 
   const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
+    const icons: Record<string, React.ElementType> = {
       Code,
       Zap,
       BookOpen,
@@ -155,7 +155,7 @@ const SkillManager: React.FC = () => {
             key={category.id}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setFilter(category.id as any)}
+            onClick={() => setFilter(category.id as 'all' | 'frontend' | 'backend' | 'research' | 'tools' | 'database' | 'cloud' | 'mobile')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === category.id
                 ? 'bg-primary-500 text-white shadow-lg'

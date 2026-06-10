@@ -78,7 +78,7 @@ const Projects: React.FC = () => {
           .slice(0, 12);
 
         setProjects(filteredProjects);
-      } catch (error) {
+      } catch (error: unknown) {
         console.error("Error fetching projects:", error);
         // Fallback projects
         setProjects([
@@ -179,7 +179,7 @@ const Projects: React.FC = () => {
       } else {
         throw new Error(`GitHub API responded with status: ${response.status}`);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error fetching README:", error);
       // Fallback README content
       const fallbackReadme = `# ${project.name}

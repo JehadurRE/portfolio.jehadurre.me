@@ -22,7 +22,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
         setError(null);
         const data = await blogApi.getBySlug(slug);
         setPost(data);
-      } catch (err) {
+      } catch (err: unknown) {
         console.error('Error fetching blog post:', err);
         setError('Failed to load blog post. Please try again later.');
       } finally {
@@ -49,7 +49,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
           text: post.excerpt,
           url: window.location.href,
         });
-      } catch (err) {
+      } catch (err: unknown) {
         console.log('Error sharing:', err);
       }
     } else {
