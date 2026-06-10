@@ -339,7 +339,7 @@ const About: React.FC = () => {
                   className="btn-primary flex items-center space-x-2"
                   aria-label="Try Again: load skills"
                 >
-                  <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
                   <span>Try Again</span>
                 </button>
               </div>

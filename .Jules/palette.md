@@ -11,3 +11,6 @@
 ## 2024-05-28 - [Error State Retry Pattern]
 **Learning:** Hard reloads (`window.location.reload()`) for recovering from API errors result in poor user experience because they reset the entire application state and force the user to scroll back down.
 **Action:** Always implement a dedicated `retry` function for failed fetch calls. Wrap it in a UI that does not reload the page and provides visual feedback (like a loading spinner).
+## 2026-06-08 - Enhance error state retry buttons
+**Learning:** Found that the 'Try Again' error state retry buttons in components like `Blog.tsx` and `Certifications.tsx` lacked clear feedback when loading and explicit accessibility labels, which is a poor UX pattern in async processes.
+**Action:** When implementing error state retries, always add a visual loading indicator (like `animate-spin`), a `disabled` state to prevent duplicate clicks, and an `aria-label` for screen reader users. Also ensure icons inside buttons that already have text have `aria-hidden="true"`.
