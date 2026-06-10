@@ -11,3 +11,6 @@
 ## 2024-05-28 - [Error State Retry Pattern]
 **Learning:** Hard reloads (`window.location.reload()`) for recovering from API errors result in poor user experience because they reset the entire application state and force the user to scroll back down.
 **Action:** Always implement a dedicated `retry` function for failed fetch calls. Wrap it in a UI that does not reload the page and provides visual feedback (like a loading spinner).
+## 2024-05-29 - [Standardizing Error State Retry Pattern UI]
+**Learning:** For failed fetch calls, implementing a dedicated retry function is only half the battle. A standard UI pattern is needed to ensure consistency across the application. The standard pattern observed is a `Try Again` button styled with `btn-primary inline-flex items-center space-x-2`, an explicit `aria-label` describing the action, a `disabled={loading}` state, and a `<RefreshCw>` icon from `lucide-react` with an `animate-spin` class and `aria-hidden="true"` while the `loading` state is true.
+**Action:** When implementing error state retries, always adhere to the standard UI pattern using the `<RefreshCw>` icon and associated styling/accessibility attributes to maintain a consistent and accessible user experience.

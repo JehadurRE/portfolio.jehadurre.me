@@ -70,17 +70,19 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
     return (
       <section id="blog" className="section-padding bg-transparent">
         <div className="container-custom">
-          <div className="text-center py-16">
+          <div className="text-center py-16 flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Blog & Insights
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
               onClick={() => fetchPosts()}
-              className="btn-primary"
+              disabled={loading}
+              className="btn-primary inline-flex items-center space-x-2"
               aria-label="Try Again: load blog posts"
             >
-              Try Again
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
+              <span>Try Again</span>
             </button>
           </div>
         </div>
