@@ -70,7 +70,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
     return (
       <section id="blog" className="section-padding bg-transparent">
         <div className="container-custom">
-          <div className="text-center py-16">
+          <div className="text-center py-16 flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Blog & Insights
             </h2>

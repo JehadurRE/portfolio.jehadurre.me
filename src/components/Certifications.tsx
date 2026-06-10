@@ -101,7 +101,7 @@ const Certifications: React.FC = () => {
     return (
       <section id="certifications" className="section-padding bg-transparent">
         <div className="container-custom">
-          <div className="text-center py-16">
+          <div className="text-center py-16 flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Certifications & Achievements
             </h2>
@@ -110,7 +110,7 @@ const Certifications: React.FC = () => {
               onClick={() => fetchData()}
               disabled={loading}
               className="btn-primary inline-flex items-center space-x-2"
-              aria-label="Try Again: load certifications"
+              aria-label="Try Again: load certifications and achievements"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
               <span>Try Again</span>
