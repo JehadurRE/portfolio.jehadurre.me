@@ -109,7 +109,7 @@ const Certifications: React.FC = () => {
               onClick={() => fetchData()}
               disabled={loading}
               className="btn-primary inline-flex items-center space-x-2"
-              aria-label="Try Again: load certifications and achievements"
+              aria-label="Try Again: load certifications"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
               <span>Try Again</span>
