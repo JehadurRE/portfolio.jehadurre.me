@@ -336,7 +336,7 @@ const About: React.FC = () => {
                 <button
                   onClick={fetchSkills}
                   disabled={loading}
-                  className="btn-primary flex items-center space-x-2"
+                  className="btn-primary inline-flex items-center space-x-2"
                   aria-label="Try Again: load skills"
                 >
                   <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
