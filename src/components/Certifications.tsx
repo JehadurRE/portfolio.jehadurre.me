@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import LazyImage from './LazyImage';
+import { sanitizeUrl } from '../utils/sanitizeUrl';
 
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
@@ -483,7 +484,7 @@ const Certifications: React.FC = () => {
                 </div>
 
                 <motion.a
-                  href={selectedCert.verification_url}
+                  href={sanitizeUrl(selectedCert.verification_url)}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
