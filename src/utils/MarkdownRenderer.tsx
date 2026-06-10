@@ -1,11 +1,17 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from 'rehype-raw';
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const remarkPluginsList = [remarkGfm, remarkEmoji];
+const rehypePluginsList = [rehypeRaw, rehypeSanitize];
+
+
 // ⚡ Bolt Performance Optimization:
 // Use PrismAsync instead of Prism to lazily load syntax highlighter languages.
 // The default Prism imports all languages synchronously, bloating the bundle by >1MB.
@@ -95,7 +101,10 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
 
 
 //   console.log(markdown);
-  const convertImageUrl = (src: string) => {
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `components` to avoid re-creating them on every render, which breaks ReactMarkdown's memoization
+  const components: Components = useMemo(() => {
+    const convertImageUrl = (src: string) => {
     if (!src) return src;
     
     // If it's already an absolute URL, return as is
@@ -112,7 +121,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     
     return src;
   };
-  const components: Components = {
+  return {
     h1: ({ children }) => (
       <h1 className="text-2xl font-bold mb-6 mt-4 text-gradient">{children}</h1>
     ),
@@ -248,6 +257,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     ),
   };
 
+  }, [githubUrl]);
+
   return (
     <div 
       className="prose prose-lg max-w-none markdown-content international-text"
@@ -258,8 +269,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
       }}
     >
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkEmoji]}
-        rehypePlugins={[rehypeRaw, rehypeSanitize]}
+        remarkPlugins={remarkPluginsList}
+        rehypePlugins={rehypePluginsList}
         components={components}
       >
         {markdown}
