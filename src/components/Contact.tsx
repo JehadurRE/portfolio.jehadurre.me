@@ -26,6 +26,13 @@ const contactInfo = [
     href: null
   }
 ];
+// ⚡ Bolt Performance Optimization:
+// Hoist static `TypeAnimation` sequence arrays outside the component body to prevent recreation on every render.
+const contactSequence = [
+  "initialize contact_form",
+  1000,
+];
+
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
@@ -198,10 +205,7 @@ const Contact: React.FC = () => {
               <div className="space-y-2 min-h-[400px]">
                 <div className="text-green-400">
                   $ <TypeAnimation
-                    sequence={[
-                      'initialize contact_form',
-                      1000,
-                    ]}
+                    sequence={contactSequence}
                     wrapper="span"
                     speed={50}
                     cursor={false}
