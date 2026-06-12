@@ -12,8 +12,22 @@ const socialLinks = [
     { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
     { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
+
     { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Email' }
   ];
+
+// ⚡ Bolt Performance Optimization:
+// Hoist static `TypeAnimation` sequence arrays outside the component body to prevent recreation on every render.
+const heroSequence = [
+  "Software Engineer",
+  2000,
+  "Researcher",
+  2000,
+  "Full-Stack Developer",
+  2000,
+  "Problem Solver",
+  2000,
+];
 
 const Hero: React.FC = () => {
   return (
@@ -64,16 +78,7 @@ const Hero: React.FC = () => {
             </h1>
             <div className="text-xl sm:text-2xl text-secondary-600 dark:text-secondary-300 font-medium">
               <TypeAnimation
-                sequence={[
-                  'Software Engineer',
-                  2000,
-                  'Researcher',
-                  2000,
-                  'Full-Stack Developer',
-                  2000,
-                  'Problem Solver',
-                  2000,
-                ]}
+                sequence={heroSequence}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}

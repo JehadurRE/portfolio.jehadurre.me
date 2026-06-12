@@ -51,3 +51,6 @@
 ## 2023-10-27 - [ReactMarkdown Re-render Optimization]
 **Learning:** In `react-markdown`, passing freshly allocated arrays (`[]`) and object references (`{}`) to `remarkPlugins`, `rehypePlugins`, or `components` causes the component to completely re-parse and re-render the Markdown AST on every render of the parent component, even if the markdown string itself didn't change.
 **Action:** Always move static plugin arrays (e.g. `[remarkGfm]`) outside of the component body as static constants, and wrap any dynamically generated `components` prop in a `useMemo` hook (with its appropriate dependencies) to maintain stable references.
+## 2024-08-11 - Hoisting static arrays passed to component props
+**Learning:** React re-evaluates all variables inside the component body during a re-render. If you construct an array or object inline or inside the component function and pass it as a prop (such as the `sequence` prop for `TypeAnimation`), the child component receives a new reference on every render, which can cause unnecessary re-renders.
+**Action:** When an array or object is static, define it outside the component function body. This ensures it's only created once and maintains reference stability across re-renders.

@@ -1,6 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+// ⚡ Bolt Performance Optimization:
+// Hoist static `TypeAnimation` sequence arrays outside the component body to prevent recreation on every render.
+const loadingSequence = [
+  "Initializing portfolio...",
+  400,
+  "Loading projects...",
+  400,
+  "Preparing experience...",
+  400,
+  "Almost ready...",
+  400,
+];
+
 
 const LoadingScreen: React.FC = () => {
   return (
@@ -56,16 +69,7 @@ const LoadingScreen: React.FC = () => {
           </h2>
           <div className="text-secondary-600 dark:text-secondary-300 font-mono text-sm">
             <TypeAnimation
-              sequence={[
-                'Initializing portfolio...',
-                400,
-                'Loading projects...',
-                400,
-                'Preparing experience...',
-                400,
-                'Almost ready...',
-                400,
-              ]}
+              sequence={loadingSequence}
               wrapper="span"
               speed={90}
               repeat={Infinity}
