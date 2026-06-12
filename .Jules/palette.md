@@ -20,3 +20,6 @@
 ## 2026-06-08 - Enhance error state retry buttons
 **Learning:** Found that the 'Try Again' error state retry buttons in components like `Blog.tsx` and `Certifications.tsx` lacked clear feedback when loading and explicit accessibility labels, which is a poor UX pattern in async processes.
 **Action:** When implementing error state retries, always add a visual loading indicator (like `animate-spin`), a `disabled` state to prevent duplicate clicks, and an `aria-label` for screen reader users. Also ensure icons inside buttons that already have text have `aria-hidden="true"`.
+## 2023-10-25 - Native title attributes vs ARIA labels for icon-only buttons
+**Learning:** Removing a native `title` attribute from an icon-only button (even when adding an `aria-label`) degrades discoverability for sighted mouse users because the visual tooltip disappears.
+**Action:** When adding `aria-label` to an icon-only button for screen reader support, ALWAYS retain the native `title` attribute as a fallback tooltip, unless replacing it with a custom, accessible visual tooltip component.
