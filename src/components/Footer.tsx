@@ -3,33 +3,35 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Phone ,HeartOff} from 'lucide-react';
 import LazyImage from './LazyImage';
 
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
+  { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
+];
+
+const quickLinks = [
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Research', href: '#research' },
+  { name: 'Certifications', href: '#certifications' },
+  { name: 'Blog', href: '#blog' },
+  { name: 'Contact', href: '#contact' },
+];
+
+const services = [
+  'Full-Stack Development',
+  'Research & Development',
+  'Technical Consulting',
+  'Code Review & Mentoring',
+  'System Architecture',
+  'Performance Optimization'
+];
+
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
-  ];
-
-  const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Research', href: '#research' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const services = [
-    'Full-Stack Development',
-    'Research & Development',
-    'Technical Consulting',
-    'Code Review & Mentoring',
-    'System Architecture',
-    'Performance Optimization'
-  ];
 
   const [email, setEmail] = React.useState('');
   const [error, setError] = React.useState('');
