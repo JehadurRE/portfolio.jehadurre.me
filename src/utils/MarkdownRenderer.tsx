@@ -45,6 +45,7 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
       onClick={handleCopy}
       className="absolute top-2 right-2 p-2 rounded bg-secondary-700 hover:bg-secondary-600 text-white text-sm transition-colors duration-200 flex items-center gap-1"
       title={copied ? 'Copied!' : 'Copy code'}
+      aria-label={copied ? 'Copied!' : 'Copy code'}
     >
       {copied ? (
         <>
