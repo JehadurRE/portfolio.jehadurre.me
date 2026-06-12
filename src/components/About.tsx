@@ -304,6 +304,7 @@ const About: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSkillsView('compact')}
+                    aria-label="View skills in compact mode"
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       skillsView === 'compact'
                         ? 'bg-primary-500 text-white shadow-lg'
@@ -317,6 +318,7 @@ const About: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSkillsView('detailed')}
+                    aria-label="View skills in detailed mode"
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       skillsView === 'detailed'
                         ? 'bg-primary-500 text-white shadow-lg'
