@@ -11,7 +11,7 @@
         
         const decoder = new TextDecoder('utf-8');
         return decoder.decode(bytes);
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Error decoding base64 UTF-8:', error);
         return atob(base64String.replace(/\s/g, ''));
       }

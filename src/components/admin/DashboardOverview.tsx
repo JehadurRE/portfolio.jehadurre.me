@@ -50,7 +50,7 @@ const DashboardOverview: React.FC = () => {
           totalSkills: totalSkills.count || 0,
           featuredSkills: featuredSkills.count || 0,
         });
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Error fetching stats:', error);
       } finally {
         setLoading(false);

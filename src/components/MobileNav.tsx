@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, BookOpen, Award, MessageSquare } from 'lucide-react';
 
+// ⚡ Bolt Performance Optimization:
+// Move static array outside component function body to prevent recreation on every render.
+const navItems = [
+  { id: 'hero', icon: Home, label: 'Home', href: '#hero' },
+  { id: 'about', icon: User, label: 'About', href: '#about' },
+  { id: 'projects', icon: Briefcase, label: 'Projects', href: '#projects' },
+  { id: 'research', icon: BookOpen, label: 'Research', href: '#research' },
+  { id: 'certifications', icon: Award, label: 'Certs', href: '#certifications' },
+  { id: 'contact', icon: MessageSquare, label: 'Contact', href: '#contact' },
+];
+
 const MobileNav: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
-
-  const navItems = [
-    { id: 'hero', icon: Home, label: 'Home', href: '#hero' },
-    { id: 'about', icon: User, label: 'About', href: '#about' },
-    { id: 'projects', icon: Briefcase, label: 'Projects', href: '#projects' },
-    { id: 'research', icon: BookOpen, label: 'Research', href: '#research' },
-    { id: 'certifications', icon: Award, label: 'Certs', href: '#certifications' },
-    { id: 'contact', icon: MessageSquare, label: 'Contact', href: '#contact' },
-  ];
 
   // ⚡ Bolt Performance Optimization:
   // Throttling the scroll event with requestAnimationFrame and removing synchronous DOM querying/layout recalculations.

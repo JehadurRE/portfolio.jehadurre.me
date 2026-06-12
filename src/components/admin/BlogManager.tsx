@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, Eye, EyeOff, Calendar, Clock, Tag } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, EyeOff, Calendar, Clock } from 'lucide-react';
 import { supabase, type BlogPost } from '../../lib/supabase';
 import BlogForm from './BlogForm';
 
@@ -24,7 +24,7 @@ const BlogManager: React.FC = () => {
 
       if (error) throw error;
       setPosts(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching posts:', error);
     } finally {
       setLoading(false);
@@ -42,7 +42,7 @@ const BlogManager: React.FC = () => {
 
       if (error) throw error;
       fetchPosts();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting post:', error);
     }
   };
@@ -59,7 +59,7 @@ const BlogManager: React.FC = () => {
 
       if (error) throw error;
       fetchPosts();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating post:', error);
     }
   };
