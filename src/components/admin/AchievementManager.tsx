@@ -42,7 +42,7 @@ const AchievementManager: React.FC = () => {
 
       if (error) throw error;
       setAchievements(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching achievements:', error);
     } finally {
       setLoading(false);
@@ -60,7 +60,7 @@ const AchievementManager: React.FC = () => {
 
       if (error) throw error;
       fetchAchievements();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting achievement:', error);
     }
   };

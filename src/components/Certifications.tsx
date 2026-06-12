@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
+import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import LazyImage from './LazyImage';
 import { sanitizeUrl } from '../utils/sanitizeUrl';
@@ -46,7 +46,7 @@ const Certifications: React.FC = () => {
 
       setCertifications(certsData);
       setAchievements(achievementsData);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching data:', err);
       setError('Failed to load content. Please try again later.');
     } finally {

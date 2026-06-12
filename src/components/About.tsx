@@ -73,7 +73,7 @@ const About: React.FC = () => {
       setError(null);
       const data = await skillsApi.getFeatured();
       setSkills(data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching skills:', err);
       setError('Failed to load skills. Please try again later.');
     } finally {

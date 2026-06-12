@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Calendar, Clock, ArrowRight, RefreshCw } from 'lucide-react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { blogApi, type BlogPost } from '../lib/supabase';
 
 interface BlogProps {
@@ -25,7 +25,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
       setError(null);
       const data = await blogApi.getPublished();
       setPosts(data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching blog posts:', err);
       setError('Failed to load blog posts. Please try again later.');
     } finally {

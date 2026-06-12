@@ -25,7 +25,7 @@ const CertificationManager: React.FC = () => {
 
       if (error) throw error;
       setCertifications(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching certifications:', error);
     } finally {
       setLoading(false);
@@ -43,7 +43,7 @@ const CertificationManager: React.FC = () => {
 
       if (error) throw error;
       fetchCertifications();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting certification:', error);
     }
   };
