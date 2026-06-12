@@ -38,3 +38,7 @@
 **Vulnerability:** Implicit `any` typing in error handlers and form state.
 **Learning:** This codebase previously had several areas where `any` was used or where errors were implicitly typed as `any`.
 **Prevention:** Ensured error handling correctly uses `catch (error: unknown)` and forms use proper strict typings (e.g. `'frontend' | 'backend'`) instead of `as any`.
+## 2025-02-27 - Centralized URL Sanitization
+**Vulnerability:** XSS risk via unvalidated `verification_url` rendered in `<a>` tags within `CertificationManager.tsx` and `Certifications.tsx`.
+**Learning:** `MarkdownRenderer.tsx` already had a `sanitizeUrl` utility, but other components directly consumed dynamic inputs for URLs without sanitizing them.
+**Prevention:** Extracted the URL sanitization logic into a shared utility (`src/utils/sanitizeUrl.ts`) and applied it to dynamically rendered `href` attributes across components to ensure consistent XSS protection.

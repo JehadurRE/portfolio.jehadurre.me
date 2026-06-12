@@ -4,6 +4,19 @@ import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import LazyImage from './LazyImage';
+import { sanitizeUrl } from '../utils/sanitizeUrl';
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'technical': return <Award className="w-4 h-4" />;
+    case 'professional': return <Trophy className="w-4 h-4" />;
+    case 'academic': return <Medal className="w-4 h-4" />;
+    case 'award': return <Trophy className="w-4 h-4" />;
+    case 'recognition': return <Star className="w-4 h-4" />;
+    case 'milestone': return <CheckCircle className="w-4 h-4" />;
+    default: return <Award className="w-4 h-4" />;
+  }
+};
 
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
@@ -84,32 +97,23 @@ const Certifications: React.FC = () => {
     });
   };
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'technical': return <Award className="w-4 h-4" />;
-      case 'professional': return <Trophy className="w-4 h-4" />;
-      case 'academic': return <Medal className="w-4 h-4" />;
-      case 'award': return <Trophy className="w-4 h-4" />;
-      case 'recognition': return <Star className="w-4 h-4" />;
-      case 'milestone': return <CheckCircle className="w-4 h-4" />;
-      default: return <Award className="w-4 h-4" />;
-    }
-  };
-
   if (error) {
     return (
       <section id="certifications" className="section-padding bg-transparent">
         <div className="container-custom">
-          <div className="text-center py-16">
+          <div className="text-center py-16 flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Certifications & Achievements
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
               onClick={() => fetchData()}
-              className="btn-primary"
+              disabled={loading}
+              className="btn-primary inline-flex items-center space-x-2"
+              aria-label="Try Again: load certifications and achievements"
             >
-              Try Again
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
+              <span>Try Again</span>
             </button>
           </div>
         </div>
@@ -483,7 +487,7 @@ const Certifications: React.FC = () => {
                 </div>
 
                 <motion.a
-                  href={selectedCert.verification_url}
+                  href={sanitizeUrl(selectedCert.verification_url)}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}

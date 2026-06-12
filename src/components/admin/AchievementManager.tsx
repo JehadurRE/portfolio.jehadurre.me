@@ -4,6 +4,24 @@ import { Plus, Edit, Trash2, Calendar, Trophy, Star, CheckCircle } from 'lucide-
 import { supabase, type Achievement } from '../../lib/supabase';
 import AchievementForm from './AchievementForm';
 
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'award': return <Trophy className="w-5 h-5" />;
+    case 'recognition': return <Star className="w-5 h-5" />;
+    case 'milestone': return <CheckCircle className="w-5 h-5" />;
+    default: return <Trophy className="w-5 h-5" />;
+  }
+};
+
+const getCategoryColor = (category: string) => {
+  switch (category) {
+    case 'award': return 'from-yellow-500 to-orange-500';
+    case 'recognition': return 'from-purple-500 to-pink-500';
+    case 'milestone': return 'from-green-500 to-blue-500';
+    default: return 'from-gray-500 to-gray-600';
+  }
+};
+
 const AchievementManager: React.FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,24 +81,6 @@ const AchievementManager: React.FC = () => {
       month: 'short',
       day: 'numeric'
     });
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'award': return <Trophy className="w-5 h-5" />;
-      case 'recognition': return <Star className="w-5 h-5" />;
-      case 'milestone': return <CheckCircle className="w-5 h-5" />;
-      default: return <Trophy className="w-5 h-5" />;
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'award': return 'from-yellow-500 to-orange-500';
-      case 'recognition': return 'from-purple-500 to-pink-500';
-      case 'milestone': return 'from-green-500 to-blue-500';
-      default: return 'from-gray-500 to-gray-600';
-    }
   };
 
   if (showForm) {

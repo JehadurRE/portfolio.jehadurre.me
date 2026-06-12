@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Calendar, ExternalLink } from 'lucide-react';
 import { supabase, type Certification } from '../../lib/supabase';
 import CertificationForm from './CertificationForm';
+import { sanitizeUrl } from '../../utils/sanitizeUrl';
 
 const CertificationManager: React.FC = () => {
   const [certifications, setCertifications] = useState<Certification[]>([]);
@@ -196,7 +197,7 @@ const CertificationManager: React.FC = () => {
                 {/* Actions */}
                 <div className="flex items-center justify-between pt-4">
                   <a
-                    href={cert.verification_url}
+                    href={sanitizeUrl(cert.verification_url)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-1 text-sm text-primary-600 dark:text-primary-400 hover:underline"

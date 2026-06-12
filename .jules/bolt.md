@@ -45,3 +45,9 @@
 ## 2024-07-28 - Moving Static Arrays Outside Components
 **Learning:** In React components that re-render frequently (like those using `useInView` for scroll animations), defining static arrays or objects inside the component function body causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
 **Action:** When static arrays or objects do not depend on component state or props, always hoist them outside the component function body so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy applications.
+## 2024-07-28 - Moving Static Functions Outside Components
+**Learning:** In React components that re-render frequently (like those using `useInView` for scroll animations), defining static functions (such as icon mappers like `getIconComponent`) inside the component function body causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
+**Action:** When static functions do not depend on component state or props, always hoist them outside the component function body so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy applications.
+## 2023-10-27 - [ReactMarkdown Re-render Optimization]
+**Learning:** In `react-markdown`, passing freshly allocated arrays (`[]`) and object references (`{}`) to `remarkPlugins`, `rehypePlugins`, or `components` causes the component to completely re-parse and re-render the Markdown AST on every render of the parent component, even if the markdown string itself didn't change.
+**Action:** Always move static plugin arrays (e.g. `[remarkGfm]`) outside of the component body as static constants, and wrap any dynamically generated `components` prop in a `useMemo` hook (with its appropriate dependencies) to maintain stable references.

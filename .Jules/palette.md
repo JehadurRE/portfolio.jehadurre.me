@@ -11,3 +11,12 @@
 ## 2024-05-28 - [Error State Retry Pattern]
 **Learning:** Hard reloads (`window.location.reload()`) for recovering from API errors result in poor user experience because they reset the entire application state and force the user to scroll back down.
 **Action:** Always implement a dedicated `retry` function for failed fetch calls. Wrap it in a UI that does not reload the page and provides visual feedback (like a loading spinner).
+## 2024-05-29 - [Standardizing Error State Retry Pattern UI]
+**Learning:** For failed fetch calls, implementing a dedicated retry function is only half the battle. A standard UI pattern is needed to ensure consistency across the application. The standard pattern observed is a `Try Again` button styled with `btn-primary inline-flex items-center space-x-2`, an explicit `aria-label` describing the action, a `disabled={loading}` state, and a `<RefreshCw>` icon from `lucide-react` with an `animate-spin` class and `aria-hidden="true"` while the `loading` state is true.
+**Action:** When implementing error state retries, always adhere to the standard UI pattern using the `<RefreshCw>` icon and associated styling/accessibility attributes to maintain a consistent and accessible user experience.
+## 2024-05-29 - [Standardizing Error States]
+**Learning:** Found that error retry buttons across different components (`About.tsx`, `Blog.tsx`, `Certifications.tsx`) had inconsistent UI patterns and lacked proper accessibility attributes like `aria-hidden` on the refresh icon and descriptive `aria-label`s on the button itself.
+**Action:** Standardized the "Try Again" error state pattern. Now all retry buttons use a consistent `inline-flex` layout, a spinning `RefreshCw` icon with `aria-hidden="true"`, an explicit `aria-label`, and a `disabled` state when loading to prevent multiple submissions.
+## 2026-06-08 - Enhance error state retry buttons
+**Learning:** Found that the 'Try Again' error state retry buttons in components like `Blog.tsx` and `Certifications.tsx` lacked clear feedback when loading and explicit accessibility labels, which is a poor UX pattern in async processes.
+**Action:** When implementing error state retries, always add a visual loading indicator (like `animate-spin`), a `disabled` state to prevent duplicate clicks, and an `aria-label` for screen reader users. Also ensure icons inside buttons that already have text have `aria-hidden="true"`.
