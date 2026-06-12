@@ -121,6 +121,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedTag(tag)}
+              aria-label={`Filter by ${tag === 'all' ? 'all posts' : tag}`}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedTag === tag
                   ? 'bg-primary-500 text-white shadow-lg'

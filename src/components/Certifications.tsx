@@ -153,6 +153,7 @@ const Certifications: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('certifications')}
+                aria-label="View Certifications tab"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'certifications'
                     ? 'bg-primary-500 text-white shadow-lg'
@@ -168,6 +169,7 @@ const Certifications: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('achievements')}
+                aria-label="View Achievements tab"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'achievements'
                     ? 'bg-primary-500 text-white shadow-lg'
