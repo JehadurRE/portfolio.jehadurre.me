@@ -38,6 +38,18 @@ interface ProjectModal {
   loading: boolean;
 }
 
+const getGithubOGImage = (project: Project) => {
+  return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
+};
+
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
+
 const Projects: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -276,10 +288,6 @@ For any questions or suggestions, feel free to reach out:
     }
   };
 
-  const getGithubOGImage = (project: Project) => {
-    return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
-  };
-
   // ⚡ Bolt Performance Optimization:
   // Memoize `languages` and `filteredProjects` to avoid running costly operations on every render.
   // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
@@ -293,14 +301,6 @@ For any questions or suggestions, feel free to reach out:
   const filteredProjects = useMemo(() => {
     return filter === "all" ? projects : projects.filter((p) => p.language === filter);
   }, [projects, filter]);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
 
   return (
     <section id="projects" className="section-padding bg-transparent">

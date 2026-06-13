@@ -8,6 +8,14 @@ interface BlogProps {
   onNavigateToBlogPost: (slug: string) => void;
 }
 
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
 const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -47,14 +55,6 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
       ? posts
       : posts.filter(post => post.tags.includes(selectedTag));
   }, [posts, selectedTag]);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   const handlePostClick = (slug: string,cardId: string) => {
     sessionStorage.setItem('fromBlog', 'true');
