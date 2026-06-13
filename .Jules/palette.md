@@ -23,3 +23,6 @@
 ## 2023-10-25 - Native title attributes vs ARIA labels for icon-only buttons
 **Learning:** Removing a native `title` attribute from an icon-only button (even when adding an `aria-label`) degrades discoverability for sighted mouse users because the visual tooltip disappears.
 **Action:** When adding `aria-label` to an icon-only button for screen reader support, ALWAYS retain the native `title` attribute as a fallback tooltip, unless replacing it with a custom, accessible visual tooltip component.
+## 2026-10-25 - [Dynamic Filter/View Toggle Accessibility]
+**Learning:** Dynamic filter or view toggle buttons (like those found in `Projects.tsx`, `Blog.tsx`, and `Certifications.tsx`) map over arrays to create UI controls but lack explicit accessibility attributes by default. Relying solely on the inner text is insufficient because it doesn't communicate the element's purpose as a *filter* or its current active state to screen readers.
+**Action:** Always add explicitly interpolated `aria-label`s (e.g., `aria-label=\`Filter by ${category.name}\``) and `aria-pressed` states (e.g., `aria-pressed={filter === category.id}`) to any dynamic toggles or filter buttons to ensure their purpose and active state are clearly communicated to assistive technologies.
