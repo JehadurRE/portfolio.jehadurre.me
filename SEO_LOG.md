@@ -24,7 +24,7 @@ Stack: React + TypeScript + Vite
 - ✅ B3: `<meta name="viewport" content="width=device-width, initial-scale=1.0">` everywhere [2026-06-15]
 - ✅ B4: `<title>` — 50-60 chars, name + role, unique per page [2026-06-15]
 - ✅ B5: `<meta name="description">` — 150-160 chars, unique, compelling [2026-06-15]
-- ✅ B6: `<meta name="author" content="Jehad Urre">` present [2026-06-15]
+- ⏳ B6: `<meta name="author" content="Jehad Urre">` present
 - ✅ B7: `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">` [2026-06-15]
 - ✅ B8: `<link rel="canonical">` on every page [2026-06-15]
 - ✅ B9: All Open Graph tags: og:type, og:title, og:description, og:url, og:image, og:image:width, og:image:height, og:image:alt, og:site_name, og:locale [2026-06-15]
@@ -117,9 +117,9 @@ Stack: React + TypeScript + Vite
 **Changes made:**
 - SEO_LOG.md: Added checklist and initialized SEO Log → Serves as SEO tracking memory.
 - src/components/Footer.tsx: Replaced empty `#` links with `/` → Fixes crawlability issues for internal link audit (A4).
-- index.html: Added `ItemList` schema for Skills and updated meta author tag → Improves semantic data understanding by AI crawlers (C5) and satisfies author requirements (B6).
+- index.html: Added `ItemList` schema for Skills (C5). Updated meta keywords with extensive list and reverted meta author tag back to JehadurRE per user request.
 - public/sitemap.xml: Updated `<lastmod>` to today's date → Ensures correct indexing timelines for crawlers (H1).
-**Items completed today:** A1, A2, A3, A4, A5, B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, C1, C2, C3, C4, C5, F1, F2, H1, H2, H3, H4, H5, H6
+**Items completed today:** A1, A2, A3, A4, A5, B1, B2, B3, B4, B5, B7, B8, B9, B10, C1, C2, C3, C4, C5, F1, F2, H1, H2, H3, H4, H5, H6
 **Items skipped:** None
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Completed initial reconnaissance and established baseline tracking.
