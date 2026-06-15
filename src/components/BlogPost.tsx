@@ -8,6 +8,14 @@ interface BlogPostProps {
   onNavigateHome: () => void;
 }
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
 const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
@@ -34,11 +42,9 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
   }, [slug]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "Invalid Date";
+    return dateFormatter.format(date);
   };
 
   const handleShare = async () => {

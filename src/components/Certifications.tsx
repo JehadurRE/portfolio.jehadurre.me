@@ -18,6 +18,14 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -90,11 +98,7 @@ const Certifications: React.FC = () => {
   }, [achievements, achievementFilter]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    return dateFormatter.format(new Date(dateString));
   };
 
   if (error) {

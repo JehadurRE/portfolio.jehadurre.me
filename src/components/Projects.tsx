@@ -38,6 +38,14 @@ interface ProjectModal {
   loading: boolean;
 }
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+
 const Projects: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -295,11 +303,7 @@ For any questions or suggestions, feel free to reach out:
   }, [projects, filter]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
+    return dateFormatter.format(new Date(dateString));
   };
 
   return (

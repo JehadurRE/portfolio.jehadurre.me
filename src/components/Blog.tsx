@@ -8,6 +8,14 @@ interface BlogProps {
   onNavigateToBlogPost: (slug: string) => void;
 }
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
 const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -49,11 +57,9 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   }, [posts, selectedTag]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "Invalid Date";
+    return dateFormatter.format(date);
   };
 
   const handlePostClick = (slug: string,cardId: string) => {

@@ -24,6 +24,15 @@ interface AdminDashboardProps {
 
 type ActiveTab = 'overview' | 'blog' | 'certifications' | 'achievements' | 'skills';
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
   const [user, setUser] = useState<{ email?: string } | null>(null);
@@ -159,12 +168,11 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                   <div className="flex items-center space-x-2 text-sm">
                     <Calendar className="w-4 h-4 text-primary-500" />
                     <span className="text-secondary-600 dark:text-secondary-300">
-                      {new Date().toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
+                      {(() => {
+                        const date = new Date();
+                        if (isNaN(date.getTime())) return "Invalid Date";
+                        return dateFormatter.format(date);
+                      })()}
                     </span>
                   </div>
                 </div>
