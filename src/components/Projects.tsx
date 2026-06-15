@@ -42,12 +42,18 @@ const getGithubOGImage = (project: Project) => {
   return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
 };
 
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return 'Invalid Date';
+  }
+  return dateFormatter.format(date);
 };
 
 const Projects: React.FC = () => {
