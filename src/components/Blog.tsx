@@ -2,11 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { blogApi, type BlogPost } from '../lib/supabase';
-
-interface BlogProps {
-  onNavigateToBlogPost: (slug: string) => void;
-}
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -16,7 +13,8 @@ const formatDate = (dateString: string) => {
   });
 };
 
-const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
+const Blog: React.FC = () => {
+  const navigate = useNavigate();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -63,7 +61,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   console.log('Navigating to blog post:', slug);
   //card
   console.log('Card ID:', cardId);
-    onNavigateToBlogPost(slug);
+    navigate(`/blog/${slug}`);
   };
 
   if (error) {

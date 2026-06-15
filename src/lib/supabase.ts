@@ -44,10 +44,15 @@ export interface BlogPost {
   slug: string;
   excerpt: string;
   content: string;
+  cover_image?: string;
+  category?: string;
   tags: string[];
   published_at: string;
   read_time: number;
   is_published: boolean;
+  views?: number;
+  seo_title?: string;
+  seo_description?: string;
   created_at: string;
   updated_at: string;
 }

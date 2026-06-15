@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Home, User, Briefcase, BookOpen, Award, MessageSquare } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 // ⚡ Bolt Performance Optimization:
 // Move static array outside component function body to prevent recreation on every render.
@@ -15,6 +16,8 @@ const navItems = [
 
 const MobileNav: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   // ⚡ Bolt Performance Optimization:
   // Throttling the scroll event with requestAnimationFrame and removing synchronous DOM querying/layout recalculations.
@@ -69,7 +72,7 @@ const MobileNav: React.FC = () => {
           {navItems.map((item) => (
             <motion.a
               key={item.id}
-              href={item.href}
+              href={isHome ? item.href : `/${item.href}`}
               onClick={() => handleNavClick(item.href, item.id)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
