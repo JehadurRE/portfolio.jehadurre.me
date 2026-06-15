@@ -18,13 +18,13 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
-// ⚡ Bolt Performance Optimization:
-// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
 
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
@@ -97,10 +97,6 @@ const Certifications: React.FC = () => {
       : achievements.filter(achievement => achievement.category === achievementFilter);
   }, [achievements, achievementFilter]);
 
-  const formatDate = (dateString: string) => {
-    return dateFormatter.format(new Date(dateString));
-  };
-
   if (error) {
     return (
       <section id="certifications" className="section-padding bg-transparent">
@@ -157,6 +153,7 @@ const Certifications: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('certifications')}
+                aria-label="View Certifications tab"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'certifications'
                     ? 'bg-primary-500 text-white shadow-lg'
@@ -172,6 +169,7 @@ const Certifications: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('achievements')}
+                aria-label="View Achievements tab"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'achievements'
                     ? 'bg-primary-500 text-white shadow-lg'
@@ -214,6 +212,8 @@ const Certifications: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setCertFilter(category.id)}
+                      aria-label={`Filter by ${category.name}`}
+                      aria-pressed={certFilter === category.id}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         certFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
@@ -321,6 +321,8 @@ const Certifications: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setAchievementFilter(category.id)}
+                      aria-label={`Filter by ${category.name}`}
+                      aria-pressed={achievementFilter === category.id}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         achievementFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'

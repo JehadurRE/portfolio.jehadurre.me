@@ -62,3 +62,6 @@
 ## 2024-11-20 - Intl.DateTimeFormat Re-initialization Bottleneck
 **Learning:** Calling `new Date().toLocaleDateString()` inside lists or scroll-heavy components triggers the re-initialization of the `Intl.DateTimeFormat` object on every re-render. This is a severe bottleneck compared to `.format()`, taking ~100x longer to execute in benchmarks (1.8s vs 14ms for 10k ops).
 **Action:** Always hoist `new Intl.DateTimeFormat()` outside the component as a static instance and use its `.format(new Date())` method in components that render frequently or render large lists of dates.
+## 2024-08-11 - Hoisting static functions outside component function body
+**Learning:** In React components that re-render frequently (like those using `useInView` for scroll animations), defining static helper functions (like `formatDate` or `getGithubOGImage`) inside the component function body causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
+**Action:** When helper functions do not depend on component state or props, always hoist them outside the component function body so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy applications.
