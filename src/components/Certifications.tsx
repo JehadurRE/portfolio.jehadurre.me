@@ -212,6 +212,8 @@ const Certifications: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setCertFilter(category.id)}
+                      aria-label={`Filter by ${category.name}`}
+                      aria-pressed={certFilter === category.id}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         certFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
@@ -319,6 +321,8 @@ const Certifications: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setAchievementFilter(category.id)}
+                      aria-label={`Filter by ${category.name}`}
+                      aria-pressed={achievementFilter === category.id}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         achievementFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
