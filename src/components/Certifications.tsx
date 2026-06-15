@@ -18,6 +18,14 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -88,14 +96,6 @@ const Certifications: React.FC = () => {
       ? achievements
       : achievements.filter(achievement => achievement.category === achievementFilter);
   }, [achievements, achievementFilter]);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   if (error) {
     return (
