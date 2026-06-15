@@ -122,7 +122,7 @@ const Certifications: React.FC = () => {
   }
 
   return (
-    <section id="certifications" className="section-padding bg-transparent">
+    <section id="certifications" aria-labelledby="certifications-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -131,7 +131,7 @@ const Certifications: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="certifications-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Certifications & Achievements
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">

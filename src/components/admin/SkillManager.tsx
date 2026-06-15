@@ -5,7 +5,7 @@ import { supabase, type Skill } from '../../lib/supabase';
 import SkillForm from './SkillForm';
 
 const getIconComponent = (iconName: string) => {
-  const icons: { [key: string]: any } = {
+  const icons: Record<string, React.ElementType> = {
     Code,
     Zap,
     BookOpen,

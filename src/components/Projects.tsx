@@ -303,7 +303,7 @@ For any questions or suggestions, feel free to reach out:
   }, [projects, filter]);
 
   return (
-    <section id="projects" className="section-padding bg-transparent">
+    <section id="projects" aria-labelledby="projects-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -312,7 +312,7 @@ For any questions or suggestions, feel free to reach out:
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Featured Projects
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">

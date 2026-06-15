@@ -91,7 +91,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   }
 
   return (
-    <section id="blog" className="section-padding bg-transparent">
+    <section id="blog" aria-labelledby="blog-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -100,7 +100,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="blog-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Blog & Insights
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
