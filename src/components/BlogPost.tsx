@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Share2, BookOpen, User } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { blogApi, type BlogPost as BlogPostType } from '../lib/supabase';
 
-interface BlogPostProps {
-  slug: string;
-  onNavigateHome: () => void;
-}
+// ⚡ Bolt Performance Optimization:
+const remarkPlugins = [remarkGfm];
+const rehypePlugins = [
+  rehypeHighlight,
+  rehypeSlug,
+  [rehypeAutolinkHeadings, { behavior: 'wrap' }]
+] as unknown[];
 
 // ⚡ Bolt Performance Optimization:
 // Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
@@ -16,15 +26,15 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: 'numeric'
 });
 
-const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
+const BlogPost: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // console.log('onNavigateHome:', onNavigateHome);
-
   useEffect(() => {
     const fetchPost = async () => {
+      if (!slug) return;
       try {
         setLoading(true);
         setError(null);
@@ -88,15 +98,16 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
             <p className="text-secondary-600 dark:text-secondary-300 mb-8">
               {error || 'The blog post you\'re looking for doesn\'t exist or has been removed.'}
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={onNavigateHome}
-              className="btn-primary inline-flex items-center space-x-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to Home</span>
-            </motion.button>
+            <Link to="/">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary inline-flex items-center space-x-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back to Home</span>
+              </motion.button>
+            </Link>
           </div>
         </div>
       </div>
@@ -106,6 +117,39 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
   return (
     <div className="min-h-screen pt-20 section-padding bg-transparent">
       <div className="container-custom">
+        <Helmet>
+          <title>{post.seo_title || post.title} | Jehadur Rahman Emran</title>
+          <meta name="description" content={post.seo_description || post.excerpt} />
+          <meta property="og:title" content={post.seo_title || post.title} />
+          <meta property="og:description" content={post.seo_description || post.excerpt} />
+          <meta property="og:type" content="article" />
+          {post.cover_image && <meta property="og:image" content={post.cover_image} />}
+          <meta property="article:published_time" content={post.published_at} />
+          <meta property="article:author" content="Jehadur Rahman Emran" />
+          {post.tags.map(tag => (
+            <meta property="article:tag" content={tag} key={tag} />
+          ))}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": post.seo_title || post.title,
+              "description": post.seo_description || post.excerpt,
+              "image": post.cover_image,
+              "datePublished": post.published_at,
+              "dateModified": post.updated_at,
+              "author": {
+                "@type": "Person",
+                "name": "Jehadur Rahman Emran",
+                "url": "https://jehadurre.me"
+              },
+              "url": `https://jehadurre.me/blog/${post.slug}`,
+              "keywords": post.tags.join(', '),
+              "timeRequired": `PT${post.read_time}M`
+            })}
+          </script>
+        </Helmet>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -113,15 +157,16 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
           className="max-w-4xl mx-auto"
         >
           {/* Back Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onNavigateHome}
-            className="inline-flex items-center space-x-2 mb-8 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Blog</span>
-          </motion.button>
+          <Link to="/">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center space-x-2 mb-8 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Blog</span>
+            </motion.button>
+          </Link>
 
           {/* Article Header */}
           <motion.header
@@ -130,6 +175,12 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-12"
           >
+            {post.cover_image && (
+              <div className="w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-lg">
+                <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
+              </div>
+            )}
+
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient leading-tight">
               {post.title}
             </h1>
@@ -154,7 +205,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
               </div>
               <div className="flex items-center space-x-2 text-secondary-500 dark:text-secondary-400">
                 <BookOpen className="w-4 h-4" />
-                <span>Article</span>
+                <span>{post.category || 'Article'}</span>
               </div>
             </div>
 
@@ -189,51 +240,13 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="glass-card p-8 lg:p-12 rounded-3xl"
           >
-            <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gradient prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-code:bg-secondary-100 dark:prose-code:bg-secondary-800 prose-code:px-2 prose-code:py-1 prose-code:rounded">
-              {/* Content formatting */}
-              <div className="whitespace-pre-wrap text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                {post.content.split('\n\n').map((paragraph, index) => {
-                  // Handle different content types
-                  if (paragraph.startsWith('# ')) {
-                    return (
-                      <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-secondary-800 dark:text-secondary-200">
-                        {paragraph.replace('# ', '')}
-                      </h2>
-                    );
-                  }
-                  if (paragraph.startsWith('## ')) {
-                    return (
-                      <h3 key={index} className="text-xl font-semibold mt-6 mb-3 text-secondary-800 dark:text-secondary-200">
-                        {paragraph.replace('## ', '')}
-                      </h3>
-                    );
-                  }
-                  if (paragraph.startsWith('```')) {
-                    const code = paragraph.replace(/```[\w]*\n?/, '').replace(/```$/, '');
-                    return (
-                      <pre key={index} className="bg-secondary-900 dark:bg-black text-green-400 p-4 rounded-lg overflow-x-auto my-6">
-                        <code>{code}</code>
-                      </pre>
-                    );
-                  }
-                  if (paragraph.startsWith('- ')) {
-                    const items = paragraph.split('\n').filter(item => item.startsWith('- '));
-                    return (
-                      <ul key={index} className="list-disc list-inside space-y-2 my-4">
-                        {items.map((item, itemIndex) => (
-                          <li key={itemIndex}>{item.replace('- ', '')}</li>
-                        ))}
-                      </ul>
-                    );
-                  }
-                  
-                  return (
-                    <p key={index} className="mb-6 leading-relaxed">
-                      {paragraph}
-                    </p>
-                  );
-                })}
-              </div>
+            <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gradient prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-code:bg-secondary-100 dark:prose-code:bg-secondary-800 prose-code:px-2 prose-code:py-1 prose-code:rounded whitespace-pre-wrap text-secondary-700 dark:text-secondary-300 leading-relaxed">
+              <ReactMarkdown
+                remarkPlugins={remarkPlugins}
+                rehypePlugins={rehypePlugins}
+              >
+                {post.content}
+              </ReactMarkdown>
             </div>
           </motion.article>
 
@@ -260,15 +273,16 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, onNavigateHome}) => {
                   <Share2 className="w-4 h-4" />
                   <span>Share</span>
                 </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={onNavigateHome}
-                  className="btn-secondary inline-flex items-center space-x-2"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>Back to Home</span>
-                </motion.button>
+                <Link to="/">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn-secondary inline-flex items-center space-x-2"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>Back to Home</span>
+                  </motion.button>
+                </Link>
               </div>
             </div>
           </motion.footer>

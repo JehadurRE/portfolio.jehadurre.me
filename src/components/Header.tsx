@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 // ⚡ Bolt Performance Optimization:
@@ -17,6 +18,8 @@ const navItems = [
 const Header: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   // ⚡ Bolt Performance Optimization:
   // Instead of storing the exact scroll position (which causes a re-render on every pixel scrolled),
@@ -65,7 +68,7 @@ const Header: React.FC = () => {
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
-                href={item.href}
+                href={isHome ? item.href : `/${item.href}`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -124,7 +127,7 @@ const Header: React.FC = () => {
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
-                href={item.href}
+                href={isHome ? item.href : `/${item.href}`}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: isMenuOpen ? 1 : 0, x: isMenuOpen ? 0 : -20 }}
                 transition={{ delay: index * 0.1 }}

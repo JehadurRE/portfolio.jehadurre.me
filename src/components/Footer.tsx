@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Phone ,HeartOff} from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import LazyImage from './LazyImage';
 
 // ⚡ Bolt Performance Optimization:
@@ -32,6 +33,8 @@ const services = [
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   const [email, setEmail] = React.useState('');
   const [error, setError] = React.useState('');
@@ -98,7 +101,7 @@ const Footer: React.FC = () => {
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <motion.a
-                    href={link.href}
+                    href={isHome ? link.href : `/${link.href}`}
                     whileHover={{ x: 5 }}
                     className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors duration-200 flex items-center space-x-2"
                   >
