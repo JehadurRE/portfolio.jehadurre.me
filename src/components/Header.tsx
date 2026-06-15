@@ -44,7 +44,7 @@ const Header: React.FC = () => {
         isScrolled ? 'glass-card' : 'bg-transparent'
       }`}
     >
-      <nav className="container-custom px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Main navigation" className="container-custom px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div

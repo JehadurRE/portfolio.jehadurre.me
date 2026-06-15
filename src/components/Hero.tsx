@@ -31,7 +31,7 @@ const heroSequence = [
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" aria-labelledby="hero-heading" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-300/20 rounded-full blur-3xl animate-float"></div>
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
                 <div className="w-full h-full rounded-full bg-white dark:bg-secondary-800 p-2">
                   <img
                     src="https://github.com/JehadurRE.png"
-                    alt="Md. Jehadur Rahman Emran"
+                    alt="Jehad Urre — Software Engineer"
                     className="w-full h-full rounded-full object-cover"
                     fetchPriority="high"
                     width="192"
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6"
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
               <span className="text-gradient">Md. Jehadur Rahman</span>
               <br />
               <span className="text-secondary-800 dark:text-secondary-200">Emran</span>

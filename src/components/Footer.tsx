@@ -249,6 +249,7 @@ const Footer: React.FC = () => {
               </motion.a>
               <motion.a
                 href="/admin"
+                aria-label="Admin link"
                 whileHover={{ scale: 1.05 }}
                 className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors flex items-center space-x-1"
               >

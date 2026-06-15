@@ -20,7 +20,7 @@ const achievements = [
   ];
 
 const getIconComponent = (iconName: string) => {
-  const icons: { [key: string]: any } = {
+  const icons: Record<string, React.ElementType> = {
     Code,
     Zap,
     BookOpen,
@@ -217,7 +217,7 @@ const About: React.FC = () => {
   )
 
   return (
-    <section id="about" className="section-padding bg-transparent">
+    <section id="about" aria-labelledby="about-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -226,7 +226,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             About Me
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
