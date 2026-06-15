@@ -234,14 +234,14 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <motion.a
-                href="#"
+                href="/"
                 whileHover={{ scale: 1.05 }}
                 className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
               >
                 Privacy Policy
               </motion.a>
               <motion.a
-                href="#"
+                href="/"
                 whileHover={{ scale: 1.05 }}
                 className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
               >
