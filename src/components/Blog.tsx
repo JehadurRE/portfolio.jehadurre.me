@@ -8,6 +8,14 @@ interface BlogProps {
   onNavigateToBlogPost: (slug: string) => void;
 }
 
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
 const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -47,14 +55,6 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
       ? posts
       : posts.filter(post => post.tags.includes(selectedTag));
   }, [posts, selectedTag]);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
 
   const handlePostClick = (slug: string,cardId: string) => {
     sessionStorage.setItem('fromBlog', 'true');
@@ -121,8 +121,7 @@ const Blog: React.FC<BlogProps> = ({ onNavigateToBlogPost }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedTag(tag)}
-              aria-label={`Filter by ${tag === 'all' ? 'All Posts' : tag}`}
-              aria-pressed={selectedTag === tag}
+              aria-label={`Filter by ${tag === 'all' ? 'all posts' : tag}`}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 selectedTag === tag
                   ? 'bg-primary-500 text-white shadow-lg'
