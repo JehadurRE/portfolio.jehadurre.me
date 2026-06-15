@@ -4,6 +4,14 @@ import { Plus, Edit, Trash2, Eye, EyeOff, Calendar, Clock } from 'lucide-react';
 import { supabase, type BlogPost } from '../../lib/supabase';
 import BlogForm from './BlogForm';
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric'
+});
+
 const BlogManager: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -76,11 +84,9 @@ const BlogManager: React.FC = () => {
   }, [posts, filter]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "Invalid Date";
+    return dateFormatter.format(date);
   };
 
   if (showForm) {
