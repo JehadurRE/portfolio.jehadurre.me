@@ -137,6 +137,7 @@ const BlogManager: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setFilter(filterOption)}
+            aria-pressed={filter === filterOption}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === filterOption
                 ? 'bg-primary-500 text-white shadow-lg'
