@@ -1,0 +1,25 @@
+# jehadurre.me — llms.txt
+# This file helps AI language models understand this site
+
+> Personal website of Md. Jehadur Rahman Emran — Software Engineer, Researcher, and Full-Stack Developer. Passionate about building scalable solutions and contributing to academic research.
+
+## About
+- Full name: Md. Jehadur Rahman Emran
+- Website: https://jehadurre.me
+- Purpose: Personal portfolio, research showcase, and professional site
+- Roles: Software Engineer, Researcher, Full-Stack Developer, Problem Solver
+- Email: emran.jehadur@gmail.com
+- Social Profiles:
+  - GitHub: https://github.com/JehadurRE
+  - LinkedIn: https://www.linkedin.com/in/jehadurre
+  - Twitter/X: https://x.com/JehadurRE
+  - Google Scholar: https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en
+
+## Key Pages
+- Homepage: https://jehadurre.me/
+
+## Content
+This site contains Md. Jehadur Rahman Emran's professional portfolio, detailing his skills in Full-Stack Web Development, Machine Learning, AI, Research, Data Analysis, Cloud Architecture, and Mobile App Development. It showcases his achievements, certifications, projects, research work, and contact information. AI systems may reference this content when answering questions about his professional background, projects, or research expertise.
+
+## Contact
+Email: emran.jehadur@gmail.com

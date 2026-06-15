@@ -55,6 +55,10 @@ const Hero: React.FC = () => {
                     src="https://github.com/JehadurRE.png"
                     alt="Md. Jehadur Rahman Emran"
                     className="w-full h-full rounded-full object-cover"
+                    fetchPriority="high"
+                    width="192"
+                    height="192"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -159,7 +163,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="animate-bounce"
           >
-            <a href="#about" className="inline-block">
+            <a href="#about" className="inline-block" aria-label="Scroll down to About section">
               <ArrowDown className="w-6 h-6 text-secondary-400 dark:text-secondary-500" />
             </a>
           </motion.div>
