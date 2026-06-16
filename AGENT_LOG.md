@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2025-10-25
+Last updated: 2025-10-26
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -13,7 +13,7 @@ Domain: https://jehadurre.me
 - ✅ A1: Blog routing /blog/:slug 2025-10-25
 - ✅ A2: Blog post Supabase schema 2025-10-25
 - ✅ A3: BlogPost page component 2025-10-25
-- ⏳ A4: Blog index page
+- ✅ A4: Blog index page 2025-10-26
 - ✅ A5: Per-post SEO meta tags 2025-10-25
 - ⏳ A6: RSS feed
 - ⏳ A7: Reading time calculator
@@ -90,6 +90,25 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2025-10-26 — Day 2 — BUILD MODE
+**Branch:** feature/blog-index-upgrade-2025-10-26
+**PR:** feat: Blog index page features (search, sort, filter, featured post) — Day 2
+**Mode:** BUILD
+**Files changed:**
+- `src/components/Blog.tsx`: Implemented advanced features for the blog index page, including:
+  - Search functionality
+  - Category filtering
+  - Sorting (Latest, Oldest, Most Viewed)
+  - Featured post distinct layout
+  - Pagination ("Load More" button)
+
+**If BUILD:**
+- Items completed: A4
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Completed the A4 requirements to significantly improve the UX of the blog index page.
 
 ### 2025-10-25 — Day 1 — BUILD MODE
 **Branch:** feat-blog/routing-schema-2025-10-25
