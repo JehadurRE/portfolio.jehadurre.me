@@ -12,6 +12,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: 'numeric'
 });
 
+const FILTER_OPTIONS = ['all', 'published', 'draft'] as const;
+
 const BlogManager: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -131,7 +133,7 @@ const BlogManager: React.FC = () => {
 
       {/* Filters */}
       <div className="flex space-x-2">
-        {(['all', 'published', 'draft'] as const).map((filterOption) => (
+        {FILTER_OPTIONS.map((filterOption) => (
           <motion.button
             key={filterOption}
             whileHover={{ scale: 1.05 }}

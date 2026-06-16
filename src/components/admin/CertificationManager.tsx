@@ -13,6 +13,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: 'numeric'
 });
 
+const FILTER_OPTIONS = ['all', 'technical', 'professional', 'academic'] as const;
+
 const CertificationManager: React.FC = () => {
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
@@ -114,7 +116,7 @@ const CertificationManager: React.FC = () => {
 
       {/* Filters */}
       <div className="flex space-x-2">
-        {(['all', 'technical', 'professional', 'academic'] as const).map((filterOption) => (
+        {FILTER_OPTIONS.map((filterOption) => (
           <motion.button
             key={filterOption}
             whileHover={{ scale: 1.05 }}

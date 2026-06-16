@@ -65,3 +65,7 @@
 ## 2024-08-11 - Hoisting static functions outside component function body
 **Learning:** In React components that re-render frequently (like those using `useInView` for scroll animations), defining static helper functions (like `formatDate` or `getGithubOGImage`) inside the component function body causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
 **Action:** When helper functions do not depend on component state or props, always hoist them outside the component function body so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy applications.
+
+## 2024-11-20 - Inline Arrays passed to mapping loops inside render functions
+**Learning:** In React components that re-render frequently, defining inline static arrays inside the component function body or directly inside a JSX `.map()` call (like `{(['all', 'award'] as const).map(...)}`) causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
+**Action:** Always hoist static filter configuration arrays or similar static collections outside the component function body (e.g. `const FILTER_OPTIONS = ['all', 'published', 'draft'] as const;`) so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy admin panels.

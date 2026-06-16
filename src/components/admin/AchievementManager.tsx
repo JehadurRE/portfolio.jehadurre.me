@@ -30,6 +30,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: 'numeric'
 });
 
+const FILTER_OPTIONS = ['all', 'award', 'recognition', 'milestone'] as const;
+
 const AchievementManager: React.FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [loading, setLoading] = useState(true);
@@ -84,7 +86,9 @@ const AchievementManager: React.FC = () => {
   }, [achievements, filter]);
 
   const formatDate = (dateString: string) => {
-    return dateFormatter.format(new Date(dateString));
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "Invalid Date";
+    return dateFormatter.format(date);
   };
 
   if (showForm) {
@@ -129,7 +133,7 @@ const AchievementManager: React.FC = () => {
 
       {/* Filters */}
       <div className="flex space-x-2">
-        {(['all', 'award', 'recognition', 'milestone'] as const).map((filterOption) => (
+        {FILTER_OPTIONS.map((filterOption) => (
           <motion.button
             key={filterOption}
             whileHover={{ scale: 1.05 }}
