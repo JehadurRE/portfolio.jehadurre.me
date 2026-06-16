@@ -194,6 +194,7 @@ const Footer: React.FC = () => {
                 type="email"
                 maxLength={255}
                 placeholder="Your email"
+                aria-label="Email address for newsletter"
                 className="flex-1 px-3 py-2 text-sm rounded-lg glass border border-secondary-600 dark:border-secondary-700 text-white dark:text-secondary-200 placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 value={email}
                 onChange={e => {

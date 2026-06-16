@@ -174,6 +174,7 @@ const Blog: React.FC = () => {
             <input
               type="text"
               placeholder="Search posts..."
+              aria-label="Search blog posts"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 rounded-xl glass border border-secondary-200 dark:border-secondary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white/50 dark:bg-secondary-900/50"
