@@ -119,7 +119,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-4">
+            <address className="not-italic space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
@@ -150,7 +150,7 @@ const Contact: React.FC = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </address>
 
             {/* Social Links */}
             <motion.div

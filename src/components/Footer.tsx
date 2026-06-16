@@ -56,6 +56,10 @@ const Footer: React.FC = () => {
                 alt="Jehadur Rahman Emran"
                 containerClassName="w-12 h-12 rounded-full ring-2 ring-primary-500/20"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                width={48}
+                height={48}
               />
               <div>
                 <h3 className="text-xl font-bold text-gradient">JehadurRE</h3>
@@ -73,7 +77,7 @@ const Footer: React.FC = () => {
                   key={link.label}
                   href={link.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer me"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
@@ -231,9 +235,11 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
             <div className="flex items-center space-x-2 text-secondary-300 dark:text-secondary-400">
-              <span>© {currentYear} Md. Jehadur Rahman Emran. Made with</span>
-              <HeartOff className="w-4 h-4 text-rose-900 fill-current" />
-              <span>and lots of ☕</span>
+              <small className="flex items-center space-x-2">
+                <span>© {currentYear} Md. Jehadur Rahman Emran. Made with</span>
+                <HeartOff className="w-4 h-4 text-rose-900 fill-current" />
+                <span>and lots of ☕</span>
+              </small>
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <motion.a
