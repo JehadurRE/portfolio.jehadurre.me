@@ -24,7 +24,7 @@ Stack: React + TypeScript + Vite
 - ✅ B3: `<meta name="viewport" content="width=device-width, initial-scale=1.0">` everywhere [2026-06-15]
 - ✅ B4: `<title>` — 50-60 chars, name + role, unique per page [2026-06-15]
 - ✅ B5: `<meta name="description">` — 150-160 chars, unique, compelling [2026-06-15]
-- ✅ B6: `<meta name="author" content="Jehad Urre">` present [2026-06-16]
+- ✅ B6: `<meta name="author" content="JehadurRE">` present [2026-06-16]
 - ✅ B7: `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">` [2026-06-15]
 - ✅ B8: `<link rel="canonical">` on every page [2026-06-15]
 - ✅ B9: All Open Graph tags: og:type, og:title, og:description, og:url, og:image, og:image:width, og:image:height, og:image:alt, og:site_name, og:locale [2026-06-15]
