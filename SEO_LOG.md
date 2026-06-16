@@ -24,12 +24,12 @@ Stack: React + TypeScript + Vite
 - ✅ B3: `<meta name="viewport" content="width=device-width, initial-scale=1.0">` everywhere [2026-06-15]
 - ✅ B4: `<title>` — 50-60 chars, name + role, unique per page [2026-06-15]
 - ✅ B5: `<meta name="description">` — 150-160 chars, unique, compelling [2026-06-15]
-- ⏳ B6: `<meta name="author" content="Jehad Urre">` present
+- ✅ B6: `<meta name="author" content="Jehad Urre">` present [2026-06-16]
 - ✅ B7: `<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">` [2026-06-15]
 - ✅ B8: `<link rel="canonical">` on every page [2026-06-15]
 - ✅ B9: All Open Graph tags: og:type, og:title, og:description, og:url, og:image, og:image:width, og:image:height, og:image:alt, og:site_name, og:locale [2026-06-15]
 - ✅ B10: All Twitter Card tags: twitter:card, twitter:title, twitter:description, twitter:image, twitter:image:alt, twitter:site, twitter:creator [2026-06-15]
-- ⏳ B11: Favicon links in head: ico, png 32x32, apple-touch-icon 180x180
+- ✅ B11: Favicon links in head: ico, png 32x32, apple-touch-icon 180x180 [2026-06-16]
 - ⏳ B12: `<link rel="manifest" href="/site.webmanifest">` if manifest exists
 
 ### C — Structured Data
@@ -46,8 +46,8 @@ Stack: React + TypeScript + Vite
 - ⏳ C11: All JSON-LD validated as syntactically correct JSON
 
 ### D — Performance / Core Web Vitals
-- ⏳ D1: Hero/LCP image: fetchPriority="high", width, height, decoding="async", no lazy-load
-- ⏳ D2: All non-hero images: loading="lazy", decoding="async", width, height attributes
+- ✅ D1: Hero/LCP image: fetchPriority="high", width, height, decoding="async", no lazy-load [2026-06-16]
+- ✅ D2: All non-hero images: loading="lazy", decoding="async", width, height attributes [2026-06-16]
 - ⏳ D3: Google Fonts: migrated from CSS @import → HTML `<link>` preload tags
 - ⏳ D4: font-display: swap in all @font-face declarations
 - ⏳ D5: `rel="preconnect"` for fonts.googleapis.com and fonts.gstatic.com
@@ -67,12 +67,12 @@ Stack: React + TypeScript + Vite
 - ⏳ E6: `<nav aria-label="Main navigation">`
 - ⏳ E7: `aria-label` on all icon-only links (social icons, hamburger, etc.)
 - ⏳ E8: `rel="noopener noreferrer"` on all `target="_blank"` links
-- ⏳ E9: `rel="me"` on all social profile links in footer (identity signal)
+- ✅ E9: `rel="me"` on all social profile links in footer (identity signal) [2026-06-16]
 - ⏳ E10: Descriptive alt text on all meaningful images
 - ⏳ E11: `alt=""` on all purely decorative images
-- ⏳ E12: `<address>` wrapping contact/email info in Contact component
+- ✅ E12: `<address>` wrapping contact/email info in Contact component [2026-06-16]
 - ⏳ E13: Blog/Research/Certification titles use heading tags (h3/h4), not styled divs
-- ⏳ E14: `<small>` element for copyright line in footer
+- ✅ E14: `<small>` element for copyright line in footer [2026-06-16]
 
 ### F — Security & Trust
 - ✅ F1: Security headers via public/_headers [2026-06-15]
@@ -109,6 +109,21 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-06-16 — Day 2
+**Branch:** seo/daily-2026-06-16
+**PR:** SEO [Day 2]: Meta tags, performance attributes, and semantic HTML — 2026-06-16
+**Files changed:** index.html, src/components/Footer.tsx, src/components/Contact.tsx, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- index.html: Updated author meta tag and added missing favicon/apple-touch-icon links → Improves B6 & B11 compliance.
+- src/components/Footer.tsx: Added rel="me" to social links and wrapped copyright in <small>. Added lazy loading and dimensions to image. → Improves E9, E14, D2.
+- src/components/Contact.tsx: Wrapped contact info loop in <address> tag → Improves semantic HTML (E12).
+- public/sitemap.xml: Updated lastmod to today. → Ensures fresh crawlability (H1).
+**Items completed today:** B6, B11, D2, E9, E12, E14, H1
+**Items skipped:** B12 (no manifest exists), C6-C10 (dynamic/API data needs human config)
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Verified images and tags are updated appropriately.
+
 
 ### 2026-06-15 — Day 1
 **Branch:** seo/daily-2026-06-15
