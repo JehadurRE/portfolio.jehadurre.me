@@ -156,6 +156,7 @@ const SkillManager: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setFilter(category.id as 'all' | 'frontend' | 'backend' | 'research' | 'tools' | 'database' | 'cloud' | 'mobile')}
+            aria-pressed={filter === category.id}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === category.id
                 ? 'bg-primary-500 text-white shadow-lg'
