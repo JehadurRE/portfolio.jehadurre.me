@@ -105,7 +105,7 @@ const Certifications: React.FC = () => {
 
   if (error) {
     return (
-      <section id="certifications" className="section-padding bg-transparent">
+      <section id="certifications-error" aria-labelledby="certifications-error-heading" className="section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16 flex flex-col items-center">
             <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
