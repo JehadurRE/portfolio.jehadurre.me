@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Share2, BookOpen, User } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
@@ -18,13 +19,6 @@ const rehypePlugins = [
   [rehypeAutolinkHeadings, { behavior: 'wrap' }]
 ] as unknown[];
 
-// ⚡ Bolt Performance Optimization:
-// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -51,11 +45,6 @@ const BlogPost: React.FC = () => {
     fetchPost();
   }, [slug]);
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "Invalid Date";
-    return dateFormatter.format(date);
-  };
 
   const handleShare = async () => {
     if (navigator.share && post) {
