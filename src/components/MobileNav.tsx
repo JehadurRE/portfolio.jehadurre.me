@@ -76,7 +76,7 @@ const MobileNav: React.FC = () => {
               onClick={() => handleNavClick(item.href, item.id)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 ${
+              className={`flex flex-col items-center p-2 rounded-xl transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                 activeSection === item.id
                   ? 'bg-primary-500 text-white shadow-lg'
                   : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
