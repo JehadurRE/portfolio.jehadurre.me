@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, Share2, BookOpen, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, BookOpen, User, Twitter, Linkedin, Link as LinkIcon, Check } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
@@ -31,6 +31,7 @@ const BlogPost: React.FC = () => {
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -57,21 +58,20 @@ const BlogPost: React.FC = () => {
     return dateFormatter.format(date);
   };
 
-  const handleShare = async () => {
-    if (navigator.share && post) {
-      try {
-        await navigator.share({
-          title: post.title,
-          text: post.excerpt,
-          url: window.location.href,
-        });
-      } catch (err: unknown) {
-        console.log('Error sharing:', err);
-      }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      // You could show a toast notification here
+  const shareUrl = window.location.href;
+  const encodedUrl = encodeURIComponent(shareUrl);
+  const encodedTitle = post ? encodeURIComponent(post.title) : '';
+
+  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err: unknown) {
+      console.error('Failed to copy text: ', err);
     }
   };
 
@@ -221,16 +221,45 @@ const BlogPost: React.FC = () => {
               ))}
             </div>
 
-            {/* Share Button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleShare}
-              className="inline-flex items-center space-x-2 px-4 py-2 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:shadow-lg transition-all duration-200"
-            >
-              <Share2 className="w-4 h-4" />
-              <span>Share Article</span>
-            </motion.button>
+            {/* Share Buttons */}
+            <div className="flex items-center space-x-3">
+              <span className="text-sm font-medium text-secondary-500 dark:text-secondary-400 mr-2">Share:</span>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                href={twitterShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on Twitter"
+                className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#1DA1F2] dark:hover:text-[#1DA1F2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              >
+                <Twitter className="w-5 h-5" />
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                href={linkedinShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on LinkedIn"
+                className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#0A66C2] dark:hover:text-[#0A66C2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleCopyLink}
+                aria-label={copied ? "Link copied" : "Copy link"}
+                className={`p-2.5 glass-card rounded-xl hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                  copied
+                    ? 'text-green-600 dark:text-green-400'
+                    : 'text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400'
+                }`}
+              >
+                {copied ? <Check className="w-5 h-5" /> : <LinkIcon className="w-5 h-5" />}
+              </motion.button>
+            </div>
           </motion.header>
 
           {/* Article Content */}
@@ -263,16 +292,44 @@ const BlogPost: React.FC = () => {
                   Thanks for reading! Feel free to share your thoughts.
                 </p>
               </div>
-              <div className="flex items-center space-x-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-sm font-medium text-secondary-500 dark:text-secondary-400 hidden sm:inline-block">Share:</span>
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={handleShare}
-                  className="btn-primary inline-flex items-center space-x-2"
+                  href={twitterShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Share on Twitter"
+                  className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#1DA1F2] dark:hover:text-[#1DA1F2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
-                  <Share2 className="w-4 h-4" />
-                  <span>Share</span>
+                  <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={linkedinShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Share on LinkedIn"
+                  className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#0A66C2] dark:hover:text-[#0A66C2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                >
+                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.a>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleCopyLink}
+                  aria-label={copied ? "Link copied" : "Copy link"}
+                  className={`p-2.5 glass-card rounded-xl hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                    copied
+                      ? 'text-green-600 dark:text-green-400'
+                      : 'text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400'
+                  }`}
+                >
+                  {copied ? <Check className="w-4 h-4 sm:w-5 sm:h-5" /> : <LinkIcon className="w-4 h-4 sm:w-5 sm:h-5" />}
                 </motion.button>
+                <div className="w-px h-8 bg-secondary-200 dark:bg-secondary-700 mx-2 hidden sm:block"></div>
                 <Link to="/">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
