@@ -30,3 +30,6 @@
 ## 2026-06-18 - Added keyboard focus states to Framer Motion link toggles
 **Learning:** Found that `<motion.a>` components handling link toggles frequently lack proper visual ARIA focus states by default.
 **Action:** Always ensure that any interactive elements, especially link toggles powered by animation libraries, have explicit focus visual states (such as `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500`) added to their `className` property to assist keyboard users.
+## 2026-06-18 - Focus Visible Styles for Framer Motion Elements
+**Learning:** Interactive elements wrapped in Framer Motion components (like `<motion.a>` and `<motion.button>`) in this codebase often lack clear default focus indicators, making them inaccessible for keyboard navigation.
+**Action:** Always verify keyboard accessibility (tabbing through the UI). Explicitly add `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded` classes to interactive elements to ensure a highly visible focus state without impacting mouse users.

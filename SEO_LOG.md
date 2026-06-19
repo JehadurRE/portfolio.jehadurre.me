@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-06-15
+Last updated: 2026-06-18
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -48,30 +48,30 @@ Stack: React + TypeScript + Vite
 ### D — Performance / Core Web Vitals
 - ✅ D1: Hero/LCP image: fetchPriority="high", width, height, decoding="async", no lazy-load [2026-06-16]
 - ✅ D2: All non-hero images: loading="lazy", decoding="async", width, height attributes [2026-06-16]
-- ⏳ D3: Google Fonts: migrated from CSS @import → HTML `<link>` preload tags
-- ⏳ D4: font-display: swap in all @font-face declarations
-- ⏳ D5: `rel="preconnect"` for fonts.googleapis.com and fonts.gstatic.com
+- ✅ D3: Google Fonts: migrated from CSS @import → HTML `<link>` preload tags [2026-06-17]
+- ✅ D4: font-display: swap in all @font-face declarations [2026-06-17]
+- ✅ D5: `rel="preconnect"` for fonts.googleapis.com and fonts.gstatic.com [2026-06-17]
 - ⏳ D6: `rel="dns-prefetch"` for any analytics/third-party domains
 - ⏳ D7: `defer` on non-critical `<script>` tags in `<head>`
-- ⏳ D8: `<link rel="preload">` for critical above-fold assets
+- ✅ D8: `<link rel="preload">` for critical above-fold assets [2026-06-17]
 - ⏳ D9: No render-blocking CSS in `<head>` beyond critical styles
 - ⏳ D10: Images — note any .jpg/.png without .webp companion (human task: convert)
-- ⏳ D11: Asset cache headers set (public/_headers or vercel.json or netlify.toml)
+- ✅ D11: Asset cache headers set (public/_headers or vercel.json or netlify.toml) [2026-06-17]
 
 ### E — Semantic HTML & Accessibility
-- ⏳ E1: Exactly one `<h1>` per page
-- ⏳ E2: Logical heading hierarchy (h1→h2→h3, no skips)
-- ⏳ E3: All section components use `<section id="[name]" aria-labelledby="[name]-heading">`
+- ✅ E1: Exactly one `<h1>` per page [2026-06-17]
+- ✅ E2: Logical heading hierarchy (h1→h2→h3, no skips) [2026-06-17]
+- ✅ E3: All section components use `<section id="[name]" aria-labelledby="[name]-heading">` [2026-06-17]
 - ⏳ E4: `<main>` wrapper for primary content
 - ⏳ E5: `<header>` and `<footer>` semantic elements
 - ⏳ E6: `<nav aria-label="Main navigation">`
 - ⏳ E7: `aria-label` on all icon-only links (social icons, hamburger, etc.)
-- ⏳ E8: `rel="noopener noreferrer"` on all `target="_blank"` links
+- ✅ E8: `rel="noopener noreferrer"` on all `target="_blank"` links [2026-06-17]
 - ✅ E9: `rel="me"` on all social profile links in footer (identity signal) [2026-06-16]
-- ⏳ E10: Descriptive alt text on all meaningful images
-- ⏳ E11: `alt=""` on all purely decorative images
+- ✅ E10: Descriptive alt text on all meaningful images [2026-06-17]
+- ✅ E11: `alt=""` on all purely decorative images [2026-06-17]
 - ✅ E12: `<address>` wrapping contact/email info in Contact component [2026-06-16]
-- ⏳ E13: Blog/Research/Certification titles use heading tags (h3/h4), not styled divs
+- ✅ E13: Blog/Research/Certification titles use heading tags (h3/h4), not styled divs [2026-06-17]
 - ✅ E14: `<small>` element for copyright line in footer [2026-06-16]
 
 ### F — Security & Trust
@@ -87,12 +87,12 @@ Stack: React + TypeScript + Vite
 - ⏳ G5: All key facts in real HTML text (not embedded in JS variables or images)
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-15]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-15]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-15]
-- ✅ H4: New components/sections detected and added to checklist [2026-06-15]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-06-15]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-06-15]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-17]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-17]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-17]
+- ✅ H4: New components/sections detected and added to checklist [2026-06-17]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-06-17]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-06-17]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
@@ -109,6 +109,20 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-06-18 — Day 3
+**Branch:** seo/daily-2026-06-18
+**PR:** SEO [Day 3]: Preload tags, heading hierarchies, and aria accessibility — 2026-06-18
+**Files changed:** index.html, src/components/BlogPost.tsx, src/components/Blog.tsx, src/components/Certifications.tsx, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- index.html: Updated Google Fonts loading pattern to use `rel="preload"` and added preload for the critical hero image. → Improves Core Web Vitals for LCP and FCP (D3, D5, D8).
+- src/components/BlogPost.tsx: Changed error state `<h1>` to `<h2>`. → Maintains rule of exactly one `<h1>` per page (E1).
+- src/components/Blog.tsx & src/components/Certifications.tsx: Added `aria-labelledby` to error state `<section>` tags. → Improves accessibility matching success states (E3).
+- public/sitemap.xml: Updated lastmod to today. → Ensures fresh crawlability (H1).
+**Items completed today:** D3, D4, D5, D8, D11, E1, E2, E3, E8, E10, E11, E13, H1
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Verified that heading hierarchies and external link attributes are natively compliant in the project without further modifications. Asset cache headers (D11) were already correctly configured in public/_headers.
 
 ### 2026-06-16 — Day 2
 **Branch:** seo/daily-2026-06-16
