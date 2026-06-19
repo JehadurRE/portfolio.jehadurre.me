@@ -1,17 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { formatDate } from '../../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Calendar, ExternalLink } from 'lucide-react';
 import { supabase, type Certification } from '../../lib/supabase';
 import CertificationForm from './CertificationForm';
 import { sanitizeUrl } from '../../utils/sanitizeUrl';
 
-// ⚡ Bolt Performance Optimization:
-// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric'
-});
 
 const FILTER_OPTIONS = ['all', 'technical', 'professional', 'academic'] as const;
 
@@ -68,11 +62,6 @@ const CertificationManager: React.FC = () => {
     });
   }, [certifications, filter]);
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "Invalid Date";
-    return dateFormatter.format(date);
-  };
 
   if (showForm) {
     return (

@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2025-10-26
+Last updated: 2025-10-27
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -15,11 +15,13 @@ Domain: https://jehadurre.me
 - ✅ A3: BlogPost page component 2025-10-25
 - ✅ A4: Blog index page 2025-10-26
 - ✅ A5: Per-post SEO meta tags 2025-10-25
+- ✅ A6: RSS feed 2025-10-27
+- ✅ A7: Reading time calculator 2025-10-27
 - ✅ A6: RSS feed 2025-10-26
 - ⏳ A7: Reading time calculator
 - ✅ A8: Blog post JSON-LD 2025-10-25
-- ⏳ A9: Sitemap update
-- ✅ A10: Social sharing buttons 2026-06-16
+- ✅ A9: Sitemap update 2025-10-27
+- ✅ A10: Social sharing buttons 2025-10-27
 
 ### B — Missing Portfolio Features
 - ⏳ B1: Dark/Light mode toggle
@@ -50,7 +52,7 @@ Domain: https://jehadurre.me
 
 ### D — SEO
 - ⏳ D1: public/robots.txt complete
-- ⏳ D2: public/sitemap.xml includes all blog post URLs
+- ✅ D2: public/sitemap.xml includes all blog post URLs 2025-10-27
 - ⏳ D3: public/llms.txt updated with new blog posts
 - ✅ D4: Per-page meta tags via react-helmet-async 2025-10-25
 - ⏳ D5: JSON-LD per page type

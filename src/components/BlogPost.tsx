@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, BookOpen, User, Twitter, Linkedin, Link as LinkIcon, Check } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
@@ -18,13 +19,6 @@ const rehypePlugins = [
   [rehypeAutolinkHeadings, { behavior: 'wrap' }]
 ] as unknown[];
 
-// ⚡ Bolt Performance Optimization:
-// Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -52,28 +46,7 @@ const BlogPost: React.FC = () => {
     fetchPost();
   }, [slug]);
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "Invalid Date";
-    return dateFormatter.format(date);
-  };
 
-  const shareUrl = window.location.href;
-  const encodedUrl = encodeURIComponent(shareUrl);
-  const encodedTitle = post ? encodeURIComponent(post.title) : '';
-
-  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
-  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
-
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err: unknown) {
-      console.error('Failed to copy text: ', err);
-    }
-  };
 
   if (loading) {
     return (
@@ -92,9 +65,9 @@ const BlogPost: React.FC = () => {
       <div className="min-h-screen pt-20 section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16">
-            <h1 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
+            <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               {error || 'Post Not Found'}
-            </h1>
+            </h2>
             <p className="text-secondary-600 dark:text-secondary-300 mb-8">
               {error || 'The blog post you\'re looking for doesn\'t exist or has been removed.'}
             </p>
@@ -221,44 +194,44 @@ const BlogPost: React.FC = () => {
               ))}
             </div>
 
-            {/* Share Buttons */}
-            <div className="flex items-center space-x-3">
-              <span className="text-sm font-medium text-secondary-500 dark:text-secondary-400 mr-2">Share:</span>
-              <motion.a
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                href={twitterShareUrl}
+
+            {/* Social Share Buttons */}
+            <div className="flex flex-wrap items-center gap-4">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 px-4 py-2 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:shadow-lg transition-all duration-200"
                 aria-label="Share on Twitter"
-                className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#1DA1F2] dark:hover:text-[#1DA1F2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               >
-                <Twitter className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                href={linkedinShareUrl}
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <span>Share</span>
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 px-4 py-2 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:shadow-lg transition-all duration-200"
                 aria-label="Share on LinkedIn"
-                className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#0A66C2] dark:hover:text-[#0A66C2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               >
-                <Linkedin className="w-5 h-5" />
-              </motion.a>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleCopyLink}
-                aria-label={copied ? "Link copied" : "Copy link"}
-                className={`p-2.5 glass-card rounded-xl hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
-                  copied
-                    ? 'text-green-600 dark:text-green-400'
-                    : 'text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400'
-                }`}
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span>Share</span>
+              </a>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  alert('Link copied to clipboard!');
+                }}
+                className="inline-flex items-center space-x-2 px-4 py-2 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:shadow-lg transition-all duration-200"
+                aria-label="Copy Link"
               >
-                {copied ? <Check className="w-5 h-5" /> : <LinkIcon className="w-5 h-5" />}
-              </motion.button>
+                <Share2 className="w-4 h-4" />
+                <span>Copy</span>
+              </button>
             </div>
           </motion.header>
 
@@ -292,44 +265,34 @@ const BlogPost: React.FC = () => {
                   Thanks for reading! Feel free to share your thoughts.
                 </p>
               </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-sm font-medium text-secondary-500 dark:text-secondary-400 hidden sm:inline-block">Share:</span>
-                <motion.a
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={twitterShareUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on Twitter"
-                  className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#1DA1F2] dark:hover:text-[#1DA1F2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                >
-                  <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  href={linkedinShareUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Share on LinkedIn"
-                  className="p-2.5 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:text-[#0A66C2] dark:hover:text-[#0A66C2] hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                >
-                  <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-                </motion.a>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleCopyLink}
-                  aria-label={copied ? "Link copied" : "Copy link"}
-                  className={`p-2.5 glass-card rounded-xl hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
-                    copied
-                      ? 'text-green-600 dark:text-green-400'
-                      : 'text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400'
-                  }`}
-                >
-                  {copied ? <Check className="w-4 h-4 sm:w-5 sm:h-5" /> : <LinkIcon className="w-4 h-4 sm:w-5 sm:h-5" />}
-                </motion.button>
-                <div className="w-px h-8 bg-secondary-200 dark:bg-secondary-700 mx-2 hidden sm:block"></div>
+              <div className="flex items-center space-x-4">
+
+                {/* Footer Share Buttons */}
+                <div className="flex items-center space-x-2">
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary inline-flex items-center space-x-2"
+                    aria-label="Share on Twitter"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>Share</span>
+                  </a>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      alert('Link copied to clipboard!');
+                    }}
+                    className="btn-secondary inline-flex items-center space-x-2"
+                    aria-label="Copy Link"
+                  >
+                    <Share2 className="w-4 h-4" />
+                    <span>Copy</span>
+                  </button>
+                </div>
                 <Link to="/">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
