@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, Share2, BookOpen, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, BookOpen, User, Twitter, Linkedin, Link as LinkIcon, Check } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
@@ -25,6 +25,7 @@ const BlogPost: React.FC = () => {
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {

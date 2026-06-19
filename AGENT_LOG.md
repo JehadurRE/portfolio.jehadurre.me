@@ -150,3 +150,17 @@ Domain: https://jehadurre.me
 
 **Build:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Initial setup of standard SPA routing using react-router-dom, prepared enhanced blog post schema and markdown rendering.
+
+### 2026-06-16 — Day 3 — BUILD MODE
+**Branch:** feature/blog-sharing-A10-2026-06-16
+**PR:** feat: Add social sharing buttons to blog posts — Day 3
+**Mode:** BUILD
+**Files changed:**
+- `src/components/BlogPost.tsx`: Replaced native Web Share API button with dedicated Twitter, LinkedIn, and copy link buttons. Implemented copy to clipboard feedback using a local state.
+
+**If BUILD:**
+- Items completed: A10
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added standard share intents without requiring a heavy package. Preserved full keyboard accessibility.
