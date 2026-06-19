@@ -4,7 +4,7 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   containerClassName?: string;
 }
 
-const LazyImage: React.FC<LazyImageProps> = ({ className = '', containerClassName = '', ...props }) => {
+const LazyImage: React.FC<LazyImageProps> = ({ className = '', containerClassName = '', alt = '', ...props }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -17,6 +17,7 @@ const LazyImage: React.FC<LazyImageProps> = ({ className = '', containerClassNam
       />
       <img
         {...props}
+        alt={alt}
         loading="lazy"
         onLoad={(e) => {
           setIsLoaded(true);

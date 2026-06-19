@@ -1,4 +1,5 @@
 # SEO Agent Log — jehadurre.me
+Last updated: 2026-06-17
 Last updated: 2026-06-18
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
@@ -62,6 +63,10 @@ Stack: React + TypeScript + Vite
 - ✅ E1: Exactly one `<h1>` per page [2026-06-17]
 - ✅ E2: Logical heading hierarchy (h1→h2→h3, no skips) [2026-06-17]
 - ✅ E3: All section components use `<section id="[name]" aria-labelledby="[name]-heading">` [2026-06-17]
+- ✅ E4: `<main>` wrapper for primary content [2026-06-17]
+- ✅ E5: `<header>` and `<footer>` semantic elements [2026-06-17]
+- ✅ E6: `<nav aria-label="Main navigation">` [2026-06-17]
+- ✅ E7: `aria-label` on all icon-only links (social icons, hamburger, etc.) [2026-06-17]
 - ⏳ E4: `<main>` wrapper for primary content
 - ⏳ E5: `<header>` and `<footer>` semantic elements
 - ⏳ E6: `<nav aria-label="Main navigation">`
@@ -87,6 +92,10 @@ Stack: React + TypeScript + Vite
 - ⏳ G5: All key facts in real HTML text (not embedded in JS variables or images)
 
 ### H — Ongoing Maintenance
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-15]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-17]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-17]
+- ✅ H4: New components/sections detected and added to checklist [2026-06-15]
 - ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-17]
 - ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-17]
 - ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-17]
@@ -110,6 +119,19 @@ Stack: React + TypeScript + Vite
 
 ## DAILY LOG
 
+### 2026-06-17 — Day 3
+**Branch:** seo/daily-2026-06-17
+**PR:** SEO [Day 3]: Semantic HTML Audit, Alt Texts, and Rel attributes — 2026-06-17
+**Files changed:** src/components/LazyImage.tsx, src/components/Blog.tsx, src/components/Certifications.tsx, SEO_LOG.md
+**Changes made:**
+- src/components/LazyImage.tsx: Added explicit extraction and binding for the `alt` attribute. → Ensures purely decorative or meaningful images correctly receive their intended `alt` text.
+- src/components/Blog.tsx: Added missing `aria-labelledby` attribute on the `<section>` tag in error state. → Improves screen reader semantics.
+- src/components/Certifications.tsx: Added missing `aria-labelledby` attribute on the `<section>` tag in error state. → Improves screen reader semantics.
+- Verified Semantic HTML tasks (E1, E2, E4, E5, E6, E7, E8, E10, E13) using bash scripts and manual review to confirm compliance.
+**Items completed today:** E1, E2, E3, E4, E5, E6, E7, E8, E10, E11, E13, H2, H3, H5, H6
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Validated target="_blank" links securely use rel="noopener noreferrer" and heading tags hierarchy correctly structures pages.
 ### 2026-06-18 — Day 3
 **Branch:** seo/daily-2026-06-18
 **PR:** SEO [Day 3]: Preload tags, heading hierarchies, and aria accessibility — 2026-06-18
