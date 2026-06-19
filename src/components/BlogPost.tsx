@@ -64,9 +64,9 @@ const BlogPost: React.FC = () => {
       <div className="min-h-screen pt-20 section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16">
-            <h1 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
+            <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               {error || 'Post Not Found'}
-            </h1>
+            </h2>
             <p className="text-secondary-600 dark:text-secondary-300 mb-8">
               {error || 'The blog post you\'re looking for doesn\'t exist or has been removed.'}
             </p>
