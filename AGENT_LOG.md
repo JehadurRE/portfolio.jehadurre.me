@@ -17,6 +17,8 @@ Domain: https://jehadurre.me
 - ✅ A5: Per-post SEO meta tags 2025-10-25
 - ✅ A6: RSS feed 2025-10-27
 - ✅ A7: Reading time calculator 2025-10-27
+- ✅ A6: RSS feed 2025-10-26
+- ⏳ A7: Reading time calculator
 - ✅ A8: Blog post JSON-LD 2025-10-25
 - ✅ A9: Sitemap update 2025-10-27
 - ✅ A10: Social sharing buttons 2025-10-27
@@ -54,7 +56,7 @@ Domain: https://jehadurre.me
 - ⏳ D3: public/llms.txt updated with new blog posts
 - ✅ D4: Per-page meta tags via react-helmet-async 2025-10-25
 - ⏳ D5: JSON-LD per page type
-- ✅ D6: RSS feed at /rss.xml 2025-10-27
+- ✅ D6: RSS feed at /rss.xml 2025-10-26
 - ⏳ D7: All Core Web Vitals improvements
 
 ---
@@ -91,24 +93,22 @@ Domain: https://jehadurre.me
 
 ## DAILY LOG
 
-### 2025-10-27 — Day 3 — BUILD MODE
-**Branch:** feature/blog-seo-sharing-2025-10-27
-**PR:** feat: RSS feed, sitemap generation, reading time and social sharing — Day 3
+### 2025-10-26 — Day 2 — BUILD MODE (2)
+**Branch:** feature/blog-rss-A6-2025-10-26
+**PR:** feat: Generate blog RSS feed on build — Day 2
 **Mode:** BUILD
 **Files changed:**
-- `package.json`: Added `feed`, `dotenv`, `tsx` to devDependencies and updated build script.
-- `scripts/generate-rss.ts`: Added script to fetch published blog posts and build `rss.xml`.
-- `scripts/generate-sitemap.ts`: Added script to generate `sitemap.xml` with dynamic blog routes.
-- `index.html`: Added RSS alternate link.
-- `src/lib/readingTime.ts`: Added reading time calculation utility.
-- `src/components/BlogPost.tsx`: Replaced default Share button with Twitter, LinkedIn, and Copy Link specific buttons.
+- `package.json`: Added `feed`, `dotenv`, and `tsx` dependencies, along with `prebuild` script.
+- `src/lib/generateRSS.ts`: Implemented script using the Supabase client to fetch published posts and generate `public/rss.xml`.
+- `index.html`: Added `<link>` tag referencing the RSS feed.
+- `public/sitemap.xml`: Added entry for `rss.xml`.
 
 **If BUILD:**
-- Items completed: A6, A7, A9, A10, D2, D6
+- Items completed: A6, D6
 - Items skipped: None
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Finished the remaining Category A elements so that the blog system is fully functional for SEO and user interaction.
+**Notes:** Added the `generateRSS.ts` prebuild step to create an automated RSS feed. Used `dotenv` to load environment variables safely during the script execution. Handled Supabase fetch error gracefully (so it doesn't fail the build when Supabase is down).
 
 ### 2025-10-26 — Day 2 — BUILD MODE
 **Branch:** feature/blog-index-upgrade-2025-10-26
