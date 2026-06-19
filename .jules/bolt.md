@@ -69,3 +69,7 @@
 ## 2024-11-20 - Inline Arrays passed to mapping loops inside render functions
 **Learning:** In React components that re-render frequently, defining inline static arrays inside the component function body or directly inside a JSX `.map()` call (like `{(['all', 'award'] as const).map(...)}`) causes them to be recreated on every single render. This leads to unnecessary memory allocation and garbage collection overhead.
 **Action:** Always hoist static filter configuration arrays or similar static collections outside the component function body (e.g. `const FILTER_OPTIONS = ['all', 'published', 'draft'] as const;`) so they are instantiated only once when the module loads. This is a common and easy performance win, especially in UI-heavy admin panels.
+
+## 2024-11-20 - Ensure All Array References are Updated When Hoisting
+**Learning:** When hoisting a static array (like `tabs` to `TABS`) outside a component to improve performance, updating the main loop (`tabs.map(...)` -> `TABS.map(...)`) is not enough. You must search the entire component for any other usages, such as `.find(...)` or `.filter(...)` (e.g., `tabs.find(tab => tab.id === activeTab)`), to prevent application-crashing `ReferenceError`s.
+**Action:** Always do a full string search (e.g., using `grep`) across the entire file for the old variable name before finalizing a hoist refactor.

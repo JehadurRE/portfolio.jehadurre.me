@@ -1,45 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Award, 
-  Trophy, 
-  LogOut, 
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  LayoutDashboard,
+  FileText,
+  Award,
+  Trophy,
+  LogOut,
   Users,
   Calendar,
   Settings,
-  Code
-} from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import BlogManager from '../components/admin/BlogManager';
-import CertificationManager from '../components/admin/CertificationManager';
-import AchievementManager from '../components/admin/AchievementManager';
-import SkillManager from '../components/admin/SkillManager';
-import DashboardOverview from '../components/admin/DashboardOverview';
+  Code,
+} from "lucide-react";
+import { supabase } from "../lib/supabase";
+import BlogManager from "../components/admin/BlogManager";
+import CertificationManager from "../components/admin/CertificationManager";
+import AchievementManager from "../components/admin/AchievementManager";
+import SkillManager from "../components/admin/SkillManager";
+import DashboardOverview from "../components/admin/DashboardOverview";
 
 interface AdminDashboardProps {
   onLogout: () => void;
 }
 
-type ActiveTab = 'overview' | 'blog' | 'certifications' | 'achievements' | 'skills';
+type ActiveTab =
+  | "overview"
+  | "blog"
+  | "certifications"
+  | "achievements"
+  | "skills";
 
 // ⚡ Bolt Performance Optimization:
 // Hoist `Intl.DateTimeFormat` outside the component to avoid costly re-initialization on every render.
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
+// ⚡ Bolt Performance Optimization:
+// Hoist `tabs` array outside the component to prevent recreating it on every render.
+const TABS = [
+  { id: "overview", name: "Overview", icon: LayoutDashboard },
+  { id: "blog", name: "Blog Posts", icon: FileText },
+  { id: "certifications", name: "Certifications", icon: Award },
+  { id: "achievements", name: "Achievements", icon: Trophy },
+  { id: "skills", name: "Skills", icon: Code },
+];
+
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
+  const [activeTab, setActiveTab] = useState<ActiveTab>("overview");
   const [user, setUser] = useState<{ email?: string } | null>(null);
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       setUser(user);
     };
     getUser();
@@ -50,25 +67,17 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     onLogout();
   };
 
-  const tabs = [
-    { id: 'overview', name: 'Overview', icon: LayoutDashboard },
-    { id: 'blog', name: 'Blog Posts', icon: FileText },
-    { id: 'certifications', name: 'Certifications', icon: Award },
-    { id: 'achievements', name: 'Achievements', icon: Trophy },
-    { id: 'skills', name: 'Skills', icon: Code },
-  ];
-
   const renderContent = () => {
     switch (activeTab) {
-      case 'overview':
+      case "overview":
         return <DashboardOverview />;
-      case 'blog':
+      case "blog":
         return <BlogManager />;
-      case 'certifications':
+      case "certifications":
         return <CertificationManager />;
-      case 'achievements':
+      case "achievements":
         return <AchievementManager />;
-      case 'skills':
+      case "skills":
         return <SkillManager />;
       default:
         return <DashboardOverview />;
@@ -93,7 +102,9 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               </div>
               <div>
                 <h1 className="text-lg font-bold text-gradient">Admin Panel</h1>
-                <p className="text-xs text-secondary-500 dark:text-secondary-400">Portfolio Manager</p>
+                <p className="text-xs text-secondary-500 dark:text-secondary-400">
+                  Portfolio Manager
+                </p>
               </div>
             </div>
 
@@ -105,16 +116,18 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-secondary-800 dark:text-secondary-200">
-                    {user?.email || 'Admin'}
+                    {user?.email || "Admin"}
                   </p>
-                  <p className="text-xs text-secondary-500 dark:text-secondary-400">Administrator</p>
+                  <p className="text-xs text-secondary-500 dark:text-secondary-400">
+                    Administrator
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Navigation */}
             <nav className="space-y-2">
-              {tabs.map((tab) => (
+              {TABS.map((tab) => (
                 <motion.button
                   key={tab.id}
                   whileHover={{ scale: 1.02 }}
@@ -122,8 +135,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                   onClick={() => setActiveTab(tab.id as ActiveTab)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                     activeTab === tab.id
-                      ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg'
-                      : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
+                      ? "bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg"
+                      : "text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800"
                   }`}
                 >
                   <tab.icon className="w-5 h-5" />
@@ -157,7 +170,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-secondary-800 dark:text-secondary-200">
-                  {tabs.find(tab => tab.id === activeTab)?.name}
+                  {TABS.find((tab) => tab.id === activeTab)?.name}
                 </h2>
                 <p className="text-secondary-600 dark:text-secondary-400">
                   Manage your portfolio content
