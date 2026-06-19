@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2025-10-26
+Last updated: 2025-10-27
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -15,11 +15,13 @@ Domain: https://jehadurre.me
 - ✅ A3: BlogPost page component 2025-10-25
 - ✅ A4: Blog index page 2025-10-26
 - ✅ A5: Per-post SEO meta tags 2025-10-25
-- ⏳ A6: RSS feed
+- ✅ A6: RSS feed 2025-10-27
+- ✅ A7: Reading time calculator 2025-10-27
+- ✅ A6: RSS feed 2025-10-26
 - ⏳ A7: Reading time calculator
 - ✅ A8: Blog post JSON-LD 2025-10-25
-- ⏳ A9: Sitemap update
-- ⏳ A10: Social sharing buttons
+- ✅ A9: Sitemap update 2025-10-27
+- ✅ A10: Social sharing buttons 2025-10-27
 
 ### B — Missing Portfolio Features
 - ⏳ B1: Dark/Light mode toggle
@@ -50,11 +52,11 @@ Domain: https://jehadurre.me
 
 ### D — SEO
 - ⏳ D1: public/robots.txt complete
-- ⏳ D2: public/sitemap.xml includes all blog post URLs
+- ✅ D2: public/sitemap.xml includes all blog post URLs 2025-10-27
 - ⏳ D3: public/llms.txt updated with new blog posts
 - ✅ D4: Per-page meta tags via react-helmet-async 2025-10-25
 - ⏳ D5: JSON-LD per page type
-- ⏳ D6: RSS feed at /rss.xml
+- ✅ D6: RSS feed at /rss.xml 2025-10-26
 - ⏳ D7: All Core Web Vitals improvements
 
 ---
@@ -90,6 +92,23 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2025-10-26 — Day 2 — BUILD MODE (2)
+**Branch:** feature/blog-rss-A6-2025-10-26
+**PR:** feat: Generate blog RSS feed on build — Day 2
+**Mode:** BUILD
+**Files changed:**
+- `package.json`: Added `feed`, `dotenv`, and `tsx` dependencies, along with `prebuild` script.
+- `src/lib/generateRSS.ts`: Implemented script using the Supabase client to fetch published posts and generate `public/rss.xml`.
+- `index.html`: Added `<link>` tag referencing the RSS feed.
+- `public/sitemap.xml`: Added entry for `rss.xml`.
+
+**If BUILD:**
+- Items completed: A6, D6
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added the `generateRSS.ts` prebuild step to create an automated RSS feed. Used `dotenv` to load environment variables safely during the script execution. Handled Supabase fetch error gracefully (so it doesn't fail the build when Supabase is down).
 
 ### 2025-10-26 — Day 2 — BUILD MODE
 **Branch:** feature/blog-index-upgrade-2025-10-26
