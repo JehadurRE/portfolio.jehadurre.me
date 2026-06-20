@@ -13,7 +13,7 @@ const socialLinks = [
     { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
     { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
 
-    { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Email' }
+    { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Google Scholar' }
   ];
 
 // ⚡ Bolt Performance Optimization:
