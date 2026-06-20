@@ -515,8 +515,6 @@ const Certifications: React.FC = () => {
           </motion.div>
         )}
       </div>
-
-
     </section>
   );
 };

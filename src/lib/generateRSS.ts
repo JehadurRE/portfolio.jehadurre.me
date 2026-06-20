@@ -24,6 +24,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 async function generateRSS() {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error('Missing Supabase environment variables');
+    console.warn('Skipping RSS generation: Missing Supabase environment variables');
+    return;
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
   const { data: posts, error } = await supabase
     .from('blog_posts')
     .select('*')

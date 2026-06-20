@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Save, X, Eye, EyeOff } from 'lucide-react';
 import { supabase, type BlogPost } from '../../lib/supabase';
+import { calculateReadingTime } from '../../lib/readingTime';
 
 interface BlogFormProps {
   post?: BlogPost | null;
@@ -196,7 +197,14 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
             </label>
             <textarea
               value={formData.content}
-              onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
+              onChange={(e) => {
+                const newContent = e.target.value;
+                setFormData(prev => ({
+                  ...prev,
+                  content: newContent,
+                  read_time: calculateReadingTime(newContent)
+                }));
+              }}
               required
               maxLength={50000}
               rows={12}
@@ -231,10 +239,9 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
               <input
                 type="number"
                 value={formData.read_time}
-                onChange={(e) => setFormData(prev => ({ ...prev, read_time: parseInt(e.target.value) || 5 }))}
-                min="1"
-                max="60"
-                className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-800 dark:text-secondary-200 placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                readOnly
+                className="w-full px-4 py-3 glass border border-secondary-200 dark:border-secondary-700 rounded-xl text-secondary-500 dark:text-secondary-400 bg-secondary-50 dark:bg-secondary-900/50 cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+                title="Automatically calculated based on content length"
               />
             </div>
           </div>
