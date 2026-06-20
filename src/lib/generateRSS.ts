@@ -16,6 +16,13 @@ dotenv.config();
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY;
 
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn("Missing Supabase environment variables. Skipping RSS feed generation.");
+  process.exit(0);
+}
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 async function generateRSS() {
   if (!supabaseUrl || !supabaseAnonKey) {
     console.error('Missing Supabase environment variables');

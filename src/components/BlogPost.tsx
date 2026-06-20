@@ -4,27 +4,16 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, BookOpen, User } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { blogApi, type BlogPost as BlogPostType } from '../lib/supabase';
 
-// ⚡ Bolt Performance Optimization:
-const remarkPlugins = [remarkGfm];
-const rehypePlugins = [
-  rehypeHighlight,
-  rehypeSlug,
-  [rehypeAutolinkHeadings, { behavior: 'wrap' }]
-] as unknown[];
-
+import MarkdownRenderer from '../utils/MarkdownRenderer';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -242,12 +231,7 @@ const BlogPost: React.FC = () => {
             className="glass-card p-8 lg:p-12 rounded-3xl"
           >
             <div className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gradient prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-code:bg-secondary-100 dark:prose-code:bg-secondary-800 prose-code:px-2 prose-code:py-1 prose-code:rounded whitespace-pre-wrap text-secondary-700 dark:text-secondary-300 leading-relaxed">
-              <ReactMarkdown
-                remarkPlugins={remarkPlugins}
-                rehypePlugins={rehypePlugins}
-              >
-                {post.content}
-              </ReactMarkdown>
+              <MarkdownRenderer markdown={post.content} />
             </div>
           </motion.article>
 
