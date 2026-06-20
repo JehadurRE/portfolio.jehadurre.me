@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
+import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import LazyImage from './LazyImage';
 import { sanitizeUrl } from '../utils/sanitizeUrl';
@@ -106,7 +106,6 @@ const Certifications: React.FC = () => {
 
   if (error) {
     return (
-      <section id="certifications" aria-labelledby="certifications-heading" className="section-padding bg-transparent">
       <section id="certifications-error" aria-labelledby="certifications-error-heading" className="section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16 flex flex-col items-center">
