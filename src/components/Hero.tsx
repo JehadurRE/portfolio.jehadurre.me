@@ -114,7 +114,7 @@ const Hero: React.FC = () => {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary inline-flex items-center space-x-2"
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             >
               <span>View My Work</span>
               <ExternalLink className="w-4 h-4" />
@@ -123,7 +123,7 @@ const Hero: React.FC = () => {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary inline-flex items-center space-x-2"
+              className="btn-secondary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             >
               <span>Get In Touch</span>
               <Mail className="w-4 h-4" />
@@ -148,7 +148,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 0.8 + index * 0.1 }}
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                className="glass-card p-3 hover:shadow-lg transition-all duration-300"
+                className="glass-card p-3 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-xl"
                 aria-label={link.label}
               >
                 <link.icon className="w-6 h-6 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" />
@@ -163,7 +163,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="animate-bounce"
           >
-            <a href="#about" className="inline-block" aria-label="Scroll down to About section">
+            <a href="#about" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full" aria-label="Scroll down to About section">
               <ArrowDown className="w-6 h-6 text-secondary-400 dark:text-secondary-500" />
             </a>
           </motion.div>
