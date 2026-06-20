@@ -106,7 +106,6 @@ const Certifications: React.FC = () => {
 
   if (error) {
     return (
-      <section id="certifications" aria-labelledby="certifications-heading" className="section-padding bg-transparent">
       <section id="certifications-error" aria-labelledby="certifications-error-heading" className="section-padding bg-transparent">
         <div className="container-custom">
           <div className="text-center py-16 flex flex-col items-center">
@@ -516,8 +515,6 @@ const Certifications: React.FC = () => {
           </motion.div>
         )}
       </div>
-
-
     </section>
   );
 };

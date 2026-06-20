@@ -15,10 +15,8 @@ Domain: https://jehadurre.me
 - ✅ A3: BlogPost page component 2025-10-25
 - ✅ A4: Blog index page 2025-10-26
 - ✅ A5: Per-post SEO meta tags 2025-10-25
-- ✅ A6: RSS feed 2025-10-27
-- ✅ A7: Reading time calculator 2025-10-27
 - ✅ A6: RSS feed 2025-10-26
-- ⏳ A7: Reading time calculator
+- ✅ A7: Reading time calculator 2025-10-27
 - ✅ A8: Blog post JSON-LD 2025-10-25
 - ✅ A9: Sitemap update 2025-10-27
 - ✅ A10: Social sharing buttons 2025-10-27
@@ -92,6 +90,21 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2025-10-27 — Day 3 — BUILD MODE
+**Branch:** feature/blog-reading-time-A7-2025-10-27
+**PR:** feat: Auto-calculate blog reading time — Day 3
+**Mode:** BUILD
+**Files changed:**
+- `src/components/admin/BlogForm.tsx`: Updated to auto-calculate the reading time when the content field is changed. Also set the input field to `readOnly`.
+- `src/components/Header.tsx`, `src/components/Certifications.tsx`, `src/components/BlogPost.tsx`, `src/lib/generateRSS.ts`: Fixed pre-existing linting and build issues so standard pipeline works cleanly.
+
+**If BUILD:**
+- Items completed: A7
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added integration of the `calculateReadingTime` utility with the `BlogForm` component, streamlining the content authoring process and guaranteeing consistency in reading time metadata. Included fixups for existing build failures.
 
 ### 2025-10-26 — Day 2 — BUILD MODE (2)
 **Branch:** feature/blog-rss-A6-2025-10-26
