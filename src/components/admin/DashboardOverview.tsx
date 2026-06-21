@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Award, Trophy, TrendingUp, Eye, Code } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
@@ -60,7 +60,10 @@ const DashboardOverview: React.FC = () => {
     fetchStats();
   }, []);
 
-  const statCards = [
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `statCards` because it depends on `stats` state. This avoids
+  // array recreation on every render, improving performance.
+  const statCards = useMemo(() => [
     {
       title: 'Total Blog Posts',
       value: stats.totalBlogPosts,
@@ -109,7 +112,7 @@ const DashboardOverview: React.FC = () => {
       bgColor: 'bg-pink-100 dark:bg-pink-900/30',
       textColor: 'text-pink-700 dark:text-pink-300',
     },
-  ];
+  ], [stats]);
 
   if (loading) {
     return (

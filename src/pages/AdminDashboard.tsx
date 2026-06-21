@@ -33,6 +33,14 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   day: 'numeric'
 });
 
+const TABS = [
+  { id: 'overview', name: 'Overview', icon: LayoutDashboard },
+  { id: 'blog', name: 'Blog Posts', icon: FileText },
+  { id: 'certifications', name: 'Certifications', icon: Award },
+  { id: 'achievements', name: 'Achievements', icon: Trophy },
+  { id: 'skills', name: 'Skills', icon: Code },
+];
+
 const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
   const [user, setUser] = useState<{ email?: string } | null>(null);
@@ -49,14 +57,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     await supabase.auth.signOut();
     onLogout();
   };
-
-  const tabs = [
-    { id: 'overview', name: 'Overview', icon: LayoutDashboard },
-    { id: 'blog', name: 'Blog Posts', icon: FileText },
-    { id: 'certifications', name: 'Certifications', icon: Award },
-    { id: 'achievements', name: 'Achievements', icon: Trophy },
-    { id: 'skills', name: 'Skills', icon: Code },
-  ];
 
   const renderContent = () => {
     switch (activeTab) {
@@ -114,7 +114,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
             {/* Navigation */}
             <nav className="space-y-2">
-              {tabs.map((tab) => (
+              {TABS.map((tab) => (
                 <motion.button
                   key={tab.id}
                   whileHover={{ scale: 1.02 }}
@@ -157,7 +157,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-secondary-800 dark:text-secondary-200">
-                  {tabs.find(tab => tab.id === activeTab)?.name}
+                  {TABS.find(tab => tab.id === activeTab)?.name}
                 </h2>
                 <p className="text-secondary-600 dark:text-secondary-400">
                   Manage your portfolio content
