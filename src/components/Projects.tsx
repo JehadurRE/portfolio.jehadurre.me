@@ -385,6 +385,7 @@ For any questions or suggestions, feel free to reach out:
                 <div
                   className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   role="button"
+                  aria-label={`View README for ${project.name}`}
                   tabIndex={0}
                   onClick={() => fetchReadme(project)}
                   onKeyDown={(e) => {
@@ -465,7 +466,8 @@ For any questions or suggestions, feel free to reach out:
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    aria-label={`View code for ${project.name} on GitHub`}
                   >
                     <Github className="w-4 h-4" />
                     <span>Code</span>
@@ -477,7 +479,8 @@ For any questions or suggestions, feel free to reach out:
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center space-x-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
+                      className="flex items-center space-x-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      aria-label={`View live demo for ${project.name}`}
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span>Live</span>
@@ -502,7 +505,7 @@ For any questions or suggestions, feel free to reach out:
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="btn-primary inline-flex items-center space-x-2"
+            className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           >
             <Github className="w-5 h-5" />
             <span>View All Projects</span>

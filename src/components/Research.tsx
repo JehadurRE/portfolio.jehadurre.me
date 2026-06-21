@@ -197,7 +197,8 @@ const Research: React.FC = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-4 lg:mt-0 lg:ml-6 btn-primary inline-flex items-center space-x-2 self-start"
+                  className="mt-4 lg:mt-0 lg:ml-6 btn-primary inline-flex items-center space-x-2 self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  aria-label={`View Paper: ${publication.title}`}
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>View Paper</span>
@@ -224,7 +225,7 @@ const Research: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary inline-flex items-center space-x-2"
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               <Award className="w-5 h-5" />
               <span>Google Scholar</span>
@@ -235,7 +236,7 @@ const Research: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary inline-flex items-center space-x-2"
+              className="btn-secondary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               <BookOpen className="w-5 h-5" />
               <span>ResearchGate</span>

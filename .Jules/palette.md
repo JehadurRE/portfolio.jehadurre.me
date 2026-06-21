@@ -33,3 +33,6 @@
 ## 2026-06-18 - Focus Visible Styles for Framer Motion Elements
 **Learning:** Interactive elements wrapped in Framer Motion components (like `<motion.a>` and `<motion.button>`) in this codebase often lack clear default focus indicators, making them inaccessible for keyboard navigation.
 **Action:** Always verify keyboard accessibility (tabbing through the UI). Explicitly add `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded` classes to interactive elements to ensure a highly visible focus state without impacting mouse users.
+## 2024-05-18 - Playwright Timeouts due to Hardcoded Loading Screens
+**Learning:** Hardcoded loading screens with artificial delays (e.g., `setTimeout` for 3 seconds in `LoadingScreen.tsx`) can block automated visual verification tools like Playwright, leading to blank screenshots or timeouts if the script only waits for `networkidle`.
+**Action:** When writing frontend verification scripts in this repository, explicitly wait for the loading screen to unmount or for specific content elements (like `#hero` or `header`) to be visible using `page.wait_for_selector('...', state='visible', timeout=10000)` instead of relying solely on network state.
