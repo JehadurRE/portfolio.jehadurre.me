@@ -6,19 +6,6 @@ import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-reac
 import { useNavigate } from 'react-router-dom';
 import { blogApi, type BlogPost } from '../lib/supabase';
 
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  if (isNaN(date.getTime())) {
-    return 'Invalid Date';
-  }
-  return dateFormatter.format(date);
-};
 
 const Blog: React.FC = () => {
   const navigate = useNavigate();
