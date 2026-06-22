@@ -22,7 +22,7 @@ Domain: https://jehadurre.me
 - ✅ A10: Social sharing buttons 2025-10-27
 
 ### B — Missing Portfolio Features
-- ⏳ B1: Dark/Light mode toggle
+- ✅ B1: Dark/Light mode toggle 2025-10-27
 - ⏳ B2: Individual Project pages
 - ⏳ B3: GitHub Activity Integration
 - ⏳ B4: Tech Stack / Skills visualization upgrade
@@ -90,6 +90,20 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2025-10-27 — Day 3 — BUILD MODE (2)
+**Branch:** feature/B1-dark-mode-2025-10-27
+**PR:** feat: Dark/Light mode toggle — Day 3
+**Mode:** BUILD
+**Files changed:**
+- `src/index.css`: Fix dark mode transition
+
+**If BUILD:**
+- Items completed: B1
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added dark mode transition CSS
 
 ### 2025-10-27 — Day 3 — BUILD MODE
 **Branch:** feature/blog-reading-time-A7-2025-10-27
