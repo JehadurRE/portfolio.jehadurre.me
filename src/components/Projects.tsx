@@ -558,7 +558,7 @@ For any questions or suggestions, feel free to reach out:
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => setSelectedProject(null)}
-                      className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
+                      className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       aria-label="Close README"
                     >
                       <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />

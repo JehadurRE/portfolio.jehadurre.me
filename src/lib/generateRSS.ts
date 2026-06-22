@@ -21,7 +21,6 @@ if (!supabaseUrl || !supabaseAnonKey) {
   process.exit(0);
 }
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 async function generateRSS() {
   if (!supabaseUrl || !supabaseAnonKey) {

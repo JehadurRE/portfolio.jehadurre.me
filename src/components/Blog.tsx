@@ -6,20 +6,6 @@ import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-reac
 import { useNavigate } from 'react-router-dom';
 import { blogApi, type BlogPost } from '../lib/supabase';
 
-const dateFormatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
-
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  if (isNaN(date.getTime())) {
-    return 'Invalid Date';
-  }
-  return dateFormatter.format(date);
-};
-
 const Blog: React.FC = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView({
@@ -382,7 +368,7 @@ const Blog: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setVisibleCount(prev => prev + 8)}
-                className="btn-secondary"
+                className="btn-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               >
                 Load More Posts
               </motion.button>
@@ -436,7 +422,7 @@ const Blog: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary whitespace-nowrap"
+                className="btn-primary whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 aria-label="Subscribe to newsletter"
               >
                 Subscribe
