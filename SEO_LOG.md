@@ -1,6 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-06-17
-Last updated: 2026-06-18
+Last updated: 2026-06-19
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -15,7 +14,7 @@ Stack: React + TypeScript + Vite
 - ✅ A1: robots.txt created [2026-06-15]
 - ✅ A2: sitemap.xml created and expanded [2026-06-15]
 - ✅ A3: llms.txt comprehensive [2026-06-15]
-- ✅ A4: Internal link audit [2026-06-15]
+- ✅ A4: Internal link audit — no broken href="", href="#", or dead relative paths [2026-06-15]
 - ✅ A5: HTTPS audit — clean [2026-06-15]
 - 🚫 A6: Sitemap submitted to Search Console — HUMAN ACTION REQUIRED
 
@@ -41,9 +40,9 @@ Stack: React + TypeScript + Vite
 - ✅ C5: ItemList schema for Skills [2026-06-15]
 - ⏳ C6: Blog schema + BlogPosting entries
 - ⏳ C7: EducationalOccupationalCredential schema for Certifications
-- ⏳ C8: BreadcrumbList on any non-home pages
+- ✅ C8: BreadcrumbList on any non-home pages [2026-06-19]
 - ⏳ C9: FAQPage schema
-- ⏳ C10: ResearchProject / ScholarlyArticle schema
+- ✅ C10: ResearchProject / ScholarlyArticle schema [2026-06-19]
 - ⏳ C11: All JSON-LD validated as syntactically correct JSON
 
 ### D — Performance / Core Web Vitals
@@ -52,7 +51,7 @@ Stack: React + TypeScript + Vite
 - ✅ D3: Google Fonts: migrated from CSS @import → HTML `<link>` preload tags [2026-06-17]
 - ✅ D4: font-display: swap in all @font-face declarations [2026-06-17]
 - ✅ D5: `rel="preconnect"` for fonts.googleapis.com and fonts.gstatic.com [2026-06-17]
-- ⏳ D6: `rel="dns-prefetch"` for any analytics/third-party domains
+- ✅ D6: `rel="dns-prefetch"` for any analytics/third-party domains [2026-06-19]
 - ⏳ D7: `defer` on non-critical `<script>` tags in `<head>`
 - ✅ D8: `<link rel="preload">` for critical above-fold assets [2026-06-17]
 - ⏳ D9: No render-blocking CSS in `<head>` beyond critical styles
@@ -67,10 +66,6 @@ Stack: React + TypeScript + Vite
 - ✅ E5: `<header>` and `<footer>` semantic elements [2026-06-17]
 - ✅ E6: `<nav aria-label="Main navigation">` [2026-06-17]
 - ✅ E7: `aria-label` on all icon-only links (social icons, hamburger, etc.) [2026-06-17]
-- ⏳ E4: `<main>` wrapper for primary content
-- ⏳ E5: `<header>` and `<footer>` semantic elements
-- ⏳ E6: `<nav aria-label="Main navigation">`
-- ⏳ E7: `aria-label` on all icon-only links (social icons, hamburger, etc.)
 - ✅ E8: `rel="noopener noreferrer"` on all `target="_blank"` links [2026-06-17]
 - ✅ E9: `rel="me"` on all social profile links in footer (identity signal) [2026-06-16]
 - ✅ E10: Descriptive alt text on all meaningful images [2026-06-17]
@@ -82,23 +77,19 @@ Stack: React + TypeScript + Vite
 ### F — Security & Trust
 - ✅ F1: Security headers via public/_headers [2026-06-15]
 - ✅ F2: Cache-Control headers for static assets (.js, .css, .woff2, images) [2026-06-15]
-- ⏳ F3: No mixed content (http:// references to external resources)
+- ✅ F3: No mixed content (http:// references to external resources) [2026-06-19]
 
 ### G — GEO / AI Search
-- ⏳ G1: `public/llms.txt` comprehensive
-- ⏳ G2: AI crawlers explicitly allowed in robots.txt
-- ⏳ G3: Homepage has clear one-sentence "who is Jehad Urre" answer in natural prose (for AI extraction)
+- ✅ G1: `public/llms.txt` comprehensive [2026-06-19]
+- ✅ G2: AI crawlers explicitly allowed in robots.txt [2026-06-19]
+- ✅ G3: Homepage has clear one-sentence "who is Jehad Urre" answer in natural prose (for AI extraction) [2026-06-19]
 - ⏳ G4: Section headings carry keyword context (not just "About" but "About Jehad Urre")
 - ⏳ G5: All key facts in real HTML text (not embedded in JS variables or images)
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-15]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-17]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-17]
-- ✅ H4: New components/sections detected and added to checklist [2026-06-15]
 - ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-17]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-17]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-17]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-19]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-19]
 - ✅ H4: New components/sections detected and added to checklist [2026-06-17]
 - ✅ H5: Verify `pnpm lint` passes before PR [2026-06-17]
 - ✅ H6: Verify `pnpm build` passes before PR [2026-06-17]
@@ -119,6 +110,19 @@ Stack: React + TypeScript + Vite
 
 ## DAILY LOG
 
+### 2026-06-19 — Day 4
+**Branch:** seo/daily-2026-06-19
+**PR:** SEO [Day 4]: JSON-LD Schemas and DNS Prefetch — 2026-06-19
+**Files changed:** index.html, src/components/Research.tsx, src/components/BlogPost.tsx, SEO_LOG.md
+**Changes made:**
+- index.html: Added `<link rel="dns-prefetch">` for `fonts.googleapis.com`, `fonts.gstatic.com`, and `github.com`. → Speeds up resolving third-party domain connections improving Core Web Vitals (D6).
+- src/components/Research.tsx: Implemented `ScholarlyArticle` JSON-LD schema wrapping the `publications` array dynamically using `react-helmet-async`. → Enhances semantic structured data for research credentials (C10).
+- src/components/BlogPost.tsx: Appended a `BreadcrumbList` JSON-LD to the blog post view establishing structural hierarchy (Home > Blog > Title). → Aids search engines in mapping internal structure effectively (C8).
+**Items completed today:** C8, C10, D6, F3, G1, G2, G3, A4
+**Items skipped:** G4, G5 (Instructions explicitly state not to rewrite user-facing text, maintaining current structural semantics)
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Cleaned up duplicate items appearing as both DONE and PENDING in the master checklist. Checked for mixed content vulnerabilities and verified llms.txt completeness for AI indexation.
+
 ### 2026-06-17 — Day 3
 **Branch:** seo/daily-2026-06-17
 **PR:** SEO [Day 3]: Semantic HTML Audit, Alt Texts, and Rel attributes — 2026-06-17
@@ -132,6 +136,7 @@ Stack: React + TypeScript + Vite
 **Items skipped:** None
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Validated target="_blank" links securely use rel="noopener noreferrer" and heading tags hierarchy correctly structures pages.
+
 ### 2026-06-18 — Day 3
 **Branch:** seo/daily-2026-06-18
 **PR:** SEO [Day 3]: Preload tags, heading hierarchies, and aria accessibility — 2026-06-18
@@ -159,7 +164,6 @@ Stack: React + TypeScript + Vite
 **Items skipped:** B12 (no manifest exists), C6-C10 (dynamic/API data needs human config)
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Verified images and tags are updated appropriately.
-
 
 ### 2026-06-15 — Day 1
 **Branch:** seo/daily-2026-06-15
