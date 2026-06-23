@@ -168,11 +168,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                   <div className="flex items-center space-x-2 text-sm">
                     <Calendar className="w-4 h-4 text-primary-500" />
                     <span className="text-secondary-600 dark:text-secondary-300">
-                      {(() => {
-                        const date = new Date();
-                        if (isNaN(date.getTime())) return "Invalid Date";
-                        return dateFormatter.format(date);
-                      })()}
+                      {dateFormatter.format(new Date())}
                     </span>
                   </div>
                 </div>
