@@ -128,12 +128,12 @@ Stack: React + TypeScript + Vite
 **PR:** SEO [Day 3]: Semantic HTML Audit, Alt Texts, and Rel attributes — 2026-06-17
 **Files changed:** src/components/LazyImage.tsx, src/components/Blog.tsx, src/components/Certifications.tsx, SEO_LOG.md
 **Changes made:**
-- src/components/LazyImage.tsx: Added explicit extraction and binding for the `alt` attribute. → Ensures purely decorative or meaningful images correctly receive their intended `alt` text.
-- src/components/Blog.tsx: Added missing `aria-labelledby` attribute on the `<section>` tag in error state. → Improves screen reader semantics.
-- src/components/Certifications.tsx: Added missing `aria-labelledby` attribute on the `<section>` tag in error state. → Improves screen reader semantics.
-- Verified Semantic HTML tasks (E1, E2, E4, E5, E6, E7, E8, E10, E13) using bash scripts and manual review to confirm compliance.
-**Items completed today:** E1, E2, E3, E4, E5, E6, E7, E8, E10, E11, E13, H2, H3, H5, H6
-**Items skipped:** None
+- src/components/Research.tsx: Injected `ScholarlyArticle` schema using `react-helmet-async` for the static publications array. → Improves GEO/AI visibility of research output (C10).
+- src/components/BlogPost.tsx: Added `BreadcrumbList` schema to the existing `<Helmet>` block. → Enhances search results appearance (C8).
+- Verified no mixed content exists besides XML namespaces. → Complies with F3.
+- Verified AI search text (llms.txt) and crawler permissions (robots.txt) are comprehensive. → Complies with G1 and G2.
+**Items completed today:** C8, C10, F3, G1, G2, H1, H2, H3, H4, H5, H6
+**Items skipped:** B12, C6, C7, C9, D6, D7, D9, D10, G3, G4, G5
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Validated target="_blank" links securely use rel="noopener noreferrer" and heading tags hierarchy correctly structures pages.
 
@@ -150,6 +150,20 @@ Stack: React + TypeScript + Vite
 **Items skipped:** None
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Verified that heading hierarchies and external link attributes are natively compliant in the project without further modifications. Asset cache headers (D11) were already correctly configured in public/_headers.
+
+### 2026-06-17 — Day 3
+**Branch:** seo/daily-2026-06-17
+**PR:** SEO [Day 3]: Semantic HTML Audit, Alt Texts, and Rel attributes — 2026-06-17
+**Files changed:** src/components/LazyImage.tsx, src/components/Blog.tsx, src/components/Certifications.tsx, SEO_LOG.md
+**Changes made:**
+- src/components/LazyImage.tsx: Added explicit extraction and binding for the `alt` attribute. → Ensures purely decorative or meaningful images correctly receive their intended `alt` text.
+- src/components/Blog.tsx: Added missing `aria-labelledby` attribute on the `<section>` tag in error state. → Improves screen reader semantics.
+- src/components/Certifications.tsx: Added missing `aria-labelledby` attribute on the `<section>` tag in error state. → Improves screen reader semantics.
+- Verified Semantic HTML tasks (E1, E2, E4, E5, E6, E7, E8, E10, E13) using bash scripts and manual review to confirm compliance.
+**Items completed today:** E1, E2, E3, E4, E5, E6, E7, E8, E10, E11, E13, H2, H3, H5, H6
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Validated target="_blank" links securely use rel="noopener noreferrer" and heading tags hierarchy correctly structures pages.
 
 ### 2026-06-16 — Day 2
 **Branch:** seo/daily-2026-06-16
