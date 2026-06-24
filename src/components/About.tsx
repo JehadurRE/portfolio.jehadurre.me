@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Zap, Users, Award, BookOpen, Lightbulb, Database, Cloud, Smartphone ,CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
+import { Code, Zap, Users, Award, BookOpen, Lightbulb, CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
+import { getIconComponent, getProficiencyText } from '../utils/skillUtils';
 
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
@@ -19,21 +20,6 @@ const achievements = [
     { name: 'Tools', technologies: ['Git', 'Docker', 'AWS', 'Supabase'], icon: Lightbulb },
   ];
 
-const getIconComponent = (iconName: string) => {
-  const icons: Record<string, React.ElementType> = {
-    Code,
-    Zap,
-    BookOpen,
-    Lightbulb,
-    Database,
-    Cloud,
-    Smartphone,
-    Award,
-    Users
-  };
-  return icons[iconName] || Code;
-};
-
 const getProficiencyColor = (level: number) => {
   switch (level) {
     case 5: return 'bg-green-500';
@@ -42,17 +28,6 @@ const getProficiencyColor = (level: number) => {
     case 2: return 'bg-orange-500';
     case 1: return 'bg-red-500';
     default: return 'bg-gray-500';
-  }
-};
-
-const getProficiencyText = (level: number) => {
-  switch (level) {
-    case 5: return 'Expert';
-    case 4: return 'Advanced';
-    case 3: return 'Intermediate';
-    case 2: return 'Beginner';
-    case 1: return 'Novice';
-    default: return 'Unknown';
   }
 };
 
