@@ -9,6 +9,7 @@
   }
   
   body {
+    transition: background-color 0.3s, color 0.3s;
     @apply bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-secondary-900 dark:via-secondary-800 dark:to-secondary-900;
     transition: background-color 0.3s, color 0.3s;
     background-attachment: fixed;

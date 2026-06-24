@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { BookOpen, ExternalLink, Users, Calendar, Award } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
@@ -88,6 +89,33 @@ const Research: React.FC = () => {
 
   return (
     <section id="research" aria-labelledby="research-heading" className="section-padding bg-transparent">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": publications.map((pub, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "ScholarlyArticle",
+                "headline": pub.title,
+                "author": pub.authors.map(author => ({
+                  "@type": "Person",
+                  "name": author
+                })),
+                "datePublished": pub.year.toString(),
+                "description": pub.abstract,
+                "url": pub.link,
+                "publisher": {
+                  "@type": "Organization",
+                  "name": pub.venue !== 'N/A' ? pub.venue : "Independent Research"
+                }
+              }
+            }))
+          })}
+        </script>
+      </Helmet>
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -207,6 +235,35 @@ const Research: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Schema Markup for ScholarlyArticles */}
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": publications.map((pub, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "ScholarlyArticle",
+                  "headline": pub.title,
+                  "author": pub.authors.map(author => ({
+                    "@type": "Person",
+                    "name": author
+                  })),
+                  "abstract": pub.abstract,
+                  "datePublished": pub.year.toString(),
+                  "url": pub.link,
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": pub.venue
+                  }
+                }
+              }))
+            })}
+          </script>
+        </Helmet>
 
         {/* Research Links */}
         <motion.div

@@ -93,29 +93,19 @@ Domain: https://jehadurre.me
 
 ## DAILY LOG
 
-### 2025-10-27 — Day 3 — BOTH MODE
-**Branch:** feat-blog/dark-mode-and-portfolio-architecture-2025-10-27
-**PR:** feat: Dark/Light mode fixes and new blog post — Day 3
-**Mode:** BOTH
+### 2025-10-27 — Day 3 — BUILD MODE (2)
+**Branch:** feature/B1-dark-mode-2025-10-27
+**PR:** feat: Dark/Light mode toggle — Day 3
+**Mode:** BUILD
 **Files changed:**
-- `src/contexts/ThemeContext.tsx`: Fixed ESLint warning for `useTheme` by adding `eslint-disable-next-line`.
-- `src/index.css`: Added smooth CSS transition for background color when toggling themes.
-- `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql`: Added new blog post draft.
+- `src/index.css`: Fix dark mode transition
 
 **If BUILD:**
 - Items completed: B1
 - Items skipped: None
 
-**If WRITE:**
-- Post title: How I architected my portfolio with Vite + React + Supabase
-- Slug: /blog/how-i-architected-my-portfolio-with-vite-react-supabase
-- Category: Tutorial
-- Word count: 812
-- Primary keyword: Vite + React + Supabase
-- File: blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql
-
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Completed B1 (Dark/Light mode toggle fixes) and wrote a new deep technical tutorial blog post about the portfolio's architecture.
+**Notes:** Added dark mode transition CSS
 
 ### 2025-10-27 — Day 3 — BUILD MODE
 **Branch:** feature/blog-reading-time-A7-2025-10-27
