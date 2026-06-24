@@ -236,6 +236,35 @@ const Research: React.FC = () => {
           ))}
         </motion.div>
 
+        {/* Schema Markup for ScholarlyArticles */}
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": publications.map((pub, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "ScholarlyArticle",
+                  "headline": pub.title,
+                  "author": pub.authors.map(author => ({
+                    "@type": "Person",
+                    "name": author
+                  })),
+                  "abstract": pub.abstract,
+                  "datePublished": pub.year.toString(),
+                  "url": pub.link,
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": pub.venue
+                  }
+                }
+              }))
+            })}
+          </script>
+        </Helmet>
+
         {/* Research Links */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
