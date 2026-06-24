@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 1 | 2025-10-27 | how-i-architected-my-portfolio-with-vite-react-supabase | How I architected my portfolio with Vite + React + Supabase | Tutorial | 812 |
 
 ---
 
@@ -73,7 +74,7 @@ Domain: https://jehadurre.me
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
-- Blog categories used:
+- Blog categories used: Tutorial
 
 ---
 
@@ -86,6 +87,7 @@ Domain: https://jehadurre.me
 - 🚫 Submit sitemap to Google Search Console
 - 🚫 Create Supabase blog table (run migration: `supabase/migrations/20251025120000_blog_schema_update.sql`)
 - 🚫 Configure EmailJS or Resend for contact form
+- 🚫 Run SQL insert script `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql` in Supabase to publish the new blog post
 
 ---
 
