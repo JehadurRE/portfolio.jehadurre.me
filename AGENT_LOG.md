@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2025-10-27
+Last updated: 2026-06-24
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -22,7 +22,7 @@ Domain: https://jehadurre.me
 - ✅ A10: Social sharing buttons 2025-10-27
 
 ### B — Missing Portfolio Features
-- ⏳ B1: Dark/Light mode toggle
+- ✅ B1: Dark/Light mode toggle 2026-06-24
 - ⏳ B2: Individual Project pages
 - ⏳ B3: GitHub Activity Integration
 - ⏳ B4: Tech Stack / Skills visualization upgrade
@@ -90,6 +90,20 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-06-24 — Day 4 — BUILD MODE
+**Branch:** feature/dark-mode-transition-B1-2026-06-24
+**PR:** feat: Finalize dark mode transition (B1) — Day 4
+**Mode:** BUILD
+**Files changed:**
+- `src/index.css`: Added CSS transitions for background-color and color to the body element.
+
+**If BUILD:**
+- Items completed: B1
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Finalized the Dark/Light mode toggle feature (B1) by adding the requested smooth transition on the `body` element in `src/index.css` to match standard portfolio UX requirements.
 
 ### 2025-10-27 — Day 3 — BUILD MODE
 **Branch:** feature/blog-reading-time-A7-2025-10-27
