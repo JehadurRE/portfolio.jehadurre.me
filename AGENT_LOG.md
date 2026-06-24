@@ -22,7 +22,7 @@ Domain: https://jehadurre.me
 - ✅ A10: Social sharing buttons 2025-10-27
 
 ### B — Missing Portfolio Features
-- ✅ B1: Dark/Light mode toggle 2026-06-24
+- ✅ B1: Dark/Light mode toggle 2025-10-27
 - ⏳ B2: Individual Project pages
 - ⏳ B3: GitHub Activity Integration
 - ⏳ B4: Tech Stack / Skills visualization upgrade
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 1 | 2025-10-27 | how-i-architected-my-portfolio-with-vite-react-supabase | How I architected my portfolio with Vite + React + Supabase | Tutorial | 812 |
 
 ---
 
@@ -73,7 +74,7 @@ Domain: https://jehadurre.me
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
-- Blog categories used:
+- Blog categories used: Tutorial
 
 ---
 
@@ -86,24 +87,25 @@ Domain: https://jehadurre.me
 - 🚫 Submit sitemap to Google Search Console
 - 🚫 Create Supabase blog table (run migration: `supabase/migrations/20251025120000_blog_schema_update.sql`)
 - 🚫 Configure EmailJS or Resend for contact form
+- 🚫 Run SQL insert script `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql` in Supabase to publish the new blog post
 
 ---
 
 ## DAILY LOG
 
-### 2026-06-24 — Day 4 — BUILD MODE
-**Branch:** feature/dark-mode-transition-B1-2026-06-24
-**PR:** feat: Finalize dark mode transition (B1) — Day 4
+### 2025-10-27 — Day 3 — BUILD MODE (2)
+**Branch:** feature/B1-dark-mode-2025-10-27
+**PR:** feat: Dark/Light mode toggle — Day 3
 **Mode:** BUILD
 **Files changed:**
-- `src/index.css`: Added CSS transitions for background-color and color to the body element.
+- `src/index.css`: Fix dark mode transition
 
 **If BUILD:**
 - Items completed: B1
 - Items skipped: None
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Finalized the Dark/Light mode toggle feature (B1) by adding the requested smooth transition on the `body` element in `src/index.css` to match standard portfolio UX requirements.
+**Notes:** Added dark mode transition CSS
 
 ### 2025-10-27 — Day 3 — BUILD MODE
 **Branch:** feature/blog-reading-time-A7-2025-10-27

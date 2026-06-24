@@ -79,3 +79,7 @@
 ## 2024-11-20 - Memoizing Config Arrays Bound to State
 **Learning:** In React components that re-render frequently, defining inline configuration arrays inside the component function body causes them to be recreated on every single render. When these arrays depend on local component state (e.g. `statCards` depending on `stats` data), they cannot be statically hoisted outside the component body.
 **Action:** When creating configuration arrays that depend on component state (such as `statCards` or `categories` inside admin UI components), always wrap them in a `useMemo` hook with the relevant state dependencies instead of hoisting them outside the component body. This prevents unnecessary array allocations on every render without breaking their reactivity to state changes.
+
+## 2026-06-23 - Prevent Duplicate Function Initialization & IIFE in Render
+**Learning:** Defining local utility functions like `formatDate` that duplicate imported utils (e.g., in `Projects.tsx`) causes unnecessary `Intl.DateTimeFormat` initializations and bundle duplication. Similarly, using Immediately Invoked Function Expressions (IIFEs) inline inside JSX (e.g., in `AdminDashboard.tsx`) forces React to create a new anonymous function object on every render.
+**Action:** Delete duplicate local function definitions if the utility is already imported. Replace inline IIFEs in render functions with direct calls or memoized values to prevent unnecessary function allocations on re-renders.
