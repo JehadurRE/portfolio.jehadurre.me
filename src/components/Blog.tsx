@@ -6,6 +6,7 @@ import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-reac
 import { useNavigate } from 'react-router-dom';
 import { blogApi, type BlogPost } from '../lib/supabase';
 
+
 const Blog: React.FC = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView({
