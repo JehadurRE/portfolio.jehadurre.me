@@ -63,7 +63,7 @@ const BlogPost: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary inline-flex items-center space-x-2"
+                className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back to Home</span>
@@ -173,7 +173,7 @@ const BlogPost: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 mb-8 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+              className="inline-flex items-center space-x-2 mb-8 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Blog</span>
@@ -331,7 +331,7 @@ const BlogPost: React.FC = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn-secondary inline-flex items-center space-x-2"
+                    className="btn-secondary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span>Back to Home</span>
