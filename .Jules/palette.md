@@ -36,3 +36,6 @@
 ## 2024-05-18 - Playwright Timeouts due to Hardcoded Loading Screens
 **Learning:** Hardcoded loading screens with artificial delays (e.g., `setTimeout` for 3 seconds in `LoadingScreen.tsx`) can block automated visual verification tools like Playwright, leading to blank screenshots or timeouts if the script only waits for `networkidle`.
 **Action:** When writing frontend verification scripts in this repository, explicitly wait for the loading screen to unmount or for specific content elements (like `#hero` or `header`) to be visible using `page.wait_for_selector('...', state='visible', timeout=10000)` instead of relying solely on network state.
+## 2024-06-25 - Added keyboard focus states to Framer Motion link buttons
+**Learning:** Found that `<motion.button>` components acting as navigational links in `BlogPost.tsx` frequently lack proper visual ARIA focus states by default.
+**Action:** Always ensure that any interactive elements, especially navigational buttons powered by animation libraries, have explicit focus visual states (such as `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded`) added to their `className` property to assist keyboard users.
