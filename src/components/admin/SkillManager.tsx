@@ -1,23 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, Star, Code, Zap, BookOpen, Lightbulb, Database, Cloud, Smartphone, Award, Users } from 'lucide-react';
+import { Plus, Edit, Trash2, Star } from 'lucide-react';
 import { supabase, type Skill } from '../../lib/supabase';
 import SkillForm from './SkillForm';
-
-const getIconComponent = (iconName: string) => {
-  const icons: Record<string, React.ElementType> = {
-    Code,
-    Zap,
-    BookOpen,
-    Lightbulb,
-    Database,
-    Cloud,
-    Smartphone,
-    Award,
-    Users
-  };
-  return icons[iconName] || Code;
-};
+import { getIconComponent, getProficiencyText } from '../../utils/skillUtils';
 
 const getProficiencyColor = (level: number) => {
   switch (level) {
@@ -27,17 +13,6 @@ const getProficiencyColor = (level: number) => {
     case 2: return 'from-orange-500 to-orange-600';
     case 1: return 'from-red-500 to-red-600';
     default: return 'from-gray-500 to-gray-600';
-  }
-};
-
-const getProficiencyText = (level: number) => {
-  switch (level) {
-    case 5: return 'Expert';
-    case 4: return 'Advanced';
-    case 3: return 'Intermediate';
-    case 2: return 'Beginner';
-    case 1: return 'Novice';
-    default: return 'Unknown';
   }
 };
 
