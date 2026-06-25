@@ -12,7 +12,7 @@ import {
   Eye,
   FileText,
 } from "lucide-react";
-import MarkdownRenderer from "../utils/MarkdownRenderer";
+const MarkdownRenderer = React.lazy(() => import("../utils/MarkdownRenderer"));
 import LazyImage from "./LazyImage";
 
 import decodeBase64UTF8 from "../utils/DecodeUTF";
@@ -563,10 +563,12 @@ For any questions or suggestions, feel free to reach out:
                     </div>
                   ) : (
                     <div className="prose prose-lg max-w-none dark:prose-invert text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                      <MarkdownRenderer
+                      <React.Suspense fallback={<div className="flex flex-col items-center justify-center h-32 space-y-4"><div className="animate-spin rounded-full h-8 w-8 border-2 border-primary-500 border-t-transparent"></div><p className="text-secondary-600 dark:text-secondary-300">Loading Markdown renderer...</p></div>}>
+                        <MarkdownRenderer
                         markdown={selectedProject.readme}
                         githubUrl={`https://github.com/${selectedProject.project.owner.login}/${selectedProject.project.name}`}
                       />
+                      </React.Suspense>
                     </div>
                   )}
                 </div>
