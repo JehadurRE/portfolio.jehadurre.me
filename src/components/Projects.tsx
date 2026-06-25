@@ -295,6 +295,23 @@ For any questions or suggestions, feel free to reach out:
     return filter === "all" ? projects : projects.filter((p) => p.language === filter);
   }, [projects, filter]);
 
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedProject) {
+        setSelectedProject(null);
+      }
+    };
+
+    if (selectedProject) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
+
   return (
     <section id="projects" aria-labelledby="projects-heading" className="section-padding bg-transparent">
       <div className="container-custom">

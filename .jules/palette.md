@@ -1,0 +1,3 @@
+## $(date +%Y-%m-%d) - Modal Keyboard Accessibility
+**Learning:** Custom modals (like those using Framer Motion) in React don't have native keyboard support. Users expect to be able to dismiss them using the Escape key. Without this, keyboard-only users and screen reader users can get trapped or face a degraded experience, violating WCAG 2.1.1 Keyboard Accessible.
+**Action:** Always add a global `keydown` event listener for the 'Escape' key when implementing custom modal/dialog components. Ensure it is attached when the modal opens and cleaned up when the modal closes (e.g., using `useEffect` with dependency tracking).
