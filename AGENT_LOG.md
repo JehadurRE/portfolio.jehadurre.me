@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-06-24
+Last updated: 2026-06-25
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -19,11 +19,11 @@ Domain: https://jehadurre.me
 - ✅ A7: Reading time calculator 2025-10-27
 - ✅ A8: Blog post JSON-LD 2025-10-25
 - ✅ A9: Sitemap update 2025-10-27
-- ✅ A10: Social sharing buttons 2025-10-27
+- ✅ A10: Social sharing buttons 2026-06-16
 
 ### B — Missing Portfolio Features
 - ✅ B1: Dark/Light mode toggle 2025-10-27
-- ⏳ B2: Individual Project pages
+- ✅ B2: Individual Project pages 2026-06-25
 - ⏳ B3: GitHub Activity Integration
 - ⏳ B4: Tech Stack / Skills visualization upgrade
 - ⏳ B5: Resume/CV download button
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 2 | 2026-06-25 | building-the-research-management-system | Deep Dive: Building the Research Management System | Project | 442 |
 | 1 | 2025-10-27 | how-i-architected-my-portfolio-with-vite-react-supabase | How I architected my portfolio with Vite + React + Supabase | Tutorial | 812 |
 
 ---
@@ -74,7 +75,7 @@ Domain: https://jehadurre.me
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
-- Blog categories used: Tutorial
+- Blog categories used: Tutorial, Project
 
 ---
 
@@ -88,10 +89,36 @@ Domain: https://jehadurre.me
 - 🚫 Create Supabase blog table (run migration: `supabase/migrations/20251025120000_blog_schema_update.sql`)
 - 🚫 Configure EmailJS or Resend for contact form
 - 🚫 Run SQL insert script `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql` in Supabase to publish the new blog post
+- 🚫 Run SQL insert script `blog-posts/drafts/building-the-research-management-system.sql` in Supabase to publish the new blog post
 
 ---
 
 ## DAILY LOG
+
+### 2026-06-25 — Day 4 — BOTH MODE
+**Branch:** feat-blog/project-pages-and-post-2026-06-25
+**PR:** feat: Individual Project Pages and new blog post — Day 4
+**Mode:** BOTH
+**Files changed:**
+- `src/pages/ProjectDetail.tsx`: Created new page to display individual project details and README.
+- `src/App.tsx`: Added lazy-loaded route for `/projects/:slug`.
+- `src/components/Projects.tsx`: Refactored to remove the in-page modal and link to the new project detail pages.
+- `blog-posts/drafts/building-the-research-management-system.sql`: Created SQL insert script for the new blog post.
+
+**If BUILD:**
+- Items completed: B2
+- Items skipped: None
+
+**If WRITE:**
+- Post title: Deep Dive: Building the Research Management System
+- Slug: /blog/building-the-research-management-system
+- Category: Project
+- Word count: 442
+- Primary keyword: Research Management System
+- File: blog-posts/drafts/building-the-research-management-system.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Replaced complex modal state in Projects.tsx with standard React Router navigation, improving performance and enabling direct linking (SEO benefit). Also wrote a new blog post breaking down the architecture of the Research Management System project.
 
 ### 2025-10-27 — Day 3 — BUILD MODE (2)
 **Branch:** feature/B1-dark-mode-2025-10-27
