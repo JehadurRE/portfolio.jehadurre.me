@@ -90,6 +90,23 @@ const Certifications: React.FC = () => {
       : achievements.filter(achievement => achievement.category === achievementFilter);
   }, [achievements, achievementFilter]);
 
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedCert) {
+        setSelectedCert(null);
+      }
+    };
+
+    if (selectedCert) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedCert]);
+
   if (error) {
     return (
       <section id="certifications-error" aria-labelledby="certifications-error-heading" className="section-padding bg-transparent">
