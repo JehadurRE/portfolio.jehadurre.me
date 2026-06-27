@@ -11,7 +11,7 @@ const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY;
 const siteUrl = 'https://jehadurre.me';
 
 const staticRoutes = [
-  { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: '2026-06-25' },
+  { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: '2026-06-27' },
   { url: '/#about', changefreq: 'monthly', priority: 0.8 },
   { url: '/#projects', changefreq: 'weekly', priority: 0.8 },
   { url: '/#research', changefreq: 'monthly', priority: 0.8 },
@@ -34,6 +34,27 @@ ${route.lastmod ? `    <lastmod>${route.lastmod}</lastmod>\n` : ''}    <changefr
 });
 
 async function generateSitemap() {
+  try {
+    const response = await fetch("https://api.github.com/users/JehadurRE/repos?sort=updated&per_page=50");
+    if (!response.ok) {
+        console.warn('Failed to fetch from GitHub API:', response.status);
+    } else {
+        const repos = await response.json();
+        repos.forEach((repo: { name: string, updated_at: string }) => {
+            const updatedAt = repo.updated_at ? new Date(repo.updated_at).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+            sitemap += `  <url>
+    <loc>${siteUrl}/project/${repo.name}</loc>
+    <lastmod>${updatedAt}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`;
+        });
+    }
+  } catch(err) {
+      console.warn('Failed to fetch repos from GitHub API:', err);
+  }
+
   if (!supabaseUrl || !supabaseAnonKey || supabaseUrl.includes('dummy')) {
     console.warn('Missing or dummy Supabase environment variables, generating basic sitemap');
     writeSitemap();
