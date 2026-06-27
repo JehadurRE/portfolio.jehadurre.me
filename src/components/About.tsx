@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Code, Zap, Users, Award, BookOpen, Lightbulb, CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
 import { getIconComponent, getProficiencyText } from '../utils/skillUtils';
+import GithubActivity from './GithubActivity';
 
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
@@ -356,6 +357,10 @@ const About: React.FC = () => {
 
 
         </div>
+
+        {/* GitHub Activity Section */}
+        <GithubActivity />
+
       </div>
     </section>
   );
