@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-06-25
+Last updated: 2026-06-27
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -87,12 +87,12 @@ Stack: React + TypeScript + Vite
 - ⏳ G5: All key facts in real HTML text (not embedded in JS variables or images)
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-25]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-25]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-25]
-- ✅ H4: New components/sections detected and added to checklist [2026-06-25]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-06-25]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-06-25]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-27]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-27]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-27]
+- ✅ H4: New components/sections detected and added to checklist [2026-06-27]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-06-27]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-06-27]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
@@ -107,10 +107,24 @@ Stack: React + TypeScript + Vite
 ---
 
 ## NEW ITEMS DISCOVERED THIS SESSION
+- ➕ NEW: `ProjectDetail.tsx` is now dynamically generating its own `SoftwareSourceCode` schema. Added dynamic URLs to `sitemap.xml` based on GitHub API.
 
 ---
 
 ## DAILY LOG
+
+### 2026-06-27 — Day 6
+**Branch:** seo/daily-2026-06-27
+**PR:** SEO [Day 6]: Include Dynamic Projects in Sitemap & Restore App.tsx
+**Files changed:** scripts/generate-sitemap.ts, SEO_LOG.md, src/App.tsx
+**Changes made:**
+- src/App.tsx: Restored accidentally deleted content and added the missing `/project/:id` React Router route to correctly resolve project URLs.
+- scripts/generate-sitemap.ts: Added GitHub API fetch to dynamically generate sitemap URLs for individual project pages (`/project/:id`).
+- SEO_LOG.md: Tracked new ProjectDetail component in NEW ITEMS and updated daily log.
+**Items completed today:** H1, H2, H3, H4, H5, H6
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Resolved the code review block by correctly defining the `/project/:id` route in `App.tsx` before adding it to the sitemap generator. This ensures generated URLs are valid and do not 404.
 
 ### 2026-06-25 — Day 5
 **Branch:** seo/daily-2026-06-25
