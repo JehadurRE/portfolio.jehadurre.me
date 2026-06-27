@@ -1,8 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, Star, Code, Zap, BookOpen, Lightbulb, Database, Cloud, Smartphone, Award, Users } from 'lucide-react';
+import { Plus, Edit, Trash2, Star } from 'lucide-react';
 import { supabase, type Skill } from '../../lib/supabase';
 import SkillForm from './SkillForm';
+import { getIconComponent, getProficiencyText } from '../../utils/skillUtils';
+
+const getProficiencyColor = (level: number) => {
+  switch (level) {
+    case 5: return 'from-green-500 to-green-600';
+    case 4: return 'from-blue-500 to-blue-600';
+    case 3: return 'from-yellow-500 to-yellow-600';
+    case 2: return 'from-orange-500 to-orange-600';
+    case 1: return 'from-red-500 to-red-600';
+    default: return 'from-gray-500 to-gray-600';
+  }
+};
 
 const SkillManager: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -24,7 +36,7 @@ const SkillManager: React.FC = () => {
 
       if (error) throw error;
       setSkills(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching skills:', error);
     } finally {
       setLoading(false);
@@ -42,54 +54,25 @@ const SkillManager: React.FC = () => {
 
       if (error) throw error;
       fetchSkills();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting skill:', error);
     }
   };
 
-  const filteredSkills = skills.filter(skill => {
-    if (filter === 'all') return true;
-    return skill.category === filter;
-  });
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredSkills` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredSkills = useMemo(() => {
+    return skills.filter(skill => {
+      if (filter === 'all') return true;
+      return skill.category === filter;
+    });
+  }, [skills, filter]);
 
-  const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
-      Code,
-      Zap,
-      BookOpen,
-      Lightbulb,
-      Database,
-      Cloud,
-      Smartphone,
-      Award,
-      Users
-    };
-    return icons[iconName] || Code;
-  };
-
-  const getProficiencyColor = (level: number) => {
-    switch (level) {
-      case 5: return 'from-green-500 to-green-600';
-      case 4: return 'from-blue-500 to-blue-600';
-      case 3: return 'from-yellow-500 to-yellow-600';
-      case 2: return 'from-orange-500 to-orange-600';
-      case 1: return 'from-red-500 to-red-600';
-      default: return 'from-gray-500 to-gray-600';
-    }
-  };
-
-  const getProficiencyText = (level: number) => {
-    switch (level) {
-      case 5: return 'Expert';
-      case 4: return 'Advanced';
-      case 3: return 'Intermediate';
-      case 2: return 'Beginner';
-      case 1: return 'Novice';
-      default: return 'Unknown';
-    }
-  };
-
-  const categories = [
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `categories` because it loops over `skills` 7 times to calculate counts.
+  // This avoids massive O(N) recalculations on every render.
+  const categories = useMemo(() => [
     { id: 'all', name: 'All Skills', count: skills.length },
     { id: 'frontend', name: 'Frontend', count: skills.filter(s => s.category === 'frontend').length },
     { id: 'backend', name: 'Backend', count: skills.filter(s => s.category === 'backend').length },
@@ -98,7 +81,7 @@ const SkillManager: React.FC = () => {
     { id: 'database', name: 'Database', count: skills.filter(s => s.category === 'database').length },
     { id: 'cloud', name: 'Cloud', count: skills.filter(s => s.category === 'cloud').length },
     { id: 'mobile', name: 'Mobile', count: skills.filter(s => s.category === 'mobile').length },
-  ];
+  ], [skills]);
 
   if (showForm) {
     return (
@@ -147,7 +130,8 @@ const SkillManager: React.FC = () => {
             key={category.id}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setFilter(category.id as any)}
+            onClick={() => setFilter(category.id as 'all' | 'frontend' | 'backend' | 'research' | 'tools' | 'database' | 'cloud' | 'mobile')}
+            aria-pressed={filter === category.id}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === category.id
                 ? 'bg-primary-500 text-white shadow-lg'

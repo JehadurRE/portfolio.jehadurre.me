@@ -4,13 +4,48 @@ import { useInView } from 'react-intersection-observer';
 import { Send, MapPin, Phone, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const contactInfo = [
+  {
+    icon: Mail,
+    label: 'Email',
+    value: 'emran.jehadur@gmail.com',
+    href: 'mailto:emran.jehadur@gmail.com'
+  },
+  {
+    icon: MapPin,
+    label: 'Location',
+    value: 'Available for Remote Work',
+    href: null
+  },
+  {
+    icon: Phone,
+    label: 'Availability',
+    value: 'Open to Opportunities',
+    href: null
+  }
+];
+// ⚡ Bolt Performance Optimization:
+// Hoist static `TypeAnimation` sequence arrays outside the component body to prevent recreation on every render.
+const contactSequence = [
+  "initialize contact_form",
+  1000,
+];
+
+
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
+];
+
 const Contact: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  const [terminalStep, setTerminalStep] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,33 +54,6 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'emran.jehadur@gmail.com',
-      href: 'mailto:emran.jehadur@gmail.com'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Available for Remote Work',
-      href: null
-    },
-    {
-      icon: Phone,
-      label: 'Availability',
-      value: 'Open to Opportunities',
-      href: null
-    }
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
-  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,7 +81,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-transparent">
+    <section id="contact" aria-labelledby="contact-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -82,7 +90,7 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Get In Touch
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
@@ -111,7 +119,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-4">
+            <address className="not-italic space-y-4">
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
@@ -142,7 +150,7 @@ const Contact: React.FC = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </address>
 
             {/* Social Links */}
             <motion.div
@@ -197,10 +205,7 @@ const Contact: React.FC = () => {
               <div className="space-y-2 min-h-[400px]">
                 <div className="text-green-400">
                   $ <TypeAnimation
-                    sequence={[
-                      'initialize contact_form',
-                      1000,
-                    ]}
+                    sequence={contactSequence}
                     wrapper="span"
                     speed={50}
                     cursor={false}

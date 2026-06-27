@@ -1,35 +1,40 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Phone ,HeartOff} from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import LazyImage from './LazyImage';
+
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const socialLinks = [
+  { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
+  { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
+];
+
+const quickLinks = [
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Research', href: '#research' },
+  { name: 'Certifications', href: '#certifications' },
+  { name: 'Blog', href: '#blog' },
+  { name: 'Contact', href: '#contact' },
+];
+
+const services = [
+  'Full-Stack Development',
+  'Research & Development',
+  'Technical Consulting',
+  'Code Review & Mentoring',
+  'System Architecture',
+  'Performance Optimization'
+];
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
-  ];
-
-  const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Research', href: '#research' },
-    { name: 'Certifications', href: '#certifications' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const services = [
-    'Full-Stack Development',
-    'Research & Development',
-    'Technical Consulting',
-    'Code Review & Mentoring',
-    'System Architecture',
-    'Performance Optimization'
-  ];
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   const [email, setEmail] = React.useState('');
   const [error, setError] = React.useState('');
@@ -51,6 +56,10 @@ const Footer: React.FC = () => {
                 alt="Jehadur Rahman Emran"
                 containerClassName="w-12 h-12 rounded-full ring-2 ring-primary-500/20"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+                width={48}
+                height={48}
               />
               <div>
                 <h3 className="text-xl font-bold text-gradient">JehadurRE</h3>
@@ -68,7 +77,7 @@ const Footer: React.FC = () => {
                   key={link.label}
                   href={link.href}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer me"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
@@ -96,7 +105,7 @@ const Footer: React.FC = () => {
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <motion.a
-                    href={link.href}
+                    href={isHome ? link.href : `/${link.href}`}
                     whileHover={{ x: 5 }}
                     className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors duration-200 flex items-center space-x-2"
                   >
@@ -189,6 +198,7 @@ const Footer: React.FC = () => {
                 type="email"
                 maxLength={255}
                 placeholder="Your email"
+                aria-label="Email address for newsletter"
                 className="flex-1 px-3 py-2 text-sm rounded-lg glass border border-secondary-600 dark:border-secondary-700 text-white dark:text-secondary-200 placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 value={email}
                 onChange={e => {
@@ -226,20 +236,22 @@ const Footer: React.FC = () => {
         >
           <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
             <div className="flex items-center space-x-2 text-secondary-300 dark:text-secondary-400">
-              <span>© {currentYear} Md. Jehadur Rahman Emran. Made with</span>
-              <HeartOff className="w-4 h-4 text-rose-900 fill-current" />
-              <span>and lots of ☕</span>
+              <small className="flex items-center space-x-2">
+                <span>© {currentYear} Md. Jehadur Rahman Emran. Made with</span>
+                <HeartOff className="w-4 h-4 text-rose-900 fill-current" />
+                <span>and lots of ☕</span>
+              </small>
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <motion.a
-                href="#"
+                href="/"
                 whileHover={{ scale: 1.05 }}
                 className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
               >
                 Privacy Policy
               </motion.a>
               <motion.a
-                href="#"
+                href="/"
                 whileHover={{ scale: 1.05 }}
                 className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
               >
@@ -247,6 +259,7 @@ const Footer: React.FC = () => {
               </motion.a>
               <motion.a
                 href="/admin"
+                aria-label="Admin link"
                 whileHover={{ scale: 1.05 }}
                 className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors flex items-center space-x-1"
               >

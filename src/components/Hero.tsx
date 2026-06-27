@@ -5,17 +5,33 @@ import { TypeAnimation } from 'react-type-animation';
 import { GoogleScholar } from '../icons/CustomsByJehadurRE'; // Assuming you have a custom icon for Google Scholar
 
 
-const Hero: React.FC = () => {
-  const socialLinks = [
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const socialLinks = [
     { icon: Github, href: 'https://github.com/JehadurRE', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/jehadurre', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://x.com/JehadurRE', label: 'Twitter' },
     { icon: Mail, href: 'mailto:emran.jehadur@gmail.com', label: 'Email' },
-    { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Email' }
+
+    { icon: GoogleScholar, href: 'https://scholar.google.com/citations?user=xfSa-0oAAAAJ&hl=en', label: 'Google Scholar' }
   ];
 
+// ⚡ Bolt Performance Optimization:
+// Hoist static `TypeAnimation` sequence arrays outside the component body to prevent recreation on every render.
+const heroSequence = [
+  "Software Engineer",
+  2000,
+  "Researcher",
+  2000,
+  "Full-Stack Developer",
+  2000,
+  "Problem Solver",
+  2000,
+];
+
+const Hero: React.FC = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" aria-labelledby="hero-heading" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-300/20 rounded-full blur-3xl animate-float"></div>
@@ -37,8 +53,12 @@ const Hero: React.FC = () => {
                 <div className="w-full h-full rounded-full bg-white dark:bg-secondary-800 p-2">
                   <img
                     src="https://github.com/JehadurRE.png"
-                    alt="Md. Jehadur Rahman Emran"
+                    alt="Jehad Urre — Software Engineer"
                     className="w-full h-full rounded-full object-cover"
+                    fetchPriority="high"
+                    width="192"
+                    height="192"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -55,23 +75,14 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-6"
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
               <span className="text-gradient">Md. Jehadur Rahman</span>
               <br />
               <span className="text-secondary-800 dark:text-secondary-200">Emran</span>
             </h1>
             <div className="text-xl sm:text-2xl text-secondary-600 dark:text-secondary-300 font-medium">
               <TypeAnimation
-                sequence={[
-                  'Software Engineer',
-                  2000,
-                  'Researcher',
-                  2000,
-                  'Full-Stack Developer',
-                  2000,
-                  'Problem Solver',
-                  2000,
-                ]}
+                sequence={heroSequence}
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
@@ -103,7 +114,7 @@ const Hero: React.FC = () => {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary inline-flex items-center space-x-2"
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             >
               <span>View My Work</span>
               <ExternalLink className="w-4 h-4" />
@@ -112,7 +123,7 @@ const Hero: React.FC = () => {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary inline-flex items-center space-x-2"
+              className="btn-secondary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
             >
               <span>Get In Touch</span>
               <Mail className="w-4 h-4" />
@@ -137,7 +148,7 @@ const Hero: React.FC = () => {
                 transition={{ delay: 0.8 + index * 0.1 }}
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
-                className="glass-card p-3 hover:shadow-lg transition-all duration-300"
+                className="glass-card p-3 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-xl"
                 aria-label={link.label}
               >
                 <link.icon className="w-6 h-6 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" />
@@ -152,7 +163,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="animate-bounce"
           >
-            <a href="#about" className="inline-block">
+            <a href="#about" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full" aria-label="Scroll down to About section">
               <ArrowDown className="w-6 h-6 text-secondary-400 dark:text-secondary-500" />
             </a>
           </motion.div>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Jehadur Rahman Emran's Blog</title>
+        <link>https://jehadurre.me</link>
+        <description>Thoughts on software engineering, full-stack development, and research.</description>
+        <lastBuildDate>Sat, 27 Jun 2026 05:04:17 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>Jehadur Rahman Emran's Blog</title>
+            <url>https://jehadurre.me/logo.png</url>
+            <link>https://jehadurre.me</link>
+        </image>
+        <copyright>All rights reserved 2026, Jehadur Rahman Emran</copyright>
+    </channel>
+</rss>

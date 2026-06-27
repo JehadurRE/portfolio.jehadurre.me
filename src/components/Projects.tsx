@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { formatDate } from '../utils/dateUtils';
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -11,7 +12,7 @@ import {
   Eye,
   FileText,
 } from "lucide-react";
-import MarkdownRenderer from "../utils/MarkdownRenderer";
+const MarkdownRenderer = React.lazy(() => import("../utils/MarkdownRenderer"));
 import LazyImage from "./LazyImage";
 
 import decodeBase64UTF8 from "../utils/DecodeUTF";
@@ -37,6 +38,10 @@ interface ProjectModal {
   readme: string;
   loading: boolean;
 }
+
+const getGithubOGImage = (project: Project) => {
+  return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
+};
 
 const Projects: React.FC = () => {
   const [ref, inView] = useInView({
@@ -78,7 +83,7 @@ const Projects: React.FC = () => {
           .slice(0, 12);
 
         setProjects(filteredProjects);
-      } catch (error) {
+      } catch (error: unknown) {
         console.error("Error fetching projects:", error);
         // Fallback projects
         setProjects([
@@ -179,7 +184,7 @@ const Projects: React.FC = () => {
       } else {
         throw new Error(`GitHub API responded with status: ${response.status}`);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error fetching README:", error);
       // Fallback README content
       const fallbackReadme = `# ${project.name}
@@ -276,10 +281,6 @@ For any questions or suggestions, feel free to reach out:
     }
   };
 
-  const getGithubOGImage = (project: Project) => {
-    return `https://opengraph.githubassets.com/1/${project.owner.login}/${project.name}`;
-  };
-
   // ⚡ Bolt Performance Optimization:
   // Memoize `languages` and `filteredProjects` to avoid running costly operations on every render.
   // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
@@ -294,16 +295,25 @@ For any questions or suggestions, feel free to reach out:
     return filter === "all" ? projects : projects.filter((p) => p.language === filter);
   }, [projects, filter]);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedProject) {
+        setSelectedProject(null);
+      }
+    };
+
+    if (selectedProject) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
 
   return (
-    <section id="projects" className="section-padding bg-transparent">
+    <section id="projects" aria-labelledby="projects-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -312,7 +322,7 @@ For any questions or suggestions, feel free to reach out:
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Featured Projects
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
@@ -334,6 +344,8 @@ For any questions or suggestions, feel free to reach out:
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setFilter(lang)}
+              aria-label={`Filter by ${lang === "all" ? "all languages" : lang}`}
+              aria-pressed={filter === lang}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 filter === lang
                   ? "bg-primary-500 text-white shadow-lg"
@@ -376,6 +388,7 @@ For any questions or suggestions, feel free to reach out:
                 <div
                   className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   role="button"
+                  aria-label={`View README for ${project.name}`}
                   tabIndex={0}
                   onClick={() => fetchReadme(project)}
                   onKeyDown={(e) => {
@@ -456,7 +469,8 @@ For any questions or suggestions, feel free to reach out:
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors"
+                    className="flex items-center space-x-2 px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    aria-label={`View code for ${project.name} on GitHub`}
                   >
                     <Github className="w-4 h-4" />
                     <span>Code</span>
@@ -468,7 +482,8 @@ For any questions or suggestions, feel free to reach out:
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center space-x-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors"
+                      className="flex items-center space-x-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      aria-label={`View live demo for ${project.name}`}
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span>Live</span>
@@ -493,7 +508,7 @@ For any questions or suggestions, feel free to reach out:
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="btn-primary inline-flex items-center space-x-2"
+            className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
           >
             <Github className="w-5 h-5" />
             <span>View All Projects</span>
@@ -565,10 +580,12 @@ For any questions or suggestions, feel free to reach out:
                     </div>
                   ) : (
                     <div className="prose prose-lg max-w-none dark:prose-invert text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                      <MarkdownRenderer
+                      <React.Suspense fallback={<div className="flex flex-col items-center justify-center h-32 space-y-4"><div className="animate-spin rounded-full h-8 w-8 border-2 border-primary-500 border-t-transparent"></div><p className="text-secondary-600 dark:text-secondary-300">Loading Markdown renderer...</p></div>}>
+                        <MarkdownRenderer
                         markdown={selectedProject.readme}
                         githubUrl={`https://github.com/${selectedProject.project.owner.login}/${selectedProject.project.name}`}
                       />
+                      </React.Suspense>
                     </div>
                   )}
                 </div>

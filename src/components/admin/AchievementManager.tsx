@@ -1,8 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { formatDate } from '../../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Calendar, Trophy, Star, CheckCircle } from 'lucide-react';
 import { supabase, type Achievement } from '../../lib/supabase';
 import AchievementForm from './AchievementForm';
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'award': return <Trophy className="w-5 h-5" />;
+    case 'recognition': return <Star className="w-5 h-5" />;
+    case 'milestone': return <CheckCircle className="w-5 h-5" />;
+    default: return <Trophy className="w-5 h-5" />;
+  }
+};
+
+const getCategoryColor = (category: string) => {
+  switch (category) {
+    case 'award': return 'from-yellow-500 to-orange-500';
+    case 'recognition': return 'from-purple-500 to-pink-500';
+    case 'milestone': return 'from-green-500 to-blue-500';
+    default: return 'from-gray-500 to-gray-600';
+  }
+};
+
+
+const FILTER_OPTIONS = ['all', 'award', 'recognition', 'milestone'] as const;
 
 const AchievementManager: React.FC = () => {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -24,7 +46,7 @@ const AchievementManager: React.FC = () => {
 
       if (error) throw error;
       setAchievements(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching achievements:', error);
     } finally {
       setLoading(false);
@@ -42,41 +64,21 @@ const AchievementManager: React.FC = () => {
 
       if (error) throw error;
       fetchAchievements();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting achievement:', error);
     }
   };
 
-  const filteredAchievements = achievements.filter(achievement => {
-    if (filter === 'all') return true;
-    return achievement.category === filter;
-  });
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredAchievements` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredAchievements = useMemo(() => {
+    return achievements.filter(achievement => {
+      if (filter === 'all') return true;
+      return achievement.category === filter;
     });
-  };
+  }, [achievements, filter]);
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'award': return <Trophy className="w-5 h-5" />;
-      case 'recognition': return <Star className="w-5 h-5" />;
-      case 'milestone': return <CheckCircle className="w-5 h-5" />;
-      default: return <Trophy className="w-5 h-5" />;
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'award': return 'from-yellow-500 to-orange-500';
-      case 'recognition': return 'from-purple-500 to-pink-500';
-      case 'milestone': return 'from-green-500 to-blue-500';
-      default: return 'from-gray-500 to-gray-600';
-    }
-  };
 
   if (showForm) {
     return (
@@ -120,12 +122,13 @@ const AchievementManager: React.FC = () => {
 
       {/* Filters */}
       <div className="flex space-x-2">
-        {(['all', 'award', 'recognition', 'milestone'] as const).map((filterOption) => (
+        {FILTER_OPTIONS.map((filterOption) => (
           <motion.button
             key={filterOption}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setFilter(filterOption)}
+            aria-pressed={filter === filterOption}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === filterOption
                 ? 'bg-primary-500 text-white shadow-lg'

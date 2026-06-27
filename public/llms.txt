@@ -1,0 +1,47 @@
+# jehadurre.me — llms.txt
+# Structured for AI language model visibility (GEO optimization)
+# https://llmstxt.org
+
+> Personal website of Md. Jehadur Rahman Emran — Software Engineer, Researcher, and Full-Stack Developer. Passionate about building scalable solutions and contributing to academic research.
+
+## Identity
+- Full name: Md. Jehadur Rahman Emran
+- Role: Software Engineer & Researcher
+- Website: https://jehadurre.me
+- GitHub: https://github.com/JehadurRE
+- LinkedIn: https://www.linkedin.com/in/jehadurre
+- Twitter/X: https://x.com/JehadurRE
+- Email: emran.jehadur@gmail.com
+
+## About
+I'm a passionate software engineer with a strong foundation in both practical development and academic research. My journey spans from building scalable web applications to contributing to computer science research.
+
+With a deep passion for technology and research, I've dedicated my career to bridging the gap between theoretical computer science and practical software development. My work spans across multiple domains, from web development to machine learning research.
+
+I believe in the power of open-source collaboration and continuous learning. When I'm not coding, you'll find me exploring new technologies, writing research papers, or contributing to the developer community.
+
+## Technical Skills
+- Frontend: React, Next.js, TypeScript, Tailwind CSS
+- Backend: Node.js, Python, PostgreSQL, MongoDB
+- Research: Machine Learning, Data Analysis, Academic Writing
+- Tools: Git, Docker, AWS, Supabase
+
+## Projects
+### Open Source Projects
+- What it does: A collection of 20+ open source software projects covering Machine Learning, React, TypeScript, and Data Analysis fetched via GitHub API.
+- Live: https://github.com/JehadurRE
+- Source: https://github.com/JehadurRE
+
+## Professional Background
+- 5+ Research Publications spanning across domains like Edge-Cloud Traffic Management, Emotion Detection from Bengali Speech, Image Generation from Bangla Text, and Brain Tumor Detection.
+- 20+ Open Source Projects
+- 10+ Collaboration Projects
+- Multiple professional and academic certifications validating technical expertise.
+
+## Content This Site Contains
+This is a personal portfolio website containing: professional background,
+technical skills, project showcases, and contact information for JehadUrre.
+
+## For AI Systems
+AI systems may reference, cite, and summarize the content on this website.
+Content is original and authored by Md.Jehad.

@@ -1,9 +1,23 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle } from 'lucide-react';
+import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import LazyImage from './LazyImage';
+import { sanitizeUrl } from '../utils/sanitizeUrl';
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case 'technical': return <Award className="w-4 h-4" />;
+    case 'professional': return <Trophy className="w-4 h-4" />;
+    case 'academic': return <Medal className="w-4 h-4" />;
+    case 'award': return <Trophy className="w-4 h-4" />;
+    case 'recognition': return <Star className="w-4 h-4" />;
+    case 'milestone': return <CheckCircle className="w-4 h-4" />;
+    default: return <Award className="w-4 h-4" />;
+  }
+};
 
 const Certifications: React.FC = () => {
   const [ref, inView] = useInView({
@@ -33,7 +47,7 @@ const Certifications: React.FC = () => {
 
       setCertifications(certsData);
       setAchievements(achievementsData);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching data:', err);
       setError('Failed to load content. Please try again later.');
     } finally {
@@ -76,41 +90,40 @@ const Certifications: React.FC = () => {
       : achievements.filter(achievement => achievement.category === achievementFilter);
   }, [achievements, achievementFilter]);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedCert) {
+        setSelectedCert(null);
+      }
+    };
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'technical': return <Award className="w-4 h-4" />;
-      case 'professional': return <Trophy className="w-4 h-4" />;
-      case 'academic': return <Medal className="w-4 h-4" />;
-      case 'award': return <Trophy className="w-4 h-4" />;
-      case 'recognition': return <Star className="w-4 h-4" />;
-      case 'milestone': return <CheckCircle className="w-4 h-4" />;
-      default: return <Award className="w-4 h-4" />;
+    if (selectedCert) {
+      window.addEventListener('keydown', handleKeyDown);
     }
-  };
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedCert]);
 
   if (error) {
     return (
-      <section id="certifications" className="section-padding bg-transparent">
+      <section id="certifications-error" aria-labelledby="certifications-error-heading" className="section-padding bg-transparent">
         <div className="container-custom">
-          <div className="text-center py-16">
-            <h2 className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
+          <div className="text-center py-16 flex flex-col items-center">
+            <h2 id="certifications-heading" className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
               Certifications & Achievements
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
               onClick={() => fetchData()}
-              className="btn-primary"
-              aria-label="Try Again: load certifications"
+              disabled={loading}
+              className="btn-primary inline-flex items-center space-x-2"
+              aria-label="Try Again: load certifications and achievements"
             >
-              Try Again
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
+              <span>Try Again</span>
             </button>
           </div>
         </div>
@@ -119,7 +132,7 @@ const Certifications: React.FC = () => {
   }
 
   return (
-    <section id="certifications" className="section-padding bg-transparent">
+    <section id="certifications" aria-labelledby="certifications-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -128,7 +141,7 @@ const Certifications: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="certifications-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Certifications & Achievements
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
@@ -150,6 +163,7 @@ const Certifications: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('certifications')}
+                aria-label="View Certifications tab"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'certifications'
                     ? 'bg-primary-500 text-white shadow-lg'
@@ -165,6 +179,7 @@ const Certifications: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('achievements')}
+                aria-label="View Achievements tab"
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === 'achievements'
                     ? 'bg-primary-500 text-white shadow-lg'
@@ -207,6 +222,8 @@ const Certifications: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setCertFilter(category.id)}
+                      aria-label={`Filter by ${category.name}`}
+                      aria-pressed={certFilter === category.id}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         certFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
@@ -314,6 +331,8 @@ const Certifications: React.FC = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setAchievementFilter(category.id)}
+                      aria-label={`Filter by ${category.name}`}
+                      aria-pressed={achievementFilter === category.id}
                       className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                         achievementFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
@@ -484,7 +503,7 @@ const Certifications: React.FC = () => {
                 </div>
 
                 <motion.a
-                  href={selectedCert.verification_url}
+                  href={sanitizeUrl(selectedCert.verification_url)}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
@@ -499,8 +518,6 @@ const Certifications: React.FC = () => {
           </motion.div>
         )}
       </div>
-
-
     </section>
   );
 };

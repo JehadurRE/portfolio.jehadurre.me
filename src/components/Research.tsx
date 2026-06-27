@@ -2,14 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { BookOpen, ExternalLink, Users, Calendar, Award } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
-const Research: React.FC = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const publications = [
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const publications = [
     {
       id: 1,
       title: 'Edge-Fog-Cloud Based Hierarchical Communication Network for Traffic Management System',
@@ -84,8 +81,41 @@ const Research: React.FC = () => {
     }
   ];
 
+const Research: React.FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <section id="research" className="section-padding bg-transparent">
+    <section id="research" aria-labelledby="research-heading" className="section-padding bg-transparent">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": publications.map((pub, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "ScholarlyArticle",
+                "headline": pub.title,
+                "author": pub.authors.map(author => ({
+                  "@type": "Person",
+                  "name": author
+                })),
+                "datePublished": pub.year.toString(),
+                "description": pub.abstract,
+                "url": pub.link,
+                "publisher": {
+                  "@type": "Organization",
+                  "name": pub.venue !== 'N/A' ? pub.venue : "Independent Research"
+                }
+              }
+            }))
+          })}
+        </script>
+      </Helmet>
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -94,7 +124,7 @@ const Research: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="research-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             Research & Publications
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
@@ -195,7 +225,8 @@ const Research: React.FC = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-4 lg:mt-0 lg:ml-6 btn-primary inline-flex items-center space-x-2 self-start"
+                  className="mt-4 lg:mt-0 lg:ml-6 btn-primary inline-flex items-center space-x-2 self-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                  aria-label={`View Paper: ${publication.title}`}
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>View Paper</span>
@@ -204,6 +235,35 @@ const Research: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Schema Markup for ScholarlyArticles */}
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": publications.map((pub, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "ScholarlyArticle",
+                  "headline": pub.title,
+                  "author": pub.authors.map(author => ({
+                    "@type": "Person",
+                    "name": author
+                  })),
+                  "abstract": pub.abstract,
+                  "datePublished": pub.year.toString(),
+                  "url": pub.link,
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": pub.venue
+                  }
+                }
+              }))
+            })}
+          </script>
+        </Helmet>
 
         {/* Research Links */}
         <motion.div
@@ -222,7 +282,7 @@ const Research: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary inline-flex items-center space-x-2"
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               <Award className="w-5 h-5" />
               <span>Google Scholar</span>
@@ -233,7 +293,7 @@ const Research: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-secondary inline-flex items-center space-x-2"
+              className="btn-secondary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               <BookOpen className="w-5 h-5" />
               <span>ResearchGate</span>

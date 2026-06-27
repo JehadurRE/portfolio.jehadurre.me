@@ -26,7 +26,19 @@
 **Vulnerability:** Multiple admin-facing forms (`AchievementForm`, `BlogForm`, `CertificationForm`, `SkillForm`) lacked `maxLength` constraints on their text input fields. This omission could allow malicious users to submit excessively large strings, potentially leading to resource exhaustion or minor DoS attacks.
 **Learning:** This codebase historically relies on client-side logic without built-in HTML element length constraints.
 **Prevention:** Always include `maxLength` on form inputs matching expected field constraints.
+## 2023-10-27 - [URL Sanitization Bypass via URL-Encoding]
+**Vulnerability:** XSS bypass in custom URL sanitizer (`sanitizeUrl` in `MarkdownRenderer.tsx`). Attackers could use URL-encoded whitespaces or control characters (e.g., `%09javascript:alert(1)`) to bypass regex filters that only check for unencoded control characters `[\x00-\x20]`.
+**Learning:** Browsers decode URL-encoded payloads before evaluating the scheme (like `javascript:`). If a sanitizer checks the raw, encoded input without decoding it first, malicious schemes can slip through.
+**Prevention:** Always decode URLs (using `decodeURIComponent`, with appropriate `catch` blocks for malformed URIs) before applying string or regex-based security filters.
 ## 2026-06-06 - Refactor API Error Handling UI
 **Vulnerability:** API error handling fallback buttons previously used `window.location.reload()` to trigger refetch, which forced a full page reload and lost all local application state. This architectural pattern can be exploited as a denial of service if an attacker intentionally hits failing endpoints to exhaust resources or user state.
 **Learning:** This codebase historically defaults to utilizing `window.location.reload()` for fallback states instead of utilizing local refetch functions, especially when components fetch data on mount within `useEffect`.
 **Prevention:** Avoid `window.location.reload()` for error recovery. Always extract fetch logic into a standalone function (e.g. `fetchData`) and call it directly from the UI retry button to maintain application state while recovering.
+## 2024-05-30 - Type Safety as Security Enhancement
+**Vulnerability:** Implicit `any` typing in error handlers and form state.
+**Learning:** This codebase previously had several areas where `any` was used or where errors were implicitly typed as `any`.
+**Prevention:** Ensured error handling correctly uses `catch (error: unknown)` and forms use proper strict typings (e.g. `'frontend' | 'backend'`) instead of `as any`.
+## 2025-02-27 - Centralized URL Sanitization
+**Vulnerability:** XSS risk via unvalidated `verification_url` rendered in `<a>` tags within `CertificationManager.tsx` and `Certifications.tsx`.
+**Learning:** `MarkdownRenderer.tsx` already had a `sanitizeUrl` utility, but other components directly consumed dynamic inputs for URLs without sanitizing them.
+**Prevention:** Extracted the URL sanitization logic into a shared utility (`src/utils/sanitizeUrl.ts`) and applied it to dynamically rendered `href` attributes across components to ensure consistent XSS protection.

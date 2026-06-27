@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { formatDate } from '../../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Calendar, ExternalLink } from 'lucide-react';
 import { supabase, type Certification } from '../../lib/supabase';
 import CertificationForm from './CertificationForm';
+import { sanitizeUrl } from '../../utils/sanitizeUrl';
+
+
+const FILTER_OPTIONS = ['all', 'technical', 'professional', 'academic'] as const;
 
 const CertificationManager: React.FC = () => {
   const [certifications, setCertifications] = useState<Certification[]>([]);
@@ -24,7 +29,7 @@ const CertificationManager: React.FC = () => {
 
       if (error) throw error;
       setCertifications(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching certifications:', error);
     } finally {
       setLoading(false);
@@ -42,23 +47,21 @@ const CertificationManager: React.FC = () => {
 
       if (error) throw error;
       fetchCertifications();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting certification:', error);
     }
   };
 
-  const filteredCertifications = certifications.filter(cert => {
-    if (filter === 'all') return true;
-    return cert.category === filter;
-  });
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredCertifications` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredCertifications = useMemo(() => {
+    return certifications.filter(cert => {
+      if (filter === 'all') return true;
+      return cert.category === filter;
     });
-  };
+  }, [certifications, filter]);
+
 
   if (showForm) {
     return (
@@ -102,12 +105,13 @@ const CertificationManager: React.FC = () => {
 
       {/* Filters */}
       <div className="flex space-x-2">
-        {(['all', 'technical', 'professional', 'academic'] as const).map((filterOption) => (
+        {FILTER_OPTIONS.map((filterOption) => (
           <motion.button
             key={filterOption}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setFilter(filterOption)}
+            aria-pressed={filter === filterOption}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === filterOption
                 ? 'bg-primary-500 text-white shadow-lg'
@@ -191,7 +195,7 @@ const CertificationManager: React.FC = () => {
                 {/* Actions */}
                 <div className="flex items-center justify-between pt-4">
                   <a
-                    href={cert.verification_url}
+                    href={sanitizeUrl(cert.verification_url)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-1 text-sm text-primary-600 dark:text-primary-400 hover:underline"

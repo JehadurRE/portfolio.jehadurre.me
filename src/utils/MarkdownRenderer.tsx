@@ -1,11 +1,17 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkEmoji from 'remark-emoji';
 import rehypeSanitize from 'rehype-sanitize';
 import rehypeRaw from 'rehype-raw';
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const remarkPluginsList = [remarkGfm, remarkEmoji];
+const rehypePluginsList = [rehypeRaw, rehypeSanitize];
+
+
 // ⚡ Bolt Performance Optimization:
 // Use PrismAsync instead of Prism to lazily load syntax highlighter languages.
 // The default Prism imports all languages synchronously, bloating the bundle by >1MB.
@@ -13,6 +19,7 @@ import rehypeRaw from 'rehype-raw';
 import { PrismAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import type { Components } from 'react-markdown';
+import { sanitizeUrl } from './sanitizeUrl';
 
 interface MarkdownRendererProps {
   markdown: string;
@@ -28,7 +35,7 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
       await navigator.clipboard.writeText(text);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Failed to copy text: ', err);
     }
   };
@@ -38,6 +45,7 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
       onClick={handleCopy}
       className="absolute top-2 right-2 p-2 rounded bg-secondary-700 hover:bg-secondary-600 text-white text-sm transition-colors duration-200 flex items-center gap-1"
       title={copied ? 'Copied!' : 'Copy code'}
+      aria-label={copied ? 'Copied!' : 'Copy code'}
     >
       {copied ? (
         <>
@@ -58,36 +66,15 @@ const CopyButton: React.FC<{ text: string }> = ({ text }) => {
   );
 };
 
-// Security enhancement: Sanitize URLs to prevent XSS attacks via javascript: and vbscript: URIs
-// and potentially harmful data: URIs in links
-const sanitizeUrl = (url: string | undefined, isImage: boolean = false): string | undefined => {
-  if (!url) return undefined;
-  // Strip control characters and whitespaces that can bypass naive filters
-  // eslint-disable-next-line no-control-regex
-  const sanitized = url.replace(/[\x00-\x20]/g, '');
-
-  if (/^(?:javascript|vbscript):/i.test(sanitized)) {
-    return '#';
-  }
-
-  // Block data: URIs for links (prevents data:text/html XSS)
-  // Allow safe data:image URIs for images
-  if (/^data:/i.test(sanitized)) {
-    if (isImage && /^data:image\//i.test(sanitized)) {
-      return url;
-    }
-    return '#';
-  }
-
-  return url;
-};
-
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl }) => {
   // Helper function to convert relative GitHub URLs to absolute ones
 
 
 //   console.log(markdown);
-  const convertImageUrl = (src: string) => {
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `components` to avoid re-creating them on every render, which breaks ReactMarkdown's memoization
+  const components: Components = useMemo(() => {
+    const convertImageUrl = (src: string) => {
     if (!src) return src;
     
     // If it's already an absolute URL, return as is
@@ -104,7 +91,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     
     return src;
   };
-  const components: Components = {
+  return {
     h1: ({ children }) => (
       <h1 className="text-2xl font-bold mb-6 mt-4 text-gradient">{children}</h1>
     ),
@@ -117,7 +104,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     p: ({ children }) => (
       <p className="mb-4">{children}</p>
     ),
-    code: (props: any) => {
+    code: (props: React.HTMLAttributes<HTMLElement> & { inline?: boolean }) => {
       const { inline, className, children } = props;
       const match = /language-(\w+)/.exec(className || '');
       const codeString = String(children).replace(/\n$/, '');
@@ -170,7 +157,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
         {children}
       </a>
     ),
-    li: (props: any) => {
+    li: (props: React.LiHTMLAttributes<HTMLLIElement> & { ordered?: boolean }) => {
       const { children } = props;
       // Check if parent is an ordered list by examining the node type
       const isOrdered = props.ordered || false;
@@ -240,6 +227,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
     ),
   };
 
+  }, [githubUrl]);
+
   return (
     <div 
       className="prose prose-lg max-w-none markdown-content international-text"
@@ -250,8 +239,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown, githubUrl
       }}
     >
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkEmoji]}
-        rehypePlugins={[rehypeRaw, rehypeSanitize]}
+        remarkPlugins={remarkPluginsList}
+        rehypePlugins={rehypePluginsList}
         components={components}
       >
         {markdown}

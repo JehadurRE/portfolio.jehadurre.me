@@ -1,8 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Zap, Users, Award, BookOpen, Lightbulb, Database, Cloud, Smartphone ,CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
+import { Code, Zap, Users, Award, BookOpen, Lightbulb, CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
+import { getIconComponent, getProficiencyText } from '../utils/skillUtils';
+import GithubActivity from './GithubActivity';
+
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const achievements = [
+    { icon: Award, title: 'Research Publications', value: '5+' },
+    { icon: Code, title: 'Open Source Projects', value: '20+' },
+    { icon: Users, title: 'Collaboration Projects', value: '10+' },
+  ];
+
+  const skillsraw = [
+    { name: 'Frontend', technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'], icon: Code },
+    { name: 'Backend', technologies: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB'], icon: Zap },
+    { name: 'Research', technologies: ['Machine Learning', 'Data Analysis', 'Academic Writing'], icon: BookOpen },
+    { name: 'Tools', technologies: ['Git', 'Docker', 'AWS', 'Supabase'], icon: Lightbulb },
+  ];
+
+const getProficiencyColor = (level: number) => {
+  switch (level) {
+    case 5: return 'bg-green-500';
+    case 4: return 'bg-blue-500';
+    case 3: return 'bg-yellow-500';
+    case 2: return 'bg-orange-500';
+    case 1: return 'bg-red-500';
+    default: return 'bg-gray-500';
+  }
+};
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -21,7 +49,7 @@ const About: React.FC = () => {
       setError(null);
       const data = await skillsApi.getFeatured();
       setSkills(data);
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error fetching skills:', err);
       setError('Failed to load skills. Please try again later.');
     } finally {
@@ -32,49 +60,6 @@ const About: React.FC = () => {
   useEffect(() => {
     fetchSkills();
   }, []);
-
-  const achievements = [
-    { icon: Award, title: 'Research Publications', value: '5+' },
-    { icon: Code, title: 'Open Source Projects', value: '20+' },
-    { icon: Users, title: 'Collaboration Projects', value: '10+' },
-  ];
-
-  const getIconComponent = (iconName: string) => {
-    const icons: { [key: string]: any } = {
-      Code,
-      Zap,
-      BookOpen,
-      Lightbulb,
-      Database,
-      Cloud,
-      Smartphone,
-      Award,
-      Users
-    };
-    return icons[iconName] || Code;
-  };
-
-  const getProficiencyColor = (level: number) => {
-    switch (level) {
-      case 5: return 'bg-green-500';
-      case 4: return 'bg-blue-500';
-      case 3: return 'bg-yellow-500';
-      case 2: return 'bg-orange-500';
-      case 1: return 'bg-red-500';
-      default: return 'bg-gray-500';
-    }
-  };
-
-  const getProficiencyText = (level: number) => {
-    switch (level) {
-      case 5: return 'Expert';
-      case 4: return 'Advanced';
-      case 3: return 'Intermediate';
-      case 2: return 'Beginner';
-      case 1: return 'Novice';
-      default: return 'Unknown';
-    }
-  };
 
 
 
@@ -176,13 +161,6 @@ const About: React.FC = () => {
   );
 
 
-  const skillsraw = [
-    { name: 'Frontend', technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'], icon: Code },
-    { name: 'Backend', technologies: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB'], icon: Zap },
-    { name: 'Research', technologies: ['Machine Learning', 'Data Analysis', 'Academic Writing'], icon: BookOpen },
-    { name: 'Tools', technologies: ['Git', 'Docker', 'AWS', 'Supabase'], icon: Lightbulb },
-  ];
-
   const renderCompactSkills = () => (
      <div className='space-y-6 '>
        {skillsraw.map((skill, index) => (
@@ -215,7 +193,7 @@ const About: React.FC = () => {
   )
 
   return (
-    <section id="about" className="section-padding bg-transparent">
+    <section id="about" aria-labelledby="about-heading" className="section-padding bg-transparent">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -224,7 +202,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
+          <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
             About Me
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
@@ -302,6 +280,8 @@ const About: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSkillsView('compact')}
+                    aria-label="View skills in compact mode"
+                    aria-pressed={skillsView === 'compact'}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       skillsView === 'compact'
                         ? 'bg-primary-500 text-white shadow-lg'
@@ -315,6 +295,8 @@ const About: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSkillsView('detailed')}
+                    aria-label="View skills in detailed mode"
+                    aria-pressed={skillsView === 'detailed'}
                     className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       skillsView === 'detailed'
                         ? 'bg-primary-500 text-white shadow-lg'
@@ -334,10 +316,10 @@ const About: React.FC = () => {
                 <button
                   onClick={fetchSkills}
                   disabled={loading}
-                  className="btn-primary flex items-center space-x-2"
+                  className="btn-primary inline-flex items-center space-x-2"
                   aria-label="Try Again: load skills"
                 >
-                  <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
                   <span>Try Again</span>
                 </button>
               </div>
@@ -375,6 +357,10 @@ const About: React.FC = () => {
 
 
         </div>
+
+        {/* GitHub Activity Section */}
+        <GithubActivity />
+
       </div>
     </section>
   );

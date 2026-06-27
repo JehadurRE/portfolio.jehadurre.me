@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { formatDate } from '../../utils/dateUtils';
 import { motion } from 'framer-motion';
-import { Plus, Edit, Trash2, Eye, EyeOff, Calendar, Clock, Tag } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, EyeOff, Calendar, Clock } from 'lucide-react';
 import { supabase, type BlogPost } from '../../lib/supabase';
 import BlogForm from './BlogForm';
+
+
+const FILTER_OPTIONS = ['all', 'published', 'draft'] as const;
 
 const BlogManager: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -24,7 +28,7 @@ const BlogManager: React.FC = () => {
 
       if (error) throw error;
       setPosts(data || []);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error fetching posts:', error);
     } finally {
       setLoading(false);
@@ -42,7 +46,7 @@ const BlogManager: React.FC = () => {
 
       if (error) throw error;
       fetchPosts();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error deleting post:', error);
     }
   };
@@ -59,24 +63,22 @@ const BlogManager: React.FC = () => {
 
       if (error) throw error;
       fetchPosts();
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error updating post:', error);
     }
   };
 
-  const filteredPosts = posts.filter(post => {
-    if (filter === 'published') return post.is_published;
-    if (filter === 'draft') return !post.is_published;
-    return true;
-  });
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+  // ⚡ Bolt Performance Optimization:
+  // Memoize `filteredPosts` to prevent recalculating the array on every render.
+  // Expected impact: Faster re-renders in the admin panel by avoiding redundant `filter` operations.
+  const filteredPosts = useMemo(() => {
+    return posts.filter(post => {
+      if (filter === 'published') return post.is_published;
+      if (filter === 'draft') return !post.is_published;
+      return true;
     });
-  };
+  }, [posts, filter]);
+
 
   if (showForm) {
     return (
@@ -120,12 +122,13 @@ const BlogManager: React.FC = () => {
 
       {/* Filters */}
       <div className="flex space-x-2">
-        {(['all', 'published', 'draft'] as const).map((filterOption) => (
+        {FILTER_OPTIONS.map((filterOption) => (
           <motion.button
             key={filterOption}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setFilter(filterOption)}
+            aria-pressed={filter === filterOption}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
               filter === filterOption
                 ? 'bg-primary-500 text-white shadow-lg'
