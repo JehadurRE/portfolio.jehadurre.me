@@ -1,7 +1,8 @@
+import { trackEvent } from '../lib/analytics';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, Zap, Users, Award, BookOpen, Lightbulb, CodeXml,Codesandbox, RefreshCw} from 'lucide-react';
+import { Code, Zap, Users, Award, BookOpen, Lightbulb, CodeXml, Codesandbox, RefreshCw, Download } from 'lucide-react';
 import { skillsApi, type Skill } from '../lib/supabase';
 import { getIconComponent, getProficiencyText } from '../utils/skillUtils';
 import GithubActivity from './GithubActivity';
@@ -234,6 +235,18 @@ const About: React.FC = () => {
                 When I'm not coding, you'll find me exploring new technologies, writing research papers, 
                 or contributing to the developer community.
               </p>
+            <div className="mt-6">
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("download_resume", { location: "about" })}
+                className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+              >
+                <span>Download Full Resume / CV</span>
+                <Download className="w-4 h-4" />
+              </a>
+            </div>
             </div>
 
             {/* Achievements */}

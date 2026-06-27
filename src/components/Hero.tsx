@@ -1,6 +1,7 @@
+import { trackEvent } from '../lib/analytics';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Twitter, Mail, ExternalLink } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Twitter, Mail, ExternalLink, Download } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 import { GoogleScholar } from '../icons/CustomsByJehadurRE'; // Assuming you have a custom icon for Google Scholar
 
@@ -110,6 +111,18 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
+            <motion.a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent("download_resume", { location: "hero" })}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg"
+            >
+              <span>Download CV</span>
+              <Download className="w-4 h-4" />
+            </motion.a>
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05 }}

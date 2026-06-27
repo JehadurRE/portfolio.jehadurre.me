@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import ActivityCalendar, { ThemeInput } from 'react-activity-calendar';
+import { ActivityCalendar, ThemeInput } from 'react-activity-calendar';
 import { Octokit } from '@octokit/rest';
 import { Star, GitFork, Book, GitCommit } from 'lucide-react';
 
