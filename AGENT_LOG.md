@@ -24,7 +24,7 @@ Domain: https://jehadurre.me
 ### B — Missing Portfolio Features
 - ✅ B1: Dark/Light mode toggle 2025-10-27
 - ✅ B2: Individual Project pages 2026-06-25
-- ⏳ B3: GitHub Activity Integration
+- ✅ B3: GitHub Activity Integration 2026-06-27
 - ⏳ B4: Tech Stack / Skills visualization upgrade
 - ⏳ B5: Resume/CV download button
 - ⏳ B6: Contact form — fully functional
@@ -94,6 +94,20 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-06-27 — Day 7 — BUILD MODE
+**Branch:** feature/B3-github-activity-2026-06-27
+**PR:** feat: GitHub Activity Integration fixes — Day 7
+**Mode:** BUILD
+**Files changed:**
+- `src/components/GithubActivity.tsx`: Swapped out the dead API for the github activity calendar, replaced with a working deno.dev endpoint, and updated mapping to properly calculate the array `react-activity-calendar` expects without raising type errors.
+
+**If BUILD:**
+- Items completed: B3
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** The community API used for Github contributions had gone down, causing the profile to only display statistics. Restored full visual map support via a reliable Deno alternative.
 
 ### 2026-06-25 — Day 4 — BOTH MODE
 **Branch:** feat-blog/project-pages-and-post-2026-06-25
