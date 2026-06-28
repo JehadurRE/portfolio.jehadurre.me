@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-06-27
+Last updated: 2026-06-28
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -87,12 +87,12 @@ Stack: React + TypeScript + Vite
 - ⏳ G5: All key facts in real HTML text (not embedded in JS variables or images)
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-27]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-27]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-27]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-06-28]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-06-28]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-06-28]
 - ✅ H4: New components/sections detected and added to checklist [2026-06-27]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-06-27]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-06-27]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-06-28]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-06-28]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
@@ -112,6 +112,18 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-06-28 — Day 7
+**Branch:** seo/daily-2026-06-28
+**PR:** SEO [Day 7]: Sitemap Maintenance and Triage — 2026-06-28
+**Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date and ran generation to update `public/sitemap.xml` → Keeps sitemap fresh for crawlers (H1).
+- SEO_LOG.md: Triaged pending items. Skipped G4 and G5 to avoid rewriting user-facing text and breaking semantic structure. Updated daily log with maintenance tasks.
+**Items completed today:** H1, H2, H3, H5, H6
+**Items skipped:** G4, G5 (Instructions explicitly state not to rewrite user-facing text, maintaining current structural semantics). A6, I1, I2, I3, I4, I5, I6, I7, I8 (Blocked by human tasks).
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Maintained the master checklist statuses and verified build passing.
 
 ### 2026-06-27 — Day 6
 **Branch:** seo/daily-2026-06-27
