@@ -385,6 +385,8 @@ const Blog: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-center py-16"
+            aria-live="polite"
+            role="status"
           >
             <h3 className="text-xl font-semibold text-secondary-600 dark:text-secondary-400 mb-2">
               {selectedTag === 'all' && selectedCategory === 'all' && searchQuery === ''

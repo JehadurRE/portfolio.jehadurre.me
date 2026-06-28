@@ -1,3 +1,6 @@
 ## $(date +%Y-%m-%d) - Modal Keyboard Accessibility
 **Learning:** Custom modals (like those using Framer Motion) in React don't have native keyboard support. Users expect to be able to dismiss them using the Escape key. Without this, keyboard-only users and screen reader users can get trapped or face a degraded experience, violating WCAG 2.1.1 Keyboard Accessible.
 **Action:** Always add a global `keydown` event listener for the 'Escape' key when implementing custom modal/dialog components. Ensure it is attached when the modal opens and cleaned up when the modal closes (e.g., using `useEffect` with dependency tracking).
+## $(date +%Y-%m-%d) - Empty State ARIA Live Regions
+**Learning:** When users interact with dynamic filtering or search components (like tabs, categories, or search inputs), screen reader users need immediate feedback if their action results in zero matches. Relying on visual changes alone (like the appearance of a "No items found" message) leaves them without context.
+**Action:** Always add `aria-live="polite"` and `role="status"` to empty state container components (e.g., `<div>` or `<motion.div>`) that conditionally render when a list is empty. This ensures screen readers announce the empty state text as soon as it appears in the DOM.
