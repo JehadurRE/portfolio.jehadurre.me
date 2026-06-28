@@ -243,7 +243,7 @@ const BlogManager: React.FC = () => {
           ))}
 
           {filteredPosts.length === 0 && (
-            <div className="text-center py-16">
+            <div className="text-center py-16" aria-live="polite" role="status">
               <h3 className="text-lg font-semibold text-secondary-600 dark:text-secondary-400 mb-2">
                 No posts found
               </h3>
