@@ -93,30 +93,35 @@ const GithubActivity: React.FC = () => {
 
         // 3. For the calendar, we will use a known community API since GitHub REST API doesn't expose the graph nicely
         // without an authenticated GraphQL request.
-        const response = await fetch(`https://github-contributions-api.jasonrogers.workers.dev/${username}`);
+        const response = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
         if (response.ok) {
             const data = await response.json();
-            if (data && data.total && data.contributions) {
+            if (data && data.contributions) {
                 const today = new Date();
                 const lastYear = new Date(today);
                 lastYear.setFullYear(today.getFullYear() - 1);
 
-                const formattedData = Object.keys(data.contributions).flatMap(year => {
-                    return Object.keys(data.contributions[year]).flatMap(month => {
-                        return Object.keys(data.contributions[year][month]).map(day => {
-                           const count = data.contributions[year][month][day];
-                           const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                           let level: 0|1|2|3|4 = 0;
-                           if (count > 0 && count <= 3) level = 1;
-                           else if (count > 3 && count <= 6) level = 2;
-                           else if (count > 6 && count <= 9) level = 3;
-                           else if (count > 9) level = 4;
+                const formattedData: ContributionDay[] = data.contributions.flat()
+                  .map((d: { date: string; contributionCount: number; contributionLevel: string }) => {
+                     let level: 0|1|2|3|4 = 0;
+                     if (d.contributionLevel === 'NONE') level = 0;
+                     else if (d.contributionLevel === 'FIRST_QUARTILE') level = 1;
+                     else if (d.contributionLevel === 'SECOND_QUARTILE') level = 2;
+                     else if (d.contributionLevel === 'THIRD_QUARTILE') level = 3;
+                     else if (d.contributionLevel === 'FOURTH_QUARTILE') level = 4;
 
-                           return { date: dateStr, count, level }
-                        });
-                    })
-                }).filter(d => new Date(d.date) >= lastYear && new Date(d.date) <= today)
-                  .sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+                     // Fallback map if string value isn't matched
+                     if (level === 0 && d.contributionCount > 0) {
+                         if (d.contributionCount <= 3) level = 1;
+                         else if (d.contributionCount <= 6) level = 2;
+                         else if (d.contributionCount <= 9) level = 3;
+                         else level = 4;
+                     }
+
+                     return { date: d.date, count: d.contributionCount, level };
+                  })
+                  .filter((d: ContributionDay) => new Date(d.date) >= lastYear && new Date(d.date) <= today)
+                  .sort((a: ContributionDay, b: ContributionDay) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
                 setContributions(formattedData);
             }
