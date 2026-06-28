@@ -3,7 +3,7 @@
 <div align="center">
 
 <p align="center">
-    <img src="image-1.png" alt="JehadurRE Desktop View" width="51%" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
+    <img src="image-1.png" alt="JehadurRE Desktop View" width="100%" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
     <img src="image.png" alt="JehadurRE Mobile View" width="48%" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
 </p>
 
