@@ -9,6 +9,52 @@ interface AchievementFormProps {
   onCancel: () => void;
 }
 
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const iconOptions = [
+  { value: '🏆', label: 'Trophy' },
+  { value: '🥇', label: 'Gold Medal' },
+  { value: '🥈', label: 'Silver Medal' },
+  { value: '🥉', label: 'Bronze Medal' },
+  { value: '⭐', label: 'Star' },
+  { value: '🎖️', label: 'Military Medal' },
+  { value: '🏅', label: 'Sports Medal' },
+  { value: '🎯', label: 'Target' },
+  { value: '🚀', label: 'Rocket' },
+  { value: '💎', label: 'Diamond' },
+  { value: '👑', label: 'Crown' },
+  { value: '🔥', label: 'Fire' },
+  { value: '⚡', label: 'Lightning' },
+  { value: '🌟', label: 'Glowing Star' },
+  { value: '💫', label: 'Dizzy Star' },
+  { value: '🎓', label: 'Graduation Cap' },
+  { value: '📚', label: 'Books' },
+  { value: '🔬', label: 'Microscope' },
+  { value: '💻', label: 'Laptop' },
+  { value: '🎨', label: 'Artist Palette' },
+  { value: '🎪', label: 'Circus Tent' },
+  { value: '🎭', label: 'Performing Arts' },
+  { value: '🎵', label: 'Musical Note' },
+  { value: '🎸', label: 'Guitar' },
+  { value: '🏃', label: 'Runner' },
+  { value: '🏋️', label: 'Weight Lifter' },
+  { value: '🧠', label: 'Brain' },
+  { value: '💡', label: 'Light Bulb' },
+  { value: '🔧', label: 'Wrench' },
+  { value: '⚙️', label: 'Gear' },
+  { value: '🛠️', label: 'Hammer and Wrench' },
+  { value: '📈', label: 'Chart Increasing' },
+  { value: '📊', label: 'Bar Chart' },
+  { value: '🎯', label: 'Direct Hit' },
+  { value: '🎪', label: 'Circus Tent' },
+  { value: '❄️', label: 'Snowflake' },
+  { value: '🌈', label: 'Rainbow' },
+  { value: '🦄', label: 'Unicorn' },
+  { value: '🎉', label: 'Party Popper' },
+  { value: '🎊', label: 'Confetti Ball' },
+  { value: '🎈', label: 'Balloon' },
+];
+
 const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -20,50 +66,6 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const iconOptions = [
-    { value: '🏆', label: 'Trophy' },
-    { value: '🥇', label: 'Gold Medal' },
-    { value: '🥈', label: 'Silver Medal' },
-    { value: '🥉', label: 'Bronze Medal' },
-    { value: '⭐', label: 'Star' },
-    { value: '🎖️', label: 'Military Medal' },
-    { value: '🏅', label: 'Sports Medal' },
-    { value: '🎯', label: 'Target' },
-    { value: '🚀', label: 'Rocket' },
-    { value: '💎', label: 'Diamond' },
-    { value: '👑', label: 'Crown' },
-    { value: '🔥', label: 'Fire' },
-    { value: '⚡', label: 'Lightning' },
-    { value: '🌟', label: 'Glowing Star' },
-    { value: '💫', label: 'Dizzy Star' },
-    { value: '🎓', label: 'Graduation Cap' },
-    { value: '📚', label: 'Books' },
-    { value: '🔬', label: 'Microscope' },
-    { value: '💻', label: 'Laptop' },
-    { value: '🎨', label: 'Artist Palette' },
-    { value: '🎪', label: 'Circus Tent' },
-    { value: '🎭', label: 'Performing Arts' },
-    { value: '🎵', label: 'Musical Note' },
-    { value: '🎸', label: 'Guitar' },
-    { value: '🏃', label: 'Runner' },
-    { value: '🏋️', label: 'Weight Lifter' },
-    { value: '🧠', label: 'Brain' },
-    { value: '💡', label: 'Light Bulb' },
-    { value: '🔧', label: 'Wrench' },
-    { value: '⚙️', label: 'Gear' },
-    { value: '🛠️', label: 'Hammer and Wrench' },
-    { value: '📈', label: 'Chart Increasing' },
-    { value: '📊', label: 'Bar Chart' },
-    { value: '🎯', label: 'Direct Hit' },
-    { value: '🎪', label: 'Circus Tent' },
-    { value: '❄️', label: 'Snowflake' },
-    { value: '🌈', label: 'Rainbow' },
-    { value: '🦄', label: 'Unicorn' },
-    { value: '🎉', label: 'Party Popper' },
-    { value: '🎊', label: 'Confetti Ball' },
-    { value: '🎈', label: 'Balloon' },
-  ];
 
   useEffect(() => {
     if (achievement) {

@@ -9,6 +9,38 @@ interface SkillFormProps {
   onCancel: () => void;
 }
 
+// ⚡ Bolt Performance Optimization:
+// Move static arrays outside component function body to prevent recreation on every render.
+const iconOptions = [
+  { value: 'Code', label: 'Code' },
+  { value: 'Zap', label: 'Zap' },
+  { value: 'BookOpen', label: 'Book Open' },
+  { value: 'Lightbulb', label: 'Lightbulb' },
+  { value: 'Database', label: 'Database' },
+  { value: 'Cloud', label: 'Cloud' },
+  { value: 'Smartphone', label: 'Smartphone' },
+  { value: 'Award', label: 'Award' },
+  { value: 'Users', label: 'Users' },
+];
+
+const categoryOptions = [
+  { value: 'frontend', label: 'Frontend' },
+  { value: 'backend', label: 'Backend' },
+  { value: 'research', label: 'Research' },
+  { value: 'tools', label: 'Tools' },
+  { value: 'database', label: 'Database' },
+  { value: 'cloud', label: 'Cloud' },
+  { value: 'mobile', label: 'Mobile' },
+];
+
+const proficiencyLevels = [
+  { value: 1, label: 'Novice' },
+  { value: 2, label: 'Beginner' },
+  { value: 3, label: 'Intermediate' },
+  { value: 4, label: 'Advanced' },
+  { value: 5, label: 'Expert' },
+];
+
 const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,36 +54,6 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const iconOptions = [
-    { value: 'Code', label: 'Code' },
-    { value: 'Zap', label: 'Zap' },
-    { value: 'BookOpen', label: 'Book Open' },
-    { value: 'Lightbulb', label: 'Lightbulb' },
-    { value: 'Database', label: 'Database' },
-    { value: 'Cloud', label: 'Cloud' },
-    { value: 'Smartphone', label: 'Smartphone' },
-    { value: 'Award', label: 'Award' },
-    { value: 'Users', label: 'Users' },
-  ];
-
-  const categoryOptions = [
-    { value: 'frontend', label: 'Frontend' },
-    { value: 'backend', label: 'Backend' },
-    { value: 'research', label: 'Research' },
-    { value: 'tools', label: 'Tools' },
-    { value: 'database', label: 'Database' },
-    { value: 'cloud', label: 'Cloud' },
-    { value: 'mobile', label: 'Mobile' },
-  ];
-
-  const proficiencyLevels = [
-    { value: 1, label: 'Novice' },
-    { value: 2, label: 'Beginner' },
-    { value: 3, label: 'Intermediate' },
-    { value: 4, label: 'Advanced' },
-    { value: 5, label: 'Expert' },
-  ];
 
   useEffect(() => {
     if (skill) {
