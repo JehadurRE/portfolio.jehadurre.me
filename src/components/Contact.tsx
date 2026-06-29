@@ -3,6 +3,20 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Send, MapPin, Phone, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import emailjs from '@emailjs/browser';
+import { toast } from 'sonner';
+
+const contactSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100),
+  email: z.string().email('Invalid email address').max(255),
+  subject: z.string().min(1, 'Subject is required').max(200),
+  message: z.string().min(1, 'Message is required').max(2000),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
@@ -46,38 +60,63 @@ const Contact: React.FC = () => {
     threshold: 0.1,
   });
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    }
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [submitted, setSubmitted] = useState(false);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState<number>(0);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
-    
-    // Reset form after success message
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTerminalStep(0);
-    }, 3000);
-  };
+  const onSubmit = async (data: ContactFormData) => {
+    const now = Date.now();
+    const cooldownPeriod = 60 * 1000; // 60 seconds
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    if (now - lastSubmissionTime < cooldownPeriod) {
+      // Cooldown not yet expired
+      const remainingSeconds = Math.ceil((cooldownPeriod - (now - lastSubmissionTime)) / 1000);
+      toast.error(`Please wait ${remainingSeconds} seconds before sending another message.`);
+      return;
+    }
+
+    try {
+      // Dummy Service/Template/User IDs for now
+      // Replace these with actual IDs when configuring EmailJS
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        {
+          from_name: data.name,
+          reply_to: data.email,
+          subject: data.subject,
+          message: data.message,
+        },
+        'YOUR_PUBLIC_KEY'
+      );
+
+      setSubmitted(true);
+      setLastSubmissionTime(now);
+      toast.success('Message sent successfully!');
+
+      // Reset form after success message
+      setTimeout(() => {
+        setSubmitted(false);
+        reset();
+      }, 3000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast.error('Failed to send message. Please try again later.');
+    }
   };
 
   return (
@@ -223,20 +262,20 @@ const Contact: React.FC = () => {
                     <div>$ <span className="terminal-cursor">_</span></div>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                       <label htmlFor="name" className="text-green-400 block mb-1">$ enter_name:</label>
                       <input
                         id="name"
                         type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
+                        {...register('name')}
                         maxLength={100}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
                         placeholder="Your name..."
                       />
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                      )}
                     </div>
 
                     <div>
@@ -244,14 +283,14 @@ const Contact: React.FC = () => {
                       <input
                         id="email"
                         type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
+                        {...register('email')}
                         maxLength={255}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
                         placeholder="your.email@example.com"
                       />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                      )}
                     </div>
 
                     <div>
@@ -259,29 +298,29 @@ const Contact: React.FC = () => {
                       <input
                         id="subject"
                         type="text"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        required
+                        {...register('subject')}
                         maxLength={200}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
                         placeholder="What's this about?"
                       />
+                      {errors.subject && (
+                        <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>
+                      )}
                     </div>
 
                     <div>
                       <label htmlFor="message" className="text-green-400 block mb-1">$ enter_message:</label>
                       <textarea
                         id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
+                        {...register('message')}
                         maxLength={2000}
                         rows={4}
                         className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 resize-none"
                         placeholder="Your message here..."
                       />
+                      {errors.message && (
+                        <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+                      )}
                     </div>
 
                     <motion.button
