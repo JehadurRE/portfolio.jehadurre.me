@@ -323,7 +323,7 @@ For any questions or suggestions, feel free to reach out:
           className="text-center mb-16"
         >
           <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
-            Featured Projects
+            Jehad Urre's Featured Projects
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
             A collection of my work showcasing various technologies and

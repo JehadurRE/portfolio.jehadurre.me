@@ -113,7 +113,7 @@ const Certifications: React.FC = () => {
         <div className="container-custom">
           <div className="text-center py-16 flex flex-col items-center">
             <h2 id="certifications-heading" className="text-3xl font-bold mb-4 text-secondary-800 dark:text-secondary-200">
-              Certifications & Achievements
+              Jehad Urre's Certifications & Achievements
             </h2>
             <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
             <button
@@ -142,7 +142,7 @@ const Certifications: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 id="certifications-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
-            Certifications & Achievements
+            Jehad Urre's Certifications & Achievements
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
             Professional certifications, academic achievements, and recognition that validate my expertise 

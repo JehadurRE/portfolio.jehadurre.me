@@ -204,7 +204,7 @@ const About: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
-            About Me
+            About Jehad Urre
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
             I'm a passionate software engineer with a strong foundation in both practical development 
