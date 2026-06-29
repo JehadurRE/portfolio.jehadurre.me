@@ -19,6 +19,14 @@ interface RepoData {
   url: string;
 }
 
+// ⚡ Bolt Performance Optimization:
+// Hoisted `explicitTheme` configuration object outside the component body.
+// This prevents a new object reference from being allocated memory on every render.
+const explicitTheme: ThemeInput = {
+  light: ['#f0fdf4', '#dcfce7', '#86efac', '#22c55e', '#166534'],
+  dark: ['#1e293b', '#064e3b', '#059669', '#10b981', '#34d399'],
+};
+
 const GithubActivity: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -136,11 +144,6 @@ const GithubActivity: React.FC = () => {
 
     fetchGitHubData();
   }, [username]);
-
-  const explicitTheme: ThemeInput = {
-    light: ['#f0fdf4', '#dcfce7', '#86efac', '#22c55e', '#166534'],
-    dark: ['#1e293b', '#064e3b', '#059669', '#10b981', '#34d399'],
-  };
 
   return (
     <motion.div

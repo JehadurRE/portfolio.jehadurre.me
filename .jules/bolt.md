@@ -92,3 +92,7 @@
 ## 2024-11-20 - Hoisting Admin Form Option Arrays
 **Learning:** In admin panels built with frequently re-rendering components (like `SkillForm` and `AchievementForm`), static configuration arrays for select dropdowns or button groups (such as `iconOptions`, `categoryOptions`, and `proficiencyLevels`) were defined inside the component function body. This causes unnecessary memory reallocation on every render when the user interacts with form inputs.
 **Action:** Move all static, unchanging options arrays (e.g., `iconOptions`, `categoryOptions`) outside the component function body. They do not depend on form state or props and should be instantiated once at the module scope.
+
+## 2024-11-20 - Inline Object Reallocation
+**Learning:** In React components, defining inline static configuration objects like `explicitTheme` inside the functional component body causes them to be recreated on every single render, allocating new memory objects each time.
+**Action:** Always hoist static object declarations outside the functional component if they do not rely on props or state, ensuring stable object references and reducing memory reallocation during re-renders.
