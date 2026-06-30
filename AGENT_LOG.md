@@ -27,10 +27,10 @@ Domain: https://jehadurre.me
 - ✅ B3: GitHub Activity Integration 2026-06-27
 - ⏳ B4: Tech Stack / Skills visualization upgrade
 - ⏳ B5: Resume/CV download button
-- ⏳ B6: Contact form — fully functional
+- ✅ B6: Contact form — fully functional 2026-06-29
 - ⏳ B7: 404 page
 - ⏳ B8: Loading skeletons
-- ⏳ B9: Toast notification system
+- ✅ B9: Toast notification system 2026-06-29
 - ⏳ B10: Newsletter signup
 - ⏳ B11: Analytics
 - ⏳ B12: Reading progress bar
@@ -87,13 +87,28 @@ Domain: https://jehadurre.me
 - 🚫 Set up Plausible/Umami analytics account and add script
 - 🚫 Submit sitemap to Google Search Console
 - 🚫 Create Supabase blog table (run migration: `supabase/migrations/20251025120000_blog_schema_update.sql`)
-- 🚫 Configure EmailJS or Resend for contact form
+- 🚫 Configure EmailJS for contact form (Add YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY in src/components/Contact.tsx)
 - 🚫 Run SQL insert script `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/building-the-research-management-system.sql` in Supabase to publish the new blog post
 
 ---
 
 ## DAILY LOG
+
+### 2026-06-29 — Day 8 — BUILD MODE
+**Branch:** feature/B6-contact-form-2026-06-29
+**PR:** feat: Contact form and Toast notifications — Day 8
+**Mode:** BUILD
+**Files changed:**
+- `src/App.tsx`: Added `Toaster` from `sonner` for global toast notifications.
+- `src/components/Contact.tsx`: Replaced dummy form submission with `@emailjs/browser` integration, `react-hook-form` + `zod` for validation, and added `sonner` toast notifications for success/error states. Added a 60-second rate limit.
+
+**If BUILD:**
+- Items completed: B6, B9
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Implemented functional contact form with EmailJS and global toast notifications using sonner. Human action required to add EmailJS credentials to `src/components/Contact.tsx`.
 
 ### 2026-06-27 — Day 7 — BUILD MODE
 **Branch:** feature/B3-github-activity-2026-06-27

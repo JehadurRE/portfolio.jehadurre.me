@@ -16,6 +16,7 @@ import MobileNav from './components/MobileNav';
 import Home from './pages/Home';
 
 import { ThemeProvider } from './contexts/ThemeContext';
+import { Toaster } from 'sonner';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -84,6 +85,7 @@ function App() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
+              <Toaster theme="dark" richColors position="top-right" />
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} />
