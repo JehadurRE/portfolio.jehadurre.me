@@ -141,7 +141,7 @@ const Blog: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 id="blog-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
-            Blog & Insights
+            Jehad Urre's Blog & Insights
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
             Sharing thoughts on technology, software development, and research discoveries

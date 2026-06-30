@@ -125,7 +125,7 @@ const Research: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 id="research-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gradient">
-            Research & Publications
+            Jehad Urre's Research & Publications
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-300 max-w-3xl mx-auto">
             Exploring the intersection of technology and research to advance our understanding 
