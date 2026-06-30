@@ -92,3 +92,8 @@
 ## 2024-11-20 - Hoisting Admin Form Option Arrays
 **Learning:** In admin panels built with frequently re-rendering components (like `SkillForm` and `AchievementForm`), static configuration arrays for select dropdowns or button groups (such as `iconOptions`, `categoryOptions`, and `proficiencyLevels`) were defined inside the component function body. This causes unnecessary memory reallocation on every render when the user interacts with form inputs.
 **Action:** Move all static, unchanging options arrays (e.g., `iconOptions`, `categoryOptions`) outside the component function body. They do not depend on form state or props and should be instantiated once at the module scope.
+## 2024-11-20 - Ensure Build Artifacts Aren't Committed
+
+**Learning:** When generating a build using dummy Supabase environment variables, the prebuild scripts (`generateRSS.ts`, `generate-sitemap.ts`) will fail to fetch actual data and overwrite `public/rss.xml` and `public/sitemap.xml` with empty/truncated content. Committing these files leads to massive regressions in SEO indexation.
+
+**Action:** Always explicitly verify `git status` after running `pnpm build`, and use `git restore` and `git checkout` to discard unintentional changes to auto-generated build artifacts like `public/rss.xml` and `public/sitemap.xml` before submitting the PR.
