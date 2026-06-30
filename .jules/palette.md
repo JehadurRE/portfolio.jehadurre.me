@@ -7,3 +7,6 @@
 ## 2024-05-30 - Focus Visibility on Framer Motion Elements
 **Learning:** Elements styled with Framer Motion (`<motion.button>`, `<motion.a>`) or custom buttons in dynamic components often lack default focus rings, severely degrading keyboard accessibility for tab-navigating users.
 **Action:** Consistently apply `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500` (or the respective primary brand color ring) to all interactive elements to ensure WCAG 2.4.7 Focus Visible compliance, so keyboard users can track their location on the page.
+## 2024-07-01 - Replace Blocking Alerts with Toast Notifications
+**Learning:** Using native browser `alert()` for user feedback (like copying to clipboard) blocks the main thread, pauses all UI updates, and provides a jarring user experience. Users prefer non-intrusive feedback that doesn't interrupt their workflow.
+**Action:** Always replace native `alert()` calls with non-blocking toast notifications (e.g., using `sonner` or the project's toast library) for transient success/error feedback.

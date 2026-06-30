@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, BookOpen, User } from 'lucide-react';
@@ -263,7 +264,7 @@ const BlogPost: React.FC = () => {
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
-                  alert('Link copied to clipboard!');
+                  toast.success('Link copied to clipboard!');
                 }}
                 className="inline-flex items-center space-x-2 px-4 py-2 glass-card text-secondary-600 dark:text-secondary-300 rounded-xl hover:shadow-lg transition-all duration-200"
                 aria-label="Copy Link"
@@ -318,7 +319,7 @@ const BlogPost: React.FC = () => {
                   <button
                     onClick={() => {
                       navigator.clipboard.writeText(window.location.href);
-                      alert('Link copied to clipboard!');
+                      toast.success('Link copied to clipboard!');
                     }}
                     className="btn-secondary inline-flex items-center space-x-2"
                     aria-label="Copy Link"
