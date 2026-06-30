@@ -4,3 +4,6 @@
 ## $(date +%Y-%m-%d) - Empty State ARIA Live Regions
 **Learning:** When users interact with dynamic filtering or search components (like tabs, categories, or search inputs), screen reader users need immediate feedback if their action results in zero matches. Relying on visual changes alone (like the appearance of a "No items found" message) leaves them without context.
 **Action:** Always add `aria-live="polite"` and `role="status"` to empty state container components (e.g., `<div>` or `<motion.div>`) that conditionally render when a list is empty. This ensures screen readers announce the empty state text as soon as it appears in the DOM.
+## 2024-05-30 - Focus Visibility on Framer Motion Elements
+**Learning:** Elements styled with Framer Motion (`<motion.button>`, `<motion.a>`) or custom buttons in dynamic components often lack default focus rings, severely degrading keyboard accessibility for tab-navigating users.
+**Action:** Consistently apply `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500` (or the respective primary brand color ring) to all interactive elements to ensure WCAG 2.4.7 Focus Visible compliance, so keyboard users can track their location on the page.

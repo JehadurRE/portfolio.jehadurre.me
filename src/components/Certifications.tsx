@@ -119,7 +119,7 @@ const Certifications: React.FC = () => {
             <button
               onClick={() => fetchData()}
               disabled={loading}
-              className="btn-primary inline-flex items-center space-x-2"
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               aria-label="Try Again: load certifications and achievements"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
@@ -164,7 +164,7 @@ const Certifications: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('certifications')}
                 aria-label="View Certifications tab"
-                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                   activeTab === 'certifications'
                     ? 'bg-primary-500 text-white shadow-lg'
                     : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
@@ -180,7 +180,7 @@ const Certifications: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab('achievements')}
                 aria-label="View Achievements tab"
-                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                   activeTab === 'achievements'
                     ? 'bg-primary-500 text-white shadow-lg'
                     : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800'
@@ -224,7 +224,7 @@ const Certifications: React.FC = () => {
                       onClick={() => setCertFilter(category.id)}
                       aria-label={`Filter by ${category.name}`}
                       aria-pressed={certFilter === category.id}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                         certFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
                           : 'glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md'
@@ -333,7 +333,7 @@ const Certifications: React.FC = () => {
                       onClick={() => setAchievementFilter(category.id)}
                       aria-label={`Filter by ${category.name}`}
                       aria-pressed={achievementFilter === category.id}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ${
                         achievementFilter === category.id
                           ? 'bg-accent-500 text-white shadow-lg'
                           : 'glass-card text-secondary-600 dark:text-secondary-300 hover:shadow-md'
@@ -422,7 +422,7 @@ const Certifications: React.FC = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setSelectedCert(null)}
-                  className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
+                  className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   aria-label="Close certificate"
                 >
                   <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
@@ -508,7 +508,7 @@ const Certifications: React.FC = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-primary inline-flex items-center space-x-2 w-full justify-center"
+                  className="btn-primary inline-flex items-center space-x-2 w-full justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
                   <ExternalLink className="w-5 h-5" />
                   <span>Verify Certificate</span>
