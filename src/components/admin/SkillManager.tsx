@@ -70,18 +70,25 @@ const SkillManager: React.FC = () => {
   }, [skills, filter]);
 
   // ⚡ Bolt Performance Optimization:
-  // Memoize `categories` because it loops over `skills` 7 times to calculate counts.
-  // This avoids massive O(N) recalculations on every render.
-  const categories = useMemo(() => [
-    { id: 'all', name: 'All Skills', count: skills.length },
-    { id: 'frontend', name: 'Frontend', count: skills.filter(s => s.category === 'frontend').length },
-    { id: 'backend', name: 'Backend', count: skills.filter(s => s.category === 'backend').length },
-    { id: 'research', name: 'Research', count: skills.filter(s => s.category === 'research').length },
-    { id: 'tools', name: 'Tools', count: skills.filter(s => s.category === 'tools').length },
-    { id: 'database', name: 'Database', count: skills.filter(s => s.category === 'database').length },
-    { id: 'cloud', name: 'Cloud', count: skills.filter(s => s.category === 'cloud').length },
-    { id: 'mobile', name: 'Mobile', count: skills.filter(s => s.category === 'mobile').length },
-  ], [skills]);
+  // Memoize `categories` and use a single O(N) reduce pass to calculate counts instead of looping over `skills` 7 times.
+  // This avoids massive O(M*N) recalculations on every render.
+  const categories = useMemo(() => {
+    const counts = skills.reduce((acc, skill) => {
+      acc[skill.category] = (acc[skill.category] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return [
+      { id: 'all', name: 'All Skills', count: skills.length },
+      { id: 'frontend', name: 'Frontend', count: counts['frontend'] || 0 },
+      { id: 'backend', name: 'Backend', count: counts['backend'] || 0 },
+      { id: 'research', name: 'Research', count: counts['research'] || 0 },
+      { id: 'tools', name: 'Tools', count: counts['tools'] || 0 },
+      { id: 'database', name: 'Database', count: counts['database'] || 0 },
+      { id: 'cloud', name: 'Cloud', count: counts['cloud'] || 0 },
+      { id: 'mobile', name: 'Mobile', count: counts['mobile'] || 0 },
+    ];
+  }, [skills]);
 
   if (showForm) {
     return (
