@@ -97,3 +97,7 @@
 **Learning:** When generating a build using dummy Supabase environment variables, the prebuild scripts (`generateRSS.ts`, `generate-sitemap.ts`) will fail to fetch actual data and overwrite `public/rss.xml` and `public/sitemap.xml` with empty/truncated content. Committing these files leads to massive regressions in SEO indexation.
 
 **Action:** Always explicitly verify `git status` after running `pnpm build`, and use `git restore` and `git checkout` to discard unintentional changes to auto-generated build artifacts like `public/rss.xml` and `public/sitemap.xml` before submitting the PR.
+
+## 2024-11-20 - Replace Multiple filter().length with reduce() for Array Counting
+**Learning:** When generating multiple counts for categories based on a state array, using multiple `.filter(x => x.category === y).length` calls iterates over the full array for every single category. This turns an `O(N)` operation into an `O(N * C)` operation (where N is elements, C is categories). This causes unnecessary overhead on components that re-render frequently.
+**Action:** Replace multiple `filter().length` calculations with a single `reduce()` pass to build a count dictionary in exactly one iteration `O(N)`, then look up those values when building the category configuration objects.
