@@ -60,23 +60,35 @@ const Certifications: React.FC = () => {
   }, []);
 
   // ⚡ Bolt Performance Optimization:
-  // Memoize `categories`, `filteredCertifications`, and `filteredAchievements` to avoid running 8 separate `.filter()`
-  // arrays iterations on every single render (such as when intersection observer updates).
+  // Memoize `categories`, `filteredCertifications`, and `filteredAchievements` and use a single O(N) reduce pass
+  // to avoid running 6 separate `.filter()` arrays iterations on every single render (such as when intersection observer updates).
   // Expected impact: Prevents unnecessary heavy calculations, improving UI responsiveness.
-  const categories = useMemo(() => ({
-    certifications: [
-      { id: 'all', name: 'All Certifications', count: certifications.length },
-      { id: 'technical', name: 'Technical', count: certifications.filter(c => c.category === 'technical').length },
-      { id: 'professional', name: 'Professional', count: certifications.filter(c => c.category === 'professional').length },
-      { id: 'academic', name: 'Academic', count: certifications.filter(c => c.category === 'academic').length }
-    ],
-    achievements: [
-      { id: 'all', name: 'All Achievements', count: achievements.length },
-      { id: 'award', name: 'Awards', count: achievements.filter(a => a.category === 'award').length },
-      { id: 'recognition', name: 'Recognition', count: achievements.filter(a => a.category === 'recognition').length },
-      { id: 'milestone', name: 'Milestones', count: achievements.filter(a => a.category === 'milestone').length }
-    ]
-  }), [certifications, achievements]);
+  const categories = useMemo(() => {
+    const certCounts = certifications.reduce((acc, cert) => {
+      acc[cert.category] = (acc[cert.category] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const achievementCounts = achievements.reduce((acc, achievement) => {
+      acc[achievement.category] = (acc[achievement.category] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+
+    return {
+      certifications: [
+        { id: 'all', name: 'All Certifications', count: certifications.length },
+        { id: 'technical', name: 'Technical', count: certCounts['technical'] || 0 },
+        { id: 'professional', name: 'Professional', count: certCounts['professional'] || 0 },
+        { id: 'academic', name: 'Academic', count: certCounts['academic'] || 0 }
+      ],
+      achievements: [
+        { id: 'all', name: 'All Achievements', count: achievements.length },
+        { id: 'award', name: 'Awards', count: achievementCounts['award'] || 0 },
+        { id: 'recognition', name: 'Recognition', count: achievementCounts['recognition'] || 0 },
+        { id: 'milestone', name: 'Milestones', count: achievementCounts['milestone'] || 0 }
+      ]
+    };
+  }, [certifications, achievements]);
 
   const filteredCertifications = useMemo(() => {
     return certFilter === 'all'

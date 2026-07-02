@@ -97,3 +97,7 @@
 **Learning:** When generating a build using dummy Supabase environment variables, the prebuild scripts (`generateRSS.ts`, `generate-sitemap.ts`) will fail to fetch actual data and overwrite `public/rss.xml` and `public/sitemap.xml` with empty/truncated content. Committing these files leads to massive regressions in SEO indexation.
 
 **Action:** Always explicitly verify `git status` after running `pnpm build`, and use `git restore` and `git checkout` to discard unintentional changes to auto-generated build artifacts like `public/rss.xml` and `public/sitemap.xml` before submitting the PR.
+
+## 2024-11-20 - O(M*N) Array Filters in useMemo Replacements
+**Learning:** In components computing multiple categorized stats (e.g., `Certifications.tsx` counts for Academic, Technical, Professional, and `SkillManager.tsx`), running multiple `Array.prototype.filter(c => c.category === type).length` queries inside a `useMemo` forces $O(M \times N)$ array iterations (where $M$ is the number of categories and $N$ is the dataset length). This becomes a severe bottleneck as the datasets grow, especially on pages rendering frequently.
+**Action:** When computing category counts or derived state properties within `useMemo` hooks, replace multiple `O(N)` `.filter()` iterations with a single `O(N)` `.reduce()` pass to construct a count dictionary (e.g., `counts['technical'] = (counts['technical'] || 0) + 1`), then look up the keys in $O(1)$ time, vastly reducing calculation overhead.
