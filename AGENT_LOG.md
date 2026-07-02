@@ -25,7 +25,7 @@ Domain: https://jehadurre.me
 - ✅ B1: Dark/Light mode toggle 2025-10-27
 - ✅ B2: Individual Project pages 2026-06-25
 - ✅ B3: GitHub Activity Integration 2026-06-27
-- ⏳ B4: Tech Stack / Skills visualization upgrade
+- ✅ B4: Tech Stack / Skills visualization upgrade 2026-06-30
 - ⏳ B5: Resume/CV download button
 - ✅ B6: Contact form — fully functional 2026-06-29
 - ⏳ B7: 404 page
@@ -94,6 +94,21 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-06-30 — Day 9 — BUILD MODE
+**Branch:** feature/B4-skills-visualization-2026-06-30
+**PR:** feat: Tech Stack / Skills visualization upgrade — Day 9
+**Mode:** BUILD
+**Files changed:**
+- `src/components/About.tsx`: Refactored to replace compact/detailed view toggle with an interactive, tab-based category navigation (Frontend, Backend, Cloud, Database, Tools, Research). Added a 5-star proficiency rating system utilizing `lucide-react` icons. Rebuilt `skillsraw` fallback array.
+- `package.json`: Added `react-icons` and `@playwright/test` (for frontend verification).
+
+**If BUILD:**
+- Items completed: B4
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Upgraded skills grid to an interactive tab-based view grouped by categories. Replaced text proficiency with visual 5-star ratings. Also added robust fallback `skillsraw` data to handle potential Supabase configuration failures gracefully.
 
 ### 2026-06-29 — Day 8 — BUILD MODE
 **Branch:** feature/B6-contact-form-2026-06-29
