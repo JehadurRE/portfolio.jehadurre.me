@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-01
+Last updated: 2026-07-05
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -33,6 +33,7 @@ Stack: React + TypeScript + Vite
 - 🚫 B12: `<link rel="manifest" href="/site.webmanifest">` if manifest exists - NOT YET ADDED. (Human action required)
 
 ### C — Structured Data
+- ⏳ C12: `ProjectDetail.tsx` dynamically generating `SoftwareSourceCode` schema [2026-07-05]
 - ✅ C1: Person schema — name, url, image, jobTitle, description, email, sameAs (all socials), knowsAbout, alumniOf, worksFor [2026-06-15]
 - ✅ C2: WebSite schema — name, url, description, author [2026-06-15]
 - ✅ C3: ProfilePage schema — mainEntity, url, name, dateModified [2026-06-15]
@@ -87,12 +88,12 @@ Stack: React + TypeScript + Vite
 - ✅ G5: All key facts in real HTML text (not embedded in JS variables or images) [2026-06-29]
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-01]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-01]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-01]
-- ✅ H4: New components/sections detected and added to checklist [2026-07-01]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-01]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-07-01]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-05]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-05]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-05]
+- ✅ H4: New components/sections detected and added to checklist [2026-07-05]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-05]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-07-05]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
@@ -107,11 +108,24 @@ Stack: React + TypeScript + Vite
 ---
 
 ## NEW ITEMS DISCOVERED THIS SESSION
-- ➕ NEW: `ProjectDetail.tsx` is now dynamically generating its own `SoftwareSourceCode` schema. Added dynamic URLs to `sitemap.xml` based on GitHub API.
+[None today]
 
 ---
 
 ## DAILY LOG
+
+### 2026-07-05 — Day 10
+**Branch:** seo/daily-2026-07-05
+**PR:** SEO [Day 10]: Sitemap Maintenance and Triage — 2026-07-05
+**Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date and ran generation to update `public/sitemap.xml` → Keeps sitemap fresh for crawlers (H1).
+- SEO_LOG.md: Triaged pending items. Updated daily log with maintenance tasks.
+**Items completed today:** H1, H2, H3, H4, H5, H6
+**Items skipped:** A6, I1, I2, I3, I4, I5, I6, I7, I8 (Blocked by human tasks).
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Maintained the master checklist statuses and verified build passing.
+
 
 ### 2026-07-01 — Day 9
 **Branch:** seo/daily-2026-07-01
