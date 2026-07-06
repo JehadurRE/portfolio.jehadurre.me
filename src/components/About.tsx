@@ -290,7 +290,7 @@ const About: React.FC = () => {
                  })}
 
                  {displayedSkills.length === 0 && (
-                   <div className="col-span-full py-8 text-center text-secondary-500 dark:text-secondary-400 glass-card">
+                   <div className="col-span-full py-8 text-center text-secondary-500 dark:text-secondary-400 glass-card" aria-live="polite" role="status">
                      No skills found in this category.
                    </div>
                  )}

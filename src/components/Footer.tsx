@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="glass-card p-3 hover:shadow-lg transition-all duration-300"
+                  className="glass-card p-3 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-xl"
                   aria-label={link.label}
                 >
                   <link.icon className="w-5 h-5 text-secondary-400 hover:text-primary-400 transition-colors" />
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                   <motion.a
                     href={isHome ? link.href : `/${link.href}`}
                     whileHover={{ x: 5 }}
-                    className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors duration-200 flex items-center space-x-2"
+                    className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors duration-200 flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-md"
                   >
                     <span>→</span>
                     <span>{link.name}</span>
@@ -155,7 +155,7 @@ const Footer: React.FC = () => {
                 <Mail className="w-5 h-5 text-primary-400" />
                 <a
                   href="mailto:emran.jehadur@gmail.com"
-                  className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
+                  className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
                 >
                   emran.jehadur@gmail.com
                 </a>
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
                 type="submit"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm rounded-lg hover:shadow-lg transition-all duration-200"
+                className="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm rounded-lg hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 aria-label="Subscribe to newsletter"
               >
                 Subscribe
@@ -246,14 +246,14 @@ const Footer: React.FC = () => {
               <motion.a
                 href="/"
                 whileHover={{ scale: 1.05 }}
-                className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
+                className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
               >
                 Privacy Policy
               </motion.a>
               <motion.a
                 href="/"
                 whileHover={{ scale: 1.05 }}
-                className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors"
+                className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
               >
                 Terms of Service
               </motion.a>
@@ -261,7 +261,7 @@ const Footer: React.FC = () => {
                 href="/admin"
                 aria-label="Admin link"
                 whileHover={{ scale: 1.05 }}
-                className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors flex items-center space-x-1"
+                className="text-secondary-300 dark:text-secondary-400 hover:text-primary-400 dark:hover:text-primary-400 transition-colors flex items-center space-x-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
               >
                 <span>Admin</span>
                 <ExternalLink className="w-3 h-3" />

@@ -255,7 +255,7 @@ const ProjectDetail: React.FC = () => {
                 />
               </div>
             ) : (
-              <div className="text-center py-12">
+              <div className="text-center py-12" aria-live="polite" role="status">
                 <FileText className="w-12 h-12 text-secondary-400 dark:text-secondary-600 mx-auto mb-4" />
                 <p className="text-secondary-600 dark:text-secondary-400 text-lg">
                   No README.md found for this project.

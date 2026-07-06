@@ -10,6 +10,7 @@ import LoadingScreen from './components/LoadingScreen';
 const Admin = React.lazy(() => import('./pages/Admin'));
 const BlogPost = React.lazy(() => import('./components/BlogPost'));
 const ProjectDetail = React.lazy(() => import('./pages/ProjectDetail'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
@@ -97,6 +98,11 @@ function App() {
                 <Route path="/project/:id" element={
                   <React.Suspense fallback={<LoadingScreen />}>
                     <ProjectDetail />
+                  </React.Suspense>
+                } />
+                <Route path="*" element={
+                  <React.Suspense fallback={<LoadingScreen />}>
+                    <NotFound />
                   </React.Suspense>
                 } />
               </Routes>

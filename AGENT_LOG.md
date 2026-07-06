@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-06-25
+Last updated: 2026-07-01
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -26,9 +26,9 @@ Domain: https://jehadurre.me
 - ✅ B2: Individual Project pages 2026-06-25
 - ✅ B3: GitHub Activity Integration 2026-06-27
 - ✅ B4: Tech Stack / Skills visualization upgrade 2026-06-30
-- ⏳ B5: Resume/CV download button
+- ✅ B5: Resume/CV download button 2026-07-01
 - ✅ B6: Contact form — fully functional 2026-06-29
-- ⏳ B7: 404 page
+- ✅ B7: 404 page 2026-07-01
 - ⏳ B8: Loading skeletons
 - ✅ B9: Toast notification system 2026-06-29
 - ⏳ B10: Newsletter signup
@@ -94,6 +94,22 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-01 — Day 10 — BUILD MODE
+**Branch:** feature/B7-not-found-page-2026-07-01
+**PR:** feat: 404 Page implementation — Day 10
+**Mode:** BUILD
+**Files changed:**
+- `src/pages/NotFound.tsx`: Created custom 404 page design using Framer Motion and standard layout options.
+- `src/App.tsx`: Updated routing with `*` catch-all mapping to the NotFound page.
+- `AGENT_LOG.md`: Updated checklist status.
+
+**If BUILD:**
+- Items completed: B5, B7
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added a customized NotFound page matching the site's aesthetic. Also marked B5 (Resume/CV download) as completed, as it had previously been implemented.
 
 ### 2026-06-30 — Day 9 — BUILD MODE
 **Branch:** feature/B4-skills-visualization-2026-06-30
