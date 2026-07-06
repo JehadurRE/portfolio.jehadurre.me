@@ -10,3 +10,6 @@
 ## 2024-07-01 - Replace Blocking Alerts with Toast Notifications
 **Learning:** Using native browser `alert()` for user feedback (like copying to clipboard) blocks the main thread, pauses all UI updates, and provides a jarring user experience. Users prefer non-intrusive feedback that doesn't interrupt their workflow.
 **Action:** Always replace native `alert()` calls with non-blocking toast notifications (e.g., using `sonner` or the project's toast library) for transient success/error feedback.
+## 2024-07-24 - Empty States in Dynamic Layouts
+**Learning:** For layout grids handling dynamic data (e.g., project filters), missing "empty state" handling will cause the layout to abruptly collapse or display a blank void, leading to confusing UX and non-accessible interactions (since screen readers get nothing).
+**Action:** Always wrap dynamic rendering arrays (like `.map`) in a ternary checking for `.length === 0` and provide a fallback `aria-live="polite"` empty state message so visually impaired users know why the UI changed.

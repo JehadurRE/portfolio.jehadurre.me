@@ -373,6 +373,22 @@ For any questions or suggestions, feel free to reach out:
               </div>
             ))}
           </div>
+        ) : filteredProjects.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center py-16"
+            aria-live="polite"
+            role="status"
+          >
+            <h3 className="text-xl font-semibold text-secondary-600 dark:text-secondary-400 mb-2">
+              No projects found matching your criteria
+            </h3>
+            <p className="text-secondary-500 dark:text-secondary-500">
+              Try adjusting your language filter
+            </p>
+          </motion.div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
