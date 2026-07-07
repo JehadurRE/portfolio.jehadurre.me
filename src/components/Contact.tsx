@@ -269,12 +269,14 @@ const Contact: React.FC = () => {
                         id="name"
                         type="text"
                         {...register('name')}
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? "name-error" : undefined}
                         maxLength={100}
-                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
+                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 focus-visible:ring-1 focus-visible:ring-green-500 rounded"
                         placeholder="Your name..."
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                        <p id="name-error" role="alert" className="text-red-500 text-xs mt-1">{errors.name.message}</p>
                       )}
                     </div>
 
@@ -284,12 +286,14 @@ const Contact: React.FC = () => {
                         id="email"
                         type="email"
                         {...register('email')}
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? "email-error" : undefined}
                         maxLength={255}
-                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
+                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 focus-visible:ring-1 focus-visible:ring-green-500 rounded"
                         placeholder="your.email@example.com"
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                        <p id="email-error" role="alert" className="text-red-500 text-xs mt-1">{errors.email.message}</p>
                       )}
                     </div>
 
@@ -299,12 +303,14 @@ const Contact: React.FC = () => {
                         id="subject"
                         type="text"
                         {...register('subject')}
+                        aria-invalid={!!errors.subject}
+                        aria-describedby={errors.subject ? "subject-error" : undefined}
                         maxLength={200}
-                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500"
+                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 focus-visible:ring-1 focus-visible:ring-green-500 rounded"
                         placeholder="What's this about?"
                       />
                       {errors.subject && (
-                        <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>
+                        <p id="subject-error" role="alert" className="text-red-500 text-xs mt-1">{errors.subject.message}</p>
                       )}
                     </div>
 
@@ -313,13 +319,15 @@ const Contact: React.FC = () => {
                       <textarea
                         id="message"
                         {...register('message')}
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? "message-error" : undefined}
                         maxLength={2000}
                         rows={4}
-                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 resize-none"
+                        className="w-full bg-transparent text-white border-none outline-none placeholder-secondary-500 resize-none focus-visible:ring-1 focus-visible:ring-green-500 rounded"
                         placeholder="Your message here..."
                       />
                       {errors.message && (
-                        <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+                        <p id="message-error" role="alert" className="text-red-500 text-xs mt-1">{errors.message.message}</p>
                       )}
                     </div>
 

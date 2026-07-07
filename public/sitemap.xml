@@ -38,13 +38,19 @@
   </url>
   <url>
     <loc>https://jehadurre.me/project/JehadurRE</loc>
-    <lastmod>2026-07-04</lastmod>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jehadurre.me/project/dograh</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://jehadurre.me/project/portfolio.jehadurre.me</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -327,12 +333,6 @@
   <url>
     <loc>https://jehadurre.me/project/github-activity-readme</loc>
     <lastmod>2024-05-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jehadurre.me/project/design</loc>
-    <lastmod>2024-01-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
