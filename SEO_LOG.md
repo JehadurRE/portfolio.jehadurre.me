@@ -87,12 +87,12 @@ Stack: React + TypeScript + Vite
 - ✅ G5: All key facts in real HTML text (not embedded in JS variables or images) [2026-06-29]
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-04]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-04]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-04]
-- ✅ H4: New components/sections detected and added to checklist [2026-07-04]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-04]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-07-04]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-08]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-08]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-08]
+- ✅ H4: New components/sections detected and added to checklist [2026-07-08]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-08]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-07-08]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
