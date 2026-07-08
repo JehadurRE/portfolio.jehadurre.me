@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { blogApi, type BlogPost } from '../lib/supabase';
+import Skeleton from 'react-loading-skeleton';
 
 
 const Blog: React.FC = () => {
@@ -220,9 +221,31 @@ const Blog: React.FC = () => {
 
         {/* Blog Posts */}
         {loading ? (
-          <div className="text-center py-16">
-            <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent mx-auto mb-4"></div>
-            <p className="text-secondary-600 dark:text-secondary-300">Loading blog posts...</p>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="glass-card flex flex-col overflow-hidden h-[450px]">
+                <div className="w-full h-48">
+                  <Skeleton height="100%" borderRadius={0} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <div className="mb-3">
+                    <Skeleton width={80} height={24} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  </div>
+                  <div className="mb-4">
+                    <Skeleton count={2} height={28} className="mb-2" baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                    <Skeleton count={3} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  </div>
+                  <div className="flex gap-2 mb-4">
+                     <Skeleton width={60} height={24} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                     <Skeleton width={60} height={24} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  </div>
+                  <div className="mt-auto pt-4 flex justify-between">
+                     <Skeleton width={150} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                     <Skeleton width={80} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <>

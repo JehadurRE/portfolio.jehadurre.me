@@ -361,14 +361,24 @@ For any questions or suggestions, feel free to reach out:
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="glass-card p-6 animate-pulse">
-                <div className="h-48 bg-secondary-200 dark:bg-secondary-700 rounded mb-4"></div>
-                <div className="h-4 bg-secondary-200 dark:bg-secondary-700 rounded mb-4"></div>
-                <div className="h-3 bg-secondary-200 dark:bg-secondary-700 rounded mb-2"></div>
-                <div className="h-3 bg-secondary-200 dark:bg-secondary-700 rounded mb-4"></div>
-                <div className="flex space-x-2">
-                  <div className="h-8 w-16 bg-secondary-200 dark:bg-secondary-700 rounded"></div>
-                  <div className="h-8 w-16 bg-secondary-200 dark:bg-secondary-700 rounded"></div>
+              <div key={i} className="glass-card flex flex-col overflow-hidden h-[450px] p-6">
+                <div className="w-full h-48 mb-6 rounded-xl overflow-hidden">
+                  <Skeleton height="100%" borderRadius={0} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                </div>
+                <div className="flex items-start justify-between mb-4">
+                  <Skeleton width={180} height={28} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  <Skeleton width={60} height={20} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                </div>
+                <div className="mb-4">
+                  <Skeleton count={2} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                </div>
+                <div className="flex gap-2 mb-4">
+                  <Skeleton width={60} height={24} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  <Skeleton width={80} height={24} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                </div>
+                <div className="mt-auto flex justify-between">
+                  <Skeleton width={100} height={20} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                  <Skeleton width={100} height={20} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
                 </div>
               </div>
             ))}
@@ -588,15 +598,20 @@ For any questions or suggestions, feel free to reach out:
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto">
                   {selectedProject.loading ? (
-                    <div className="flex flex-col items-center justify-center h-64 space-y-4">
-                      <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent"></div>
-                      <p className="text-secondary-600 dark:text-secondary-300">
-                        Loading README...
-                      </p>
+                    <div className="p-4 space-y-4">
+                      <Skeleton width="60%" height={32} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                      <Skeleton count={4} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                      <Skeleton width="40%" height={24} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" className="mt-4" />
+                      <Skeleton count={3} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                      <Skeleton height={200} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" className="mt-4" />
                     </div>
                   ) : (
                     <div className="prose prose-lg max-w-none dark:prose-invert text-secondary-700 dark:text-secondary-300 leading-relaxed">
-                      <React.Suspense fallback={<div className="flex flex-col items-center justify-center h-32 space-y-4"><div className="animate-spin rounded-full h-8 w-8 border-2 border-primary-500 border-t-transparent"></div><p className="text-secondary-600 dark:text-secondary-300">Loading Markdown renderer...</p></div>}>
+                      <React.Suspense fallback={
+                        <div className="p-4 space-y-4">
+                          <Skeleton count={3} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                        </div>
+                      }>
                         <MarkdownRenderer
                         markdown={selectedProject.readme}
                         githubUrl={`https://github.com/${selectedProject.project.owner.login}/${selectedProject.project.name}`}

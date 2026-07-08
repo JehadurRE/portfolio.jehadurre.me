@@ -15,6 +15,7 @@ import MarkdownRenderer from "../utils/MarkdownRenderer";
 import decodeBase64UTF8 from "../utils/DecodeUTF";
 import { formatDate } from "../utils/dateUtils";
 import LazyImage from "../components/LazyImage";
+import Skeleton from "react-loading-skeleton";
 
 interface Project {
   id: number;
@@ -91,14 +92,34 @@ const ProjectDetail: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen pt-24 flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-secondary-900 dark:via-secondary-800 dark:to-secondary-900">
-        <div className="flex flex-col items-center space-y-4">
-          <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent"></div>
-          <p className="text-secondary-600 dark:text-secondary-300">
-            Loading project...
-          </p>
-        </div>
-      </div>
+      <main className="min-h-screen pt-24 pb-16 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-secondary-900 dark:via-secondary-800 dark:to-secondary-900">
+        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+             <Skeleton width={150} height={24} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+          </div>
+          <header className="mb-12">
+            <div className="w-full h-64 md:h-96 rounded-2xl shadow-xl mb-8 overflow-hidden">
+               <Skeleton height="100%" borderRadius={0} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+            </div>
+            <div className="mb-6">
+               <Skeleton width="60%" height={48} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+            </div>
+            <div className="flex gap-6 mb-8">
+               <Skeleton width={80} height={24} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+               <Skeleton width={80} height={24} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+               <Skeleton width={120} height={24} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+            </div>
+            <div className="flex gap-4">
+               <Skeleton width={140} height={48} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+               <Skeleton width={140} height={48} borderRadius={12} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+            </div>
+          </header>
+          <div className="glass-card p-6 md:p-10 rounded-2xl">
+             <Skeleton count={8} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" className="mb-2" />
+             <Skeleton width="80%" baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+          </div>
+        </article>
+      </main>
     );
   }
 

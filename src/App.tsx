@@ -18,6 +18,7 @@ import Home from './pages/Home';
 
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Toaster } from 'sonner';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
