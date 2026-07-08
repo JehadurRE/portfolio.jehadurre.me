@@ -68,10 +68,10 @@ const Blog: React.FC = () => {
 
     return filtered.sort((a, b) => {
       if (sortBy === 'latest') {
-        return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
+        return b.published_at > a.published_at ? 1 : b.published_at < a.published_at ? -1 : 0;
       }
       if (sortBy === 'oldest') {
-        return new Date(a.published_at).getTime() - new Date(b.published_at).getTime();
+        return a.published_at > b.published_at ? 1 : a.published_at < b.published_at ? -1 : 0;
       }
       if (sortBy === 'viewed') {
         return (b.views || 0) - (a.views || 0);
