@@ -13,3 +13,7 @@
 ## 2024-07-24 - Empty States in Dynamic Layouts
 **Learning:** For layout grids handling dynamic data (e.g., project filters), missing "empty state" handling will cause the layout to abruptly collapse or display a blank void, leading to confusing UX and non-accessible interactions (since screen readers get nothing).
 **Action:** Always wrap dynamic rendering arrays (like `.map`) in a ternary checking for `.length === 0` and provide a fallback `aria-live="polite"` empty state message so visually impaired users know why the UI changed.
+
+## 2024-05-23 - Playwright Focus-Visible Verification
+**Learning:** When using Playwright to verify Tailwind's `focus-visible` styles, using `page.focus()` will fail to trigger the pseudo-class because the browser requires a keyboard event.
+**Action:** Always simulate keyboard navigation using `page.keyboard.press('Tab')` to successfully capture the focus ring in automated tests.

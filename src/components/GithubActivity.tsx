@@ -129,7 +129,7 @@ const GithubActivity: React.FC = () => {
                      return { date: d.date, count: d.contributionCount, level };
                   })
                   .filter((d: ContributionDay) => new Date(d.date) >= lastYear && new Date(d.date) <= today)
-                  .sort((a: ContributionDay, b: ContributionDay) => new Date(a.date).getTime() - new Date(b.date).getTime());
+                  .sort((a: ContributionDay, b: ContributionDay) => a.date > b.date ? 1 : a.date < b.date ? -1 : 0);
 
                 setContributions(formattedData);
             }

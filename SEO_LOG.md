@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-08
+Last updated: 2026-07-07
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -113,14 +113,14 @@ Stack: React + TypeScript + Vite
 
 ## DAILY LOG
 
-### 2026-07-08 — Day 12
-**Branch:** seo/daily-2026-07-08
-**PR:** SEO [Day 12]: Sitemap Maintenance and Triage — 2026-07-08
-**Files changed:** scripts/generate-sitemap.ts, SEO_LOG.md
+### 2026-07-07 — Day 11
+**Branch:** seo/daily-2026-07-07
+**PR:** SEO [Day 11]: Sitemap Maintenance and Triage — 2026-07-07
+**Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, SEO_LOG.md
 **Changes made:**
-- scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date. → Keeps sitemap fresh for crawlers (H1).
+- scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date and ran generation to update `public/sitemap.xml` → Keeps sitemap fresh for crawlers (H1).
 - SEO_LOG.md: Triaged pending items. Updated daily log with maintenance tasks.
-**Items completed today:** H1, H2, H3, H5, H6
+**Items completed today:** H1, H2, H3, H4, H5, H6
 **Items skipped:** A6, I1, I2, I3, I4, I5, I6, I7, I8 (Blocked by human tasks).
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Maintained the master checklist statuses and verified build passing.
