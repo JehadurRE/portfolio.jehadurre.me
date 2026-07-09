@@ -17,3 +17,7 @@
 ## 2024-05-23 - Playwright Focus-Visible Verification
 **Learning:** When using Playwright to verify Tailwind's `focus-visible` styles, using `page.focus()` will fail to trigger the pseudo-class because the browser requires a keyboard event.
 **Action:** Always simulate keyboard navigation using `page.keyboard.press('Tab')` to successfully capture the focus ring in automated tests.
+
+## $(date +%Y-%m-%d) - Focus Accessibility on Custom Terminal Inputs
+**Learning:** Custom terminal-style inputs using `outline-none` lack visual focus indicators, hindering keyboard navigation. Furthermore, without proper ARIA attributes, validation errors lack direct association with the failing inputs, making error recovery difficult for screen reader users.
+**Action:** When styling custom terminal inputs with `outline-none`, manually re-add focus rings (e.g., `focus-visible:ring-1 focus-visible:ring-green-500 rounded`) for keyboard accessibility. Ensure validation errors are directly linked to inputs using `aria-invalid`, `aria-describedby`, and use `role="alert"` on the error text.
