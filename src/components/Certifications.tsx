@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
+import Skeleton from 'react-loading-skeleton';
 import LazyImage from './LazyImage';
 import { sanitizeUrl } from '../utils/sanitizeUrl';
 
@@ -208,9 +209,25 @@ const Certifications: React.FC = () => {
         </motion.div>
 
         {loading ? (
-          <div className="text-center py-16">
-            <div className="animate-spin rounded-full h-12 w-12 border-2 border-primary-500 border-t-transparent mx-auto mb-4"></div>
-            <p className="text-secondary-600 dark:text-secondary-300">Loading...</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="glass-card flex flex-col p-8 overflow-hidden h-[300px]">
+                 <div className="flex items-center space-x-4 mb-6">
+                    <Skeleton circle width={64} height={64} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                    <div className="flex-1">
+                       <Skeleton height={24} className="mb-2" baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                       <Skeleton width="60%" height={20} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                    </div>
+                 </div>
+                 <div className="mb-4">
+                    <Skeleton count={2} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                 </div>
+                 <div className="mt-auto flex justify-between">
+                    <Skeleton width={80} height={20} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                    <Skeleton width={100} height={20} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
+                 </div>
+              </div>
+            ))}
           </div>
         ) : (
           <>

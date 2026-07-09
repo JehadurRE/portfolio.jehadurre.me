@@ -48,6 +48,16 @@
   }
 }
 
+:root {
+  --skeleton-base: rgba(148, 163, 184, 0.2); /* secondary-400 equivalent */
+  --skeleton-highlight: rgba(148, 163, 184, 0.4);
+}
+
+.dark {
+  --skeleton-base: rgba(30, 41, 59, 0.5); /* secondary-800 equivalent */
+  --skeleton-highlight: rgba(51, 65, 85, 0.7);
+}
+
 @layer components {
   .btn-primary {
     @apply glass-card px-6 py-3 text-primary-600 dark:text-primary-400 font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/20 active:scale-95;

@@ -29,7 +29,7 @@ Domain: https://jehadurre.me
 - ✅ B5: Resume/CV download button 2026-07-01
 - ✅ B6: Contact form — fully functional 2026-06-29
 - ✅ B7: 404 page 2026-07-01
-- ⏳ B8: Loading skeletons
+- ✅ B8: Loading skeletons 2026-07-04
 - ✅ B9: Toast notification system 2026-06-29
 - ⏳ B10: Newsletter signup
 - ⏳ B11: Analytics
@@ -94,6 +94,26 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-04 — Day 11 — BUILD MODE
+**Branch:** feature/B8-loading-skeletons-2026-07-04
+**PR:** feat: Loading skeletons for dynamic content — Day 11
+**Mode:** BUILD
+**Files changed:**
+- `src/components/Blog.tsx`: Replaced loading spinner with react-loading-skeleton cards.
+- `src/components/Projects.tsx`: Replaced loading spinner with react-loading-skeleton cards.
+- `src/pages/ProjectDetail.tsx`: Replaced loading spinner with react-loading-skeleton cards.
+- `src/components/Certifications.tsx`: Replaced loading spinner with react-loading-skeleton cards.
+- `src/App.tsx`: Added react-loading-skeleton CSS import.
+- `src/index.css`: Added CSS variables for skeleton colors in dark/light mode.
+
+**If BUILD:**
+- Items completed: B8
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Implemented loading skeletons across components that fetch data from Supabase or GitHub API (Blog, Projects, ProjectDetail, Certifications) to improve UX and perceived performance. Added theming support for dark mode skeleton colors.
+
 
 ### 2026-07-01 — Day 10 — BUILD MODE
 **Branch:** feature/B7-not-found-page-2026-07-01
