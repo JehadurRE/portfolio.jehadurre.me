@@ -109,6 +109,9 @@ const GithubActivity: React.FC = () => {
                 const lastYear = new Date(today);
                 lastYear.setFullYear(today.getFullYear() - 1);
 
+                const todayStr = today.toISOString().split('T')[0];
+                const lastYearStr = lastYear.toISOString().split('T')[0];
+
                 const formattedData: ContributionDay[] = data.contributions.flat()
                   .map((d: { date: string; contributionCount: number; contributionLevel: string }) => {
                      let level: 0|1|2|3|4 = 0;
@@ -128,7 +131,7 @@ const GithubActivity: React.FC = () => {
 
                      return { date: d.date, count: d.contributionCount, level };
                   })
-                  .filter((d: ContributionDay) => new Date(d.date) >= lastYear && new Date(d.date) <= today)
+                  .filter((d: ContributionDay) => d.date >= lastYearStr && d.date <= todayStr)
                   .sort((a: ContributionDay, b: ContributionDay) => a.date > b.date ? 1 : a.date < b.date ? -1 : 0);
 
                 setContributions(formattedData);
