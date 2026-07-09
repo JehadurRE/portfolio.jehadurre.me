@@ -17,3 +17,6 @@
 ## 2024-05-23 - Playwright Focus-Visible Verification
 **Learning:** When using Playwright to verify Tailwind's `focus-visible` styles, using `page.focus()` will fail to trigger the pseudo-class because the browser requires a keyboard event.
 **Action:** Always simulate keyboard navigation using `page.keyboard.press('Tab')` to successfully capture the focus ring in automated tests.
+## $(date +%Y-%m-%d) - Focus Rings on Transparent Inputs
+**Learning:** In terminal-style designs where inputs often have `bg-transparent border-none outline-none`, tabbing through elements completely breaks WCAG 2.4.7 Focus Visible because the default browser outlines are removed and the transparent background offers no visual contrast change on focus.
+**Action:** Always manually re-add focus visibility to custom transparent inputs using classes like `focus-visible:ring-1 focus-visible:ring-[theme-color] rounded` to maintain accessibility while preserving the terminal aesthetic.
