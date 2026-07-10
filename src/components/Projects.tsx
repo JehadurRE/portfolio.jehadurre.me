@@ -17,6 +17,8 @@ import LazyImage from "./LazyImage";
 
 import decodeBase64UTF8 from "../utils/DecodeUTF";
 
+const SKELETON_ITEMS = [1, 2, 3, 4, 5, 6];
+
 interface Project {
   id: number;
   name: string;
@@ -360,7 +362,7 @@ For any questions or suggestions, feel free to reach out:
         {/* Projects Grid */}
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
+            {SKELETON_ITEMS.map((_, i) => (
               <div key={i} className="glass-card flex flex-col overflow-hidden h-[450px] p-6">
                 <div className="w-full h-48 mb-6 rounded-xl overflow-hidden">
                   <Skeleton height="100%" borderRadius={0} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
