@@ -9,6 +9,8 @@ import GithubActivity from './GithubActivity';
 
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
+const SKELETON_ITEMS = [1, 2, 3, 4];
+
 const achievements = [
     { icon: Award, title: 'Research Publications', value: '5+' },
     { icon: Code, title: 'Open Source Projects', value: '20+' },
@@ -203,7 +205,7 @@ const About: React.FC = () => {
             
             {loading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[...Array(4)].map((_, i) => (
+                {SKELETON_ITEMS.map((_, i) => (
                   <div key={i} className="glass-card p-6 animate-pulse">
                     <div className="flex items-center mb-4">
                        <div className="w-6 h-6 bg-secondary-200 dark:bg-secondary-700 rounded-full mr-3"></div>

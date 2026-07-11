@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { blogApi, type BlogPost } from '../lib/supabase';
 import Skeleton from 'react-loading-skeleton';
 
+const SKELETON_ITEMS = [1, 2, 3, 4];
 
 const Blog: React.FC = () => {
   const navigate = useNavigate();
@@ -222,7 +223,7 @@ const Blog: React.FC = () => {
         {/* Blog Posts */}
         {loading ? (
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {[...Array(4)].map((_, i) => (
+            {SKELETON_ITEMS.map((_, i) => (
               <div key={i} className="glass-card flex flex-col overflow-hidden h-[450px]">
                 <div className="w-full h-48">
                   <Skeleton height="100%" borderRadius={0} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
