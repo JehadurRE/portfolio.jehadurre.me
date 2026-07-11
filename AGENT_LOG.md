@@ -31,7 +31,7 @@ Domain: https://jehadurre.me
 - ✅ B7: 404 page 2026-07-01
 - ✅ B8: Loading skeletons 2026-07-04
 - ✅ B9: Toast notification system 2026-06-29
-- ⏳ B10: Newsletter signup
+- ✅ B10: Newsletter signup 2026-07-05
 - ⏳ B11: Analytics
 - ⏳ B12: Reading progress bar
 - ⏳ B13: Back to top button
@@ -94,6 +94,23 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-05 — Day 12 — BUILD MODE
+**Branch:** feature/B10-newsletter-signup-2026-07-05
+**PR:** feat: Newsletter signup implementation — Day 12
+**Mode:** BUILD
+**Files changed:**
+- `src/lib/supabase.ts`: Added `subscribeToNewsletter` function with strict constraint handling.
+- `src/components/Blog.tsx`: Hooked up newsletter form to Supabase and added Sonner toasts.
+- `src/components/Footer.tsx`: Hooked up newsletter form to Supabase and added Sonner toasts.
+- `supabase/migrations/20260705120000_newsletter_schema.sql`: Created migration for `newsletter_subscribers` table.
+
+**If BUILD:**
+- Items completed: B10
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Implemented functional newsletter signup form connected to Supabase with duplicate email handling (`23505`) and GDPR consent text to both the blog and footer components.
 
 ### 2026-07-04 — Day 11 — BUILD MODE
 **Branch:** feature/B8-loading-skeletons-2026-07-04

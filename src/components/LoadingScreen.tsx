@@ -14,6 +14,8 @@ const loadingSequence = [
   400,
 ];
 
+const PETAL_ITEMS = [1, 2, 3, 4, 5, 6, 7, 8];
+
 
 const LoadingScreen: React.FC = () => {
   return (
@@ -38,7 +40,7 @@ const LoadingScreen: React.FC = () => {
           <div className="absolute inset-6 rounded-full bg-gradient-to-r from-primary-700 to-accent-700 animate-pulse delay-300"></div>
           
           {/* Chrysanthemum petals */}
-          {[...Array(8)].map((_, i) => (
+          {PETAL_ITEMS.map((_, i) => (
             <motion.div
               key={i}
               initial={{ scale: 0, opacity: 0 }}

@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Phone ,HeartOff} from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, ExternalLink, MapPin, Phone, HeartOff, RefreshCw } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import LazyImage from './LazyImage';
+import { subscribeToNewsletter } from '../lib/supabase';
+import { toast } from 'sonner';
 
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
@@ -37,8 +39,31 @@ const Footer: React.FC = () => {
   const isHome = location.pathname === '/';
 
   const [email, setEmail] = React.useState('');
-  const [error, setError] = React.useState('');
-  const [success, setSuccess] = React.useState('');
+  const [isSubscribing, setIsSubscribing] = React.useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast.error('Email is required');
+      return;
+    }
+    if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/.test(email)) {
+      toast.error('Please enter a valid email');
+      return;
+    }
+
+    setIsSubscribing(true);
+    const result = await subscribeToNewsletter(email);
+    setIsSubscribing(false);
+
+    if (result.error) {
+      toast.error(result.error);
+    } else {
+      toast.success('Successfully subscribed to the newsletter!');
+      setEmail('');
+    }
+  };
+
   return (
     <footer className="hidden lg:block bg-gradient-to-t from-secondary-900 via-secondary-800 to-transparent dark:from-black dark:via-secondary-900 dark:to-transparent">
       <div className="container-custom px-8 py-16">
@@ -180,49 +205,37 @@ const Footer: React.FC = () => {
               Stay Updated
               </h5>
               <form
-              className="flex space-x-2"
-              onSubmit={e => {
-                e.preventDefault();
-                if (!email) {
-                setError('Email is required');
-                } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/.test(email)) {
-                setError('Please enter a valid email');
-                } else {
-                setError('');
-                setSuccess('Subscribed!');
-                setEmail('');
-                }
-              }}
+                className="flex space-x-2"
+                onSubmit={handleNewsletterSubmit}
               >
-              <input
-                type="email"
-                maxLength={255}
-                placeholder="Your email"
-                aria-label="Email address for newsletter"
-                className="flex-1 px-3 py-2 text-sm rounded-lg glass border border-secondary-600 dark:border-secondary-700 text-white dark:text-secondary-200 placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                value={email}
-                onChange={e => {
-                setEmail(e.target.value);
-                setError('');
-                setSuccess('');
-                }}
-              />
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm rounded-lg hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-                aria-label="Subscribe to newsletter"
-              >
-                Subscribe
-              </motion.button>
+                <input
+                  type="email"
+                  maxLength={255}
+                  placeholder="Your email"
+                  aria-label="Email address for newsletter"
+                  className="flex-1 px-3 py-2 text-sm rounded-lg glass border border-secondary-600 dark:border-secondary-700 text-white dark:text-secondary-200 placeholder-secondary-400 dark:placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  value={email}
+                  disabled={isSubscribing}
+                  onChange={e => setEmail(e.target.value)}
+                />
+                <motion.button
+                  type="submit"
+                  whileHover={!isSubscribing ? { scale: 1.05 } : {}}
+                  whileTap={!isSubscribing ? { scale: 0.95 } : {}}
+                  disabled={isSubscribing}
+                  className="px-4 py-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-sm rounded-lg hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[90px]"
+                  aria-label="Subscribe to newsletter"
+                >
+                  {isSubscribing ? (
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                  ) : (
+                    'Subscribe'
+                  )}
+                </motion.button>
               </form>
-              {error && (
-              <div className="text-xs text-rose-400 mt-2">{error}</div>
-              )}
-              {success && (
-              <div className="text-xs text-green-400 mt-2">{success}</div>
-              )}
+              <p className="text-[10px] text-secondary-400 mt-2">
+                By subscribing, you agree to receive updates. No spam, ever.
+              </p>
             </div>
           </motion.div>
         </div>

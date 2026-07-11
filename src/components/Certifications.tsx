@@ -8,6 +8,8 @@ import Skeleton from 'react-loading-skeleton';
 import LazyImage from './LazyImage';
 import { sanitizeUrl } from '../utils/sanitizeUrl';
 
+const SKELETON_ITEMS = [1, 2, 3, 4, 5, 6];
+
 const getCategoryIcon = (category: string) => {
   switch (category) {
     case 'technical': return <Award className="w-4 h-4" />;
@@ -210,7 +212,7 @@ const Certifications: React.FC = () => {
 
         {loading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, i) => (
+            {SKELETON_ITEMS.map((_, i) => (
               <div key={i} className="glass-card flex flex-col p-8 overflow-hidden h-[300px]">
                  <div className="flex items-center space-x-4 mb-6">
                     <Skeleton circle width={64} height={64} baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)" />
