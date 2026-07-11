@@ -47,12 +47,22 @@ const GithubActivity: React.FC = () => {
         setLoading(true);
         const octokit = new Octokit();
 
-        // 1. Fetch public repos to calculate stats and get pinned/recent repos
-        const reposResponse = await octokit.rest.repos.listForUser({
-          username,
-          sort: 'updated',
-          per_page: 100,
-        });
+        // ⚡ Bolt Performance Optimization:
+        // Execute independent API requests concurrently using Promise.all
+        // Expected impact: Significantly reduces the total loading time of GitHub activity data
+        // by avoiding sequential network roundtrips.
+        const [reposResponse, eventsResponse, response] = await Promise.all([
+          octokit.rest.repos.listForUser({
+            username,
+            sort: 'updated',
+            per_page: 100,
+          }),
+          octokit.rest.activity.listPublicEventsForUser({
+            username,
+            per_page: 100
+          }),
+          fetch(`https://github-contributions-api.deno.dev/${username}.json`)
+        ]);
 
         const publicRepos = reposResponse.data;
 
@@ -78,17 +88,6 @@ const GithubActivity: React.FC = () => {
 
         setRepos(topRepos);
 
-        // 2. We can't fetch the full contribution graph easily from the REST API without making hundreds of calls.
-        // We will fetch recent events to estimate activity, and fallback to a proxy for the visual graph if needed,
-        // or just use recent commits.
-        // As a compromise without GraphQL token, we will simulate a graph from public events or use a proxy.
-        // For this demo, let's fetch recent commits.
-
-        const eventsResponse = await octokit.rest.activity.listPublicEventsForUser({
-            username,
-            per_page: 100
-        });
-
         const commits = eventsResponse.data.filter(e => e.type === 'PushEvent');
         let recentCommits = 0;
         commits.forEach(e => {
@@ -98,10 +97,6 @@ const GithubActivity: React.FC = () => {
         });
 
         setStats({ stars: totalStars, forks: totalForks, totalCommits: recentCommits });
-
-        // 3. For the calendar, we will use a known community API since GitHub REST API doesn't expose the graph nicely
-        // without an authenticated GraphQL request.
-        const response = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
         if (response.ok) {
             const data = await response.json();
             if (data && data.contributions) {
