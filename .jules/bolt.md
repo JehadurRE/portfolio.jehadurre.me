@@ -109,3 +109,6 @@
 ## 2024-12-07 - Prevent Date Instantiation Overhead in array iterations
 **Learning:** Instantiating `new Date(a.date)` inside loops such as `.filter()` or `.sort()` comparators creates an O(N) or O(N log N) bottleneck because the JavaScript engine has to allocate new Date objects and parse date strings for every element.
 **Action:** When comparing arrays by ISO 8601 date strings (like YYYY-MM-DD or full ISO timestamps), always replace Date object parsing with direct string comparisons (e.g., `a.date > b.date` or `a.date > boundStr`). You can pre-format the bounding dates as strings outside the loop. ISO 8601 strings sort chronologically by default using standard string comparison, which executes near-instantly without any memory allocation overhead.
+## 2026-07-11 - Promise.all for independent API calls in GithubActivity
+**Learning:** Found independent, sequentially-awaited API calls (`octokit.rest.repos.listForUser`, `octokit.rest.activity.listPublicEventsForUser`, and a `fetch` request) in `GithubActivity.tsx` that unnecessarily caused a waterfall effect, significantly slowing down the time it took to fully render the Github activity component.
+**Action:** When a component makes multiple API calls that don't depend on each other's results, group them into a single `Promise.all` array to fetch data concurrently and reduce total load time.
