@@ -9,6 +9,27 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export async function subscribeToNewsletter(email: string) {
+  try {
+    const { error } = await supabase
+      .from('newsletter_subscribers')
+      .insert([{ email }]);
+
+    if (error) {
+      if (error.code === '23505') {
+        return { error: 'You are already subscribed!' };
+      }
+      console.error('Newsletter subscription error:', error);
+      return { error: 'Failed to subscribe. Please try again later.' };
+    }
+
+    return { success: true };
+  } catch (err) {
+    console.error('Newsletter subscription exception:', err);
+    return { error: 'An unexpected error occurred.' };
+  }
+}
+
 // Types
 export interface Certification {
   id: string;
