@@ -51,25 +51,23 @@ const ProjectDetail: React.FC = () => {
       setError(null);
 
       try {
-        // Fetch project metadata
-        const projectRes = await fetch(
-          `https://api.github.com/repos/JehadurRE/${slug}`
-        );
+        // ⚡ Bolt Performance Optimization:
+        // Execute API requests concurrently using Promise.all to avoid 'waterfall' fetching.
+        // Expected impact: Reduces total load time by running project metadata and README fetches in parallel.
+        const [projectRes, readmeRes] = await Promise.all([
+          fetch(`https://api.github.com/repos/JehadurRE/${slug}`),
+          fetch(`https://api.github.com/repos/JehadurRE/${slug}/readme`, {
+            headers: {
+              Accept: "application/vnd.github.v3+json",
+            },
+          })
+        ]);
+
         if (!projectRes.ok) {
           throw new Error("Project not found");
         }
         const projectData: Project = await projectRes.json();
         setProject(projectData);
-
-        // Fetch README
-        const readmeRes = await fetch(
-          `https://api.github.com/repos/JehadurRE/${slug}/readme`,
-          {
-            headers: {
-              Accept: "application/vnd.github.v3+json",
-            },
-          }
-        );
 
         if (readmeRes.ok) {
           const readmeData = await readmeRes.json();

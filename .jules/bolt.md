@@ -113,3 +113,7 @@
 ## 2024-12-08 - Prevent Array Instantiation Overhead in Render Loops
 **Learning:** Using `[...Array(N)]` or similar inline array creation methods inside JSX to render loaders or lists creates a new array on every single render. This leads to unnecessary memory allocation and garbage collection overhead, particularly in frequently re-rendering components.
 **Action:** Always hoist static arrays for loaders or fixed lists (e.g., `const SKELETON_ITEMS = [1, 2, 3, 4];`) outside the component function body so they are allocated only once.
+
+## 2024-12-09 - Concurrent API requests using Promise.all
+**Learning:** Sequential 'waterfall' API requests (e.g. fetching metadata, waiting for it to finish, and then fetching the README) blocks the main thread and significantly increases page load time, especially on slower networks. In `ProjectDetail.tsx`, these fetches were executed sequentially, leading to longer loading times for the project detail view.
+**Action:** Always check for independent API requests that can be parallelized. Use `Promise.all` to fetch multiple resources concurrently when they don't depend on each other's results. This is an easy way to drastically reduce Time To Interactive (TTI) and overall loading speeds.
