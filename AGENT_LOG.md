@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-01
+Last updated: 2026-07-13
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -33,7 +33,7 @@ Domain: https://jehadurre.me
 - ✅ B9: Toast notification system 2026-06-29
 - ✅ B10: Newsletter signup 2026-07-05
 - ⏳ B11: Analytics
-- ⏳ B12: Reading progress bar
+- ✅ B12: Reading progress bar 2026-07-13
 - ⏳ B13: Back to top button
 - ⏳ B14: Copy code button
 - ⏳ B15: Search
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 3 | 2026-07-13 | machine-learning-in-software-engineering-workflows | Machine Learning in Software Engineering: Bridging Research and Practice | Research | 839 |
 | 2 | 2026-06-25 | building-the-research-management-system | Deep Dive: Building the Research Management System | Project | 442 |
 | 1 | 2025-10-27 | how-i-architected-my-portfolio-with-vite-react-supabase | How I architected my portfolio with Vite + React + Supabase | Tutorial | 812 |
 
@@ -82,6 +83,7 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED
 > These cannot be automated — Jules will remind every session until resolved
 
+- 🚫 Run SQL insert script `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql` in Supabase to publish the new blog post
 - 🚫 Create `public/og-image.png` (1200×630px)
 - 🚫 Add `public/resume.pdf` for CV download button
 - 🚫 Set up Plausible/Umami analytics account and add script
@@ -94,6 +96,34 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-13 — Day 13 — BOTH MODE
+**Branch:** feat-blog/reading-progress-and-post-2026-07-13
+**PR:** feat: Reading progress bar and new ML in SE blog post — Day 13
+**Mode:** BOTH
+**Files changed:**
+- `src/hooks/useReadingProgress.ts`: Created a custom React hook to calculate scroll completion percentage using pure JS.
+- `src/components/BlogPost.tsx`: Imported and implemented the reading progress hook using Framer Motion to display a horizontal progress bar fixed at the top of the screen.
+- `AGENT_LOG.md`: Checked off B12 and added daily log entry.
+- `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql`: Created SQL insert script for the new blog post.
+
+**If BUILD:**
+- Items completed: B12
+- Items skipped: None
+
+**If WRITE:**
+- Post title: Machine Learning in Software Engineering: Bridging Research and Practice
+- Slug: /blog/machine-learning-in-software-engineering-workflows
+- Category: Research
+- Word count: 839
+- Primary keyword: Machine Learning Approaches for Software Engineering
+- File: blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added a reading progress bar to blog posts for better UX without requiring heavy external dependencies. Also wrote a new blog post discussing the intersection of machine learning and software engineering based on Jehad's research interests.
+
+
+
 
 ### 2026-07-05 — Day 12 — BUILD MODE
 **Branch:** feature/B10-newsletter-signup-2026-07-05

@@ -8,9 +8,11 @@ import { Helmet } from 'react-helmet-async';
 import { blogApi, type BlogPost as BlogPostType } from '../lib/supabase';
 
 import MarkdownRenderer from '../utils/MarkdownRenderer';
+import { useReadingProgress } from '../hooks/useReadingProgress';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const completion = useReadingProgress();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -79,6 +81,15 @@ const BlogPost: React.FC = () => {
   return (
     <div className="min-h-screen pt-20 section-padding bg-transparent">
       <div className="container-custom">
+
+        {/* Reading Progress Bar */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-primary-600 dark:bg-primary-500 z-50 origin-left"
+          style={{ scaleX: completion / 100 }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: completion / 100 }}
+          transition={{ duration: 0.1, ease: "linear" }}
+        />
         <Helmet>
           <title>{post.seo_title || post.title} | Jehadur Rahman Emran</title>
           <meta name="description" content={post.seo_description || post.excerpt} />
