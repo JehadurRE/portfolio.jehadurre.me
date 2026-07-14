@@ -15,6 +15,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import Home from './pages/Home';
+import BackToTop from './components/BackToTop';
 
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Toaster } from 'sonner';
@@ -109,6 +110,7 @@ function App() {
               </Routes>
               <Footer />
               <MobileNav />
+              <BackToTop />
             </motion.div>
           )}
         </AnimatePresence>

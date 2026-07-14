@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, BookOpen, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, BookOpen, User, Share2 } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { blogApi, type BlogPost as BlogPostType } from '../lib/supabase';
 
 import MarkdownRenderer from '../utils/MarkdownRenderer';
+import { useReadingProgress } from '../hooks/useReadingProgress';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
+  const readingProgress = useReadingProgress();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -78,6 +80,16 @@ const BlogPost: React.FC = () => {
 
   return (
     <div className="min-h-screen pt-20 section-padding bg-transparent">
+      {/* Reading Progress Bar */}
+      <div
+        className="fixed top-0 left-0 h-1.5 bg-primary-500 z-[100] transition-all duration-150 ease-out"
+        style={{ width: `${readingProgress}%` }}
+        role="progressbar"
+        aria-valuenow={readingProgress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      />
+
       <div className="container-custom">
         <Helmet>
           <title>{post.seo_title || post.title} | Jehadur Rahman Emran</title>

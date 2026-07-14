@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-01
+Last updated: 2026-07-06
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -33,8 +33,8 @@ Domain: https://jehadurre.me
 - ✅ B9: Toast notification system 2026-06-29
 - ✅ B10: Newsletter signup 2026-07-05
 - ⏳ B11: Analytics
-- ⏳ B12: Reading progress bar
-- ⏳ B13: Back to top button
+- ✅ B12: Reading progress bar 2026-07-06
+- ✅ B13: Back to top button 2026-07-06
 - ⏳ B14: Copy code button
 - ⏳ B15: Search
 - ⏳ B16: Smooth page transitions
@@ -94,6 +94,24 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-06 — Day 13 — BUILD MODE
+**Branch:** feature/B12-B13-reading-progress-back-to-top-2026-07-06
+**PR:** feat: Reading Progress Bar and Back to Top Button — Day 13
+**Mode:** BUILD
+**Files changed:**
+- `src/hooks/useReadingProgress.ts`: Created hook to calculate reading progress based on scroll depth.
+- `src/components/BackToTop.tsx`: Created framer-motion Back to Top floating action button.
+- `src/components/BlogPost.tsx`: Added reading progress bar UI element relying on the new hook.
+- `src/App.tsx`: Registered `BackToTop` component to be globally available across routes.
+- `AGENT_LOG.md`: Updated checklist status.
+
+**If BUILD:**
+- Items completed: B12, B13
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Implemented pure CSS + React hook reading progress bar for blog posts, and a smooth-scrolling framer-motion powered Back to Top button available globally after 500px scroll. Both features improve general UX and engagement.
 
 ### 2026-07-05 — Day 12 — BUILD MODE
 **Branch:** feature/B10-newsletter-signup-2026-07-05
