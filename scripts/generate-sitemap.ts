@@ -11,7 +11,7 @@ const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY;
 const siteUrl = 'https://jehadurre.me';
 
 const staticRoutes = [
-  { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: '2026-07-11' },
+  { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: '2026-07-14' },
   { url: '/#about', changefreq: 'monthly', priority: 0.8 },
   { url: '/#projects', changefreq: 'weekly', priority: 0.8 },
   { url: '/#research', changefreq: 'monthly', priority: 0.8 },
