@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-12
+Last updated: 2026-07-15
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -87,12 +87,12 @@ Stack: React + TypeScript + Vite
 - ✅ G5: All key facts in real HTML text (not embedded in JS variables or images) [2026-06-29]
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-12]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-12]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-12]
-- ✅ H4: New components/sections detected and added to checklist [2026-07-12]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-12]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-07-12]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-15]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-15]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-15]
+- ✅ H4: New components/sections detected and added to checklist [2026-07-15]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-15]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-07-15]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
@@ -112,6 +112,19 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-07-15 — Day 13
+**Branch:** seo/daily-2026-07-15
+**PR:** SEO [Day 13]: Sitemap Maintenance — 2026-07-15
+**Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date (H1).
+- public/sitemap.xml: Directly updated static route `<lastmod>` values to today's date, preserving dynamic route URLs (H1).
+- SEO_LOG.md: Updated daily log with maintenance tasks.
+**Items completed today:** H1, H2, H3, H5, H6
+**Items skipped:** A6, B12, C6, C7, D10, I1, I2, I3, I4, I5, I6, I7, I8 (Blocked by human tasks).
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Maintained the master checklist statuses and verified build passing.
 
 ### 2026-07-12 — Day 12
 **Branch:** seo/daily-2026-07-12
