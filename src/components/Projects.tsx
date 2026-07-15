@@ -16,6 +16,7 @@ const MarkdownRenderer = React.lazy(() => import("../utils/MarkdownRenderer"));
 import LazyImage from "./LazyImage";
 
 import decodeBase64UTF8 from "../utils/DecodeUTF";
+import Skeleton from 'react-loading-skeleton';
 
 const SKELETON_ITEMS = [1, 2, 3, 4, 5, 6];
 

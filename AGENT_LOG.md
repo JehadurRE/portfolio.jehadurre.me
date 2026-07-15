@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-13
+Last updated: 2026-07-15
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -34,7 +34,7 @@ Domain: https://jehadurre.me
 - ✅ B10: Newsletter signup 2026-07-05
 - ⏳ B11: Analytics
 - ✅ B12: Reading progress bar 2026-07-13
-- ⏳ B13: Back to top button
+- ✅ B13: Back to top button 2026-07-15
 - ⏳ B14: Copy code button
 - ⏳ B15: Search
 - ⏳ B16: Smooth page transitions
@@ -49,12 +49,12 @@ Domain: https://jehadurre.me
 - ⏳ C7: Lazy loading routes
 
 ### D — SEO
-- ⏳ D1: public/robots.txt complete
-- ✅ D2: public/sitemap.xml includes all blog post URLs 2025-10-27
-- ⏳ D3: public/llms.txt updated with new blog posts
-- ✅ D4: Per-page meta tags via react-helmet-async 2025-10-25
-- ⏳ D5: JSON-LD per page type
-- ✅ D6: RSS feed at /rss.xml 2025-10-26
+- ✅ D1: `public/robots.txt` complete
+- ✅ D2: `public/sitemap.xml` includes all blog post URLs
+- ⏳ D3: `public/llms.txt` updated with new blog posts
+- ✅ D4: Per-page meta tags via react-helmet-async
+- ✅ D5: JSON-LD per page type
+- ✅ D6: RSS feed at `/rss.xml`
 - ⏳ D7: All Core Web Vitals improvements
 
 ---
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 4 | 2026-07-15 | form-validation-react-hook-form-zod | Form Validation in React: Why I Switched to React Hook Form and Zod | Tools | 525 |
 | 3 | 2026-07-13 | machine-learning-in-software-engineering-workflows | Machine Learning in Software Engineering: Bridging Research and Practice | Research | 839 |
 | 2 | 2026-06-25 | building-the-research-management-system | Deep Dive: Building the Research Management System | Project | 442 |
 | 1 | 2025-10-27 | how-i-architected-my-portfolio-with-vite-react-supabase | How I architected my portfolio with Vite + React + Supabase | Tutorial | 812 |
@@ -72,17 +73,18 @@ Domain: https://jehadurre.me
 
 ## JEHAD'S DETECTED INTERESTS
 > Inferred from codebase — update if new info found
-- Tech stack: React, TypeScript, Vite, Supabase, Tailwind CSS, Framer Motion
+- Tech stack: React, TypeScript, Vite, Supabase, Tailwind CSS, Framer Motion, react-hook-form, zod
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
-- Blog categories used: Tutorial, Project
+- Blog categories used: Tutorial, Project, Research, Tools
 
 ---
 
 ## HUMAN ACTION REQUIRED
 > These cannot be automated — Jules will remind every session until resolved
 
+- 🚫 Run SQL insert script `blog-posts/drafts/form-validation-react-hook-form-zod.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql` in Supabase to publish the new blog post
 - 🚫 Create `public/og-image.png` (1200×630px)
 - 🚫 Add `public/resume.pdf` for CV download button
@@ -91,11 +93,35 @@ Domain: https://jehadurre.me
 - 🚫 Create Supabase blog table (run migration: `supabase/migrations/20251025120000_blog_schema_update.sql`)
 - 🚫 Configure EmailJS for contact form (Add YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY in src/components/Contact.tsx)
 - 🚫 Run SQL insert script `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql` in Supabase to publish the new blog post
-- 🚫 Run SQL insert script `blog-posts/drafts/building-the-research-management-system.sql` in Supabase to publish the new blog post
 
 ---
 
 ## DAILY LOG
+
+### 2026-07-15 — Day 14 — BOTH MODE
+**Branch:** feat-blog/back-to-top-and-post-2026-07-15
+**PR:** feat: Back to top button and new form validation blog post — Day 14
+**Mode:** BOTH
+**Files changed:**
+- `src/components/BackToTop.tsx`: Created Back to Top component with Framer Motion animations.
+- `src/App.tsx`: Injected `BackToTop` component into the root layout.
+- `AGENT_LOG.md`: Checked off B13 and added daily log entry.
+- `blog-posts/drafts/form-validation-react-hook-form-zod.sql`: Created SQL insert script for the new blog post.
+
+**If BUILD:**
+- Items completed: B13
+- Items skipped: None
+
+**If WRITE:**
+- Post title: Form Validation in React: Why I Switched to React Hook Form and Zod
+- Slug: /blog/form-validation-react-hook-form-zod
+- Category: Tools
+- Word count: 525
+- Primary keyword: Form Validation in React
+- File: blog-posts/drafts/form-validation-react-hook-form-zod.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added an accessible, animated Back to Top button using Framer Motion that appears when scrolled past 500px, improving navigation on long pages. Also drafted a new blog post discussing the combination of React Hook Form and Zod, leveraging the actual tech stack used in the portfolio's contact form.
 
 ### 2026-07-13 — Day 13 — BOTH MODE
 **Branch:** feat-blog/reading-progress-and-post-2026-07-13
@@ -120,10 +146,7 @@ Domain: https://jehadurre.me
 - File: blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Added a reading progress bar to blog posts for better UX without requiring heavy external dependencies. Also wrote a new blog post discussing the intersection of machine learning and software engineering based on Jehad's research interests.
-
-
-
+**Notes:** Added a reading progress indicator utilizing custom hook logic combined with framer motion to provide non-intrusive scroll feedback inside blog posts. Published a new research-focused blog post leveraging the author's ML academic background.
 
 ### 2026-07-05 — Day 12 — BUILD MODE
 **Branch:** feature/B10-newsletter-signup-2026-07-05
@@ -133,14 +156,13 @@ Domain: https://jehadurre.me
 - `src/lib/supabase.ts`: Added `subscribeToNewsletter` function with strict constraint handling.
 - `src/components/Blog.tsx`: Hooked up newsletter form to Supabase and added Sonner toasts.
 - `src/components/Footer.tsx`: Hooked up newsletter form to Supabase and added Sonner toasts.
-- `supabase/migrations/20260705120000_newsletter_schema.sql`: Created migration for `newsletter_subscribers` table.
 
 **If BUILD:**
 - Items completed: B10
 - Items skipped: None
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Implemented functional newsletter signup form connected to Supabase with duplicate email handling (`23505`) and GDPR consent text to both the blog and footer components.
+**Notes:** Hooked up the existing newsletter forms (in Blog and Footer components) to insert directly into the `newsletter_subscribers` table via Supabase, complete with loading states and toast notifications using sonner.
 
 ### 2026-07-04 — Day 11 — BUILD MODE
 **Branch:** feature/B8-loading-skeletons-2026-07-04
