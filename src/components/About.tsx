@@ -10,6 +10,7 @@ import GithubActivity from './GithubActivity';
 // ⚡ Bolt Performance Optimization:
 // Move static arrays outside component function body to prevent recreation on every render.
 const SKELETON_ITEMS = [1, 2, 3, 4];
+const RATING_STARS = [1, 2, 3, 4, 5];
 
 const achievements = [
     { icon: Award, title: 'Research Publications', value: '5+' },
@@ -254,7 +255,7 @@ const About: React.FC = () => {
                           className="flex items-center space-x-1 mb-3"
                           aria-label={`Proficiency level: ${skill.proficiency_level} out of 5 - ${getProficiencyText(skill.proficiency_level)}`}
                         >
-                           {[1, 2, 3, 4, 5].map((star) => (
+                           {RATING_STARS.map((star) => (
                               <Star
                                 key={star}
                                 className={`w-4 h-4 ${star <= skill.proficiency_level ? 'text-yellow-400 fill-yellow-400' : 'text-secondary-300 dark:text-secondary-600'}`}
