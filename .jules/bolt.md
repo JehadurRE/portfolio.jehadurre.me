@@ -117,3 +117,7 @@
 ## 2024-12-09 - Concurrent API requests using Promise.all
 **Learning:** Sequential 'waterfall' API requests (e.g. fetching metadata, waiting for it to finish, and then fetching the README) blocks the main thread and significantly increases page load time, especially on slower networks. In `ProjectDetail.tsx`, these fetches were executed sequentially, leading to longer loading times for the project detail view.
 **Action:** Always check for independent API requests that can be parallelized. Use `Promise.all` to fetch multiple resources concurrently when they don't depend on each other's results. This is an easy way to drastically reduce Time To Interactive (TTI) and overall loading speeds.
+
+## 2024-07-17 - Prevent array instantiation in nested map loops
+**Learning:** In React components that render lists, creating static arrays inline within a `.map()` loop (like `{[1, 2, 3, 4, 5].map()}`) forces the JavaScript engine to allocate a new array object in memory for every single item rendered. This causes unnecessary memory allocation and garbage collection overhead on every re-render.
+**Action:** Always hoist static arrays used for iterative rendering (like rating stars) outside the component function body so they are allocated only once.
