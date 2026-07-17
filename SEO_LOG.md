@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-12
+Last updated: 2026-07-17
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -87,12 +87,12 @@ Stack: React + TypeScript + Vite
 - ✅ G5: All key facts in real HTML text (not embedded in JS variables or images) [2026-06-29]
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-12]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-12]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-12]
-- ✅ H4: New components/sections detected and added to checklist [2026-07-12]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-12]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-07-12]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-17]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-17]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-17]
+- ✅ H4: New components/sections detected and added to checklist [2026-07-17]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-17]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-07-17]
 
 ### I — Human Tasks (cannot be automated)
 - 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
@@ -112,6 +112,19 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-07-17 — Day 13
+**Branch:** seo/daily-2026-07-17
+**PR:** SEO [Day 13]: Sitemap Maintenance — 2026-07-17
+**Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- scripts/generate-sitemap.ts: Updated static route dates to 2026-07-17 → Keeps sitemap dynamic generation fresh (H1).
+- public/sitemap.xml: Inline updated `<lastmod>` dates to 2026-07-17 → Preserves dynamically fetched content while keeping static routes updated (H1).
+- SEO_LOG.md: Triaged pending items, checked for new components, and added Day 13 log entry → Keeps tracking accurate (H2, H3, H4).
+**Items completed today:** H1, H2, H3, H4, H5, H6
+**Items skipped:** A6, B12, C6, C7, D10, I1, I2, I3, I4, I5, I6, I7, I8 (Blocked by human tasks).
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Performed routine maintenance. Re-verified build and lint.
 
 ### 2026-07-12 — Day 12
 **Branch:** seo/daily-2026-07-12
