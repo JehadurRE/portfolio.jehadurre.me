@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-13
+Last updated: 2026-07-18
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -34,8 +34,8 @@ Domain: https://jehadurre.me
 - ✅ B10: Newsletter signup 2026-07-05
 - ⏳ B11: Analytics
 - ✅ B12: Reading progress bar 2026-07-13
-- ⏳ B13: Back to top button
-- ⏳ B14: Copy code button
+- ✅ B13: Back to top button 2026-07-18
+- ✅ B14: Copy code button 2026-07-18
 - ⏳ B15: Search
 - ⏳ B16: Smooth page transitions
 
@@ -96,6 +96,38 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-18 — Day 15 — BUILD MODE
+**Branch:** feature/B14-copy-code-button-2026-07-18
+**PR:** feat: Marked Copy code button complete — Day 15
+**Mode:** BUILD
+**Files changed:**
+- `AGENT_LOG.md`: Marked B14 as completed because it's already implemented.
+
+**If BUILD:**
+- Items completed: B14
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Verified that `CopyButton` component already exists and is implemented in `src/utils/MarkdownRenderer.tsx` and used for code blocks.
+
+
+### 2026-07-18 — Day 14 — BUILD MODE
+**Branch:** feature/B13-back-to-top-2026-07-18
+**PR:** feat: Back to top button — Day 14
+**Mode:** BUILD
+**Files changed:**
+- `src/components/BackToTop.tsx`: Created BackToTop component with Framer Motion animations and lucide-react icon, appears on scroll after 500px and scrolls to top on click.
+- `src/App.tsx`: Imported and rendered `BackToTop` component to be available globally across pages.
+- `AGENT_LOG.md`: Marked B13 as completed.
+
+**If BUILD:**
+- Items completed: B13
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added an accessible back to top button to improve navigation on long pages, particularly the homepage and blog posts.
+
 
 ### 2026-07-13 — Day 13 — BOTH MODE
 **Branch:** feat-blog/reading-progress-and-post-2026-07-13
