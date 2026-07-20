@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-12
+Last updated: 2026-07-20
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -112,6 +112,17 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-07-20 — Day 13
+**Branch:** seo/daily-2026-07-20
+**PR:** SEO [Day 13]: Blocked — Previous PR Unmerged
+**Files changed:** SEO_LOG.md
+**Changes made:**
+- SEO_LOG.md: Logged unmerged state.
+**Items completed today:** H2
+**Items skipped:** H1, H3, H4, H5, H6, A6, B12, C6, C7, D10, I1, I2, I3 (Blocked by unmerged PR and human tasks).
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Previous PR not merged. Aborting further actions to avoid building on unmerged work.
 
 ### 2026-07-12 — Day 12
 **Branch:** seo/daily-2026-07-12
