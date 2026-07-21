@@ -164,10 +164,10 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
           {/* Title and Description */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="title">
                 Title *
               </label>
-              <input
+              <input id="title"
                 type="text"
                 value={formData.title}
                 onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
@@ -179,10 +179,10 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="description">
                 Description *
               </label>
-              <input
+              <input id="description"
                 type="text"
                 value={formData.description}
                 onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
@@ -197,10 +197,10 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
           {/* Date and Category */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="date">
                 Date *
               </label>
-              <input
+              <input id="date"
                 type="date"
                 value={formData.date}
                 onChange={(e) => setFormData(prev => ({ ...prev, date: e.target.value }))}
@@ -210,10 +210,10 @@ const AchievementForm: React.FC<AchievementFormProps> = ({ achievement, onSave, 
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="category">
                 Category *
               </label>
-              <select
+              <select id="category"
                 value={formData.category}
                 onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as 'award' | 'recognition' | 'milestone' }))}
                 required

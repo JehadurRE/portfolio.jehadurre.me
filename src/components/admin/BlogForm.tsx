@@ -144,10 +144,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
         <div className="glass-card p-6 rounded-2xl space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="title">
               Title *
             </label>
-            <input
+            <input id="title"
               type="text"
               value={formData.title}
               onChange={(e) => handleTitleChange(e.target.value)}
@@ -160,10 +160,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
 
           {/* Slug */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="slug">
               Slug *
             </label>
-            <input
+            <input id="slug"
               type="text"
               value={formData.slug}
               onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
@@ -176,10 +176,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
 
           {/* Excerpt */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="excerpt">
               Excerpt *
             </label>
-            <textarea
+            <textarea id="excerpt"
               value={formData.excerpt}
               onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
               required
@@ -192,10 +192,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
 
           {/* Content */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="content">
               Content *
             </label>
-            <textarea
+            <textarea id="content"
               value={formData.content}
               onChange={(e) => {
                 const newContent = e.target.value;
@@ -216,10 +216,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
           {/* Tags and Read Time */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="tags">
                 Tags
               </label>
-              <input
+              <input id="tags"
                 type="text"
                 value={formData.tags}
                 onChange={(e) => setFormData(prev => ({ ...prev, tags: e.target.value }))}
@@ -233,10 +233,10 @@ const BlogForm: React.FC<BlogFormProps> = ({ post, onSave, onCancel }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="read-time">
                 Read Time (minutes)
               </label>
-              <input
+              <input id="read-time"
                 type="number"
                 value={formData.read_time}
                 readOnly

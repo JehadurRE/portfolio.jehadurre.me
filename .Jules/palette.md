@@ -39,3 +39,6 @@
 ## 2024-06-25 - Added keyboard focus states to Framer Motion link buttons
 **Learning:** Found that `<motion.button>` components acting as navigational links in `BlogPost.tsx` frequently lack proper visual ARIA focus states by default.
 **Action:** Always ensure that any interactive elements, especially navigational buttons powered by animation libraries, have explicit focus visual states (such as `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded`) added to their `className` property to assist keyboard users.
+## 2024-07-21 - [Form Accessibility in Admin Components]
+**Learning:** Found that many admin form components (`BlogForm.tsx`, `SkillForm.tsx`, etc.) lacked `htmlFor` on labels and `id` on inputs, reducing accessibility and breaking click-to-focus behavior for users relying on assistive technologies or mouse interactions.
+**Action:** Always ensure that form inputs have unique `id`s and their corresponding labels have matching `htmlFor` attributes to properly associate them.

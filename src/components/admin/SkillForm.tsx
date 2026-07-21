@@ -161,10 +161,10 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
           {/* Name and Category */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="skill-name">
                 Skill Name *
               </label>
-              <input
+              <input id="skill-name"
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -176,10 +176,10 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="category">
                 Category *
               </label>
-              <select
+              <select id="category"
                 value={formData.category}
                 onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as 'frontend' | 'backend' | 'research' | 'tools' | 'database' | 'cloud' | 'mobile' }))}
                 required
@@ -197,10 +197,10 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
           {/* Icon and Proficiency */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="icon">
                 Icon *
               </label>
-              <select
+              <select id="icon"
                 value={formData.icon}
                 onChange={(e) => setFormData(prev => ({ ...prev, icon: e.target.value }))}
                 required
@@ -215,10 +215,10 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="proficiency-level">
                 Proficiency Level *
               </label>
-              <select
+              <select id="proficiency-level"
                 value={formData.proficiency_level}
                 onChange={(e) => setFormData(prev => ({ ...prev, proficiency_level: parseInt(e.target.value) }))}
                 required
@@ -236,10 +236,10 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
           {/* Years Experience and Featured */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="years-of-experience">
                 Years of Experience *
               </label>
-              <input
+              <input id="years-of-experience"
                 type="number"
                 value={formData.years_experience}
                 onChange={(e) => setFormData(prev => ({ ...prev, years_experience: parseInt(e.target.value) || 1 }))}
@@ -286,10 +286,10 @@ const SkillForm: React.FC<SkillFormProps> = ({ skill, onSave, onCancel }) => {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="description">
               Description *
             </label>
-            <textarea
+            <textarea id="description"
               value={formData.description}
               onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
               required
