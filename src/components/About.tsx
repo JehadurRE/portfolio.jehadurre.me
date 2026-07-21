@@ -50,6 +50,7 @@ const About: React.FC = () => {
 
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
+  const [, setError] = useState<string | null>(null);
 
   const [activeCategory, setActiveCategory] = useState<string>('frontend');
 

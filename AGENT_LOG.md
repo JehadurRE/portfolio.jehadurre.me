@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-13
+Last updated: 2026-07-14
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -32,9 +32,9 @@ Domain: https://jehadurre.me
 - ✅ B8: Loading skeletons 2026-07-04
 - ✅ B9: Toast notification system 2026-06-29
 - ✅ B10: Newsletter signup 2026-07-05
-- ⏳ B11: Analytics
+- ✅ B11: Analytics 2026-07-14
 - ✅ B12: Reading progress bar 2026-07-13
-- ⏳ B13: Back to top button
+- ✅ B13: Back to top button 2026-07-14
 - ⏳ B14: Copy code button
 - ⏳ B15: Search
 - ⏳ B16: Smooth page transitions
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 4 | 2026-07-14 | effortless-form-validation-react-hook-form-zod | Effortless Form Validation with React Hook Form and Zod | Tools | 850 |
 | 3 | 2026-07-13 | machine-learning-in-software-engineering-workflows | Machine Learning in Software Engineering: Bridging Research and Practice | Research | 839 |
 | 2 | 2026-06-25 | building-the-research-management-system | Deep Dive: Building the Research Management System | Project | 442 |
 | 1 | 2025-10-27 | how-i-architected-my-portfolio-with-vite-react-supabase | How I architected my portfolio with Vite + React + Supabase | Tutorial | 812 |
@@ -76,17 +77,18 @@ Domain: https://jehadurre.me
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
-- Blog categories used: Tutorial, Project
+- Blog categories used: Tutorial, Project, Research, Tools
 
 ---
 
 ## HUMAN ACTION REQUIRED
 > These cannot be automated — Jules will remind every session until resolved
 
+- 🚫 Run SQL insert script `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql` in Supabase to publish the new blog post
 - 🚫 Create `public/og-image.png` (1200×630px)
 - 🚫 Add `public/resume.pdf` for CV download button
-- 🚫 Set up Plausible/Umami analytics account and add script
+- 🚫 Set up Plausible analytics account and configure for jehadurre.me
 - 🚫 Submit sitemap to Google Search Console
 - 🚫 Create Supabase blog table (run migration: `supabase/migrations/20251025120000_blog_schema_update.sql`)
 - 🚫 Configure EmailJS for contact form (Add YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY in src/components/Contact.tsx)
@@ -96,6 +98,33 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-14 — Day 14 — BOTH MODE
+**Branch:** feat-blog/analytics-back-to-top-and-post-2026-07-14
+**PR:** feat: Analytics, Back to Top button, and new blog post — Day 14
+**Mode:** BOTH
+**Files changed:**
+- `index.html`: Added Plausible analytics script.
+- `src/components/BackToTop.tsx`: Created Back to Top button with Framer Motion.
+- `src/App.tsx`: Imported and added BackToTop component.
+- `src/components/About.tsx`: Fixed unused variable typescript error.
+- `AGENT_LOG.md`: Updated checklist and added daily log entry.
+- `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql`: Created SQL insert script for the new blog post.
+
+**If BUILD:**
+- Items completed: B11, B13
+- Items skipped: None
+
+**If WRITE:**
+- Post title: Effortless Form Validation with React Hook Form and Zod
+- Slug: /blog/effortless-form-validation-react-hook-form-zod
+- Category: Tools
+- Word count: 850
+- Primary keyword: React Hook Form and Zod
+- File: blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Implemented Plausible analytics script for privacy-respecting tracking (B11) and a Back to Top button with smooth scrolling and keyboard accessibility (B13). Also wrote a tool review blog post about React Hook Form and Zod.
 
 ### 2026-07-13 — Day 13 — BOTH MODE
 **Branch:** feat-blog/reading-progress-and-post-2026-07-13
@@ -121,9 +150,6 @@ Domain: https://jehadurre.me
 
 **Build:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Added a reading progress bar to blog posts for better UX without requiring heavy external dependencies. Also wrote a new blog post discussing the intersection of machine learning and software engineering based on Jehad's research interests.
-
-
-
 
 ### 2026-07-05 — Day 12 — BUILD MODE
 **Branch:** feature/B10-newsletter-signup-2026-07-05
