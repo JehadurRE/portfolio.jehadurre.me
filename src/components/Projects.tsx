@@ -12,6 +12,8 @@ import {
   Eye,
   FileText,
 } from "lucide-react";
+import Skeleton from "react-loading-skeleton";
+
 const MarkdownRenderer = React.lazy(() => import("../utils/MarkdownRenderer"));
 import LazyImage from "./LazyImage";
 
