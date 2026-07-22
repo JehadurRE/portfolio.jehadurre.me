@@ -135,10 +135,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
           {/* Title and Issuer */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="title">
                 Title *
               </label>
-              <input
+              <input id="title"
                 type="text"
                 value={formData.title}
                 onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
@@ -150,10 +150,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="issuer">
                 Issuer *
               </label>
-              <input
+              <input id="issuer"
                 type="text"
                 value={formData.issuer}
                 onChange={(e) => setFormData(prev => ({ ...prev, issuer: e.target.value }))}
@@ -168,10 +168,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
           {/* Dates */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="issue-date">
                 Issue Date *
               </label>
-              <input
+              <input id="issue-date"
                 type="date"
                 value={formData.issue_date}
                 onChange={(e) => setFormData(prev => ({ ...prev, issue_date: e.target.value }))}
@@ -181,10 +181,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="expiry-date">
                 Expiry Date
               </label>
-              <input
+              <input id="expiry-date"
                 type="date"
                 value={formData.expiry_date}
                 onChange={(e) => setFormData(prev => ({ ...prev, expiry_date: e.target.value }))}
@@ -196,10 +196,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
           {/* Credential ID and Category */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="credential-id">
                 Credential ID *
               </label>
-              <input
+              <input id="credential-id"
                 type="text"
                 value={formData.credential_id}
                 onChange={(e) => setFormData(prev => ({ ...prev, credential_id: e.target.value }))}
@@ -211,10 +211,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="category">
                 Category *
               </label>
-              <select
+              <select id="category"
                 value={formData.category}
                 onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as 'technical' | 'professional' | 'academic' }))}
                 required
@@ -230,10 +230,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
           {/* URLs */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="verification-url">
                 Verification URL *
               </label>
-              <input
+              <input id="verification-url"
                 type="url"
                 value={formData.verification_url}
                 onChange={(e) => setFormData(prev => ({ ...prev, verification_url: e.target.value }))}
@@ -245,10 +245,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="image-url">
                 Image URL *
               </label>
-              <input
+              <input id="image-url"
                 type="url"
                 value={formData.image_url}
                 onChange={(e) => setFormData(prev => ({ ...prev, image_url: e.target.value }))}
@@ -262,10 +262,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="description">
               Description *
             </label>
-            <textarea
+            <textarea id="description"
               value={formData.description}
               onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
               required
@@ -278,10 +278,10 @@ const CertificationForm: React.FC<CertificationFormProps> = ({ certification, on
 
           {/* Skills */}
           <div>
-            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+            <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2" htmlFor="skills">
               Skills
             </label>
-            <input
+            <input id="skills"
               type="text"
               value={formData.skills}
               onChange={(e) => setFormData(prev => ({ ...prev, skills: e.target.value }))}
