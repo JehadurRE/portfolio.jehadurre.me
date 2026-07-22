@@ -34,7 +34,7 @@ Domain: https://jehadurre.me
 - ✅ B10: Newsletter signup 2026-07-05
 - ⏳ B11: Analytics
 - ✅ B12: Reading progress bar 2026-07-13
-- ⏳ B13: Back to top button
+- ✅ B13: Back to top button 2026-07-22
 - ⏳ B14: Copy code button
 - ⏳ B15: Search
 - ⏳ B16: Smooth page transitions
@@ -96,6 +96,22 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-22 — Day 12 — BUILD MODE
+**Branch:** feature/B13-back-to-top-2026-07-22
+**PR:** feat: Back to top button — Day 12
+**Mode:** BUILD
+**Files changed:**
+- `src/components/BackToTop.tsx`: Created BackToTop component with framer-motion animations.
+- `src/App.tsx`: Imported and rendered BackToTop component.
+- `AGENT_LOG.md`: Updated checklist and log entries.
+
+**If BUILD:**
+- Items completed: B13
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added an animated back to top button that appears after 500px scroll for better usability.
 
 ### 2026-07-13 — Day 13 — BOTH MODE
 **Branch:** feat-blog/reading-progress-and-post-2026-07-13

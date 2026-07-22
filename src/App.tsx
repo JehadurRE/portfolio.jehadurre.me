@@ -14,6 +14,7 @@ const NotFound = React.lazy(() => import('./pages/NotFound'));
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
+import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
 
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -109,6 +110,7 @@ function App() {
               </Routes>
               <Footer />
               <MobileNav />
+              <BackToTop />
             </motion.div>
           )}
         </AnimatePresence>
