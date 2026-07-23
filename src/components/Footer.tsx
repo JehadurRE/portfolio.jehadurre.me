@@ -109,6 +109,7 @@ const Footer: React.FC = () => {
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                   className="glass-card p-3 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-xl"
+                  title={link.label}
                   aria-label={link.label}
                 >
                   <link.icon className="w-5 h-5 text-secondary-400 hover:text-primary-400 transition-colors" />

@@ -42,3 +42,6 @@
 ## 2024-07-21 - [Form Accessibility in Admin Components]
 **Learning:** Found that many admin form components (`BlogForm.tsx`, `SkillForm.tsx`, etc.) lacked `htmlFor` on labels and `id` on inputs, reducing accessibility and breaking click-to-focus behavior for users relying on assistive technologies or mouse interactions.
 **Action:** Always ensure that form inputs have unique `id`s and their corresponding labels have matching `htmlFor` attributes to properly associate them.
+## 2024-08-01 - [Native title attributes vs ARIA labels for icon-only buttons]
+**Learning:** Removing a native `title` attribute from an icon-only button (even when adding an `aria-label`) degrades discoverability for sighted mouse users because the visual tooltip disappears.
+**Action:** When adding `aria-label` to an icon-only button for screen reader support, ALWAYS retain or add the native `title` attribute as a fallback tooltip, unless replacing it with a custom, accessible visual tooltip component.
