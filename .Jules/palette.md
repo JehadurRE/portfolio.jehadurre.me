@@ -42,3 +42,6 @@
 ## 2024-07-21 - [Form Accessibility in Admin Components]
 **Learning:** Found that many admin form components (`BlogForm.tsx`, `SkillForm.tsx`, etc.) lacked `htmlFor` on labels and `id` on inputs, reducing accessibility and breaking click-to-focus behavior for users relying on assistive technologies or mouse interactions.
 **Action:** Always ensure that form inputs have unique `id`s and their corresponding labels have matching `htmlFor` attributes to properly associate them.
+## 2024-07-21 - Add Keyboard Focus States to Interactive Elements
+**Learning:** Found that custom buttons using `btn-primary` or `btn-secondary` class names often miss explicit keyboard visual focus states across several components (like `Blog.tsx`), hurting keyboard accessibility.
+**Action:** Always verify keyboard accessibility on interactive elements and ensure classes like `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded` are added to form inputs and custom buttons.

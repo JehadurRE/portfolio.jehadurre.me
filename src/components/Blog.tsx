@@ -146,7 +146,7 @@ const Blog: React.FC = () => {
             <button
               onClick={() => fetchPosts()}
               disabled={loading}
-              className="btn-primary inline-flex items-center space-x-2"
+              className="btn-primary inline-flex items-center space-x-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
               aria-label="Try Again: load blog posts"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} aria-hidden="true" />
@@ -419,7 +419,7 @@ const Blog: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setVisibleCount(prev => prev + 8)}
-                className="btn-secondary"
+                className="btn-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
               >
                 Load More Posts
               </motion.button>
@@ -478,7 +478,7 @@ const Blog: React.FC = () => {
               <motion.button
                 whileHover={!isSubscribing ? { scale: 1.05 } : {}}
                 whileTap={!isSubscribing ? { scale: 0.95 } : {}}
-                className="btn-primary whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px]"
+                className="btn-primary whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
                 aria-label="Subscribe to newsletter"
                 disabled={isSubscribing}
                 type="submit"
