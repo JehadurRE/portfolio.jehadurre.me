@@ -4,18 +4,26 @@ export function useReadingProgress() {
   const [completion, setCompletion] = useState(0);
 
   useEffect(() => {
-    function updateScrollCompletion() {
-      const currentProgress = window.scrollY;
-      const scrollHeight = document.body.scrollHeight - window.innerHeight;
+    let ticking = false;
 
-      if (scrollHeight > 0) {
-        setCompletion(Number((currentProgress / scrollHeight).toFixed(2)) * 100);
-      } else {
-        setCompletion(0);
+    function updateScrollCompletion() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentProgress = window.scrollY;
+          const scrollHeight = document.body.scrollHeight - window.innerHeight;
+
+          if (scrollHeight > 0) {
+            setCompletion(Number((currentProgress / scrollHeight).toFixed(2)) * 100);
+          } else {
+            setCompletion(0);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     }
 
-    window.addEventListener('scroll', updateScrollCompletion);
+    window.addEventListener('scroll', updateScrollCompletion, { passive: true });
 
     // Initial call
     updateScrollCompletion();
