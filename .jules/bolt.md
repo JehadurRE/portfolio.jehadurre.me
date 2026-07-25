@@ -117,3 +117,7 @@
 ## 2024-12-09 - Concurrent API requests using Promise.all
 **Learning:** Sequential 'waterfall' API requests (e.g. fetching metadata, waiting for it to finish, and then fetching the README) blocks the main thread and significantly increases page load time, especially on slower networks. In `ProjectDetail.tsx`, these fetches were executed sequentially, leading to longer loading times for the project detail view.
 **Action:** Always check for independent API requests that can be parallelized. Use `Promise.all` to fetch multiple resources concurrently when they don't depend on each other's results. This is an easy way to drastically reduce Time To Interactive (TTI) and overall loading speeds.
+
+## 2024-12-10 - Throttle scroll event listeners with requestAnimationFrame
+**Learning:** Unthrottled scroll event listeners that read layout properties (like `window.scrollY` or `document.body.scrollHeight`) can cause layout thrashing and severe scroll jank because they trigger synchronous style calculations on the main thread multiple times per frame.
+**Action:** Always wrap the callback inside `requestAnimationFrame` to ensure the layout readings and state updates only happen once per frame. Additionally, use `{ passive: true }` on the event listener to prevent it from blocking the browser's default scroll behavior.

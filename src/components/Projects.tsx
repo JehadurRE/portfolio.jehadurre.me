@@ -418,6 +418,7 @@ For any questions or suggestions, feel free to reach out:
                 <div
                   className="relative mb-4 overflow-hidden rounded-lg cursor-pointer group/image focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                   role="button"
+                  title="View README"
                   aria-label={`View README for ${project.name}`}
                   tabIndex={0}
                   onClick={() => fetchReadme(project)}
@@ -500,6 +501,7 @@ For any questions or suggestions, feel free to reach out:
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center space-x-2 px-4 py-2 bg-secondary-100 dark:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg hover:bg-secondary-200 dark:hover:bg-secondary-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                    title="View code on GitHub"
                     aria-label={`View code for ${project.name} on GitHub`}
                   >
                     <Github className="w-4 h-4" />
@@ -513,6 +515,7 @@ For any questions or suggestions, feel free to reach out:
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center space-x-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg hover:bg-primary-200 dark:hover:bg-primary-900/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      title="View live demo"
                       aria-label={`View live demo for ${project.name}`}
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -591,7 +594,8 @@ For any questions or suggestions, feel free to reach out:
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => setSelectedProject(null)}
-                      className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200"
+                      className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                      title="Close README"
                       aria-label="Close README"
                     >
                       <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
