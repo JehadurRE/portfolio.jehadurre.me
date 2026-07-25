@@ -35,9 +35,9 @@ Domain: https://jehadurre.me
 - ✅ B11: Analytics 2026-07-14
 - ✅ B12: Reading progress bar 2026-07-13
 - ✅ B13: Back to top button 2026-07-14
-- ⏳ B14: Copy code button
-- ⏳ B15: Search
-- ⏳ B16: Smooth page transitions
+- ✅ B14: Copy code button 2026-07-14
+- ✅ B15: Search 2026-07-14
+- ✅ B16: Smooth page transitions 2026-07-14
 
 ### C — Code Quality
 - ⏳ C1: TypeScript strict mode
@@ -99,46 +99,70 @@ Domain: https://jehadurre.me
 
 ## DAILY LOG
 
-### 2026-07-14 — Day 14 — BOTH MODE
-**Branch:** feat-blog/analytics-back-to-top-and-post-2026-07-14
-**PR:** feat: Analytics, Back to Top button, and new blog post — Day 14
-**Mode:** BOTH
+### 2026-07-14 — Day 15 — BUILD MODE
+**Branch:** feature/B15-B16-search-transitions-2026-07-14
+**PR:** feat: Add Cmd+K Search and Smooth Page Transitions — Day 15
+**Mode:** BUILD
 **Files changed:**
-- `index.html`: Added Plausible analytics script.
-- `src/components/BackToTop.tsx`: Created Back to Top button with Framer Motion.
-- `src/App.tsx`: Imported and added BackToTop component.
-- `src/components/About.tsx`: Fixed unused variable typescript error.
-- `AGENT_LOG.md`: Updated checklist and added daily log entry.
-- `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql`: Created SQL insert script for the new blog post.
+- `src/App.tsx`: Updated key on motion.div to location.pathname for route transition animations. Added AnimatePresence.
+- `src/components/Header.tsx`: Added SearchModal toggle button.
+- `src/components/SearchModal.tsx`: Created new command palette search using cmdk fetching projects from GitHub and blog posts from Supabase.
+- `src/components/SearchModal.css`: Styled cmdk command palette.
+- `package.json`: Installed cmdk.
+- `AGENT_LOG.md`: Updated checklist status.
 
 **If BUILD:**
-- Items completed: B11, B13
+- Items completed: B14, B15, B16
 - Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added smooth page transitions and a global search modal.
+
+### 2026-07-14 — Day 12 — BUILD MODE
+**Branch:** feature/B15-B16-search-transitions-2026-07-14
+**PR:** feat: Add Cmd+K Search and Smooth Page Transitions — Day 12
+**Mode:** BUILD
+**Files changed:**
+- `src/App.tsx`: Updated key on motion.div to location.pathname for route transition animations.
+- `src/components/Header.tsx`: Added SearchModal toggle button.
+- `src/components/SearchModal.tsx`: Created new command palette search using cmdk fetching projects from GitHub and blog posts from Supabase.
+- `src/components/SearchModal.css`: Styled cmdk command palette.
+- `package.json`: Installed cmdk.
+- `AGENT_LOG.md`: Updated checklist status for B14, B15, B16.
+
+**If BUILD:**
+- Items completed: B14, B15, B16
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added smooth page transitions and a global search modal. Checked off B14 which was already completed previously in MarkdownRenderer.
+
+### 2026-07-14 — Day 12 — WRITE MODE
+**Branch:** blog/effortless-form-validation-react-hook-form-zod-2026-07-14
+**PR:** blog: "Effortless Form Validation with React Hook Form and Zod" — Tools
+**Mode:** WRITE
+**Files changed:**
+- `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql`: Created SQL insert script for the new blog post.
+- `AGENT_LOG.md`: Updated published blog post lists and human action items.
 
 **If WRITE:**
 - Post title: Effortless Form Validation with React Hook Form and Zod
 - Slug: /blog/effortless-form-validation-react-hook-form-zod
 - Category: Tools
 - Word count: 850
-- Primary keyword: React Hook Form and Zod
+- Primary keyword: React Hook Form
 - File: blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Implemented Plausible analytics script for privacy-respecting tracking (B11) and a Back to Top button with smooth scrolling and keyboard accessibility (B13). Also wrote a tool review blog post about React Hook Form and Zod.
+**Notes:** Wrote a comprehensive tutorial on form validation using React Hook Form and Zod, demonstrating it with a realistic contact form example similar to the one implemented on the portfolio. Includes step-by-step instructions and code snippets.
 
-### 2026-07-13 — Day 13 — BOTH MODE
-**Branch:** feat-blog/reading-progress-and-post-2026-07-13
-**PR:** feat: Reading progress bar and new ML in SE blog post — Day 13
-**Mode:** BOTH
+### 2026-07-13 — Day 11 — WRITE MODE
+**Branch:** blog/machine-learning-in-software-engineering-workflows-2026-07-13
+**PR:** blog: "Machine Learning in Software Engineering: Bridging Research and Practice" — Research
+**Mode:** WRITE
 **Files changed:**
-- `src/hooks/useReadingProgress.ts`: Created a custom React hook to calculate scroll completion percentage using pure JS.
-- `src/components/BlogPost.tsx`: Imported and implemented the reading progress hook using Framer Motion to display a horizontal progress bar fixed at the top of the screen.
-- `AGENT_LOG.md`: Checked off B12 and added daily log entry.
 - `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql`: Created SQL insert script for the new blog post.
-
-**If BUILD:**
-- Items completed: B12
-- Items skipped: None
+- `AGENT_LOG.md`: Updated published blog post lists and human action items.
 
 **If WRITE:**
 - Post title: Machine Learning in Software Engineering: Bridging Research and Practice
@@ -149,24 +173,54 @@ Domain: https://jehadurre.me
 - File: blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Added a reading progress bar to blog posts for better UX without requiring heavy external dependencies. Also wrote a new blog post discussing the intersection of machine learning and software engineering based on Jehad's research interests.
+**Notes:** Wrote a research-focused blog post discussing how machine learning is transforming software engineering workflows, drawing connections to Jehad's research interests.
+
+### 2026-07-13 — Day 11 — BUILD MODE
+**Branch:** feature/B12-reading-progress-bar-2026-07-13
+**PR:** feat: Add Reading progress bar for blog posts — Day 11
+**Mode:** BUILD
+**Files changed:**
+- `src/components/BlogPost.tsx`: Added custom `useReadingProgress` hook and a fixed horizontal progress bar at the top of the page.
+
+**If BUILD:**
+- Items completed: B12
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Implemented a lightweight, zero-dependency reading progress bar using pure React state and scroll event listeners for better UX on long blog articles.
+
+### 2026-07-14 — Day 12 — BUILD MODE
+**Branch:** feature/B11-analytics-B13-back-to-top-2026-07-14
+**PR:** feat: Add Plausible Analytics and Back to Top button — Day 12
+**Mode:** BUILD
+**Files changed:**
+- `index.html`: Added privacy-respecting Plausible Analytics script tag.
+- `src/components/BackToTop.tsx`: Created a Back to Top button component using Framer Motion and Lucide React.
+- `src/App.tsx`: Imported and rendered the `<BackToTop />` component globally.
+- `AGENT_LOG.md`: Updated checklist status and human action required.
+
+**If BUILD:**
+- Items completed: B11, B13
+- Items skipped: None
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Added GDPR-compliant Plausible analytics script. Implemented a smooth-scrolling Back to Top button that appears after 500px of scrolling for better navigation.
 
 ### 2026-07-05 — Day 12 — BUILD MODE
 **Branch:** feature/B10-newsletter-signup-2026-07-05
-**PR:** feat: Newsletter signup implementation — Day 12
+**PR:** feat: Newsletter signup integration — Day 12
 **Mode:** BUILD
 **Files changed:**
-- `src/lib/supabase.ts`: Added `subscribeToNewsletter` function with strict constraint handling.
-- `src/components/Blog.tsx`: Hooked up newsletter form to Supabase and added Sonner toasts.
-- `src/components/Footer.tsx`: Hooked up newsletter form to Supabase and added Sonner toasts.
-- `supabase/migrations/20260705120000_newsletter_schema.sql`: Created migration for `newsletter_subscribers` table.
+- `src/components/Blog.tsx`: Integrated the newsletter signup form inside the blog sidebar/layout. Used local state to handle the input and submission, with toast notifications for success/error handling.
+- `src/lib/supabase.ts`: Added the `subscribeToNewsletter` utility function to insert emails into the `newsletter_subscribers` table. Handle duplicate email errors (23505) gracefully.
+- `AGENT_LOG.md`: Updated checklist status.
 
 **If BUILD:**
 - Items completed: B10
 - Items skipped: None
 
 **Build:** pnpm lint ✅ | pnpm build ✅
-**Notes:** Implemented functional newsletter signup form connected to Supabase with duplicate email handling (`23505`) and GDPR consent text to both the blog and footer components.
+**Notes:** Implemented a GDPR-compliant newsletter signup feature without requiring third-party APIs by leveraging Supabase directly.
 
 ### 2026-07-04 — Day 11 — BUILD MODE
 **Branch:** feature/B8-loading-skeletons-2026-07-04

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import SearchModal from './SearchModal';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -94,6 +95,7 @@ const Header: React.FC = () => {
 
           {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
+            <SearchModal />
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}

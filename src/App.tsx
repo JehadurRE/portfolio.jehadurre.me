@@ -90,24 +90,36 @@ function App() {
             >
               <Toaster theme="dark" richColors position="top-right" />
               <Header />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/blog/:slug" element={
-                  <React.Suspense fallback={<LoadingScreen />}>
-                    <BlogPost />
-                  </React.Suspense>
-                } />
-                <Route path="/project/:id" element={
-                  <React.Suspense fallback={<LoadingScreen />}>
-                    <ProjectDetail />
-                  </React.Suspense>
-                } />
-                <Route path="*" element={
-                  <React.Suspense fallback={<LoadingScreen />}>
-                    <NotFound />
-                  </React.Suspense>
-                } />
-              </Routes>
+              <AnimatePresence mode="wait">
+                <Routes location={location} key={location.pathname}>
+                  <Route path="/" element={
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <Home />
+                    </motion.div>
+                  } />
+                  <Route path="/blog/:slug" element={
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <React.Suspense fallback={<LoadingScreen />}>
+                        <BlogPost />
+                      </React.Suspense>
+                    </motion.div>
+                  } />
+                  <Route path="/project/:id" element={
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <React.Suspense fallback={<LoadingScreen />}>
+                        <ProjectDetail />
+                      </React.Suspense>
+                    </motion.div>
+                  } />
+                  <Route path="*" element={
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <React.Suspense fallback={<LoadingScreen />}>
+                        <NotFound />
+                      </React.Suspense>
+                    </motion.div>
+                  } />
+                </Routes>
+              </AnimatePresence>
               <Footer />
               <MobileNav />
               <BackToTop />
