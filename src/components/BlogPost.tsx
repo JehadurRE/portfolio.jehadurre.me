@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, BookOpen, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, BookOpen, User, Share2 } from 'lucide-react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { blogApi, type BlogPost as BlogPostType } from '../lib/supabase';
