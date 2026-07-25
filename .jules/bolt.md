@@ -117,3 +117,6 @@
 ## 2024-12-09 - Concurrent API requests using Promise.all
 **Learning:** Sequential 'waterfall' API requests (e.g. fetching metadata, waiting for it to finish, and then fetching the README) blocks the main thread and significantly increases page load time, especially on slower networks. In `ProjectDetail.tsx`, these fetches were executed sequentially, leading to longer loading times for the project detail view.
 **Action:** Always check for independent API requests that can be parallelized. Use `Promise.all` to fetch multiple resources concurrently when they don't depend on each other's results. This is an easy way to drastically reduce Time To Interactive (TTI) and overall loading speeds.
+## 2024-12-10 - Chaining Array Filters in Search Components
+**Learning:** Chaining multiple `Array.prototype.filter()` calls sequentially (e.g., filtering by tag, then category, then search query) results in multiple array iterations. In components with real-time text input like search bars, this overhead on every keystroke causes unnecessary main-thread blocking and frame drops.
+**Action:** When applying multiple filter conditions to an array, always combine them into a single `Array.prototype.filter()` pass with early returns to reduce redundant array iterations and memory allocations.

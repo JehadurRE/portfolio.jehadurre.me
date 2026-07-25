@@ -77,22 +77,18 @@ const Blog: React.FC = () => {
 
   // Apply filters, search, and sorting
   const processedPosts = useMemo(() => {
-    let filtered = selectedTag === 'all'
-      ? posts
-      : posts.filter(post => post.tags.includes(selectedTag));
+    const query = searchQuery.trim().toLowerCase();
 
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(post => (post.category || 'Uncategorized') === selectedCategory);
-    }
-
-    if (searchQuery.trim() !== '') {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(post =>
+    const filtered = posts.filter(post => {
+      if (selectedTag !== 'all' && !post.tags.includes(selectedTag)) return false;
+      if (selectedCategory !== 'all' && (post.category || 'Uncategorized') !== selectedCategory) return false;
+      if (query !== '' && !(
         post.title.toLowerCase().includes(query) ||
         post.excerpt.toLowerCase().includes(query) ||
         post.tags.some(tag => tag.toLowerCase().includes(query))
-      );
-    }
+      )) return false;
+      return true;
+    });
 
     return filtered.sort((a, b) => {
       if (sortBy === 'latest') {
