@@ -163,6 +163,7 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.9 }}
                 className="glass-card p-3 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-xl"
                 aria-label={link.label}
+                title={link.label}
               >
                 <link.icon className="w-6 h-6 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" />
               </motion.a>
@@ -176,7 +177,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="animate-bounce"
           >
-            <a href="#about" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full" aria-label="Scroll down to About section">
+            <a href="#about" className="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full" aria-label="Scroll down to About section" title="Scroll down to About section">
               <ArrowDown className="w-6 h-6 text-secondary-400 dark:text-secondary-500" />
             </a>
           </motion.div>

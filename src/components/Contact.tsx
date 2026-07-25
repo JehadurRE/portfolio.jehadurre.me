@@ -214,6 +214,7 @@ const Contact: React.FC = () => {
                     whileTap={{ scale: 0.9 }}
                     className="glass-card p-3 hover:shadow-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-xl"
                     aria-label={link.label}
+                    title={link.label}
                   >
                     <link.icon className="w-6 h-6 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" />
                   </motion.a>

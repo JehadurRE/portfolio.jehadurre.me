@@ -92,6 +92,7 @@ const Header: React.FC = () => {
               onClick={toggleTheme}
               className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               aria-label="Toggle theme"
+              title="Toggle theme"
             >
               {isDark ? (
                 <Sun className="w-5 h-5 text-accent-500" />
@@ -107,6 +108,7 @@ const Header: React.FC = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              title={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
