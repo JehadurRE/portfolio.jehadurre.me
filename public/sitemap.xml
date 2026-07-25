@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jehadurre.me/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -37,13 +37,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jehadurre.me/project/portfolio.jehadurre.me</loc>
+    <loc>https://jehadurre.me/project/JehadurRE</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://jehadurre.me/project/JehadurRE</loc>
+    <loc>https://jehadurre.me/project/portfolio.jehadurre.me</loc>
     <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -57,12 +57,6 @@
   <url>
     <loc>https://jehadurre.me/project/JehadurRE.github.io</loc>
     <lastmod>2026-07-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jehadurre.me/project/OrbiaCore</loc>
-    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -333,6 +327,12 @@
   <url>
     <loc>https://jehadurre.me/project/J-JehadurRE-r3f-next-starter</loc>
     <lastmod>2024-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jehadurre.me/project/github-activity-readme</loc>
+    <lastmod>2024-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
