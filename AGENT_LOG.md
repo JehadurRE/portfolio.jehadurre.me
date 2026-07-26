@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-14
+Last updated: 2026-07-26
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
 | 4 | 2026-07-14 | effortless-form-validation-react-hook-form-zod | Effortless Form Validation with React Hook Form and Zod | Tools | 850 |
 | 3 | 2026-07-13 | machine-learning-in-software-engineering-workflows | Machine Learning in Software Engineering: Bridging Research and Practice | Research | 839 |
 | 2 | 2026-06-25 | building-the-research-management-system | Deep Dive: Building the Research Management System | Project | 442 |
@@ -84,6 +85,7 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED
 > These cannot be automated — Jules will remind every session until resolved
 
+- 🚫 Run SQL insert script `blog-posts/drafts/how-i-approached-multi-cloud-certifications.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql` in Supabase to publish the new blog post
 - 🚫 Create `public/og-image.png` (1200×630px)
@@ -98,6 +100,24 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-26 — Day 16 — WRITE MODE
+**Branch:** blog/how-i-approached-multi-cloud-certifications-2026-07-26
+**PR:** blog: "How I Approached Multi-Cloud Certifications as a Full-Stack Developer" — Career
+**Mode:** WRITE
+**Files changed:**
+- `blog-posts/drafts/how-i-approached-multi-cloud-certifications.sql`: Created SQL insert script for the new blog post.
+
+**If WRITE:**
+- Post title: How I Approached Multi-Cloud Certifications as a Full-Stack Developer
+- Slug: /blog/how-i-approached-multi-cloud-certifications
+- Category: Career
+- Word count: 843
+- Primary keyword: Multi-Cloud Certifications
+- File: blog-posts/drafts/how-i-approached-multi-cloud-certifications.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Decided to run WRITE mode as per the rotation wheel (last 4 topics: Tutorial, Project, Research, Tools, so next is Career). Wrote a post about balancing full-stack dev with AWS/GCP/CKA certifications.
 
 ### 2026-07-14 — Day 15 — BUILD MODE
 **Branch:** feature/B15-B16-search-transitions-2026-07-14
