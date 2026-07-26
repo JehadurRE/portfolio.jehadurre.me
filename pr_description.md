@@ -1,13 +1,14 @@
-### Fix Blank Screen & Add Error Boundaries
+## What/why
+- Added `vercel.json` with a rewrite rule. Since this application is a Vite-based SPA, Vercel needs to be configured to fallback to `/index.html` on unmatched routes (like deep links or page refreshes). This resolves 404s on direct navigation to routes like `/blog/building-scalable-react-applications`.
+- Updated `src/components/ErrorBoundary.tsx` to explicitly catch `ChunkLoadError` and "Failed to fetch dynamically imported module" errors. When these happen (typically because a user is on the site while a new deployment finishes, deleting the old JS chunks), it now automatically calls `window.location.reload()` to silently fetch the newest version, improving the user experience rather than showing the red crash screen.
 
-**Description:**
-The application was suffering from a critical issue causing it to show a completely blank page. This was traced down to a `ReferenceError: Skeleton is not defined` inside `src/components/Projects.tsx`. Without an error boundary in place to catch this, the uncaught exception bubbled up to the top and crashed the entire React component tree.
+## Files changed
+- `vercel.json`
+- `src/components/ErrorBoundary.tsx`
 
-**Changes:**
-1.  **Fixed Missing Import:** Added the missing `Skeleton` component import from `react-loading-skeleton` at the top of `src/components/Projects.tsx`.
-2.  **Added `ErrorBoundary`:** Introduced an `ErrorBoundary` component (`src/components/ErrorBoundary.tsx`) to wrap the main `<App />` tree in `src/main.tsx`. This ensures that any future runtime exceptions inside child components are caught locally, instead of causing the entire application to show a blank screen. It also provides a friendly "fallback UI" where users can restart the application securely and easily.
+## Human action items outstanding
+- None.
 
-**Testing:**
-- Verified that the `Projects` component correctly renders and the application boots successfully without any blank screen errors.
-- Executed Playwright visually via headless tests to confirm there are no more uncaught error exceptions output from the browser console, confirming everything is functioning normally.
-- Passed `pnpm lint` and `pnpm build` successfully with no build failures.
+## Build Verification Status
+- Linting passed
+- Build completed successfully

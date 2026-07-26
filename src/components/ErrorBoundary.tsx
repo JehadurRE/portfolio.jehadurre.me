@@ -22,6 +22,16 @@ class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
+
+    // Automatically reload the page if it's a dynamic import failure
+    // This typically happens when a new version is deployed and the old chunk is missing.
+    if (
+      error.name === 'ChunkLoadError' ||
+      error.message.includes('Failed to fetch dynamically imported module') ||
+      error.message.includes('dynamically imported module')
+    ) {
+      window.location.reload();
+    }
   }
 
   public render() {
