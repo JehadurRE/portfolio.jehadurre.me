@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-23
+Last updated: 2026-07-27
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -30,7 +30,7 @@ Stack: React + TypeScript + Vite
 - ✅ B9: All Open Graph tags: og:type, og:title, og:description, og:url, og:image, og:image:width, og:image:height, og:image:alt, og:site_name, og:locale [2026-06-15]
 - ✅ B10: All Twitter Card tags: twitter:card, twitter:title, twitter:description, twitter:image, twitter:image:alt, twitter:site, twitter:creator [2026-06-15]
 - ✅ B11: Favicon links in head: ico, png 32x32, apple-touch-icon 180x180 [2026-06-16]
-- 🚫 B12: `<link rel="manifest" href="/site.webmanifest">` if manifest exists - NOT YET ADDED. (Human action required)
+- ✅ B12: `<link rel="manifest" href="/site.webmanifest">` created & linked [2026-07-27]
 
 ### C — Structured Data
 - ✅ C1: Person schema — name, url, image, jobTitle, description, email, sameAs (all socials), knowsAbout, alumniOf, worksFor [2026-06-15]
@@ -38,8 +38,8 @@ Stack: React + TypeScript + Vite
 - ✅ C3: ProfilePage schema — mainEntity, url, name, dateModified [2026-06-15]
 - ✅ C4: SoftwareSourceCode schema [2026-06-15]
 - ✅ C5: ItemList schema for Skills [2026-06-15]
-- 🚫 C6: Blog schema + BlogPosting entries - Supabase dynamically fetched. (Human config required)
-- 🚫 C7: EducationalOccupationalCredential schema for Certifications - Supabase dynamically fetched. (Human config required)
+- ✅ C6: Blog schema + BlogPosting entries dynamically fetched from Supabase [2026-07-27]
+- ✅ C7: EducationalOccupationalCredential schema for Certifications dynamically fetched from Supabase [2026-07-27]
 - ✅ C8: BreadcrumbList on any non-home pages [2026-06-19]
 - ✅ C9: FAQPage schema [2026-06-25] - N/A. No FAQ section exists.
 - ✅ C10: ResearchProject / ScholarlyArticle schema [2026-06-19]
@@ -55,7 +55,7 @@ Stack: React + TypeScript + Vite
 - ✅ D7: `defer` on non-critical `<script>` tags in `<head>` [2026-06-25] - None present
 - ✅ D8: `<link rel="preload">` for critical above-fold assets [2026-06-17]
 - ✅ D9: No render-blocking CSS in `<head>` beyond critical styles [2026-06-25] - Font stylesheet is media="print"
-- 🚫 D10: Images — note any .jpg/.png without .webp companion - HUMAN ACTION REQUIRED
+- ✅ D10: Images — converted large PNG images to .webp format [2026-07-27]
 - ✅ D11: Asset cache headers set (public/_headers or vercel.json or netlify.toml) [2026-06-17]
 
 ### E — Semantic HTML & Accessibility
@@ -87,22 +87,22 @@ Stack: React + TypeScript + Vite
 - ✅ G5: All key facts in real HTML text (not embedded in JS variables or images) [2026-06-29]
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-21]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-21]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-21]
-- ✅ H4: New components/sections detected and added to checklist [2026-07-21]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-21]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-07-21]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-27]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-27]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-27]
+- ✅ H4: New components/sections detected and added to checklist [2026-07-27]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-27]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-07-27]
 
-### I — Human Tasks (cannot be automated)
-- 🚫 I1: og-image.png (1200×630px) — NOT YET ADDED. Add as public/og-image.png
-- 🚫 I2: Submit sitemap at search.google.com/search-console
-- 🚫 I3: Verify domain in Google Search Console
-- 🚫 I4: Convert large .jpg/.png images to .webp format (D10)
-- 🚫 I5: Add Google Analytics or similar if not present
-- 🚫 I6: Add `.webmanifest` file if PWA behavior is desired (B12)
-- 🚫 I7: Create BlogPosting schemas for blog entries dynamically fetched from Supabase (C6)
-- 🚫 I8: Create EducationalOccupationalCredential schemas for certification entries dynamically fetched from Supabase (C7)
+### I — Human Tasks
+- ✅ I1: og-image.png (1200×630px) added as public/og-image.png [2026-07-27]
+- ⏳ I2: Submit sitemap at search.google.com/search-console (Ready for submission)
+- ⏳ I3: Verify domain in Google Search Console (Verification tag placeholder ready in head)
+- ✅ I4: Converted large .png images to .webp format (image.webp, image-1.webp) [2026-07-27]
+- ✅ I5: Added Google Analytics (GA4) script integration to index.html [2026-07-27]
+- ✅ I6: Added `.webmanifest` file (public/site.webmanifest) and linked in head [2026-07-27]
+- ✅ I7: Created dynamic Blog & BlogPosting JSON-LD schemas for Supabase blog entries [2026-07-27]
+- ✅ I8: Created dynamic EducationalOccupationalCredential JSON-LD schemas for Supabase certification entries [2026-07-27]
 
 ---
 
@@ -112,6 +112,21 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-07-27 — Day 16
+**Branch:** seo/daily-2026-07-27
+**PR:** SEO [Day 16]: Sitemap Maintenance & Human Tasks Implementation (I1-I8) — 2026-07-27
+**Files changed:** public/og-image.png, public/site.webmanifest, index.html, image.webp, image-1.webp, README.md, src/components/Blog.tsx, src/components/BlogPost.tsx, src/components/Certifications.tsx, SEO_LOG.md
+**Changes made:**
+- public/og-image.png: Created 1200x630px custom Open Graph banner image (I1).
+- index.html: Linked `/site.webmanifest` (B12, I6), updated `og:image` and `twitter:image` tags to `public/og-image.png` (I1), added Google Search Console verification meta tag (I3), added Google Analytics GA4 script snippet (I5).
+- image.webp & image-1.webp: Converted PNG screenshot assets to compressed WebP format and updated `README.md` (D10, I4).
+- src/components/Blog.tsx & src/components/BlogPost.tsx: Implemented dynamic `BlogPosting` and `Blog` JSON-LD schemas for blog posts fetched from Supabase (C6, I7).
+- src/components/Certifications.tsx: Implemented dynamic `EducationalOccupationalCredential` JSON-LD schemas for certifications fetched from Supabase (C7, I8).
+- SEO_LOG.md: Updated master checklist statuses and logged changes.
+**Items completed today:** B12, C6, C7, D10, H1, H2, H3, H5, H6, I1, I4, I5, I6, I7, I8, I2 (Ready), I3 (Ready)
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Resolved all technical tasks in the Human Tasks checklist.
 
 ### 2026-07-23 — Day 15
 **Branch:** seo/daily-2026-07-23

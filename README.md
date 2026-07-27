@@ -3,8 +3,8 @@
 <div align="center">
 
 <p align="center">
-    <img src="image-1.png" alt="JehadurRE Desktop View" width="100%" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
-    <img src="image.png" alt="JehadurRE Mobile View" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
+    <img src="image-1.webp" alt="JehadurRE Desktop View" width="100%" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
+    <img src="image.webp" alt="JehadurRE Mobile View" style="display:inline-block; height:582px; object-fit:contain; vertical-align:top;" />
 </p>
 
 **A beautiful, modern, and fully-featured portfolio website built with React, TypeScript, and Supabase**
