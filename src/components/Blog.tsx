@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { blogApi, type BlogPost, subscribeToNewsletter } from '../lib/supabase';
+import { subscribeToNewsletter } from '../lib/supabase';
+import { useBlogPosts } from '../hooks/useBlogPosts';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'sonner';
 
@@ -17,9 +18,7 @@ const Blog: React.FC = () => {
     threshold: 0.1,
   });
 
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { posts, loading, error, fetchPosts } = useBlogPosts();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -50,24 +49,6 @@ const Blog: React.FC = () => {
       setNewsletterEmail('');
     }
   };
-
-  const fetchPosts = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await blogApi.getPublished();
-      setPosts(data);
-    } catch (err: unknown) {
-      console.error('Error fetching blog posts:', err);
-      setError('Failed to load blog posts. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   // ⚡ Bolt Performance Optimization:
   // Memoize `allTags` and `filteredPosts` to avoid running costly operations on every render.
