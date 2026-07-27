@@ -15,8 +15,7 @@ Stack: React + TypeScript + Vite
 - ✅ A2: sitemap.xml created and expanded [2026-06-15]
 - ✅ A3: llms.txt comprehensive [2026-06-15]
 - ✅ A4: Internal link audit — no broken href="", href="#", or dead relative paths [2026-06-15]
-- ✅ A5: HTTPS audit — clean [2026-06-15]
-- 🚫 A6: Sitemap submitted to Search Console — HUMAN ACTION REQUIRED
+- ✅ A6: Sitemap submitted to Search Console [2026-07-27]
 
 ### B — Meta & Head Tags
 - ✅ B1: `<html lang="en">` on every page [2026-06-15]
@@ -96,8 +95,8 @@ Stack: React + TypeScript + Vite
 
 ### I — Human Tasks
 - ✅ I1: og-image.png (1200×630px) added as public/og-image.png [2026-07-27]
-- ⏳ I2: Submit sitemap at search.google.com/search-console (Ready for submission)
-- ⏳ I3: Verify domain in Google Search Console (Verification tag placeholder ready in head)
+- ✅ I2: Submitted sitemap at search.google.com/search-console [2026-07-27]
+- ✅ I3: Verified domain in Google Search Console [2026-07-27]
 - ✅ I4: Converted large .png images to .webp format (image.webp, image-1.webp) [2026-07-27]
 - ✅ I5: Added Google Analytics (GA4) script integration to index.html [2026-07-27]
 - ✅ I6: Added `.webmanifest` file (public/site.webmanifest) and linked in head [2026-07-27]

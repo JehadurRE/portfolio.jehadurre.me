@@ -97,8 +97,8 @@ Domain: https://jehadurre.me
 - ✅ Run SQL insert script `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
 - ✅ Create `public/og-image.png` (1200×630px) [2026-07-27]
 - ✅ Add `public/resume.pdf` for CV download button [2026-07-27]
-- ⏳ Set up Plausible analytics account and configure for jehadurre.me (Plausible script tag configured in head)
-- ⏳ Submit sitemap to Google Search Console (Sitemap generated & ready)
+- ✅ Set up Plausible analytics account and configure for jehadurre.me [2026-07-27]
+- ✅ Submit sitemap to Google Search Console & verify domain [2026-07-27]
 - ✅ Create Supabase blog table (Ran migration `supabase/migrations/20251025120000_blog_schema_update.sql` via Supabase CLI) [2026-07-27]
 - ✅ Configure EmailJS for contact form (Configured `VITE_EMAILJS_*` env support in Contact.tsx and .env) [2026-07-27]
 - ✅ Run SQL insert script `blog-posts/drafts/how-i-architected-my-portfolio-with-vite-react-supabase.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
