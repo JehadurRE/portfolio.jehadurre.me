@@ -3,6 +3,7 @@ import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Award, Calendar, ExternalLink, Eye, X, Trophy, Medal, Star, CheckCircle, RefreshCw } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { certificationsApi, achievementsApi, type Certification, type Achievement } from '../lib/supabase';
 import Skeleton from 'react-loading-skeleton';
 import LazyImage from './LazyImage';
@@ -148,6 +149,36 @@ const Certifications: React.FC = () => {
 
   return (
     <section id="certifications" aria-labelledby="certifications-heading" className="section-padding bg-transparent">
+      <Helmet>
+        {certifications.length > 0 && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "name": "Certifications & Professional Credentials",
+              "description": "Verified certifications and technical credentials achieved by Md. Jehadur Rahman Emran.",
+              "itemListElement": certifications.map((cert, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "EducationalOccupationalCredential",
+                  "name": cert.title,
+                  "description": cert.description,
+                  "credentialCategory": cert.category,
+                  "recognizedBy": {
+                    "@type": "Organization",
+                    "name": cert.issuer
+                  },
+                  ...(cert.verification_url ? { "url": cert.verification_url } : {}),
+                  ...(cert.credential_id ? { "identifier": cert.credential_id } : {}),
+                  ...(cert.issue_date ? { "dateCreated": cert.issue_date } : {}),
+                  ...(cert.image_url ? { "image": cert.image_url } : {})
+                }
+              }))
+            })}
+          </script>
+        )}
+      </Helmet>
       <div className="container-custom">
         <motion.div
           ref={ref}

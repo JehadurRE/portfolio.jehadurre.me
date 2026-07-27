@@ -133,13 +133,26 @@ const BlogPost: React.FC = () => {
               "@type": "BlogPosting",
               "headline": post.seo_title || post.title,
               "description": post.seo_description || post.excerpt,
-              "image": post.cover_image,
+              "image": post.cover_image ? [post.cover_image] : ["https://jehadurre.me/og-image.png"],
               "datePublished": post.published_at,
-              "dateModified": post.updated_at,
+              "dateModified": post.updated_at || post.published_at,
               "author": {
                 "@type": "Person",
-                "name": "Jehadur Rahman Emran",
+                "name": "Md. Jehadur Rahman Emran",
                 "url": "https://jehadurre.me"
+              },
+              "publisher": {
+                "@type": "Person",
+                "name": "Md. Jehadur Rahman Emran",
+                "url": "https://jehadurre.me",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://github.com/JehadurRE.png"
+                }
+              },
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://jehadurre.me/blog/${post.slug}`
               },
               "url": `https://jehadurre.me/blog/${post.slug}`,
               "keywords": post.tags.join(', '),

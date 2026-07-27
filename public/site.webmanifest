@@ -1,0 +1,23 @@
+{
+  "name": "Md. Jehadur Rahman Emran Portfolio",
+  "short_name": "JehadurRE",
+  "description": "Md. Jehadur Rahman Emran - Software Engineer, Researcher, and Full-Stack Developer Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "https://github.com/JehadurRE.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://github.com/JehadurRE.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

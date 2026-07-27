@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { blogApi, type BlogPost, subscribeToNewsletter } from '../lib/supabase';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'sonner';
@@ -160,6 +161,33 @@ const Blog: React.FC = () => {
 
   return (
     <section id="blog" aria-labelledby="blog-heading" className="section-padding bg-transparent">
+      <Helmet>
+        {posts.length > 0 && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Blog",
+              "name": "Md. Jehadur Rahman Emran Blog & Insights",
+              "description": "Articles and thoughts on software engineering, web development, research, and machine learning.",
+              "url": "https://jehadurre.me/#blog",
+              "blogPost": posts.map(post => ({
+                "@type": "BlogPosting",
+                "headline": post.seo_title || post.title,
+                "description": post.seo_description || post.excerpt,
+                "url": `https://jehadurre.me/blog/${post.slug}`,
+                "datePublished": post.published_at,
+                "dateModified": post.updated_at || post.published_at,
+                "author": {
+                  "@type": "Person",
+                  "name": "Md. Jehadur Rahman Emran",
+                  "url": "https://jehadurre.me"
+                },
+                ...(post.cover_image ? { "image": post.cover_image } : {})
+              }))
+            })}
+          </script>
+        )}
+      </Helmet>
       <div className="container-custom">
         <motion.div
           ref={ref}

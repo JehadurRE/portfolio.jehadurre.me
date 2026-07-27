@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Jehadur Rahman Emran's Blog</title>
         <link>https://jehadurre.me</link>
         <description>Thoughts on software engineering, full-stack development, and research.</description>
-        <lastBuildDate>Mon, 27 Jul 2026 04:39:38 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 27 Jul 2026 14:41:25 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -14,5 +14,41 @@
             <link>https://jehadurre.me</link>
         </image>
         <copyright>All rights reserved 2026, Jehadur Rahman Emran</copyright>
+        <item>
+            <title><![CDATA[Building Scalable React Applications with TypeScript]]></title>
+            <link>https://jehadurre.me/blog/building-scalable-react-applications</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/building-scalable-react-applications</guid>
+            <pubDate>Sat, 28 Jun 2025 01:44:26 GMT</pubDate>
+            <description><![CDATA[Learn best practices for creating maintainable and scalable React applications using TypeScript, focusing on proper architecture and design patterns.]]></description>
+            <content:encoded><![CDATA[Learn best practices for creating maintainable and scalable React applications using TypeScript, focusing on proper architecture and design patterns.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
+        <item>
+            <title><![CDATA[The Future of Machine Learning in Software Engineering]]></title>
+            <link>https://jehadurre.me/blog/future-of-ml-in-software-engineering</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/future-of-ml-in-software-engineering</guid>
+            <pubDate>Wed, 10 Jan 2024 14:30:00 GMT</pubDate>
+            <description><![CDATA[Exploring how machine learning is transforming software development processes, from automated testing to intelligent code generation.]]></description>
+            <content:encoded><![CDATA[Exploring how machine learning is transforming software development processes, from automated testing to intelligent code generation.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
+        <item>
+            <title><![CDATA[Optimizing Database Performance for Web Applications]]></title>
+            <link>https://jehadurre.me/blog/optimizing-database-performance</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/optimizing-database-performance</guid>
+            <pubDate>Fri, 05 Jan 2024 09:15:00 GMT</pubDate>
+            <description><![CDATA[Deep dive into database optimization techniques including indexing strategies, query optimization, and caching mechanisms.]]></description>
+            <content:encoded><![CDATA[Deep dive into database optimization techniques including indexing strategies, query optimization, and caching mechanisms.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
+        <item>
+            <title><![CDATA[Modern CSS Techniques for Better User Experiences]]></title>
+            <link>https://jehadurre.me/blog/modern-css-techniques</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/modern-css-techniques</guid>
+            <pubDate>Mon, 01 Jan 2024 16:45:00 GMT</pubDate>
+            <description><![CDATA[Discover advanced CSS techniques including Grid, Flexbox, and CSS Custom Properties to create stunning user interfaces.]]></description>
+            <content:encoded><![CDATA[Discover advanced CSS techniques including Grid, Flexbox, and CSS Custom Properties to create stunning user interfaces.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
     </channel>
 </rss>
