@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-26
+Last updated: 2026-07-27
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -40,13 +40,13 @@ Domain: https://jehadurre.me
 - ✅ B16: Smooth page transitions 2026-07-14
 
 ### C — Code Quality
-- ⏳ C1: TypeScript strict mode
-- ⏳ C2: Error boundaries
-- ⏳ C3: Environment variable validation
-- ⏳ C4: Custom React hooks
+- ✅ C1: TypeScript strict mode 2026-07-27
+- ✅ C2: Error boundaries 2026-07-27
+- ➕ C3: Environment variable validation 2026-07-27
+- ➕ C4: Custom React hooks 2026-07-27
 - ⏳ C5: Supabase Row Level Security
 - ⏳ C6: Image optimization
-- ⏳ C7: Lazy loading routes
+- ✅ C7: Lazy loading routes 2026-07-27
 
 ### D — SEO
 - ⏳ D1: public/robots.txt complete
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
 | 4 | 2026-07-14 | effortless-form-validation-react-hook-form-zod | Effortless Form Validation with React Hook Form and Zod | Tools | 850 |
 | 3 | 2026-07-13 | machine-learning-in-software-engineering-workflows | Machine Learning in Software Engineering: Bridging Research and Practice | Research | 839 |
@@ -78,13 +79,14 @@ Domain: https://jehadurre.me
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
-- Blog categories used: Tutorial, Project, Research, Tools
+- Blog categories used: Tutorial, Project, Research, Tools, Industry
 
 ---
 
 ## HUMAN ACTION REQUIRED
 > These cannot be automated — Jules will remind every session until resolved
 
+- 🚫 Run SQL insert script `blog-posts/drafts/the-state-of-web-performance-vite-react.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/how-i-approached-multi-cloud-certifications.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql` in Supabase to publish the new blog post
 - 🚫 Run SQL insert script `blog-posts/drafts/machine-learning-in-software-engineering-workflows.sql` in Supabase to publish the new blog post
@@ -100,6 +102,38 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-27 — Day 17 — BOTH MODE
+**Branch:** feat-blog/c-quality-and-post-2026-07-27
+**PR:** feat-blog: C-Quality updates and new performance blog post — Day 17
+**Mode:** BOTH
+**Files changed:**
+- `src/hooks/useBlogPosts.ts`: Created new hook to abstract data fetching logic.
+- `src/hooks/useProjects.ts`: Created new hook to abstract data fetching logic for Github API.
+- `src/components/Blog.tsx`: Refactored to utilize `useBlogPosts`.
+- `src/components/Projects.tsx`: Refactored to utilize `useProjects`.
+- `src/lib/env.ts`: Centralized validation of VITE_SUPABASE environment variables.
+- `src/lib/supabase.ts`: Refactored to consume validated environment variables.
+- `blog-posts/drafts/the-state-of-web-performance-vite-react.sql`: Wrote new blog post draft.
+- `content/blog/the-state-of-web-performance-vite-react.md`: Markdown version of the post for reference.
+
+**If BUILD:**
+- `src/hooks/useBlogPosts.ts`: Abstract data fetching logic for Blog -> Improves maintainability (C4)
+- `src/hooks/useProjects.ts`: Abstract data fetching logic for Projects -> Improves maintainability (C4)
+- `src/lib/env.ts`: Centralized environment variable validation -> Guarantees fail-fast startup behavior (C3)
+- Items completed: C1, C2, C3, C4, C7
+- Items skipped: None
+
+**If WRITE:**
+- Post title: The State of Web Performance: Vite, React, and the Death of Create React App
+- Slug: /blog/the-state-of-web-performance-vite-react
+- Category: Industry
+- Word count: 938
+- Primary keyword: Web Performance Vite React
+- File: content/blog/the-state-of-web-performance-vite-react.md
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Verified that C1 (TypeScript Strict), C2 (ErrorBoundary), and C7 (Lazy Loading Routes) were previously completed manually. Extracted hooks (C4) and configured environment variable validation (C3). Authored an Industry Insight blog post on Vite and React performance.
 
 ### 2026-07-26 — Day 16 — WRITE MODE
 **Branch:** blog/how-i-approached-multi-cloud-certifications-2026-07-26
