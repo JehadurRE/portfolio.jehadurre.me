@@ -7,7 +7,7 @@ INSERT INTO blog_posts (
   cover_image,
   published_at,
   updated_at,
-  reading_time,
+  read_time,
   seo_title,
   seo_description,
   is_published,

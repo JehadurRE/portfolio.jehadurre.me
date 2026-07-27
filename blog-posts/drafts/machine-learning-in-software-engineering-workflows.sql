@@ -1,5 +1,5 @@
 -- Insert new blog post
-INSERT INTO blog_posts (slug, title, excerpt, content, category, tags, cover_image, published_at, updated_at, reading_time, seo_title, seo_description, is_published)
+INSERT INTO blog_posts (slug, title, excerpt, content, category, tags, cover_image, published_at, updated_at, read_time, seo_title, seo_description, is_published)
 VALUES (
     'machine-learning-in-software-engineering-workflows',
     'Machine Learning in Software Engineering: Bridging Research and Practice',

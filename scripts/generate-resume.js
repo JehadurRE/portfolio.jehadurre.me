@@ -1,0 +1,72 @@
+import fs from 'fs';
+import path from 'path';
+
+// Generate a valid minimalist PDF file for resume.pdf
+const pdfContent = `%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 1 /Kids [3 0 R] >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 750 >>
+stream
+BT
+/F1 22 Tf
+50 730 Td
+(Md. Jehadur Rahman Emran) Tj
+/F1 12 Tf
+0 -25 Td
+(Software Engineer & AI Researcher) Tj
+0 -18 Td
+(Email: emran.jehadur@gmail.com  |  Portfolio: https://jehadurre.me  |  GitHub: JehadurRE) Tj
+0 -30 Td
+(SUMMARY) Tj
+0 -15 Td
+(Passionate full-stack engineer and researcher specializing in React, TypeScript, Node.js, and Machine Learning.) Tj
+0 -30 Td
+(TECHNICAL SKILLS) Tj
+0 -15 Td
+(Languages & Tools: TypeScript, JavaScript, Python, React, Next.js, Node.js, Tailwind CSS, Supabase, Git, Docker) Tj
+0 -30 Td
+(EXPERIENCE & PROJECTS) Tj
+0 -15 Td
+(Full-Stack Developer & Researcher  -  Portfolio & Open Source Projects) Tj
+0 -15 Td
+(- Architected responsive web applications using Vite, React 18, and Tailwind CSS.) Tj
+0 -15 Td
+(- Integrated Supabase backend with row-level security and real-time database capabilities.) Tj
+0 -15 Td
+(- Conducted computer science research and machine learning pipeline optimization.) Tj
+0 -30 Td
+(EDUCATION & CERTIFICATIONS) Tj
+0 -15 Td
+(B.Sc. in Computer Science & Engineering) Tj
+0 -15 Td
+(Multi-cloud technical certifications in AWS, Docker, and Web Development) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000240 00000 n 
+0000001041 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1112
+%%EOF`;
+
+fs.writeFileSync(path.join(process.cwd(), 'public', 'resume.pdf'), pdfContent);
+console.log('Successfully created public/resume.pdf');
