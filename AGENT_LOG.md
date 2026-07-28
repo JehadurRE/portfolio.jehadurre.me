@@ -69,6 +69,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 7 | 2026-07-28 | supabase-row-level-security-practical-guide | Supabase Row Level Security: A Practical Guide for Portfolio Sites | Tutorial | 1250 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
 | 4 | 2026-07-14 | effortless-form-validation-react-hook-form-zod | Effortless Form Validation with React Hook Form and Zod | Tools | 850 |
@@ -107,6 +108,24 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-28 — Day 18 — WRITE MODE
+**Branch:** blog/supabase-row-level-security-practical-guide-2026-07-28
+**PR:** blog: "Supabase Row Level Security: A Practical Guide for Portfolio Sites" — Tutorial
+**Mode:** WRITE
+**Files changed:**
+- `blog-posts/drafts/supabase-row-level-security-practical-guide.sql`: Created new blog post.
+
+**If WRITE:**
+- Post title: Supabase Row Level Security: A Practical Guide for Portfolio Sites
+- Slug: /blog/supabase-row-level-security-practical-guide
+- Category: Tutorial
+- Word count: 1250
+- Primary keyword: Supabase Row Level Security
+- File: blog-posts/drafts/supabase-row-level-security-practical-guide.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Wrote a comprehensive tutorial on configuring Supabase Row Level Security for portfolio applications.
 
 ### 2026-07-27 — Day 17 — BOTH MODE
 **Branch:** feat-blog/c-quality-and-post-2026-07-27
