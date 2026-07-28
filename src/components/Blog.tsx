@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { subscribeToNewsletter } from '../lib/supabase';
 import { useBlogPosts } from '../hooks/useBlogPosts';
 import { Helmet } from 'react-helmet-async';
-import { blogApi, type BlogPost, subscribeToNewsletter } from '../lib/supabase';
+import { blogApi, type BlogPost } from '../lib/supabase';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'sonner';
 
