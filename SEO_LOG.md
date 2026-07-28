@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-27
+Last updated: 2026-07-28
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -86,12 +86,12 @@ Stack: React + TypeScript + Vite
 - ✅ G5: All key facts in real HTML text (not embedded in JS variables or images) [2026-06-29]
 
 ### H — Ongoing Maintenance
-- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-27]
-- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-27]
-- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-27]
-- ✅ H4: New components/sections detected and added to checklist [2026-07-27]
-- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-27]
-- ✅ H6: Verify `pnpm build` passes before PR [2026-07-27]
+- ✅ H1: sitemap.xml `<lastmod>` updated to today's date on each run [2026-07-28]
+- ✅ H2: SEO_LOG.md `## Daily Log` updated with today's changes [2026-07-28]
+- ✅ H3: SEO_LOG.md checklist statuses kept current [2026-07-28]
+- ✅ H4: New components/sections detected and added to checklist [2026-07-28]
+- ✅ H5: Verify `pnpm lint` passes before PR [2026-07-28]
+- ✅ H6: Verify `pnpm build` passes before PR [2026-07-28]
 
 ### I — Human Tasks
 - ✅ I1: og-image.png (1200×630px) added as public/og-image.png [2026-07-27]
@@ -111,6 +111,19 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-07-28 — Day 17
+**Branch:** seo/daily-2026-07-28
+**PR:** SEO [Day 17]: Lint Fix and Sitemap Maintenance — 2026-07-28
+**Files changed:** scripts/publish-draft-posts.ts, src/components/Blog.tsx, scripts/generate-sitemap.ts, SEO_LOG.md
+**Changes made:**
+- scripts/publish-draft-posts.ts & src/components/Blog.tsx: Fixed unused variable ESLint warnings. → Keeps codebase clean and passes linting check (H5).
+- scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date. → Keeps sitemap fresh for crawlers (H1).
+- SEO_LOG.md: Updated daily log with maintenance tasks and status changes. → Serves as SEO tracking memory.
+**Items completed today:** H1, H2, H3, H4, H5, H6
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Verified `pnpm lint` and `pnpm build` pass with no errors.
 
 ### 2026-07-27 — Day 16
 **Branch:** seo/daily-2026-07-27
