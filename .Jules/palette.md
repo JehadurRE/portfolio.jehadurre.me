@@ -45,3 +45,6 @@
 ## 2024-08-01 - [Native title attributes vs ARIA labels for icon-only buttons]
 **Learning:** Removing a native `title` attribute from an icon-only button (even when adding an `aria-label`) degrades discoverability for sighted mouse users because the visual tooltip disappears.
 **Action:** When adding `aria-label` to an icon-only button for screen reader support, ALWAYS retain or add the native `title` attribute as a fallback tooltip, unless replacing it with a custom, accessible visual tooltip component.
+## 2024-05-30 - Added keyboard shortcut hints to search modal
+**Learning:** When a UI element triggers an action that has an associated global keyboard shortcut, users often miss it because it's not visually communicated.
+**Action:** Always include the shortcut hint in its native title attribute or tooltip (e.g., `title="Search (Cmd/Ctrl + K)"`) to improve feature discoverability for mouse users.
