@@ -1,5 +1,5 @@
 # SEO Agent Log — jehadurre.me
-Last updated: 2026-07-27
+Last updated: 2026-07-30
 Agent: Jules (Gemini 2.5 Pro)
 Domain: https://jehadurre.me
 Stack: React + TypeScript + Vite
@@ -111,6 +111,20 @@ Stack: React + TypeScript + Vite
 ---
 
 ## DAILY LOG
+
+### 2026-07-30 — Day 17
+**Branch:** seo/daily-2026-07-30
+**PR:** SEO [Day 17]: Sitemap Maintenance — 2026-07-30
+**Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, SEO_LOG.md
+**Changes made:**
+- scripts/generate-sitemap.ts: Updated static route `<lastmod>` date for `/` to today's date. → Keeps sitemap fresh for crawlers.
+- public/sitemap.xml: Updated `<lastmod>` for `https://jehadurre.me/` directly via script. → Ensures crawlers see updated dates without overriding dynamic endpoints (H1).
+- SEO_LOG.md: Appended daily log with maintenance updates.
+**Items completed today:** H1, H2, H3, H5, H6
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Completed routine daily maintenance to keep sitemap timestamps fresh.
+
 
 ### 2026-07-27 — Day 16
 **Branch:** seo/daily-2026-07-27
@@ -249,9 +263,9 @@ Stack: React + TypeScript + Vite
 **Build status:** pnpm lint ✅ | pnpm build ✅
 **Notes:** Maintained the master checklist statuses and verified build passing.
 
-### 2026-06-29 — Day 8
+### 2026-06-29 — Day 17
 **Branch:** seo/daily-2026-06-29
-**PR:** SEO [Day 8]: Keyword Context in Headings & Maintenance — 2026-06-29
+**PR:** SEO [Day 17]: Keyword Context in Headings & Maintenance — 2026-06-29
 **Files changed:** scripts/generate-sitemap.ts, public/sitemap.xml, src/components/About.tsx, src/components/Research.tsx, src/components/Blog.tsx, src/components/Projects.tsx, src/components/Certifications.tsx, src/components/Contact.tsx, SEO_LOG.md
 **Changes made:**
 - scripts/generate-sitemap.ts: Updated static routes `<lastmod>` to today's date and ran generation to update `public/sitemap.xml` → Keeps sitemap fresh for crawlers (H1).
