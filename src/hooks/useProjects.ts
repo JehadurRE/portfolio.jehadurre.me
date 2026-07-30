@@ -23,19 +23,34 @@ export interface ProjectModal {
   loading: boolean;
 }
 
+
+let cachedProjects: Project[] | null = null;
+let projectsFetchPromise: Promise<Project[]> | null = null;
+
 export const useProjects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<Project[]>(cachedProjects || []);
+  const [loading, setLoading] = useState(!cachedProjects);
   const [selectedProject, setSelectedProject] = useState<ProjectModal | null>(null);
   const [readmeCache, setReadmeCache] = useState<Record<number, string>>({});
 
+
   useEffect(() => {
     const fetchProjects = async () => {
+      if (cachedProjects) {
+        setProjects(cachedProjects);
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await fetch(
-          "https://api.github.com/users/JehadurRE/repos?sort=updated&per_page=50"
-        );
-        const data = await response.json();
+        if (!projectsFetchPromise) {
+          projectsFetchPromise = fetch(
+            "https://api.github.com/users/JehadurRE/repos?sort=updated&per_page=50"
+          ).then(res => res.json());
+        }
+
+        const data = await projectsFetchPromise;
+
 
         const filteredProjects = data
           .filter(
@@ -50,10 +65,11 @@ export const useProjects = () => {
           )
           .slice(0, 12);
 
+        cachedProjects = filteredProjects;
         setProjects(filteredProjects);
       } catch (error: unknown) {
         console.error("Error fetching projects:", error);
-        setProjects([
+                const fallback = [
           {
             id: 1,
             name: "Portfolio Website",
@@ -91,7 +107,9 @@ export const useProjects = () => {
             updated_at: "2024-01-05T00:00:00Z",
             owner: { login: "JehadurRE" },
           },
-        ]);
+        ];
+        projectsFetchPromise = null;
+        setProjects(fallback);
       } finally {
         setLoading(false);
       }
