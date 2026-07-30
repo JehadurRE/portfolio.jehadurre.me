@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-27
+Last updated: 2026-07-30
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -42,13 +42,8 @@ Domain: https://jehadurre.me
 ### C — Code Quality
 - ✅ C1: TypeScript strict mode 2026-07-27
 - ✅ C2: Error boundaries 2026-07-27
-- ➕ C3: Environment variable validation 2026-07-27
-- ➕ C4: Custom React hooks 2026-07-27
-### C — Code Quality
-- ✅ C1: TypeScript strict mode 2026-07-27
-- ✅ C2: Error boundaries 2026-07-27
-- ➕ C3: Environment variable validation 2026-07-27
-- ➕ C4: Custom React hooks 2026-07-27
+- ⏳ C3: Environment variable validation
+- ✅ C4: Custom React hooks 2026-07-30
 - ✅ C5: Supabase migrations & DB Push via Supabase CLI 2026-07-27
 - ✅ C6: Image optimization (PNG to WebP conversion) 2026-07-27
 - ✅ C7: Lazy loading routes 2026-07-27
@@ -69,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 7 | 2026-07-30 | type-safe-supabase-client-react-typescript | Building a Type-Safe Supabase Client in React with TypeScript | Tutorial | 1208 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
 | 4 | 2026-07-14 | effortless-form-validation-react-hook-form-zod | Effortless Form Validation with React Hook Form and Zod | Tools | 850 |
@@ -98,6 +94,7 @@ Domain: https://jehadurre.me
 - ✅ Create `public/og-image.png` (1200×630px) [2026-07-27]
 - ✅ Add `public/resume.pdf` for CV download button [2026-07-27]
 - ✅ Set up Plausible analytics account and configure for jehadurre.me [2026-07-27]
+- 🚫 Run SQL insert script `blog-posts/drafts/type-safe-supabase-client-react-typescript.sql` in Supabase [2026-07-30]
 - ✅ Submit sitemap to Google Search Console & verify domain [2026-07-27]
 - ✅ Create Supabase blog table (Ran migration `supabase/migrations/20251025120000_blog_schema_update.sql` via Supabase CLI) [2026-07-27]
 - ✅ Configure EmailJS for contact form (Configured `VITE_EMAILJS_*` env support in Contact.tsx and .env) [2026-07-27]
@@ -107,6 +104,32 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-30 — Day 15 — BOTH MODE
+**Branch:** feat-blog/hooks-and-type-safe-supabase-2026-07-30
+**PR:** feat: Custom hooks for dark mode & caching + TypeScript Supabase Blog — Day 15
+**Mode:** BOTH
+**Files changed:**
+- `src/hooks/useDarkMode.ts`: Created separate hook for managing dark mode state.
+- `src/contexts/ThemeContext.tsx`: Refactored to consume the new `useDarkMode` hook, simplifying context logic.
+- `src/hooks/useBlogPosts.ts`: Added module-level caching to prevent re-fetching blog posts upon component remounts.
+- `src/hooks/useProjects.ts`: Added module-level caching to prevent duplicate GitHub API fetches on mount.
+- `blog-posts/drafts/type-safe-supabase-client-react-typescript.sql`: Created SQL insert script for the new blog post.
+
+**If BUILD:**
+- Items completed: C4
+- Items skipped: None
+
+**If WRITE:**
+- Post title: Building a Type-Safe Supabase Client in React with TypeScript
+- Slug: /blog/type-safe-supabase-client-react-typescript
+- Category: Tutorial
+- Word count: 1208
+- Primary keyword: TypeScript
+- File: blog-posts/drafts/type-safe-supabase-client-react-typescript.sql
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Completed the C4 (Custom React Hooks) item, improving the architecture and rendering performance by preventing extraneous network requests when navigating back and forth in the app. Furthermore, wrote a comprehensive blog tutorial based on setting up a type-safe Supabase connection.
 
 ### 2026-07-27 — Day 17 — BOTH MODE
 **Branch:** feat-blog/c-quality-and-post-2026-07-27
