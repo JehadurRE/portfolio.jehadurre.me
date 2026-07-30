@@ -4,10 +4,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Calendar, Clock, ArrowRight, RefreshCw, Search, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { subscribeToNewsletter } from '../lib/supabase';
 import { useBlogPosts } from '../hooks/useBlogPosts';
 import { Helmet } from 'react-helmet-async';
-import { blogApi, type BlogPost, subscribeToNewsletter } from '../lib/supabase';
+import { subscribeToNewsletter } from '../lib/supabase';
 import Skeleton from 'react-loading-skeleton';
 import { toast } from 'sonner';
 
