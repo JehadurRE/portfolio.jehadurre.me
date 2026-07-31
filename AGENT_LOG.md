@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-07-27
+Last updated: 2026-07-31
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -69,6 +69,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 7 | 2026-07-31 | building-type-safe-supabase-client-react-typescript | Building a Type-Safe Supabase Client in React with TypeScript | Tutorial | 818 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
 | 4 | 2026-07-14 | effortless-form-validation-react-hook-form-zod | Effortless Form Validation with React Hook Form and Zod | Tools | 850 |
@@ -91,6 +92,7 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED / COMPLETED
 > Updated session status — all CLI & codebase tasks completed
 
+- 🚫 Run SQL insert script `blog-posts/drafts/building-type-safe-supabase-client-react-typescript.sql` in Supabase
 - ✅ Run SQL insert script `blog-posts/drafts/the-state-of-web-performance-vite-react.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
 - ✅ Run SQL insert script `blog-posts/drafts/how-i-approached-multi-cloud-certifications.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
 - ✅ Run SQL insert script `blog-posts/drafts/effortless-form-validation-react-hook-form-zod.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
@@ -107,6 +109,26 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-07-31 — Day 18 — WRITE MODE
+**Branch:** blog/building-type-safe-supabase-client-react-typescript-2026-07-31
+**PR:** blog: "Building a Type-Safe Supabase Client in React with TypeScript" — Tutorial
+**Mode:** WRITE
+**Files changed:**
+- `blog-posts/drafts/building-type-safe-supabase-client-react-typescript.sql`: Created SQL insert script for the new blog post.
+- `content/blog/building-type-safe-supabase-client-react-typescript.md`: Markdown version of the post for reference.
+- `AGENT_LOG.md`: Updated published blog post lists and human action items.
+
+**If WRITE:**
+- Post title: Building a Type-Safe Supabase Client in React with TypeScript
+- Slug: /blog/building-type-safe-supabase-client-react-typescript
+- Category: Tutorial
+- Word count: 818
+- Primary keyword: Type-Safe Supabase Client React TypeScript
+- File: content/blog/building-type-safe-supabase-client-react-typescript.md
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Decided to run WRITE mode. Wrote a tutorial blog post covering environment validation, strict TypeScript interfaces, and abstracted API calls for a robust Supabase client integration in a React application.
 
 ### 2026-07-27 — Day 17 — BOTH MODE
 **Branch:** feat-blog/c-quality-and-post-2026-07-27

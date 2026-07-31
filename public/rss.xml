@@ -15,6 +15,16 @@
         </image>
         <copyright>All rights reserved 2026, Jehadur Rahman Emran</copyright>
         <item>
+            <title><![CDATA[Building a Type-Safe Supabase Client in React with TypeScript]]></title>
+            <link>https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript</guid>
+            <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn how to build a robust, type-safe Supabase client in your React and TypeScript applications. Discover patterns for API abstraction, environment validation, and error handling.]]></description>
+            <content:encoded><![CDATA[Learn how to build a robust, type-safe Supabase client in your React and TypeScript applications. Discover patterns for API abstraction, environment validation, and error handling.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
             <title><![CDATA[Showcasing Your GitHub Activity in React: A Complete Guide]]></title>
             <link>https://jehadurre.me/blog/showcasing-github-activity-react-complete-guide</link>
             <guid isPermaLink="false">https://jehadurre.me/blog/showcasing-github-activity-react-complete-guide</guid>

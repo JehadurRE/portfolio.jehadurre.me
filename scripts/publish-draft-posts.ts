@@ -134,7 +134,7 @@ async function run() {
       }
 
       console.log(`Publishing: "${post.title}" (${post.slug})...`);
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('blog_posts')
         .upsert(post, { onConflict: 'slug' })
         .select();
