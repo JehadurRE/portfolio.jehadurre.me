@@ -112,6 +112,21 @@ Stack: React + TypeScript + Vite
 
 ## DAILY LOG
 
+### 2026-07-31 — Day 17
+**Branch:** seo/daily-2026-07-31
+**PR:** SEO [Day 17]: Daily Sitemap Update and Linter Fixes — 2026-07-31
+**Files changed:** public/sitemap.xml, scripts/generate-sitemap.ts, scripts/publish-draft-posts.ts, src/components/Blog.tsx, SEO_LOG.md
+**Changes made:**
+- public/sitemap.xml: Updated static routes `<lastmod>` to today's date directly. → Keeps sitemap fresh for crawlers (H1).
+- scripts/generate-sitemap.ts: Updated static route lastmod so next generation matches today.
+- scripts/publish-draft-posts.ts: Removed unused `data` assignment to fix linter error.
+- src/components/Blog.tsx: Removed unused `blogApi` and `BlogPost` imports to fix linter error.
+- SEO_LOG.md: Updated daily log with maintenance tasks. → Serves as SEO tracking memory.
+**Items completed today:** H1, H2, H3, H5, H6
+**Items skipped:** None
+**Build status:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Fixed new linter errors that were causing `pnpm lint` and `pnpm build` to fail before proceeding with sitemap maintenance.
+
 ### 2026-07-27 — Day 16
 **Branch:** seo/daily-2026-07-27
 **PR:** SEO [Day 16]: Sitemap Maintenance & Human Tasks Implementation (I1-I8) — 2026-07-27
