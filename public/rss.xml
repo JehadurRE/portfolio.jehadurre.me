@@ -14,5 +14,121 @@
             <link>https://jehadurre.me</link>
         </image>
         <copyright>All rights reserved 2026, Jehadur Rahman Emran</copyright>
+        <item>
+            <title><![CDATA[Building a Type-Safe Supabase Client in React with TypeScript]]></title>
+            <link>https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript</guid>
+            <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn how to build a robust, type-safe Supabase client in your React and TypeScript applications. Discover patterns for API abstraction, environment validation, and error handling.]]></description>
+            <content:encoded><![CDATA[Learn how to build a robust, type-safe Supabase client in your React and TypeScript applications. Discover patterns for API abstraction, environment validation, and error handling.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Showcasing Your GitHub Activity in React: A Complete Guide]]></title>
+            <link>https://jehadurre.me/blog/showcasing-github-activity-react-complete-guide</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/showcasing-github-activity-react-complete-guide</guid>
+            <pubDate>Mon, 27 Jul 2026 14:59:31 GMT</pubDate>
+            <description><![CDATA[Learn how to easily integrate and visualize your GitHub contribution graph in a React portfolio using react-activity-calendar and serverless API endpoints.]]></description>
+            <content:encoded><![CDATA[Learn how to easily integrate and visualize your GitHub contribution graph in a React portfolio using react-activity-calendar and serverless API endpoints.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/showcasing-github-activity-react-complete-guide-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[How I architected my portfolio with Vite + React + Supabase]]></title>
+            <link>https://jehadurre.me/blog/how-i-architected-my-portfolio-with-vite-react-supabase</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/how-i-architected-my-portfolio-with-vite-react-supabase</guid>
+            <pubDate>Mon, 27 Jul 2026 14:58:31 GMT</pubDate>
+            <description><![CDATA[A deep dive into the technical decisions, architecture, and optimizations that power my developer portfolio using Vite, React, and Supabase.]]></description>
+            <content:encoded><![CDATA[A deep dive into the technical decisions, architecture, and optimizations that power my developer portfolio using Vite, React, and Supabase.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/how-i-architected-my-portfolio-with-vite-react-supabase-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Deep Dive: Building the Research Management System]]></title>
+            <link>https://jehadurre.me/blog/building-the-research-management-system</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/building-the-research-management-system</guid>
+            <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Explore the architecture and challenges of building a full-stack Research Management System using modern web technologies to handle academic collaboration.]]></description>
+            <content:encoded><![CDATA[Explore the architecture and challenges of building a full-stack Research Management System using modern web technologies to handle academic collaboration.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/building-the-research-management-system-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[The State of Web Performance: Vite, React, and the Death of Create React App]]></title>
+            <link>https://jehadurre.me/blog/the-state-of-web-performance-vite-react</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/the-state-of-web-performance-vite-react</guid>
+            <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Explore how Vite transformed React development by eliminating bundler bottlenecks and creating a new standard for web performance and developer experience.]]></description>
+            <content:encoded><![CDATA[Explore how Vite transformed React development by eliminating bundler bottlenecks and creating a new standard for web performance and developer experience.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/the-state-of-web-performance-vite-react-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Effortless Form Validation with React Hook Form and Zod]]></title>
+            <link>https://jehadurre.me/blog/effortless-form-validation-react-hook-form-zod</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/effortless-form-validation-react-hook-form-zod</guid>
+            <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Learn how to build robust, type-safe, and highly performant forms in React by combining React Hook Form with Zod schema validation.]]></description>
+            <content:encoded><![CDATA[Learn how to build robust, type-safe, and highly performant forms in React by combining React Hook Form with Zod schema validation.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/effortless-form-validation-react-hook-form-zod-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[How I Approached Multi-Cloud Certifications as a Full-Stack Developer]]></title>
+            <link>https://jehadurre.me/blog/how-i-approached-multi-cloud-certifications</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/how-i-approached-multi-cloud-certifications</guid>
+            <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[A practical guide to balancing full-stack development with achieving multi-cloud certifications across AWS, Google Cloud, and Kubernetes.]]></description>
+            <content:encoded><![CDATA[A practical guide to balancing full-stack development with achieving multi-cloud certifications across AWS, Google Cloud, and Kubernetes.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/how-i-approached-multi-cloud-certifications-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Machine Learning in Software Engineering: Bridging Research and Practice]]></title>
+            <link>https://jehadurre.me/blog/machine-learning-in-software-engineering-workflows</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/machine-learning-in-software-engineering-workflows</guid>
+            <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Explore how machine-learning approaches for software engineering can bridge the gap between academic research and practical, daily development workflows.]]></description>
+            <content:encoded><![CDATA[Explore how machine-learning approaches for software engineering can bridge the gap between academic research and practical, daily development workflows.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/ml-se-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Building Scalable React Applications with TypeScript]]></title>
+            <link>https://jehadurre.me/blog/building-scalable-react-applications</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/building-scalable-react-applications</guid>
+            <pubDate>Sat, 28 Jun 2025 01:44:26 GMT</pubDate>
+            <description><![CDATA[Learn best practices for creating maintainable and scalable React applications using TypeScript, focusing on proper architecture and design patterns.]]></description>
+            <content:encoded><![CDATA[Learn best practices for creating maintainable and scalable React applications using TypeScript, focusing on proper architecture and design patterns.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
+        <item>
+            <title><![CDATA[The Future of Machine Learning in Software Engineering]]></title>
+            <link>https://jehadurre.me/blog/future-of-ml-in-software-engineering</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/future-of-ml-in-software-engineering</guid>
+            <pubDate>Wed, 10 Jan 2024 14:30:00 GMT</pubDate>
+            <description><![CDATA[Exploring how machine learning is transforming software development processes, from automated testing to intelligent code generation.]]></description>
+            <content:encoded><![CDATA[Exploring how machine learning is transforming software development processes, from automated testing to intelligent code generation.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
+        <item>
+            <title><![CDATA[Optimizing Database Performance for Web Applications]]></title>
+            <link>https://jehadurre.me/blog/optimizing-database-performance</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/optimizing-database-performance</guid>
+            <pubDate>Fri, 05 Jan 2024 09:15:00 GMT</pubDate>
+            <description><![CDATA[Deep dive into database optimization techniques including indexing strategies, query optimization, and caching mechanisms.]]></description>
+            <content:encoded><![CDATA[Deep dive into database optimization techniques including indexing strategies, query optimization, and caching mechanisms.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
+        <item>
+            <title><![CDATA[Modern CSS Techniques for Better User Experiences]]></title>
+            <link>https://jehadurre.me/blog/modern-css-techniques</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/modern-css-techniques</guid>
+            <pubDate>Mon, 01 Jan 2024 16:45:00 GMT</pubDate>
+            <description><![CDATA[Discover advanced CSS techniques including Grid, Flexbox, and CSS Custom Properties to create stunning user interfaces.]]></description>
+            <content:encoded><![CDATA[Discover advanced CSS techniques including Grid, Flexbox, and CSS Custom Properties to create stunning user interfaces.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+        </item>
     </channel>
 </rss>
