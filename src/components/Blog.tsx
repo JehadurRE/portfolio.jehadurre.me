@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import LazyImage from './LazyImage';
 import { formatDate } from '../utils/dateUtils';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -358,7 +359,9 @@ const Blog: React.FC = () => {
               >
                 {post.cover_image && (
                   <div className="w-full h-48 overflow-hidden">
-                    <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    {/* ⚡ Bolt Performance Optimization:
+                    Replaced standard img with LazyImage to defer offscreen image loading, improving initial page load time. */}
+                    <LazyImage src={post.cover_image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                 )}
                 <div className="p-8 flex flex-col flex-1">
