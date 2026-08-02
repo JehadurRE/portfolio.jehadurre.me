@@ -121,3 +121,6 @@
 ## 2024-12-10 - Throttle scroll event listeners with requestAnimationFrame
 **Learning:** Unthrottled scroll event listeners that read layout properties (like `window.scrollY` or `document.body.scrollHeight`) can cause layout thrashing and severe scroll jank because they trigger synchronous style calculations on the main thread multiple times per frame.
 **Action:** Always wrap the callback inside `requestAnimationFrame` to ensure the layout readings and state updates only happen once per frame. Additionally, use `{ passive: true }` on the event listener to prevent it from blocking the browser's default scroll behavior.
+## 2024-12-10 - Do Not Lazy Load LCP Images
+**Learning:** While replacing standard `img` tags with `LazyImage` components is generally a good performance optimization to defer off-screen loading and save bandwidth, it should not be applied to images above the fold. Lazy loading an image that is part of the initial viewport delays the Largest Contentful Paint (LCP), negatively impacting perceived performance and core web vitals.
+**Action:** Always verify if an image is part of the initial viewport (like the featured post cover image) before applying lazy loading. Keep eager loading (standard `img`) for above-the-fold images to maintain optimal LCP.
