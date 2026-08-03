@@ -14,7 +14,17 @@
             <link>https://jehadurre.me</link>
         </image>
         <copyright>All rights reserved 2026, Jehadur Rahman Emran</copyright>
-        <item>
+                <item>
+            <title><![CDATA[Bangla Text-to-Image Generation: Advancing Generative Models for Low-Resource Languages]]></title>
+            <link>https://jehadurre.me/blog/bangla-text-to-image-generation-models</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/bangla-text-to-image-generation-models</guid>
+            <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Explore the challenges and solutions in developing text-to-image generation models for Bangla, focusing on datasets, tokenization, and architecture adaptations.]]></description>
+            <content:encoded><![CDATA[Explore the challenges and solutions in developing text-to-image generation models for Bangla, focusing on datasets, tokenization, and architecture adaptations.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/bangla-text-to-image-generation-models-cover.jpg" length="0" type="image/jpg"/>
+        </item>
+<item>
             <title><![CDATA[Building a Type-Safe Supabase Client in React with TypeScript]]></title>
             <link>https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript</link>
             <guid isPermaLink="false">https://jehadurre.me/blog/building-type-safe-supabase-client-react-typescript</guid>
