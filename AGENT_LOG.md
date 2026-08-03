@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-08-01
+Last updated: 2026-08-03
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 8 | 2026-08-03 | bangla-text-to-image-generation-models | Bangla Text-to-Image Generation: Advancing Generative Models for Low-Resource Languages | Research | 946 |
 | 7 | 2026-08-01 | react-dark-mode-system-preference-localstorage | React Dark Mode: System Preference & LocalStorage Guide | Tutorial | 721 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
@@ -78,7 +79,7 @@ Domain: https://jehadurre.me
 > Inferred from codebase — update if new info found
 - Tech stack: React, TypeScript, Vite, Supabase, Tailwind CSS, Framer Motion
 - Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
-- Research areas: Machine Learning Approaches for Software Engineering
+- Research areas: Machine Learning Approaches for Software Engineering, Bangla Text-to-Image generation
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
 - Blog categories used: Tutorial, Project, Research, Tools, Industry, Career
 
@@ -87,6 +88,8 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED / COMPLETED
 > Updated session status — all CLI & codebase tasks completed
 
+- 🚫 Run SQL insert script `blog-posts/drafts/bangla-text-to-image-generation-models.sql` in Supabase
+- 🚫 Create `public/blog/bangla-text-to-image-generation-models-cover.jpg` (1200x630px)
 - 🚫 Run SQL insert script `blog-posts/drafts/react-dark-mode-system-preference-localstorage.sql` in Supabase
 - 🚫 Create `public/blog/react-dark-mode-system-preference-localstorage-cover.jpg` (1200x630px)
 - ✅ Run SQL insert script `blog-posts/drafts/the-state-of-web-performance-vite-react.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
@@ -100,6 +103,25 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-08-03 — Day 13 — WRITE MODE
+**Branch:** blog/bangla-text-to-image-generation-models-2026-08-03
+**PR:** blog: "Bangla Text-to-Image Generation: Advancing Generative Models for Low-Resource Languages" — Research
+**Mode:** WRITE
+**Files changed:**
+- `content/blog/bangla-text-to-image-generation-models.md`: Created new research blog post.
+- `blog-posts/drafts/bangla-text-to-image-generation-models.sql`: Created SQL draft for the new blog post.
+
+**If WRITE:**
+- Post title: Bangla Text-to-Image Generation: Advancing Generative Models for Low-Resource Languages
+- Slug: /blog/bangla-text-to-image-generation-models
+- Category: Research
+- Word count: 946
+- Primary keyword: Bangla text-to-image generation
+- File: content/blog/bangla-text-to-image-generation-models.md
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Wrote a detailed research post covering the challenges and approaches for generating images from Bangla textual descriptions, aligning with Jehad's current research focus found in the codebase.
 
 ### 2026-08-01 — Day 12 — BOTH MODE
 **Branch:** feat-blog/dark-mode-hook-and-post-2026-08-01
