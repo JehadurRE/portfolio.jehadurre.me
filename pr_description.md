@@ -1,14 +1,27 @@
-## What/why
-- Added `vercel.json` with a rewrite rule. Since this application is a Vite-based SPA, Vercel needs to be configured to fallback to `/index.html` on unmatched routes (like deep links or page refreshes). This resolves 404s on direct navigation to routes like `/blog/building-scalable-react-applications`.
-- Updated `src/components/ErrorBoundary.tsx` to explicitly catch `ChunkLoadError` and "Failed to fetch dynamically imported module" errors. When these happen (typically because a user is on the site while a new deployment finishes, deleting the old JS chunks), it now automatically calls `window.location.reload()` to silently fetch the newest version, improving the user experience rather than showing the red crash screen.
+## What Jules did today
 
-## Files changed
-- `vercel.json`
-- `src/components/ErrorBoundary.tsx`
+**Checklist items completed:** H1, H2, H3, H4, H5, H6
+**Files changed:** public/sitemap.xml, scripts/generate-sitemap.ts, SEO_LOG.md
 
-## Human action items outstanding
-- None.
+### Changes
+- `public/sitemap.xml`: Updated static routes `<lastmod>` to today's date directly. → Keeps sitemap fresh for crawlers (H1).
+- `scripts/generate-sitemap.ts`: Updated static route lastmod so next generation matches today. → Keeps generated sitemap consistent.
+- `SEO_LOG.md`: Updated daily log with maintenance tasks. → Serves as SEO tracking memory.
 
-## Build Verification Status
-- Linting passed
-- Build completed successfully
+### Skipped
+None
+
+### Human action required
+None
+
+### Running totals
+- Total checklist items: 45
+- Completed to date: 45
+- Remaining: 0
+- Estimated sessions to full completion: 0
+
+### Build verification
+- pnpm lint: ✅ PASSED
+- pnpm build: ✅ PASSED
+
+> Full history in SEO_LOG.md
