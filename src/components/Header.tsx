@@ -101,13 +101,13 @@ const Header: React.FC = () => {
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
               className="p-2 rounded-full glass-card hover:shadow-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-              title="Toggle theme"
-              aria-label="Toggle theme"
+              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
               {isDark ? (
-                <Sun className="w-5 h-5 text-accent-500" />
+                <Sun className="w-5 h-5 text-accent-500" aria-hidden="true" />
               ) : (
-                <Moon className="w-5 h-5 text-primary-600" />
+                <Moon className="w-5 h-5 text-primary-600" aria-hidden="true" />
               )}
             </motion.button>
 
@@ -120,11 +120,12 @@ const Header: React.FC = () => {
               title={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
+                <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" aria-hidden="true" />
               ) : (
-                <Menu className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
+                <Menu className="w-5 h-5 text-secondary-600 dark:text-secondary-300" aria-hidden="true" />
               )}
             </motion.button>
           </div>
@@ -135,6 +136,7 @@ const Header: React.FC = () => {
           initial={false}
           animate={{ height: isMenuOpen ? 'auto' : 0, opacity: isMenuOpen ? 1 : 0 }}
           transition={{ duration: 0.3 }}
+          id="mobile-navigation"
           className="md:hidden overflow-hidden"
         >
           <div className="py-4 space-y-2">
