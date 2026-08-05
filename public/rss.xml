@@ -130,5 +130,15 @@
             <content:encoded><![CDATA[Discover advanced CSS techniques including Grid, Flexbox, and CSS Custom Properties to create stunning user interfaces.]]></content:encoded>
             <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
         </item>
+        <item>
+            <title><![CDATA[Project Breakdown: Searchable Bengali PDFs in Flutter Native Platforms]]></title>
+            <link>https://jehadurre.me/blog/project-breakdown-bengali-pdf-flutter</link>
+            <guid isPermaLink="false">https://jehadurre.me/blog/project-breakdown-bengali-pdf-flutter</guid>
+            <pubDate>Wed, 05 Aug 2026 05:28:57 GMT</pubDate>
+            <description><![CDATA[A deep dive into how I built bengali_pdf to render HarfBuzz-shaped, fully searchable Bengali text in Flutter apps natively without losing accessibility or search capabilities.]]></description>
+            <content:encoded><![CDATA[A deep dive into how I built bengali_pdf to render HarfBuzz-shaped, fully searchable Bengali text in Flutter apps natively without losing accessibility or search capabilities.]]></content:encoded>
+            <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
+            <enclosure url="https://jehadurre.me/blog/project-breakdown-bengali-pdf-flutter-cover.jpg" length="0" type="image/jpg"/>
+        </item>
     </channel>
 </rss>
