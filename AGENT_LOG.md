@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-08-01
+Last updated: 2026-08-05
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 8 | 2026-08-05 | project-breakdown-bengali-pdf-flutter | Project Breakdown: Searchable Bengali PDFs in Flutter Native Platforms | Project | 1177 |
 | 7 | 2026-08-01 | react-dark-mode-system-preference-localstorage | React Dark Mode: System Preference & LocalStorage Guide | Tutorial | 721 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
@@ -87,6 +88,8 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED / COMPLETED
 > Updated session status — all CLI & codebase tasks completed
 
+- 🚫 Run SQL insert script `blog-posts/drafts/project-breakdown-bengali-pdf-flutter.sql` in Supabase
+- 🚫 Create `public/blog/project-breakdown-bengali-pdf-flutter-cover.jpg` (1200x630px)
 - 🚫 Run SQL insert script `blog-posts/drafts/react-dark-mode-system-preference-localstorage.sql` in Supabase
 - 🚫 Create `public/blog/react-dark-mode-system-preference-localstorage-cover.jpg` (1200x630px)
 - ✅ Run SQL insert script `blog-posts/drafts/the-state-of-web-performance-vite-react.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
@@ -100,6 +103,25 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-08-05 — Day 13 — WRITE MODE
+**Branch:** blog/project-breakdown-bengali-pdf-flutter-2026-08-05
+**PR:** blog: "Project Breakdown: Searchable Bengali PDFs in Flutter Native Platforms" — Project
+**Mode:** WRITE
+**Files changed:**
+- `content/blog/project-breakdown-bengali-pdf-flutter.md`: Created new project breakdown blog post.
+- `blog-posts/drafts/project-breakdown-bengali-pdf-flutter.sql`: Created SQL draft.
+
+**If WRITE:**
+- Post title: Project Breakdown: Searchable Bengali PDFs in Flutter Native Platforms
+- Slug: /blog/project-breakdown-bengali-pdf-flutter
+- Category: Project
+- Word count: 1177
+- Primary keyword: bengali_pdf flutter
+- File: content/blog/project-breakdown-bengali-pdf-flutter.md
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Found Jehad's actual `bengali_pdf` project via GitHub API and wrote a detailed project breakdown post (>800 words) explaining the challenges of complex text layout and HarfBuzz shaping in Flutter.
 
 ### 2026-08-01 — Day 12 — BOTH MODE
 **Branch:** feat-blog/dark-mode-hook-and-post-2026-08-01
