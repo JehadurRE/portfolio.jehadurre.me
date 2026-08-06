@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-08-01
+Last updated: 2026-08-06
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 8 | 2026-08-06 | building-apple-mail-plugin-for-ai-agents | Building an Apple Mail Plugin for AI Agents with TypeScript and AppleScript | Project | 823 |
 | 7 | 2026-08-01 | react-dark-mode-system-preference-localstorage | React Dark Mode: System Preference & LocalStorage Guide | Tutorial | 721 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
@@ -87,6 +88,8 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED / COMPLETED
 > Updated session status — all CLI & codebase tasks completed
 
+- 🚫 Run SQL insert script `blog-posts/drafts/building-apple-mail-plugin-for-ai-agents.sql` in Supabase
+- 🚫 Create `public/blog/building-apple-mail-plugin-for-ai-agents-cover.jpg` (1200x630px)
 - 🚫 Run SQL insert script `blog-posts/drafts/react-dark-mode-system-preference-localstorage.sql` in Supabase
 - 🚫 Create `public/blog/react-dark-mode-system-preference-localstorage-cover.jpg` (1200x630px)
 - ✅ Run SQL insert script `blog-posts/drafts/the-state-of-web-performance-vite-react.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
@@ -100,6 +103,25 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-08-06 — Day 13 — WRITE MODE
+**Branch:** blog/building-apple-mail-plugin-for-ai-agents-2026-08-06
+**PR:** blog: "Building an Apple Mail Plugin for AI Agents with TypeScript and AppleScript" — Project
+**Mode:** WRITE
+**Files changed:**
+- `content/blog/building-apple-mail-plugin-for-ai-agents.md`: Created new project breakdown blog post.
+- `blog-posts/drafts/building-apple-mail-plugin-for-ai-agents.sql`: Created SQL draft for the new blog post.
+
+**If WRITE:**
+- Post title: Building an Apple Mail Plugin for AI Agents with TypeScript and AppleScript
+- Slug: /blog/building-apple-mail-plugin-for-ai-agents
+- Category: Project
+- Word count: 823
+- Primary keyword: Apple Mail plugin AI agents TypeScript
+- File: content/blog/building-apple-mail-plugin-for-ai-agents.md
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Conducted a deep dive on building the openclaw-apple-mail channel plugin, handling per-thread session isolation, and executing AppleScript from Node.js environments.
 
 ### 2026-08-01 — Day 12 — BOTH MODE
 **Branch:** feat-blog/dark-mode-hook-and-post-2026-08-01
