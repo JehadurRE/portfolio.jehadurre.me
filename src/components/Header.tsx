@@ -105,9 +105,9 @@ const Header: React.FC = () => {
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <Sun className="w-5 h-5 text-accent-500" />
+                <Sun aria-hidden="true" className="w-5 h-5 text-accent-500" />
               ) : (
-                <Moon className="w-5 h-5 text-primary-600" />
+                <Moon aria-hidden="true" className="w-5 h-5 text-primary-600" />
               )}
             </motion.button>
 
@@ -120,11 +120,12 @@ const Header: React.FC = () => {
               title={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
+                <X aria-hidden="true" className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
               ) : (
-                <Menu className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
+                <Menu aria-hidden="true" className="w-5 h-5 text-secondary-600 dark:text-secondary-300" />
               )}
             </motion.button>
           </div>
@@ -132,6 +133,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         <motion.div
+          id="mobile-menu"
           initial={false}
           animate={{ height: isMenuOpen ? 'auto' : 0, opacity: isMenuOpen ? 1 : 0 }}
           transition={{ duration: 0.3 }}

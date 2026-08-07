@@ -49,3 +49,7 @@
 ## 2024-08-01 - Add Keyboard Shortcut Hints to Tooltips
 **Learning:** Users who primarily use a mouse may never discover global keyboard shortcuts (like Cmd/Ctrl + K) if they are not visually indicated.
 **Action:** Always include keyboard shortcut hints within the native `title` attribute or tooltip on elements that trigger the same action, improving discoverability for sighted users.
+
+## 2024-05-25 - [UI Toggle Button Accessibility]
+**Learning:** Screen reader users can struggle to understand the relationship between a toggle button and its associated content if they are not programmatically linked, and decorative icons can create redundant or confusing announcements.
+**Action:** When implementing UI toggle buttons (e.g., mobile menus, search modals), always explicitly link them to their controlled content using `aria-controls`, reflect their state with `aria-expanded`, and hide inner decorative icons from screen readers using `aria-hidden="true"`.
