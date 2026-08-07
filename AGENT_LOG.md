@@ -1,5 +1,5 @@
 # Portfolio Enhancement Agent Log — jehadurre.me
-Last updated: 2026-08-01
+Last updated: 2026-08-07
 Stack: React + TypeScript + Vite + Supabase
 Domain: https://jehadurre.me
 
@@ -64,6 +64,7 @@ Domain: https://jehadurre.me
 
 | # | Date | Slug | Title | Category | Words |
 |---|------|------|-------|----------|-------|
+| 8 | 2026-08-07 | building-contextual-spell-checker-bangla-bert | Building an Automatic Progressive Context-Sensitive Spell Checker for Bangla using BERT | Project | 1145 |
 | 7 | 2026-08-01 | react-dark-mode-system-preference-localstorage | React Dark Mode: System Preference & LocalStorage Guide | Tutorial | 721 |
 | 6 | 2026-07-27 | the-state-of-web-performance-vite-react | The State of Web Performance: Vite, React, and the Death of Create React App | Industry | 938 |
 | 5 | 2026-07-26 | how-i-approached-multi-cloud-certifications | How I Approached Multi-Cloud Certifications as a Full-Stack Developer | Career | 843 |
@@ -77,7 +78,7 @@ Domain: https://jehadurre.me
 ## JEHAD'S DETECTED INTERESTS
 > Inferred from codebase — update if new info found
 - Tech stack: React, TypeScript, Vite, Supabase, Tailwind CSS, Framer Motion
-- Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis.
+- Projects: Work in progress aimed at generating detailed images from Bangla textual descriptions using generative models. ML models for software engineering and data analysis. Contextual-Spell-Checker-For-Bangla.
 - Research areas: Machine Learning Approaches for Software Engineering
 - Certifications: AWS Certified Solutions Architect, Google Cloud Professional Developer, Certified Kubernetes Administrator, MongoDB Certified Developer, PMP, Machine Learning Specialization (Stanford)
 - Blog categories used: Tutorial, Project, Research, Tools, Industry, Career
@@ -87,6 +88,8 @@ Domain: https://jehadurre.me
 ## HUMAN ACTION REQUIRED / COMPLETED
 > Updated session status — all CLI & codebase tasks completed
 
+- 🚫 Run SQL insert script `blog-posts/drafts/building-contextual-spell-checker-bangla-bert.sql` in Supabase
+- 🚫 Create `public/blog/building-contextual-spell-checker-bangla-bert-cover.jpg` (1200x630px)
 - 🚫 Run SQL insert script `blog-posts/drafts/react-dark-mode-system-preference-localstorage.sql` in Supabase
 - 🚫 Create `public/blog/react-dark-mode-system-preference-localstorage-cover.jpg` (1200x630px)
 - ✅ Run SQL insert script `blog-posts/drafts/the-state-of-web-performance-vite-react.sql` in Supabase (Pushed via Supabase CLI) [2026-07-27]
@@ -100,6 +103,26 @@ Domain: https://jehadurre.me
 ---
 
 ## DAILY LOG
+
+### 2026-08-07 — Day 13 — WRITE MODE
+**Branch:** blog/building-contextual-spell-checker-bangla-bert-2026-08-07
+**PR:** blog: "Building an Automatic Progressive Context-Sensitive Spell Checker for Bangla using BERT" — Project
+**Mode:** WRITE
+**Files changed:**
+- `content/blog/building-contextual-spell-checker-bangla-bert.md`: Created new project deep dive blog post.
+- `blog-posts/drafts/building-contextual-spell-checker-bangla-bert.sql`: Created SQL draft.
+- `AGENT_LOG.md`: Logged today's activities.
+
+**If WRITE:**
+- Post title: Building an Automatic Progressive Context-Sensitive Spell Checker for Bangla using BERT
+- Slug: /blog/building-contextual-spell-checker-bangla-bert
+- Category: Project
+- Word count: 1145
+- Primary keyword: bangla spell checker bert
+- File: content/blog/building-contextual-spell-checker-bangla-bert.md
+
+**Build:** pnpm lint ✅ | pnpm build ✅
+**Notes:** Wrote a deep dive on building the Contextual-Spell-Checker-For-Bangla project.
 
 ### 2026-08-01 — Day 12 — BOTH MODE
 **Branch:** feat-blog/dark-mode-hook-and-post-2026-08-01
