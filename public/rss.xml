@@ -130,5 +130,13 @@
             <content:encoded><![CDATA[Discover advanced CSS techniques including Grid, Flexbox, and CSS Custom Properties to create stunning user interfaces.]]></content:encoded>
             <author>emran.jehadur@gmail.com (Jehadur Rahman Emran)</author>
         </item>
-    </channel>
+        <item>
+      <title><![CDATA[Deep Dive: Building bengali_pdf for HarfBuzz-Shaped Bangla Text in Flutter]]></title>
+      <link>https://jehadurre.me/blog/building-bengali-pdf-harfbuzz-flutter</link>
+      <guid>https://jehadurre.me/blog/building-bengali-pdf-harfbuzz-flutter</guid>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Learn how I built bengali_pdf to render complex HarfBuzz-shaped, searchable Bangla text in Flutter applications.]]></description>
+      <category>Project</category>
+    </item>
+  </channel>
 </rss>
